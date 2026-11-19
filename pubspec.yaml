@@ -1,0 +1,60 @@
+# Nom et description courte de l'application
+name: indexocial
+description: "Répertoire bilingue d'aide sociale et de ressources d'urgence au Québec."
+
+# Empêche la publication accidentelle de ce projet privé sur pub.dev
+publish_to: 'none'
+
+# Numéro de version de l'application :
+# 1.1.0 = version affichée aux utilisateurs (versionName)
+# +5    = numéro interne pour Google Play / App Store (versionCode)
+version: 1.1.0+5
+
+# Version de Dart requise pour compiler le projet
+environment:
+  sdk: ^3.14.0
+
+# Liste des paquets (bibliothèques) utilisés par l'application
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # Interface, icônes et design
+  cupertino_icons: ^1.0.8
+  material_ui: ^1.1.0
+
+  # Internet et liens externes (synchronisation GitHub, ouverture de sites/appels)
+  http: ^1.2.2
+  url_launcher: ^6.3.0
+
+  # Sauvegarde locale sur le téléphone (notes, favoris, réglages)
+  shared_preferences: ^2.2.3
+  path_provider: ^2.1.3
+
+  # Dictaphone vocal (enregistrement et lecture audio)
+  record: 5.1.2
+  audioplayers: ^6.0.0
+
+  # Capteurs, localisation et partage QR Code
+  geolocator: ^13.0.2
+  qr_flutter: ^4.1.0
+  sensors_plus: ^6.0.1
+
+# Outils utilisés uniquement pendant le développement (tests et vérification du code)
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+
+# Forçage de version pour éviter un conflit technique avec le dictaphone (record)
+dependency_overrides:
+  record_platform_interface: 1.1.0
+
+# Configuration visuelle de Flutter
+flutter:
+  # Active les icônes standard Material Design
+  uses-material-design: true
+
+  # Pour ajouter des images plus tard, décommente les lignes ci-dessous :
+  # assets:
+  #   - images/mon_image.png
