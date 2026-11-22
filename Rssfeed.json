@@ -1,0 +1,184 @@
+[
+  {
+    "source": "Éducaloi",
+    "nameFr": "Éducaloi",
+    "nameEn": "Éducaloi",
+    "urlFr": "https://educaloi.qc.ca/feed/",
+    "urlEn": "https://educaloi.qc.ca/en/feed/"
+  },
+  {
+    "source": "INSPQ",
+    "nameFr": "INSPQ — Santé publique",
+    "nameEn": "INSPQ — Public Health",
+    "urlFr": "https://www.inspq.qc.ca/nos-productions/publications/rss.xml",
+    "urlEn": "https://www.inspq.qc.ca/nos-productions/publications/rss.xml"
+  },
+  {
+    "source": "Banques alimentaires QC",
+    "nameFr": "Banques alimentaires QC",
+    "nameEn": "Food Banks QC",
+    "urlFr": "https://banquesalimentaires.org/feed/",
+    "urlEn": "https://banquesalimentaires.org/en/feed/"
+  },
+  {
+    "source": "OPC",
+    "nameFr": "Protection du consommateur (OPC)",
+    "nameEn": "Consumer Protection (OPC)",
+    "urlFr": "https://www.opc.gouv.qc.ca/actualite/toutes-les-actualites/rss.xml",
+    "urlEn": "https://www.opc.gouv.qc.ca/actualite/toutes-les-actualites/rss.xml"
+  },
+  {
+    "source": "Mouvement Santé mentale QC",
+    "nameFr": "Mouvement Santé mentale QC",
+    "nameEn": "Mouvement Santé mentale QC",
+    "urlFr": "https://mouvementsmq.ca/feed/",
+    "urlEn": "https://mouvementsmq.ca/feed/"
+  },
+  {
+    "source": "Union des consommateurs",
+    "nameFr": "Union des consommateurs",
+    "nameEn": "Union des consommateurs",
+    "urlFr": "https://uniondesconsommateurs.ca/feed/",
+    "urlEn": "https://uniondesconsommateurs.ca/en/feed/"
+  },
+  {
+    "source": "Gazette du Canada",
+    "nameFr": "Gazette du Canada (Partie 1)",
+    "nameEn": "Canada Gazette (Part 1)",
+    "urlFr": "https://www.gazette.gc.ca/rss/p1-fra.xml",
+    "urlEn": "https://www.gazette.gc.ca/rss/p1-eng.xml"
+  },
+  {
+    "source": "Gazette du Canada",
+    "nameFr": "Gazette du Canada (Partie 2)",
+    "nameEn": "Canada Gazette (Part 2)",
+    "urlFr": "https://www.gazette.gc.ca/rss/p2-fra.xml",
+    "urlEn": "https://www.gazette.gc.ca/rss/p2-eng.xml"
+  },
+  {
+    "source": "FRAPRU",
+    "nameFr": "FRAPRU — Logement social",
+    "nameEn": "FRAPRU — Social Housing",
+    "urlFr": "https://www.frapru.qc.ca/feed/",
+    "urlEn": "https://www.frapru.qc.ca/feed/"
+  },
+  {
+    "source": "RCLALQ",
+    "nameFr": "RCLALQ — Droits des locataires",
+    "nameEn": "RCLALQ — Tenants' Rights",
+    "urlFr": "https://rclalq.qc.ca/feed/",
+    "urlEn": "https://rclalq.qc.ca/feed/"
+  },
+  {
+    "source": "Québec sans pauvreté",
+    "nameFr": "Collectif pour un Québec sans pauvreté",
+    "nameEn": "Collectif pour un Québec sans pauvreté",
+    "urlFr": "https://www.pauvrete.qc.ca/feed/",
+    "urlEn": "https://www.pauvrete.qc.ca/feed/"
+  },
+  {
+    "source": "Centraide",
+    "nameFr": "Centraide du Grand Montréal",
+    "nameEn": "Centraide of Greater Montreal",
+    "urlFr": "https://www.centraide-mtl.org/feed/",
+    "urlEn": "https://www.centraide-mtl.org/en/feed/"
+  },
+  {
+    "source": "L'Appui",
+    "nameFr": "L'Appui — Proches aidants",
+    "nameEn": "L'Appui — Caregivers",
+    "urlFr": "https://www.lappui.org/fr/feed/",
+    "urlEn": "https://www.lappui.org/en/feed/"
+  },
+  {
+    "source": "FADOQ",
+    "nameFr": "Réseau FADOQ — Aînés",
+    "nameEn": "Réseau FADOQ — Seniors",
+    "urlFr": "https://www.fadoq.ca/feed/",
+    "urlEn": "https://www.fadoq.ca/feed/"
+  },
+  {
+    "source": "OPQ",
+    "nameFr": "Ordre des pharmaciens du Québec",
+    "nameEn": "Ordre des pharmaciens du Québec",
+    "urlFr": "https://www.opq.org/feed/",
+    "urlEn": "https://www.opq.org/feed/"
+  },
+  {
+    "source": "Option consommateurs",
+    "nameFr": "Option consommateurs — Budget & Droits",
+    "nameEn": "Option consommateurs — Budget & Rights",
+    "urlFr": "https://option-consommateurs.org/feed/",
+    "urlEn": "https://option-consommateurs.org/en/feed/"
+  },
+  {
+    "source": "Au bas de l'échelle",
+    "nameFr": "Au bas de l'échelle — Droits au travail",
+    "nameEn": "Au bas de l'échelle — Workers' Rights",
+    "urlFr": "https://www.aubasdelechelle.ca/feed/",
+    "urlEn": "https://www.aubasdelechelle.ca/feed/"
+  },
+  {
+    "source": "AQPS",
+    "nameFr": "AQPS — Prévention du suicide",
+    "nameEn": "AQPS — Suicide Prevention",
+    "urlFr": "https://aqps.info/feed/",
+    "urlEn": "https://aqps.info/feed/"
+  },
+  {
+    "source": "FMHF",
+    "nameFr": "Fédération des maisons d'hébergement pour femmes",
+    "nameEn": "Fédération des maisons d'hébergement pour femmes",
+    "urlFr": "https://fede.qc.ca/feed/",
+    "urlEn": "https://fede.qc.ca/feed/"
+  },
+  {
+    "source": "RCAAQ",
+    "nameFr": "Centres d'amitié autochtones du Québec",
+    "nameEn": "Quebec Native Friendship Centres",
+    "urlFr": "https://www.rcaaq.info/feed/",
+    "urlEn": "https://www.rcaaq.info/en/feed/"
+  },
+  {
+    "source": "AQDR",
+    "nameFr": "AQDR — Droits des aînés et retraités",
+    "nameEn": "AQDR — Seniors' Rights",
+    "urlFr": "https://www.aqdr.org/feed/",
+    "urlEn": "https://www.aqdr.org/feed/"
+  },
+  {
+    "source": "TCRI",
+    "nameFr": "TCRI — Aide aux personnes immigrantes et réfugiées",
+    "nameEn": "TCRI — Immigrant & Refugee Support",
+    "urlFr": "https://tcri.qc.ca/feed/",
+    "urlEn": "https://tcri.qc.ca/feed/"
+  },
+  {
+    "source": "COPHAN",
+    "nameFr": "COPHAN — Personnes handicapées du Québec",
+    "nameEn": "COPHAN — Persons with Disabilities QC",
+    "urlFr": "https://cophan.org/feed/",
+    "urlEn": "https://cophan.org/feed/"
+  },
+  {
+    "source": "AIDQ",
+    "nameFr": "AIDQ — Dépendances et réduction des méfaits",
+    "nameEn": "AIDQ — Addictions & Harm Reduction",
+    "urlFr": "https://aidq.org/feed/",
+    "urlEn": "https://aidq.org/feed/"
+  },
+  {
+    "source": "Ligue des droits",
+    "nameFr": "Ligue des droits et libertés",
+    "nameEn": "Ligue des droits et libertés",
+    "urlFr": "https://liguedesdroits.ca/feed/",
+    "urlEn": "https://liguedesdroits.ca/feed/"
+  },
+  {
+    "source": "Fondation Jeunes en Tête",
+    "nameFr": "Fondation Jeunes en Tête — Santé mentale jeunesse",
+    "nameEn": "Fondation Jeunes en Tête — Youth Mental Health",
+    "urlFr": "https://fondationjeunesentete.org/feed/",
+    "urlEn": "https://fondationjeunesentete.org/en/feed/"
+  }
+]
