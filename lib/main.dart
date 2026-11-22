@@ -12,8 +12,10 @@ import 'package:path_provider/path_provider.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:record/record.dart';
 import 'package:sensors_plus/sensors_plus.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:xml/xml.dart';
 
 void main() => runApp(const IndexocialApp());
 
@@ -239,7 +241,7 @@ class _IndexocialAppState extends State<IndexocialApp> with WidgetsBindingObserv
 // ============================================================================
 // DATA MODELS & CONSTANTS
 // ============================================================================
-enum NavTab { directory, wizard, saved, notes, docs, more }
+enum NavTab { directory, saved, notes, docs, more }
 
 enum DisplayMode { ledger, grid }
 
@@ -414,6 +416,96 @@ class PersonalNote {
   );
 }
 
+class RssArticle {
+  final String title;
+  final String link;
+  final String pubDate;
+  final String description;
+  final String sourceName;
+  final DateTime? dateTime;
+
+  const RssArticle({
+    required this.title,
+    required this.link,
+    required this.pubDate,
+    required this.description,
+    required this.sourceName,
+    this.dateTime,
+  });
+
+  Map<String, dynamic> toJson() => {
+        'title': title,
+        'link': link,
+        'pubDate': pubDate,
+        'description': description,
+        'sourceName': sourceName,
+        'dateTime': dateTime?.toIso8601String(),
+      };
+
+  factory RssArticle.fromJson(Map<String, dynamic> json) => RssArticle(
+        title: (json['title'] ?? '').toString(),
+        link: (json['link'] ?? '').toString(),
+        pubDate: (json['pubDate'] ?? '').toString(),
+        description: (json['description'] ?? '').toString(),
+        sourceName: (json['sourceName'] ?? '').toString(),
+        dateTime: json['dateTime'] != null ? DateTime.tryParse(json['dateTime'].toString()) : null,
+      );
+}
+
+class RssSource {
+  final String source;
+  final String nameFr;
+  final String nameEn;
+  final String urlFr;
+  final String urlEn;
+
+  const RssSource({
+    required this.source,
+    required this.nameFr,
+    required this.nameEn,
+    required this.urlFr,
+    required this.urlEn,
+  });
+
+  String name(bool isFr) {
+    if (isFr) {
+      return nameFr.isNotEmpty ? nameFr : (nameEn.isNotEmpty ? nameEn : source);
+    }
+    return nameEn.isNotEmpty ? nameEn : (nameFr.isNotEmpty ? nameFr : source);
+  }
+
+  String url(bool isFr) {
+    if (isFr) {
+      return urlFr.isNotEmpty ? urlFr : urlEn;
+    }
+    return urlEn.isNotEmpty ? urlEn : urlFr;
+  }
+
+  Map<String, dynamic> toJson() => {
+        'source': source,
+        'nameFr': nameFr,
+        'nameEn': nameEn,
+        'urlFr': urlFr,
+        'urlEn': urlEn,
+      };
+
+  factory RssSource.fromJson(Map<String, dynamic> json) {
+    final rawSource = (json['source'] ?? json['id'] ?? '').toString().trim();
+    final nameFr = (json['nameFr'] ?? json['name'] ?? json['title'] ?? rawSource).toString().trim();
+    final nameEn = (json['nameEn'] ?? json['name'] ?? json['title'] ?? nameFr).toString().trim();
+    final urlFr = (json['urlFr'] ?? json['url'] ?? json['feed'] ?? '').toString().trim();
+    final urlEn = (json['urlEn'] ?? json['url'] ?? json['feed'] ?? urlFr).toString().trim();
+
+    return RssSource(
+      source: rawSource.isNotEmpty ? rawSource : nameFr,
+      nameFr: nameFr,
+      nameEn: nameEn,
+      urlFr: urlFr,
+      urlEn: urlEn,
+    );
+  }
+}
+
 class CategoryItem {
   final String id;
   final String labelFr;
@@ -509,6 +601,8 @@ class _CivicLedgerScreenState extends State<CivicLedgerScreen> {
   bool _hasAcceptedDisclaimer = false;
   bool _disclaimerChecked = false;
   bool _hasSeenTour = false;
+  bool _simulatedOfflineMode = false;
+  bool _showFilterOptions = false;
   String _cachedPrivacyPolicyText = '';
 
   // --- ÉTAT ALERTES MÉTÉO ECCC (PAGE PRINCIPALE UNIQUEMENT) ---
@@ -585,6 +679,35 @@ class _CivicLedgerScreenState extends State<CivicLedgerScreen> {
   final _noteTitleController = TextEditingController();
   final _noteBodyController = TextEditingController();
   final _searchController = TextEditingController();
+
+  // --- ÉTAT RSS FEEDS ---
+  bool _isLoadingRss = false;
+  List<RssArticle> _rssArticles = [];
+  List<RssSource> _rssSources = [];
+  String? _lastRssTimestamp;
+  String _selectedRssSource = 'ALL';
+  int _docsSubTab = 0; // 0 = Guides hors ligne, 1 = Flux RSS en ligne
+
+  String get _rssJsonUrl {
+    final branch = _selectedJsonBranch;
+    final ts = DateTime.now().millisecondsSinceEpoch;
+    return 'https://raw.githubusercontent.com/Iam-Mithra/INDEXOCIAL/refs/heads/$branch/Rssfeed.json?t=$ts';
+  }
+
+  List<String> get _availableRssSourceNames {
+    final names = <String>{};
+    for (final a in _rssArticles) {
+      if (a.sourceName.isNotEmpty) names.add(a.sourceName);
+    }
+    return names.toList();
+  }
+
+  List<RssArticle> get _filteredRssArticles {
+    if (_selectedRssSource == 'ALL') {
+      return _rssArticles;
+    }
+    return _rssArticles.where((a) => a.sourceName == _selectedRssSource).toList();
+  }
 
   @override
   void initState() {
@@ -1279,7 +1402,7 @@ class _CivicLedgerScreenState extends State<CivicLedgerScreen> {
       final cacheBuster = DateTime.now().millisecondsSinceEpoch;
       final response = await http.get(
         Uri.parse('$_resourcesJsonUrl?t=$cacheBuster'),
-      );
+      ).timeout(const Duration(seconds: 3));
       if (response.statusCode == 200) {
         final decodedBody = utf8.decode(response.bodyBytes);
         final List<dynamic> decodedNet = jsonDecode(decodedBody);
@@ -1296,6 +1419,398 @@ class _CivicLedgerScreenState extends State<CivicLedgerScreen> {
     } catch (e) {
       debugPrint('FETCH ERROR: $e');
     }
+
+    Future.delayed(const Duration(milliseconds: 600), () {
+      if (mounted) _loadCachedAndRemoteRssFeeds();
+    });
+  }
+
+  String _selectedJsonBranch = 'main';
+  static const String _fontRoboto = 'Roboto';
+  static const String _fontCondensed = 'sans-serif-condensed';
+
+  Future<File> _getTempCacheFile(String filename) async {
+    final tempDir = await getTemporaryDirectory();
+    return File('${tempDir.path}/$filename');
+  }
+
+  Future<void> _writeTempCacheFile(String filename, String content) async {
+    try {
+      final file = await _getTempCacheFile(filename);
+      await file.writeAsString(content, flush: true);
+    } catch (e) {
+      debugPrint('WRITE TEMP CACHE FILE ERROR ($filename): $e');
+    }
+  }
+
+  Future<String?> _readTempCacheFile(String filename) async {
+    try {
+      final file = await _getTempCacheFile(filename);
+      if (await file.exists()) {
+        return await file.readAsString();
+      }
+    } catch (e) {
+      debugPrint('READ TEMP CACHE FILE ERROR ($filename): $e');
+    }
+    return null;
+  }
+
+  Future<void> _loadCachedAndRemoteRssFeeds() async {
+    final cachedXmlMapStr = await _readTempCacheFile('indexocial_cached_raw_rss_xml.json');
+    final cachedTs = await _readTempCacheFile('indexocial_last_rss_ts.txt');
+
+    if (cachedXmlMapStr != null && cachedXmlMapStr.isNotEmpty) {
+      try {
+        final Map<String, dynamic> feedCacheMap = jsonDecode(cachedXmlMapStr);
+        final cachedArticles = <RssArticle>[];
+        feedCacheMap.forEach((feedUrl, entry) {
+          if (entry is Map) {
+            final sourceName = (entry['source'] ?? '').toString();
+            final rawXml = (entry['xml'] ?? '').toString();
+            if (rawXml.isNotEmpty) {
+              cachedArticles.addAll(_parseRssXml(rawXml, sourceName));
+            }
+          } else if (entry is String && entry.isNotEmpty) {
+            cachedArticles.addAll(_parseRssXml(entry, 'GENERAL'));
+          }
+        });
+
+        cachedArticles.sort((a, b) {
+          final dtA = a.dateTime ?? DateTime.fromMillisecondsSinceEpoch(0);
+          final dtB = b.dateTime ?? DateTime.fromMillisecondsSinceEpoch(0);
+          return dtB.compareTo(dtA);
+        });
+
+        if (mounted && cachedArticles.isNotEmpty) {
+          setState(() {
+            _rssArticles = cachedArticles;
+            _lastRssTimestamp = cachedTs;
+          });
+        }
+      } catch (e) {
+        debugPrint('CACHE TEMP XML RSS ERROR: $e');
+      }
+    }
+
+    await _fetchAndCacheRssFeeds();
+  }
+
+  Future<List<RssSource>> _getOrFetchRssSources({bool force = false}) async {
+    if (!_simulatedOfflineMode) {
+      try {
+        final resp = await http.get(
+          Uri.parse(_rssJsonUrl),
+          headers: const {'Cache-Control': 'no-cache', 'Pragma': 'no-cache'},
+        ).timeout(const Duration(seconds: 5));
+
+        if (resp.statusCode == 200 && resp.body.isNotEmpty) {
+          final List decoded = jsonDecode(resp.body);
+          final sources = decoded.map((e) => RssSource.fromJson(e)).where((s) => s.urlFr.isNotEmpty || s.urlEn.isNotEmpty).toList();
+          if (sources.isNotEmpty) {
+            await _writeTempCacheFile('indexocial_cached_rss_sources_json.json', resp.body);
+            if (mounted) {
+              setState(() => _rssSources = sources);
+            }
+            return sources;
+          }
+        }
+      } catch (e) {
+        debugPrint('FETCH RSSFEED.JSON ERROR: $e');
+      }
+    }
+
+    final cachedJson = await _readTempCacheFile('indexocial_cached_rss_sources_json.json');
+    if (cachedJson != null && cachedJson.isNotEmpty) {
+      try {
+        final List decoded = jsonDecode(cachedJson);
+        final sources = decoded.map((e) => RssSource.fromJson(e)).where((s) => s.urlFr.isNotEmpty || s.urlEn.isNotEmpty).toList();
+        if (sources.isNotEmpty) {
+          if (mounted) {
+            setState(() => _rssSources = sources);
+          }
+          return sources;
+        }
+      } catch (e) {
+        debugPrint('CACHE TEMP RSSFEED.JSON ERROR: $e');
+      }
+    }
+
+    return _rssSources;
+  }
+
+  Future<void> _fetchAndCacheRssFeeds({bool showFeedback = false}) async {
+    if (_simulatedOfflineMode) {
+      debugPrint('RSS FETCH SKIPPED: Simulated Offline Mode');
+      if (showFeedback && mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            backgroundColor: CivicPalette.vermilion,
+            behavior: SnackBarBehavior.floating,
+            content: Text(
+              _isFr
+                  ? 'Mode hors-ligne simulé actif (requêtes réseau bloquées).'
+                  : 'Simulated offline mode active (network requests blocked).',
+              style: const TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
+            ),
+          ),
+        );
+      }
+      return;
+    }
+
+    if (mounted) {
+      setState(() => _isLoadingRss = true);
+    }
+
+    final sources = await _getOrFetchRssSources(force: showFeedback);
+    final allFetchedArticles = <RssArticle>[];
+    final feedCacheMap = <String, Map<String, dynamic>>{};
+
+    for (final feed in sources) {
+      final feedUrl = feed.url(_isFr);
+      final sourceKey = feed.source.isNotEmpty ? feed.source : feed.name(_isFr);
+
+      if (feedUrl.isEmpty) continue;
+
+      try {
+        final ts = DateTime.now().millisecondsSinceEpoch;
+        final feedUri = feedUrl.contains('?') ? '$feedUrl&t=$ts' : '$feedUrl?t=$ts';
+
+        final resp = await http.get(
+          Uri.parse(feedUri),
+          headers: const {'Cache-Control': 'no-cache', 'Pragma': 'no-cache'},
+        ).timeout(const Duration(seconds: 5));
+
+        if (resp.statusCode == 200 && resp.bodyBytes.isNotEmpty) {
+          final rawXml = utf8.decode(resp.bodyBytes, allowMalformed: true);
+          feedCacheMap[feedUrl] = {
+            'source': sourceKey,
+            'xml': rawXml,
+          };
+          final parsed = _parseRssXml(rawXml, sourceKey);
+          allFetchedArticles.addAll(parsed);
+        }
+      } catch (e) {
+        debugPrint('RSS FETCH ERROR ($sourceKey): $e');
+      }
+    }
+
+    if (allFetchedArticles.isNotEmpty) {
+      allFetchedArticles.sort((a, b) {
+        final dtA = a.dateTime ?? DateTime.fromMillisecondsSinceEpoch(0);
+        final dtB = b.dateTime ?? DateTime.fromMillisecondsSinceEpoch(0);
+        return dtB.compareTo(dtA);
+      });
+
+      final nowStr = _formatTimestamp(DateTime.now());
+      await _writeTempCacheFile('indexocial_cached_raw_rss_xml.json', jsonEncode(feedCacheMap));
+      await _writeTempCacheFile('indexocial_last_rss_ts.txt', nowStr);
+
+      if (mounted) {
+        setState(() {
+          _rssArticles = allFetchedArticles;
+          _lastRssTimestamp = nowStr;
+          _isLoadingRss = false;
+        });
+
+        if (showFeedback) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              backgroundColor: CivicPalette.signalYellow,
+              behavior: SnackBarBehavior.floating,
+              content: Text(
+                _isFr
+                    ? 'Rssfeed.json & flux actualisés (${sources.length} sources, ${allFetchedArticles.length} articles) !'
+                    : 'Rssfeed.json & RSS feeds refreshed (${sources.length} sources, ${allFetchedArticles.length} articles)!',
+                style: const TextStyle(fontWeight: FontWeight.bold, color: CivicPalette.darkBg),
+              ),
+            ),
+          );
+        }
+      }
+    } else {
+      if (mounted) {
+        setState(() => _isLoadingRss = false);
+        if (showFeedback) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              backgroundColor: CivicPalette.signalYellow,
+              behavior: SnackBarBehavior.floating,
+              content: Text(
+                _isFr
+                    ? 'Rssfeed.json synchronisé (${sources.length} sources).'
+                    : 'Rssfeed.json synced (${sources.length} sources).',
+                style: const TextStyle(fontWeight: FontWeight.bold, color: CivicPalette.darkBg),
+              ),
+            ),
+          );
+        }
+      }
+    }
+  }
+
+  String _decodeHtmlEntities(String input) {
+    if (input.isEmpty) return '';
+
+    var result = input;
+
+    const htmlEntityMap = <String, String>{
+      '&eacute;': 'é', '&Eacute;': 'É',
+      '&egrave;': 'è', '&Egrave;': 'È',
+      '&ecirc;': 'ê', '&Ecirc;': 'Ê',
+      '&euml;': 'ë', '&Euml;': 'Ë',
+      '&agrave;': 'à', '&Agrave;': 'À',
+      '&acirc;': 'â', '&Acirc;': 'Â',
+      '&auml;': 'ä', '&Auml;': 'Ä',
+      '&icirc;': 'î', '&Icirc;': 'Î',
+      '&iuml;': 'ï', '&Iuml;': 'Ï',
+      '&ocirc;': 'ô', '&Ocirc;': 'Ô',
+      '&ouml;': 'ö', '&Ouml;': 'Ö',
+      '&ugrave;': 'ù', '&Ugrave;': 'Ù',
+      '&ucirc;': 'û', '&Ucirc;': 'Û',
+      '&uuml;': 'ü', '&Uuml;': 'Ü',
+      '&yuml;': 'ÿ', '&Yuml;': 'Ÿ',
+      '&ccedil;': 'ç', '&Ccedil;': 'Ç',
+      '&aelig;': 'æ', '&AElig;': 'Æ',
+      '&oelig;': 'œ', '&OElig;': 'Œ',
+      '&amp;': '&',
+      '&quot;': '"',
+      '&apos;': "'",
+      '&nbsp;': ' ',
+      '&lt;': '<',
+      '&gt;': '>',
+      '&laquo;': '«',
+      '&raquo;': '»',
+      '&ndash;': '–',
+      '&mdash;': '—',
+      '&lsquo;': '‘',
+      '&rsquo;': '’',
+      '&ldquo;': '“',
+      '&rdquo;': '”',
+      '&#8217;': "'",
+      '&#8216;': "'",
+      '&#8211;': '–',
+      '&#8212;': '—',
+      '&#8220;': '“',
+      '&#8221;': '”',
+      '&#160;': ' ',
+      '&#39;': "'",
+    };
+
+    htmlEntityMap.forEach((entity, replacement) {
+      result = result.replaceAll(entity, replacement);
+    });
+
+    result = result.replaceAllMapped(RegExp(r'&#(\d+);'), (match) {
+      final code = int.tryParse(match.group(1)!);
+      return code != null ? String.fromCharCode(code) : match.group(0)!;
+    });
+
+    result = result.replaceAllMapped(RegExp(r'&#x([0-9a-fA-F]+);'), (match) {
+      final code = int.tryParse(match.group(1)!, radix: 16);
+      return code != null ? String.fromCharCode(code) : match.group(0)!;
+    });
+
+    return result;
+  }
+
+  DateTime? _parsePubDate(String rawDate) {
+    if (rawDate.isEmpty) return null;
+
+    final parsedIso = DateTime.tryParse(rawDate);
+    if (parsedIso != null) return parsedIso;
+
+    try {
+      return HttpDate.parse(rawDate);
+    } catch (_) {}
+
+    return null;
+  }
+
+  List<RssArticle> _parseRssXml(String xmlStr, String defaultSource) {
+    final articles = <RssArticle>[];
+    try {
+      final document = XmlDocument.parse(xmlStr);
+      final items = document.findAllElements('item');
+
+      if (items.isNotEmpty) {
+        for (final node in items.take(8)) {
+          var title = node.findElements('title').firstOrNull?.innerText.trim() ?? '';
+          title = _decodeHtmlEntities(title);
+
+          final link = node.findElements('link').firstOrNull?.innerText.trim() ?? '';
+          final pubDate = node.findElements('pubDate').firstOrNull?.innerText.trim() ??
+              node.findElements('dc:date').firstOrNull?.innerText.trim() ?? '';
+
+          var desc = node.findElements('description').firstOrNull?.innerText.trim() ??
+              node.findElements('content:encoded').firstOrNull?.innerText.trim() ?? '';
+          desc = desc.replaceAll(RegExp(r'<[^>]*>'), '').replaceAll(RegExp(r'\s+'), ' ').trim();
+          desc = _decodeHtmlEntities(desc);
+          if (desc.length > 200) {
+            desc = '${desc.substring(0, 200)}...';
+          }
+
+          final parsedDt = _parsePubDate(pubDate);
+
+          if (title.isNotEmpty) {
+            articles.add(RssArticle(
+              title: title,
+              link: link,
+              pubDate: pubDate,
+              description: desc,
+              sourceName: defaultSource,
+              dateTime: parsedDt,
+            ));
+          }
+        }
+      } else {
+        final entries = document.findAllElements('entry');
+        for (final node in entries.take(8)) {
+          var title = node.findElements('title').firstOrNull?.innerText.trim() ?? '';
+          title = _decodeHtmlEntities(title);
+
+          var link = '';
+          final linkNodes = node.findElements('link');
+          for (final l in linkNodes) {
+            final href = l.getAttribute('href');
+            if (href != null && href.isNotEmpty) {
+              link = href;
+              break;
+            }
+          }
+          if (link.isEmpty && linkNodes.isNotEmpty) {
+            link = linkNodes.first.innerText.trim();
+          }
+
+          final pubDate = node.findElements('updated').firstOrNull?.innerText.trim() ??
+              node.findElements('published').firstOrNull?.innerText.trim() ?? '';
+
+          var desc = node.findElements('summary').firstOrNull?.innerText.trim() ??
+              node.findElements('content').firstOrNull?.innerText.trim() ?? '';
+          desc = desc.replaceAll(RegExp(r'<[^>]*>'), '').replaceAll(RegExp(r'\s+'), ' ').trim();
+          desc = _decodeHtmlEntities(desc);
+          if (desc.length > 200) {
+            desc = '${desc.substring(0, 200)}...';
+          }
+
+          final parsedDt = _parsePubDate(pubDate);
+
+          if (title.isNotEmpty) {
+            articles.add(RssArticle(
+              title: title,
+              link: link,
+              pubDate: pubDate,
+              description: desc,
+              sourceName: defaultSource,
+              dateTime: parsedDt,
+            ));
+          }
+        }
+      }
+    } catch (e) {
+      debugPrint('XML RSS PARSE ERROR ($defaultSource): $e');
+    }
+    return articles;
   }
 
   Future<void> _acceptDisclaimer() async {
@@ -1427,10 +1942,19 @@ class _CivicLedgerScreenState extends State<CivicLedgerScreen> {
     final q = _searchQuery.toLowerCase().trim();
     final list = _resources.where((item) {
       if (_activeTab == NavTab.saved && !_savedIds.contains(item.id)) return false;
-      if (_activeTab == NavTab.directory &&
-          _selectedCategory != 'ALL' &&
-          !item.categoryIds.contains(_selectedCategory)) {
-        return false;
+      if (_activeTab == NavTab.directory) {
+        if (_selectedCategory != 'ALL' && !item.categoryIds.contains(_selectedCategory)) {
+          return false;
+        }
+        if (_wizardCatIds.isNotEmpty && !_wizardCatIds.every((cId) => item.categoryIds.contains(cId))) {
+          return false;
+        }
+        if (_wizardRegions.isNotEmpty &&
+            !_wizardRegions.contains(kQuebecRegions.first) &&
+            !_wizardRegions.contains(item.region) &&
+            item.region != kQuebecRegions.first) {
+          return false;
+        }
       }
       if (q.isNotEmpty) {
         final haystack = [
@@ -1448,13 +1972,12 @@ class _CivicLedgerScreenState extends State<CivicLedgerScreen> {
       return true;
     }).toList();
 
-    if (_activeTab == NavTab.directory) {
-      list.sort((a, b) {
-        final aFav = _savedIds.contains(a.id) ? 0 : 1;
-        final bFav = _savedIds.contains(b.id) ? 0 : 1;
-        return aFav.compareTo(bFav);
-      });
-    }
+    list.sort((a, b) {
+      final aFav = _savedIds.contains(a.id) ? 0 : 1;
+      final bFav = _savedIds.contains(b.id) ? 0 : 1;
+      if (aFav != bFav) return aFav.compareTo(bFav);
+      return a.name(_isFr).toLowerCase().compareTo(b.name(_isFr).toLowerCase());
+    });
 
     return list;
   }
@@ -1648,7 +2171,7 @@ class _CivicLedgerScreenState extends State<CivicLedgerScreen> {
       'Cochez vos besoins (logement, aide alimentaire, santé mentale, violence...) et détectez automatiquement votre région du Québec par GPS.',
       descEn:
       'Check your needs (housing, food aid, mental health, safety...) and automatically detect your Quebec region via GPS.',
-      tab: NavTab.wizard,
+      tab: NavTab.directory,
       ),
       (
       icon: Icons.mic_rounded,
@@ -2105,6 +2628,8 @@ class _CivicLedgerScreenState extends State<CivicLedgerScreen> {
     );
   }
 
+
+
   void _showContactQRCode(SocialResource item) {
     showDialog(
       context: context,
@@ -2168,6 +2693,13 @@ class _CivicLedgerScreenState extends State<CivicLedgerScreen> {
         ],
       ),
     );
+  }
+
+  void _shareResource(SocialResource item) {
+    final cardText = _isFr
+        ? '🏛 ${item.nameFr}\n📍 ${item.address}\n📞 ${item.phone}\n🌐 ${item.website}\n📄 ${item.descFr}'
+        : '🏛 ${item.nameEn}\n📍 ${item.address}\n📞 ${item.phone}\n🌐 ${item.website}\n📄 ${item.descEn}';
+    Share.share(cardText);
   }
 
   void _showReportIssueDialog(SocialResource item) {
@@ -2838,10 +3370,7 @@ class _CivicLedgerScreenState extends State<CivicLedgerScreen> {
                 color: CivicPalette.darkBg,
                 backgroundColor: CivicPalette.signalYellow,
                 onRefresh: () async {
-                  await Future.wait([
-                    _loadCachedAndRemoteData(),
-                    if (_activeTab == NavTab.directory) _fetchEcccWeatherAlerts(),
-                  ]);
+                  await _loadCachedAndRemoteData();
                 },
                 child: SingleChildScrollView(
                   physics: const AlwaysScrollableScrollPhysics(),
@@ -3349,7 +3878,6 @@ class _CivicLedgerScreenState extends State<CivicLedgerScreen> {
   Widget _buildFloatingBottomNav() {
     final navItems = [
       (NavTab.directory, Icons.home_rounded, _isFr ? 'Accueil' : 'Home'),
-      (NavTab.wizard, Icons.assistant_rounded, _isFr ? 'Assistant' : 'Wizard'),
       (NavTab.saved, Icons.bookmark_rounded, _isFr ? 'Favoris' : 'Saved'),
       (NavTab.notes, Icons.note_alt_rounded, _isFr ? 'Notes' : 'Notes'),
       (NavTab.docs, Icons.folder_rounded, _isFr ? 'Guides' : 'Docs'),
@@ -3405,8 +3933,6 @@ class _CivicLedgerScreenState extends State<CivicLedgerScreen> {
 
   Widget _buildActiveTabContent(bool isDesktop) {
     switch (_activeTab) {
-      case NavTab.wizard:
-        return _buildWizardView();
       case NavTab.notes:
         return _buildPersonalNotesView();
       case NavTab.docs:
@@ -3422,13 +3948,119 @@ class _CivicLedgerScreenState extends State<CivicLedgerScreen> {
   // ==========================================================================
   // DIRECTORY & CARDS
   // ==========================================================================
+  Widget _buildHomeFilterSection() {
+    final activeCount = _wizardCatIds.length + (_wizardRegions.isNotEmpty ? 1 : 0);
+
+    return Container(
+      padding: const EdgeInsets.all(14),
+      decoration: BoxDecoration(
+        color: _cardBg,
+        borderRadius: BorderRadius.circular(22),
+        border: Border.all(
+          color: activeCount > 0 ? CivicPalette.signalYellow : _cardBorder,
+          width: activeCount > 0 ? 2.0 : _cardBorderWidth,
+        ),
+        boxShadow: [
+          BoxShadow(color: Colors.black.withValues(alpha: 0.08), blurRadius: 8, offset: const Offset(0, 3)),
+        ],
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              Expanded(
+                child: ElevatedButton.icon(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: _showFilterOptions ? CivicPalette.signalYellow : _bg,
+                    foregroundColor: _showFilterOptions ? CivicPalette.darkBg : _textPrimary,
+                    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(18),
+                      side: BorderSide(
+                        color: _showFilterOptions ? CivicPalette.signalYellow : _cardBorder,
+                        width: _cardBorderWidth,
+                      ),
+                    ),
+                  ),
+                  onPressed: () => setState(() => _showFilterOptions = !_showFilterOptions),
+                  icon: Icon(
+                    _showFilterOptions ? Icons.filter_alt_off_rounded : Icons.filter_alt_rounded,
+                    size: 18,
+                    color: _showFilterOptions ? CivicPalette.darkBg : CivicPalette.signalYellow,
+                  ),
+                  label: Text(
+                    activeCount > 0
+                        ? (_isFr ? 'Filtres actifs ($activeCount)' : 'Active Filters ($activeCount)')
+                        : (_isFr ? 'Filtrer les résultats' : 'Filter Results'),
+                    style: const TextStyle(
+                      fontWeight: FontWeight.w900,
+                      fontSize: 12.5,
+                      fontFamily: 'sans-serif-condensed',
+                    ),
+                  ),
+                ),
+              ),
+              if (activeCount > 0) ...[
+                const SizedBox(width: 8),
+                TextButton(
+                  style: TextButton.styleFrom(padding: EdgeInsets.zero, minimumSize: const Size(40, 30)),
+                  onPressed: () => setState(() {
+                    _wizardCatIds.clear();
+                    _wizardRegions.clear();
+                  }),
+                  child: Text(
+                    _isFr ? 'Effacer' : 'Clear',
+                    style: TextStyle(fontSize: 11.5, fontWeight: FontWeight.w900, color: _accentText),
+                  ),
+                ),
+              ],
+            ],
+          ),
+          if (_showFilterOptions) ...[
+            const SizedBox(height: 14),
+            Text(
+              _isFr ? 'Par catégories :' : 'By categories:',
+              style: TextStyle(fontSize: 12, fontWeight: FontWeight.w800, color: _textPrimary, fontFamily: 'Roboto'),
+            ),
+            const SizedBox(height: 6),
+            _buildCategoryChecklist(
+              maxHeight: 140,
+              selectedIds: _wizardCatIds,
+              onChanged: (id, checked) {
+                setState(() {
+                  if (checked) {
+                    _wizardCatIds.add(id);
+                  } else {
+                    _wizardCatIds.remove(id);
+                  }
+                });
+              },
+            ),
+            const SizedBox(height: 12),
+            Text(
+              _isFr ? 'Par région :' : 'By region:',
+              style: TextStyle(fontSize: 12, fontWeight: FontWeight.w800, color: _textPrimary, fontFamily: 'Roboto'),
+            ),
+            const SizedBox(height: 6),
+            _buildWizardRegionMenu(),
+          ],
+        ],
+      ),
+    );
+  }
+
   Widget _buildDirectoryListView(bool isDesktop) {
     final items = _filteredResources;
-    final hasActiveFilter = _searchQuery.trim().isNotEmpty || (_activeTab == NavTab.directory && _selectedCategory != 'ALL');
+    final hasActiveFilter = _searchQuery.trim().isNotEmpty || (_activeTab == NavTab.directory && (_selectedCategory != 'ALL' || _wizardCatIds.isNotEmpty || _wizardRegions.isNotEmpty));
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+        if (_activeTab == NavTab.directory) ...[
+          _buildHomeFilterSection(),
+          const SizedBox(height: 16),
+        ],
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -3448,62 +4080,66 @@ class _CivicLedgerScreenState extends State<CivicLedgerScreen> {
           ],
         ),
         const SizedBox(height: 12),
-        if (items.isEmpty)
-          Container(
-            width: double.infinity,
-            padding: const EdgeInsets.all(28),
-            decoration: BoxDecoration(
-              color: _cardBg,
-              borderRadius: BorderRadius.circular(20),
-              border: Border.all(color: _cardBorder, width: _cardBorderWidth),
-            ),
-            child: Column(
-              children: [
-                Icon(
-                  _activeTab == NavTab.saved && !hasActiveFilter
-                      ? Icons.bookmark_border_rounded
-                      : Icons.search_off_rounded,
-                  size: 40,
-                  color: _textMuted,
+        items.isEmpty
+            ? Container(
+                width: double.infinity,
+                padding: const EdgeInsets.all(28),
+                decoration: BoxDecoration(
+                  color: _cardBg,
+                  borderRadius: BorderRadius.circular(20),
+                  border: Border.all(color: _cardBorder, width: _cardBorderWidth),
                 ),
-                const SizedBox(height: 10),
-                Text(
-                  _activeTab == NavTab.saved && !hasActiveFilter
-                      ? (_isFr ? 'Vos favoris seront visibles ici.' : 'Your favorites will be visible here.')
-                      : (_isFr ? 'Aucune ressource trouvée.' : 'No resource found.'),
-                  textAlign: TextAlign.center,
-                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.w800, color: _textPrimary, fontFamily: 'Roboto'),
-                ),
-                if (hasActiveFilter) ...[
-                  const SizedBox(height: 12),
-                  ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: CivicPalette.signalYellow,
-                      foregroundColor: CivicPalette.darkBg,
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+                child: Column(
+                  children: [
+                    Icon(
+                      _activeTab == NavTab.saved && !hasActiveFilter
+                          ? Icons.bookmark_border_rounded
+                          : Icons.search_off_rounded,
+                      size: 40,
+                      color: _textMuted,
                     ),
-                    onPressed: _resetFilters,
-                    child: Text(_isFr ? 'Réinitialiser les filtres' : 'Reset filters', style: const TextStyle(fontWeight: FontWeight.w900)),
-                  ),
-                ],
-              ],
-            ),
-          )
-        else if (_displayMode == DisplayMode.ledger)
-          Column(children: items.map(_buildResourceCard).toList())
-        else
-          GridView.builder(
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: isDesktop ? 2 : 1,
-              mainAxisExtent: 220,
-              crossAxisSpacing: 10,
-              mainAxisSpacing: 10,
-            ),
-            itemCount: items.length,
-            itemBuilder: (context, idx) => _buildGridCard(items[idx]),
-          ),
+                    const SizedBox(height: 10),
+                    Text(
+                      _activeTab == NavTab.saved && !hasActiveFilter
+                          ? (_isFr ? 'Vos favoris seront visibles ici.' : 'Your favorites will be visible here.')
+                          : (_isFr ? 'Aucune ressource trouvée.' : 'No resource found.'),
+                      textAlign: TextAlign.center,
+                      style: TextStyle(fontSize: 14, fontWeight: FontWeight.w800, color: _textPrimary, fontFamily: 'Roboto'),
+                    ),
+                    if (hasActiveFilter) ...[
+                      const SizedBox(height: 12),
+                      ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: CivicPalette.signalYellow,
+                          foregroundColor: CivicPalette.darkBg,
+                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+                        ),
+                        onPressed: _resetFilters,
+                        child: Text(_isFr ? 'Réinitialiser les filtres' : 'Reset filters', style: const TextStyle(fontWeight: FontWeight.w900)),
+                      ),
+                    ],
+                  ],
+                ),
+              )
+            : (_displayMode == DisplayMode.ledger
+                ? ListView.builder(
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemCount: items.length,
+                    itemBuilder: (context, idx) => RepaintBoundary(child: _buildResourceCard(items[idx])),
+                  )
+                : GridView.builder(
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: isDesktop ? 2 : 1,
+                      mainAxisExtent: 220,
+                      crossAxisSpacing: 10,
+                      mainAxisSpacing: 10,
+                    ),
+                    itemCount: items.length,
+                    itemBuilder: (context, idx) => RepaintBoundary(child: _buildGridCard(items[idx])),
+                  )),
       ],
     );
   }
@@ -3631,30 +4267,46 @@ class _CivicLedgerScreenState extends State<CivicLedgerScreen> {
             ),
           ),
           const SizedBox(height: 14),
-          Row(
-            children: [
-              Expanded(
-                flex: 2,
-                child: ElevatedButton.icon(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: CivicPalette.signalYellow,
-                    foregroundColor: CivicPalette.darkBg,
-                    padding: const EdgeInsets.symmetric(vertical: 12),
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+          (() {
+            final hasValidPhone = item.phone.isNotEmpty &&
+                item.phone.toLowerCase() != 'n/a' &&
+                item.phone.toLowerCase() != 'null' &&
+                item.phone.trim() != '-';
+            final cleanPhone = hasValidPhone ? item.phone.replaceAll(RegExp(r'[^0-9+]'), '') : '';
+            return SizedBox(
+              width: double.infinity,
+              child: ElevatedButton.icon(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: hasValidPhone ? CivicPalette.signalYellow : _cardBorder,
+                  foregroundColor: hasValidPhone ? CivicPalette.darkBg : _textMuted,
+                  padding: const EdgeInsets.symmetric(vertical: 12),
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+                ),
+                onPressed: hasValidPhone ? () => _launchUri('tel:$cleanPhone') : null,
+                icon: Icon(Icons.phone_rounded, size: 18, color: hasValidPhone ? CivicPalette.darkBg : _textMuted),
+                label: Text(
+                  hasValidPhone ? item.phone : (_isFr ? 'Aucun téléphone disponible' : 'No phone available'),
+                  style: TextStyle(
+                    fontWeight: FontWeight.w900,
+                    fontSize: 13,
+                    color: hasValidPhone ? CivicPalette.darkBg : _textMuted,
+                    fontFamily: 'sans-serif-condensed',
                   ),
-                  onPressed: () => _launchUri('tel:${item.phone.replaceAll(RegExp(r'[^0-9+]'), '')}'),
-                  icon: const Icon(Icons.phone_rounded, size: 16),
-                  label: Text(item.phone, style: const TextStyle(fontWeight: FontWeight.w900, fontSize: 12, fontFamily: 'sans-serif-condensed')),
                 ),
               ),
-              const SizedBox(width: 8),
-              _buildMiniActionButton(icon: Icons.copy_rounded, onTap: () => _copyNumber(item.phone)),
+            );
+          })(),
+          const SizedBox(height: 8),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Expanded(child: _buildMiniActionButton(icon: Icons.share_rounded, onTap: () => _shareResource(item))),
               const SizedBox(width: 6),
-              _buildMiniActionButton(icon: Icons.language_rounded, onTap: () => _launchUri(item.website)),
+              Expanded(child: _buildMiniActionButton(icon: Icons.language_rounded, onTap: () => _launchUri(item.website))),
               const SizedBox(width: 6),
-              _buildMiniActionButton(icon: Icons.qr_code_2_rounded, onTap: () => _showContactQRCode(item)),
+              Expanded(child: _buildMiniActionButton(icon: Icons.qr_code_2_rounded, onTap: () => _showContactQRCode(item))),
               const SizedBox(width: 6),
-              _buildMiniActionButton(icon: Icons.report_problem_outlined, onTap: () => _showReportIssueDialog(item)),
+              Expanded(child: _buildMiniActionButton(icon: Icons.report_problem_outlined, onTap: () => _showReportIssueDialog(item))),
             ],
           ),
         ],
@@ -3664,6 +4316,11 @@ class _CivicLedgerScreenState extends State<CivicLedgerScreen> {
 
   Widget _buildGridCard(SocialResource item) {
     final isSaved = _savedIds.contains(item.id);
+    final hasValidPhone = item.phone.isNotEmpty &&
+        item.phone.toLowerCase() != 'n/a' &&
+        item.phone.toLowerCase() != 'null' &&
+        item.phone.trim() != '-';
+    final cleanPhone = hasValidPhone ? item.phone.replaceAll(RegExp(r'[^0-9+]'), '') : '';
 
     return Container(
       padding: const EdgeInsets.all(14),
@@ -3733,14 +4390,22 @@ class _CivicLedgerScreenState extends State<CivicLedgerScreen> {
           ),
           ElevatedButton.icon(
             style: ElevatedButton.styleFrom(
-              backgroundColor: CivicPalette.signalYellow,
-              foregroundColor: CivicPalette.darkBg,
+              backgroundColor: hasValidPhone ? CivicPalette.signalYellow : _cardBorder,
+              foregroundColor: hasValidPhone ? CivicPalette.darkBg : _textMuted,
               minimumSize: const Size(double.infinity, 38),
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),
             ),
-            onPressed: () => _launchUri('tel:${item.phone.replaceAll(RegExp(r'[^0-9+]'), '')}'),
-            icon: const Icon(Icons.phone_rounded, size: 14),
-            label: Text(item.phone, style: const TextStyle(fontWeight: FontWeight.w900, fontSize: 11.5, fontFamily: 'sans-serif-condensed')),
+            onPressed: hasValidPhone ? () => _launchUri('tel:$cleanPhone') : null,
+            icon: Icon(Icons.phone_rounded, size: 14, color: hasValidPhone ? CivicPalette.darkBg : _textMuted),
+            label: Text(
+              hasValidPhone ? item.phone : (_isFr ? 'Aucun tél' : 'No phone'),
+              style: TextStyle(
+                fontWeight: FontWeight.w900,
+                fontSize: 11.5,
+                color: hasValidPhone ? CivicPalette.darkBg : _textMuted,
+                fontFamily: 'sans-serif-condensed',
+              ),
+            ),
           ),
         ],
       ),
@@ -3760,140 +4425,6 @@ class _CivicLedgerScreenState extends State<CivicLedgerScreen> {
         ),
         child: Icon(icon, size: 18, color: _textPrimary),
       ),
-    );
-  }
-
-  // ==========================================================================
-  // WIZARD VIEW
-  // ==========================================================================
-  Widget _buildWizardView() {
-    final recommended = _resources.where((r) {
-      final catMatch = _wizardCatIds.isEmpty || _wizardCatIds.every((cId) => r.categoryIds.contains(cId));
-      final regMatch = _wizardRegions.isEmpty ||
-          _wizardRegions.contains(kQuebecRegions.first) ||
-          r.region == kQuebecRegions.first ||
-          _wizardRegions.contains(r.region);
-      return catMatch && regMatch;
-    }).toList();
-
-    final isGpsRegionActive =
-        _detectedWizardRegion != null && _wizardRegions.contains(_detectedWizardRegion);
-
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          _isFr ? 'Assistant D’Orientation Rapide' : 'Rapid Triage Wizard',
-          style: TextStyle(fontSize: 18, fontWeight: FontWeight.w900, color: _textPrimary, fontFamily: 'Roboto'),
-        ),
-        const SizedBox(height: 2),
-        Text(
-          _isFr ? 'Filtrez par catégories et régions.' : 'Filter by categories and regions.',
-          style: TextStyle(fontSize: 12, color: _textMuted, fontFamily: 'Roboto'),
-        ),
-        const SizedBox(height: 14),
-        SizedBox(
-          width: double.infinity,
-          child: ElevatedButton.icon(
-            style: ElevatedButton.styleFrom(
-              backgroundColor: isGpsRegionActive ? CivicPalette.signalYellow : _cardBg,
-              foregroundColor: isGpsRegionActive ? CivicPalette.darkBg : _textPrimary,
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(18),
-                side: BorderSide(
-                  color: isGpsRegionActive ? CivicPalette.signalYellow : _cardBorder,
-                  width: _cardBorderWidth,
-                ),
-              ),
-            ),
-            onPressed: _isLocatingWizardRegion ? null : _detectUserRegionForWizard,
-            icon: _isLocatingWizardRegion
-                ? SizedBox(
-              width: 16,
-              height: 16,
-              child: CircularProgressIndicator(
-                strokeWidth: 2,
-                color: isGpsRegionActive ? CivicPalette.darkBg : CivicPalette.signalYellow,
-              ),
-            )
-                : Icon(
-              Icons.my_location_rounded,
-              size: 18,
-              color: isGpsRegionActive ? CivicPalette.darkBg : _accentText,
-            ),
-            label: Text(
-              _isLocatingWizardRegion
-                  ? (_isFr ? 'LOCALISATION EN COURS...' : 'LOCATING...')
-                  : (isGpsRegionActive
-                  ? (_isFr
-                  ? 'MA RÉGION (GPS) : $_detectedWizardRegion'
-                  : 'MY REGION (GPS): $_detectedWizardRegion')
-                  : (_isFr
-                  ? 'AFFICHER LES RESSOURCES DE MA RÉGION (GPS)'
-                  : 'SHOW RESOURCES IN MY REGION (GPS)')),
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-              style: const TextStyle(
-                fontWeight: FontWeight.w900,
-                fontSize: 12,
-                fontFamily: 'sans-serif-condensed',
-              ),
-            ),
-          ),
-        ),
-        const SizedBox(height: 14),
-        Text(
-          _isFr
-              ? (_wizardCatIds.isEmpty ? 'Catégories (Toutes) :' : 'Catégories (${_wizardCatIds.length}) :')
-              : (_wizardCatIds.isEmpty ? 'Categories (All):' : 'Categories (${_wizardCatIds.length}):'),
-          style: TextStyle(fontSize: 13, fontWeight: FontWeight.w800, color: _textPrimary, fontFamily: 'Roboto'),
-        ),
-        const SizedBox(height: 6),
-        _buildCategoryChecklist(
-          maxHeight: 140,
-          selectedIds: _wizardCatIds,
-          onChanged: (id, checked) {
-            setState(() {
-              if (checked) {
-                _wizardCatIds.add(id);
-              } else {
-                _wizardCatIds.remove(id);
-              }
-            });
-          },
-        ),
-        const SizedBox(height: 12),
-        Text(
-          _isFr
-              ? (_wizardRegions.isEmpty ? 'Régions (Toutes) :' : 'Régions (${_wizardRegions.length}) :')
-              : (_wizardRegions.isEmpty ? 'Regions (All):' : 'Regions (${_wizardRegions.length}):'),
-          style: TextStyle(fontSize: 13, fontWeight: FontWeight.w800, color: _textPrimary, fontFamily: 'Roboto'),
-        ),
-        const SizedBox(height: 6),
-        _buildWizardRegionMenu(),
-        const SizedBox(height: 18),
-        Text(
-          _isFr ? 'Ressources Recommandées (${recommended.length})' : 'Recommended Resources (${recommended.length})',
-          style: TextStyle(fontSize: 14, fontWeight: FontWeight.w800, color: _textPrimary, fontFamily: 'Roboto'),
-        ),
-        const SizedBox(height: 10),
-        if (recommended.isEmpty)
-          Container(
-            padding: const EdgeInsets.all(20),
-            decoration: BoxDecoration(
-              color: _cardBg,
-              borderRadius: BorderRadius.circular(18),
-              border: Border.all(color: _cardBorder, width: _cardBorderWidth),
-            ),
-            child: Text(
-              _isFr ? 'Aucune ressource trouvée pour cette sélection.' : 'No resource found for this selection.',
-              style: TextStyle(color: _textMuted, fontSize: 13, fontFamily: 'Roboto'),
-            ),
-          )
-        else
-          ...recommended.map(_buildResourceCard),
-      ],
     );
   }
 
@@ -4243,78 +4774,352 @@ class _CivicLedgerScreenState extends State<CivicLedgerScreen> {
   }
 
   // ==========================================================================
-  // USEFUL DOCUMENTS VIEW (À VENIR)
+  // USEFUL DOCUMENTS & GUIDES VIEW (2 BOUTONS : GUIDES HORS LIGNE vs RSS EN LIGNE)
   // ==========================================================================
   Widget _buildUsefulDocsView() {
-    final badgeTextColor = widget.isDark ? CivicPalette.signalYellow : const Color(0xFF856400);
+    final filteredArticles = _filteredRssArticles;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          _isFr ? 'Guides & Fiches Pratiques' : 'Guides & Practical Sheets',
-          style: TextStyle(fontSize: 18, fontWeight: FontWeight.w900, color: _textPrimary, fontFamily: 'Roboto'),
-        ),
-        const SizedBox(height: 12),
-        Container(
-          width: double.infinity,
-          padding: const EdgeInsets.all(24),
-          decoration: BoxDecoration(
-            color: _cardBg,
-            borderRadius: BorderRadius.circular(22),
-            border: Border.all(color: _cardBorder, width: _cardBorderWidth),
-          ),
-          child: Column(
-            children: [
-              Container(
-                padding: const EdgeInsets.all(14),
-                decoration: BoxDecoration(
-                  color: widget.isDark
-                      ? CivicPalette.yellowSubtle
-                      : CivicPalette.signalYellow.withValues(alpha: 0.25),
-                  shape: BoxShape.circle,
-                  border: Border.all(color: CivicPalette.signalYellow.withValues(alpha: 0.5)),
-                ),
-                child: Icon(Icons.folder_rounded, size: 32, color: badgeTextColor),
-              ),
-              const SizedBox(height: 14),
-              Container(
-                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
-                decoration: BoxDecoration(
-                  color: widget.isDark
-                      ? CivicPalette.yellowSubtle
-                      : CivicPalette.signalYellow.withValues(alpha: 0.25),
-                  borderRadius: BorderRadius.circular(12),
-                  border: Border.all(color: CivicPalette.signalYellow.withValues(alpha: 0.5)),
-                ),
-                child: Text(
-                  _isFr ? 'À VENIR' : 'COMING SOON',
-                  style: TextStyle(
-                    fontSize: 11,
-                    fontWeight: FontWeight.w900,
-                    color: badgeTextColor,
-                    letterSpacing: 0.8,
-                    fontFamily: 'Roboto',
+        Row(
+          children: [
+            Expanded(
+              child: ElevatedButton.icon(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: _docsSubTab == 0 ? CivicPalette.signalYellow : _cardBg,
+                  foregroundColor: _docsSubTab == 0 ? CivicPalette.darkBg : _textPrimary,
+                  padding: const EdgeInsets.symmetric(vertical: 12),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20),
+                    side: BorderSide(
+                      color: _docsSubTab == 0 ? CivicPalette.signalYellow : _cardBorder,
+                      width: _cardBorderWidth,
+                    ),
                   ),
                 ),
-              ),
-              const SizedBox(height: 10),
-              Text(
-                _isFr
-                    ? 'Cette section sera disponible dans une prochaine mise à jour.'
-                    : 'This section will be available in a future update.',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 14,
-                  fontWeight: FontWeight.w700,
-                  color: _textMuted,
-                  height: 1.4,
-                  fontFamily: 'Roboto',
+                onPressed: () => setState(() => _docsSubTab = 0),
+                icon: const Icon(Icons.menu_book_rounded, size: 18),
+                label: Text(
+                  _isFr ? 'Guides hors ligne' : 'Offline Guides',
+                  style: const TextStyle(fontWeight: FontWeight.w900, fontSize: 12, fontFamily: 'sans-serif-condensed'),
                 ),
               ),
+            ),
+            const SizedBox(width: 8),
+            Expanded(
+              child: ElevatedButton.icon(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: _docsSubTab == 1 ? CivicPalette.signalYellow : _cardBg,
+                  foregroundColor: _docsSubTab == 1 ? CivicPalette.darkBg : _textPrimary,
+                  padding: const EdgeInsets.symmetric(vertical: 12),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20),
+                    side: BorderSide(
+                      color: _docsSubTab == 1 ? CivicPalette.signalYellow : _cardBorder,
+                      width: _cardBorderWidth,
+                    ),
+                  ),
+                ),
+                onPressed: () => setState(() => _docsSubTab = 1),
+                icon: const Icon(Icons.rss_feed_rounded, size: 18),
+                label: Text(
+                  _isFr ? 'Flux RSS (en ligne)' : 'Live RSS Feeds',
+                  style: const TextStyle(fontWeight: FontWeight.w900, fontSize: 12, fontFamily: 'sans-serif-condensed'),
+                ),
+              ),
+            ),
+          ],
+        ),
+        const SizedBox(height: 16),
+        if (_docsSubTab == 0)
+          Container(
+            width: double.infinity,
+            padding: const EdgeInsets.all(32),
+            decoration: BoxDecoration(
+              color: _cardBg,
+              borderRadius: BorderRadius.circular(24),
+              border: Border.all(color: _cardBorder, width: _cardBorderWidth),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withValues(alpha: widget.isDark ? 0.2 : 0.05),
+                  blurRadius: 10,
+                  offset: const Offset(0, 4),
+                ),
+              ],
+            ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                  padding: const EdgeInsets.all(20),
+                  decoration: BoxDecoration(
+                    color: CivicPalette.signalYellow.withValues(alpha: 0.2),
+                    shape: BoxShape.circle,
+                    border: Border.all(color: CivicPalette.signalYellow.withValues(alpha: 0.5)),
+                  ),
+                  child: const Icon(Icons.upcoming_rounded, size: 40, color: CivicPalette.signalYellow),
+                ),
+                const SizedBox(height: 18),
+                Text(
+                  _isFr ? 'Bientôt disponible' : 'Coming soon',
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.w900, color: _textPrimary, fontFamily: _fontCondensed),
+                ),
+                const SizedBox(height: 8),
+                Text(
+                  _isFr
+                      ? 'La section des guides hors ligne sera disponible dans une prochaine mise à jour de l’application.'
+                      : 'The offline guides section will be available in a future app update.',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(fontSize: 13, color: _textMuted, height: 1.4, fontFamily: _fontRoboto),
+                ),
+              ],
+            ),
+          )
+        else
+          _buildLiveRssContentView(filteredArticles),
+      ],
+    );
+  }
+
+  Widget _buildLiveRssContentView(List<RssArticle> filteredArticles) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    _isFr ? 'Flux RSS (en ligne)' : 'Live RSS Feeds',
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.w900, color: _textPrimary, fontFamily: _fontCondensed),
+                  ),
+                  if (_lastRssTimestamp != null)
+                    Text(
+                      _isFr ? 'Dernière synchronisation : $_lastRssTimestamp' : 'Last sync: $_lastRssTimestamp',
+                      style: TextStyle(fontSize: 11, color: _textMuted, fontFamily: _fontRoboto),
+                    ),
+                ],
+              ),
+            ),
+            IconButton(
+              icon: _isLoadingRss
+                  ? const SizedBox(
+                      width: 18,
+                      height: 18,
+                      child: CircularProgressIndicator(strokeWidth: 2.2, color: CivicPalette.signalYellow),
+                    )
+                  : const Icon(Icons.refresh_rounded, size: 22, color: CivicPalette.signalYellow),
+              onPressed: _isLoadingRss ? null : () => _fetchAndCacheRssFeeds(showFeedback: true),
+              tooltip: _isFr ? 'Actualiser les flux RSS' : 'Refresh RSS feeds',
+            ),
+          ],
+        ),
+        const SizedBox(height: 10),
+        Text(
+          _isFr
+              ? 'Consultez les dernières actualités et communiqués officiels en direct des sources québécoises.'
+              : 'View live news articles and press releases from official Quebec sources.',
+          style: TextStyle(fontSize: 12.5, color: _textMuted, fontFamily: _fontRoboto),
+        ),
+        const SizedBox(height: 14),
+
+        // SÉLECTEUR DYNAMIQUE DE SOURCES RSS / ATOM
+        SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          child: Row(
+            children: [
+              for (final srcName in ['ALL', ..._availableRssSourceNames])
+                Padding(
+                  padding: const EdgeInsets.only(right: 8),
+                  child: ChoiceChip(
+                    showCheckmark: false,
+                    avatar: Icon(
+                      srcName == 'ALL' ? Icons.filter_alt_rounded : Icons.newspaper_rounded,
+                      size: 14,
+                      color: _selectedRssSource == srcName ? CivicPalette.darkBg : _accentText,
+                    ),
+                    label: Text(
+                      srcName == 'ALL' ? (_isFr ? 'Toutes les sources' : 'All sources') : srcName,
+                      style: TextStyle(
+                        fontWeight: FontWeight.w900,
+                        fontSize: 11.5,
+                        color: _selectedRssSource == srcName ? CivicPalette.darkBg : _textPrimary,
+                        fontFamily: _fontRoboto,
+                      ),
+                    ),
+                    selected: _selectedRssSource == srcName,
+                    selectedColor: CivicPalette.signalYellow,
+                    backgroundColor: _cardBg,
+                    side: BorderSide(
+                      color: _selectedRssSource == srcName ? CivicPalette.signalYellow : _cardBorder,
+                      width: _cardBorderWidth,
+                    ),
+                    onSelected: (_) => setState(() => _selectedRssSource = srcName),
+                  ),
+                ),
             ],
           ),
         ),
+        const SizedBox(height: 16),
+
+        // LISTE DES ARTICLES RSS FILTRÉS
+        if (_isLoadingRss && filteredArticles.isEmpty)
+          Container(
+            padding: const EdgeInsets.all(22),
+            decoration: BoxDecoration(
+              color: _cardBg,
+              borderRadius: BorderRadius.circular(22),
+              border: Border.all(color: _cardBorder, width: _cardBorderWidth),
+            ),
+            child: Row(
+              children: [
+                const SizedBox(
+                  width: 18,
+                  height: 18,
+                  child: CircularProgressIndicator(strokeWidth: 2, color: CivicPalette.signalYellow),
+                ),
+                const SizedBox(width: 12),
+                Expanded(
+                  child: Text(
+                    _isFr
+                        ? 'Chargement des articles en direct...'
+                        : 'Loading live news articles...',
+                    style: TextStyle(fontSize: 12.5, color: _textMuted, fontFamily: _fontRoboto),
+                  ),
+                ),
+              ],
+            ),
+          )
+        else if (filteredArticles.isEmpty)
+          Container(
+            width: double.infinity,
+            padding: const EdgeInsets.all(22),
+            decoration: BoxDecoration(
+              color: _cardBg,
+              borderRadius: BorderRadius.circular(22),
+              border: Border.all(color: _cardBorder, width: _cardBorderWidth),
+            ),
+            child: Column(
+              children: [
+                Icon(Icons.newspaper_rounded, size: 36, color: _textMuted),
+                const SizedBox(height: 10),
+                Text(
+                  _isFr ? 'Aucun article disponible pour cette source' : 'No article available for this source',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.w800, color: _textPrimary, fontFamily: _fontRoboto),
+                ),
+              ],
+            ),
+          )
+        else
+          Column(
+            children: filteredArticles.map((article) {
+              return Container(
+                margin: const EdgeInsets.only(bottom: 12),
+                padding: const EdgeInsets.all(16),
+                decoration: BoxDecoration(
+                  color: _cardBg,
+                  borderRadius: BorderRadius.circular(24),
+                  border: Border.all(color: _cardBorder.withValues(alpha: 0.8), width: _cardBorderWidth),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withValues(alpha: widget.isDark ? 0.2 : 0.05),
+                      blurRadius: 10,
+                      offset: const Offset(0, 4),
+                    ),
+                  ],
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Container(
+                          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                          decoration: BoxDecoration(
+                            color: CivicPalette.signalYellow.withValues(alpha: 0.2),
+                            borderRadius: BorderRadius.circular(12),
+                            border: Border.all(color: CivicPalette.signalYellow.withValues(alpha: 0.4)),
+                          ),
+                          child: Text(
+                            article.sourceName,
+                            style: TextStyle(
+                              fontSize: 10.5,
+                              fontWeight: FontWeight.w900,
+                              color: _accentText,
+                              fontFamily: _fontRoboto,
+                            ),
+                          ),
+                        ),
+                        if (article.pubDate.isNotEmpty)
+                          Expanded(
+                            child: Text(
+                              article.pubDate,
+                              textAlign: TextAlign.end,
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              style: TextStyle(fontSize: 10.5, color: _textMuted, fontFamily: _fontRoboto),
+                            ),
+                          ),
+                      ],
+                    ),
+                    const SizedBox(height: 10),
+                    Text(
+                      article.title,
+                      style: TextStyle(
+                        fontSize: 14.5,
+                        fontWeight: FontWeight.w900,
+                        color: _textPrimary,
+                        fontFamily: _fontRoboto,
+                      ),
+                    ),
+                    if (article.description.isNotEmpty) ...[
+                      const SizedBox(height: 6),
+                      Text(
+                        article.description,
+                        style: TextStyle(fontSize: 12.5, color: _textMuted, height: 1.35, fontFamily: _fontRoboto),
+                      ),
+                    ],
+                    if (article.link.isNotEmpty) ...[
+                      const SizedBox(height: 12),
+                      InkWell(
+                        borderRadius: BorderRadius.circular(14),
+                        onTap: () => _launchUri(article.link),
+                        child: Container(
+                          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 7),
+                          decoration: BoxDecoration(
+                            color: CivicPalette.signalYellow,
+                            borderRadius: BorderRadius.circular(14),
+                          ),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              const Icon(Icons.open_in_new_rounded, size: 14, color: CivicPalette.darkBg),
+                              const SizedBox(width: 6),
+                              Text(
+                                _isFr ? 'Lire l’article complet' : 'Read full article',
+                                style: TextStyle(
+                                  fontSize: 11.5,
+                                  fontWeight: FontWeight.w900,
+                                  color: CivicPalette.darkBg,
+                                  fontFamily: _fontRoboto,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  ],
+                ),
+              );
+            }).toList(),
+          ),
       ],
     );
   }
@@ -4419,31 +5224,6 @@ class _CivicLedgerScreenState extends State<CivicLedgerScreen> {
               icon: const Icon(Icons.accessibility_new_rounded, size: 18, color: CivicPalette.signalYellow),
               label: Text(
                 _isFr ? 'Options d’accessibilité' : 'Accessibility Options',
-                style: const TextStyle(fontWeight: FontWeight.w900, fontFamily: 'sans-serif-condensed'),
-              ),
-            ),
-          ],
-        ),
-        const SizedBox(height: 14),
-        _buildMoreCard(
-          icon: Icons.add_location_alt_rounded,
-          iconColor: CivicPalette.signalYellow,
-          title: _isFr ? 'Ajouter une ressource locale' : 'Add Local Resource',
-          subtitle: _isFr
-              ? 'Enregistrer un contact personnel ou proposer un organisme à Indexocial'
-              : 'Save a personal contact or suggest an organization to Indexocial',
-          children: [
-            ElevatedButton.icon(
-              style: ElevatedButton.styleFrom(
-                backgroundColor: CivicPalette.signalYellow,
-                foregroundColor: CivicPalette.darkBg,
-                minimumSize: const Size(double.infinity, 44),
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-              ),
-              onPressed: _openAddResourceSheet,
-              icon: const Icon(Icons.add_rounded, size: 18),
-              label: Text(
-                _isFr ? 'Ouvrir le formulaire d’ajout' : 'Open Add Resource Form',
                 style: const TextStyle(fontWeight: FontWeight.w900, fontFamily: 'sans-serif-condensed'),
               ),
             ),
@@ -4649,6 +5429,20 @@ class _CivicLedgerScreenState extends State<CivicLedgerScreen> {
             ),
           ],
         ),
+        const SizedBox(height: 24),
+        Center(
+          child: Text(
+            'INDEXOCIAL QC v2.0.0',
+            style: TextStyle(
+              fontSize: 12,
+              fontWeight: FontWeight.w900,
+              color: _textMuted.withValues(alpha: 0.7),
+              fontFamily: 'sans-serif-condensed',
+              letterSpacing: 1.0,
+            ),
+          ),
+        ),
+        const SizedBox(height: 16),
       ],
     );
   }

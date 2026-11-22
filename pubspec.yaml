@@ -6,9 +6,9 @@ description: "Répertoire bilingue d'aide sociale et de ressources d'urgence au 
 publish_to: 'none'
 
 # Numéro de version de l'application :
-# 1.1.0 = version affichée aux utilisateurs (versionName)
-# +5    = numéro interne pour Google Play / App Store (versionCode)
-version: 1.0.0+1
+# 1.0.0 = version affichée aux utilisateurs (versionName)
+# +2    = numéro interne pour Google Play / App Store (versionCode)
+version: 2.0.0+3
 
 # Version de Dart requise pour compiler le projet
 environment:
@@ -26,10 +26,11 @@ dependencies:
   # Internet et liens externes (synchronisation GitHub, ouverture de sites/appels)
   http: ^1.2.2
   url_launcher: ^6.3.0
+  xml: ^7.1.0
 
   # Sauvegarde locale sur le téléphone (notes, favoris, réglages)
   shared_preferences: ^2.2.3
-  path_provider: ^2.1.3
+  path_provider: ^2.1.6
 
   # Dictaphone vocal (enregistrement et lecture audio)
   record: 5.1.2
@@ -39,6 +40,12 @@ dependencies:
   geolocator: ^13.0.2
   qr_flutter: ^4.1.0
   sensors_plus: ^6.0.1
+
+  # Partage et export PDF
+  share_plus: ^10.1.0
+  pdf: ^3.11.1
+  printing: ^5.13.2
+  archive: ^4.7.1
 
 # Outils utilisés uniquement pendant le développement (tests et vérification du code)
 dev_dependencies:
@@ -54,7 +61,3 @@ dependency_overrides:
 flutter:
   # Active les icônes standard Material Design
   uses-material-design: true
-
-  # Pour ajouter des images plus tard, décommente les lignes ci-dessous :
-  # assets:
-  #   - images/mon_image.png
