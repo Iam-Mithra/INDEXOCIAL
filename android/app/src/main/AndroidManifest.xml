@@ -13,7 +13,7 @@
     <!-- CONFIGURATION PRINCIPALE DE L'APPLICATION                            -->
     <!-- ==================================================================== -->
     <application
-        android:label="INDEXOCIAL"
+        android:label="TEST.INDEXOCIAL"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
 
