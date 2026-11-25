@@ -8,7 +8,7 @@ publish_to: 'none'
 # Numéro de version de l'application :
 # 1.0.0 = version affichée aux utilisateurs (versionName)
 # +2    = numéro interne pour Google Play / App Store (versionCode)
-version: 2.0.0+3
+version: 2.0.0+4
 
 # Version de Dart requise pour compiler le projet
 environment:
