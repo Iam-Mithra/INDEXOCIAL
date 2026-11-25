@@ -5432,7 +5432,7 @@ class _CivicLedgerScreenState extends State<CivicLedgerScreen> {
         const SizedBox(height: 24),
         Center(
           child: Text(
-            'INDEXOCIAL QC v2.0.0+7',
+            'INDEXOCIAL QC v2.0.0+3',
             style: TextStyle(
               fontSize: 12,
               fontWeight: FontWeight.w900,
