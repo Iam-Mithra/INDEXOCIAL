@@ -1497,17 +1497,14 @@ class _CivicLedgerScreenState extends State<CivicLedgerScreen> {
     }
 
     if (loadedResources.isEmpty) {
-      for (final assetPath in ['assets/resources.json', 'resources.json']) {
-        try {
-          final assetJson = await rootBundle.loadString(assetPath);
-          if (assetJson.isNotEmpty) {
-            loadedResources = await Isolate.run(() => parseSocialResourcesJson(assetJson));
-            debugPrint('Loaded ${loadedResources.length} resources from asset ($assetPath)');
-            if (loadedResources.isNotEmpty) break;
-          }
-        } catch (e) {
-          debugPrint('Asset load error ($assetPath): $e');
+      try {
+        final assetJson = await rootBundle.loadString('assets/resources.json');
+        if (assetJson.isNotEmpty) {
+          loadedResources = await Isolate.run(() => parseSocialResourcesJson(assetJson));
+          debugPrint('Loaded ${loadedResources.length} resources from assets/resources.json');
         }
+      } catch (e) {
+        debugPrint('Asset load error (assets/resources.json): $e');
       }
     }
 
