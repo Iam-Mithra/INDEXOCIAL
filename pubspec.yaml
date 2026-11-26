@@ -64,3 +64,4 @@ flutter:
   assets:
     - resources.json
     - assets/resources.json
+    - assets/regions/

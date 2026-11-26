@@ -1,0 +1,344 @@
+[
+  {
+    "id": "QC-35",
+    "nameFr": "CALACS LA BÔME (VIOLENCE SEXUELLE — GASPÉSIE)",
+    "nameEn": "CALACS LA BÔME — SEXUAL ASSAULT CENTER (GASPÉSIE)",
+    "categoryIds": [
+      "VIOLENCE",
+      "LEGAL"
+    ],
+    "region": "11 - GASPÉSIE–ÎLES-DE-LA-MADELEINE",
+    "phone": "1-866-968-6686",
+    "website": "https://calacslabomegaspesie.com",
+    "address": "47, rue Baker, suite 5, Gaspé, QC",
+    "descFr": "Soutien confidentiel, écoute, groupes d’entraide et accompagnement médical ou judiciaire pour les femmes victimes d’agression sexuelle en Gaspésie.",
+    "descEn": "Confidential support, listening, peer groups, and medical or legal accompaniment for women who have experienced sexual assault in Gaspésie.",
+    "tags": [
+      "calacs",
+      "gaspesie",
+      "gaspe",
+      "agression",
+      "violence sexuelle",
+      "femme"
+    ]
+  },
+  {
+    "id": "QC-67",
+    "nameFr": "CENTRE D’AMITIÉ AUTOCHTONE DE GASPÉ (GESPEG)",
+    "nameEn": "GASPÉ NATIVE FRIENDSHIP CENTRE (GESPEG)",
+    "categoryIds": [
+      "INDIGENOUS",
+      "HEALTH"
+    ],
+    "region": "11 - GASPÉSIE–ÎLES-DE-LA-MADELEINE",
+    "phone": "418-368-6005",
+    "website": null,
+    "address": "783, boulevard de Pointe-Navarre, Gaspé, QC",
+    "descFr": "Services communautaires, soutien culturel, santé et entraide pour les membres des Premières Nations Mi’gmaq et autochtones en milieu urbain à Gaspé.",
+    "descEn": "Community services, cultural support, health, and mutual aid for Mi’gmaq First Nations and urban Indigenous people in Gaspé.",
+    "tags": [
+      "autochtone",
+      "gaspe",
+      "gaspesie",
+      "migmaq",
+      "centre amitie",
+      "premieres nations"
+    ]
+  },
+  {
+    "id": "QC-1432",
+    "nameFr": "Centraide Gaspésie-Îles-de-la-Madeleine",
+    "nameEn": "Centraide Gaspésie-Îles-de-la-Madeleine",
+    "categoryIds": [
+      "HEALTH"
+    ],
+    "region": "11 - GASPÉSIE–ÎLES-DE-LA-MADELEINE",
+    "phone": null,
+    "website": "https://centraidegim.com",
+    "address": "Service en ligne / Partout au Québec",
+    "descFr": "Soutien aux organismes communautaires locaux grâce à une campagne de financement et aux dons recueillis.",
+    "descEn": "",
+    "tags": [
+      "centraide",
+      "gaspesie-iles-de-la-madeleine",
+      "sante",
+      "gaspesie–iles-de-la-madeleine",
+      "quebec"
+    ]
+  },
+  {
+    "id": "QC-1838",
+    "nameFr": "Centre de réadaptation en dépendance de la Haute-Gaspésie",
+    "nameEn": "Centre de réadaptation en dépendance de la Haute-Gaspésie",
+    "categoryIds": [
+      "HEALTH",
+      "ADDICTION",
+      "YOUTH"
+    ],
+    "region": "11 - GASPÉSIE–ÎLES-DE-LA-MADELEINE",
+    "phone": null,
+    "website": "https://sante.gouv.qc.ca/repertoire-ressources/ressource/?nofiche=1131&ch_type=&bt_rechType=&theme=autres-ressources&ch_choixReg=&ch_rayon=0&ch_code=&page=292",
+    "address": "Service en ligne / Partout au Québec",
+    "descFr": "Services de deuxième ligne en dépendance. Réadaptation interne adulte de 21 jours à Sainte-Anne-des-Monts. Réadaptation externe adulte et jeunesse dans tous les CLSC de la Gaspésie. Réadaptation UPI: externe seulement. Réadaptation interne jeunesse en collaboration avec Portage et le Grand Chemin. Sevrage niveau 3.2 et 3.7 à Sainte-Anne-des-Monts. Sevrage externe... (Clientèle : personnes de 12 ans et plus présentant un trouble de l'usage aux substances, d'utilisation problématique d'Internet ou d'utilisation des jeux de hasard et d'argent, leurs proches, personnes sur le programme de substitution)",
+    "descEn": "",
+    "tags": [
+      "readaptation",
+      "dependance",
+      "haute-gaspesie",
+      "sante",
+      "jeunesse",
+      "gaspesie–iles-de-la-madeleine",
+      "quebec"
+    ]
+  },
+  {
+    "id": "QC-2445",
+    "nameFr": "CLSC de Chandler",
+    "nameEn": "CLSC de Chandler",
+    "categoryIds": [
+      "HEALTH",
+      "ADDICTION"
+    ],
+    "region": "11 - GASPÉSIE–ÎLES-DE-LA-MADELEINE",
+    "phone": null,
+    "website": "https://sante.gouv.qc.ca/repertoire-ressources/ressource/?nofiche=568",
+    "address": "Service en ligne / Partout au Québec",
+    "descFr": "Services de première ligne en matière de santé et de services sociaux. Distribution de matériel d'injection neuf aux personnes qui consomment des drogues (service gratuit). Récupération des seringues et des aiguilles usagées. SIDEP - Service intégré de dépistage et de prévention des ITSS. Services complets listés ici: Répertoire des ressources... (Clientèle : personnes de 12 ans et plus présentant un trouble de l'usage aux substances, d'utilisation problématique d'Internet ou d'utilisation des jeux de hasard et d'argent, leurs proches, personnes sur le programme de substitution)",
+    "descEn": "",
+    "tags": [
+      "clsc",
+      "chandler",
+      "sante",
+      "dependance",
+      "gaspesie–iles-de-la-madeleine",
+      "quebec"
+    ]
+  },
+  {
+    "id": "QC-2457",
+    "nameFr": "CLSC de Gaspé",
+    "nameEn": "CLSC de Gaspé",
+    "categoryIds": [
+      "SENIORS",
+      "HEALTH",
+      "ADDICTION"
+    ],
+    "region": "11 - GASPÉSIE–ÎLES-DE-LA-MADELEINE",
+    "phone": null,
+    "website": "https://sante.gouv.qc.ca/repertoire-ressources/ressource/?nofiche=1690",
+    "address": "Service en ligne / Partout au Québec",
+    "descFr": "Services de première ligne en matière de santé et de services sociaux. Dépistage. SIDEP - Service intégré de dépistage et de prévention des ITSS. Services complets listés ici: Répertoire des ressources en santé et services sociaux Services de deuxième ligne en dépendance. * Réadaptation interne adulte de 21 jours à... (Clientèle : personnes de 12 ans et plus présentant un trouble de l'usage aux substances, d'utilisation problématique d'Internet ou d'utilisation des jeux de hasard et d'argent, leurs proches, personnes sur le programme de substitution)",
+    "descEn": "",
+    "tags": [
+      "clsc",
+      "gaspe",
+      "aines",
+      "sante",
+      "dependance",
+      "gaspesie–iles-de-la-madeleine",
+      "quebec"
+    ]
+  },
+  {
+    "id": "QC-2491",
+    "nameFr": "CLSC de Percé",
+    "nameEn": "CLSC de Percé",
+    "categoryIds": [
+      "HEALTH",
+      "ADDICTION"
+    ],
+    "region": "11 - GASPÉSIE–ÎLES-DE-LA-MADELEINE",
+    "phone": null,
+    "website": "https://sante.gouv.qc.ca/repertoire-ressources/ressource/?nofiche=1585",
+    "address": "Service en ligne / Partout au Québec",
+    "descFr": "Services de première ligne en matière de santé et de services sociaux. Distribution de matériel d'injection neuf aux personnes qui consomment des drogues (service gratuit). Récupération des seringues et des aiguilles usagées Services complets listés ici: Répertoire des ressources en santé et services sociaux Services de deuxième ligne en dépendance.... (Clientèle : personnes de 12 ans et plus présentant un trouble de l'usage aux substances, d'utilisation problématique d'Internet ou d'utilisation des jeux de hasard et d'argent, leurs proches, personnes sur le programme de substitution)",
+    "descEn": "",
+    "tags": [
+      "clsc",
+      "perce",
+      "sante",
+      "dependance",
+      "gaspesie–iles-de-la-madeleine",
+      "quebec"
+    ]
+  },
+  {
+    "id": "QC-2506",
+    "nameFr": "CLSC de Sainte-Anne-des-Monts",
+    "nameEn": "CLSC de Sainte-Anne-des-Monts",
+    "categoryIds": [
+      "HEALTH",
+      "ADDICTION"
+    ],
+    "region": "11 - GASPÉSIE–ÎLES-DE-LA-MADELEINE",
+    "phone": null,
+    "website": "https://sante.gouv.qc.ca/repertoire-ressources/ressource/?nofiche=157675",
+    "address": "Service en ligne / Partout au Québec",
+    "descFr": "Services de première ligne en matière de santé et de services sociaux. Distribution de matériel d'injection neuf aux personnes qui consomment des drogues (service gratuit). Récupération des seringues et des aiguilles usagées. Services complets listés ici: Répertoire des ressources en santé et services sociauxServices de deuxième ligne en dépendance. *... (Clientèle : personnes de 12 ans et plus présentant un trouble de l'usage aux substances, d'utilisation problématique d'Internet ou d'utilisation des jeux de hasard et d'argent, leurs proches, personnes sur le programme de substitution)",
+    "descEn": "",
+    "tags": [
+      "clsc",
+      "sainte-anne-des-monts",
+      "sante",
+      "dependance",
+      "gaspesie–iles-de-la-madeleine",
+      "quebec"
+    ]
+  },
+  {
+    "id": "QC-2887",
+    "nameFr": "Convergence - service d'aide aux hommes de la Gaspésie",
+    "nameEn": "Convergence - service d'aide aux hommes de la Gaspésie",
+    "categoryIds": [
+      "HEALTH",
+      "VIOLENCE",
+      "CRISIS",
+      "LGBTQ"
+    ],
+    "region": "11 - GASPÉSIE–ÎLES-DE-LA-MADELEINE",
+    "phone": null,
+    "website": "https://convergence-gaspesie.org/index.php/fr",
+    "address": "Service en ligne / Partout au Québec",
+    "descFr": "Soutien aux hommes en difficulté selon une approche adaptée aux réalités masculines et à la santé des hommes. Sensibilisation et prévention dans les écoles, cégeps et groupes communautaires. Intervention de crise. Soutien aux hommes vivant une rupture familiale et conjugale. Soutien aux auteurs de transgressions sexuelles. Service d'hébergement Maison Oxygène... (Clientèle : hommes en difficulté de 16 ans et plus)",
+    "descEn": "",
+    "tags": [
+      "convergence",
+      "d'aide",
+      "hommes",
+      "gaspesie",
+      "sante",
+      "violence",
+      "crise",
+      "lgbtq"
+    ]
+  },
+  {
+    "id": "QC-5474",
+    "nameFr": "Revenu Québec - Programme de perception des pensions alimentaires",
+    "nameEn": "Revenu Québec - Programme de perception des pensions alimentaires",
+    "categoryIds": [
+      "YOUTH",
+      "LEGAL",
+      "FOOD",
+      "HEALTH"
+    ],
+    "region": "11 - GASPÉSIE–ÎLES-DE-LA-MADELEINE",
+    "phone": null,
+    "website": "https://www.revenuquebec.ca/fr/pensions-alimentaires",
+    "address": "Service en ligne / Partout au Québec",
+    "descFr": "Somme versée périodiquement selon un jugement rendu habituellement au Québec servant à répondre aux besoins essentiels de la vie des enfants ou du créancier alimentaire. (Clientèle : personnes devant recevoir ou verser une pension alimentaire)",
+    "descEn": "",
+    "tags": [
+      "revenu",
+      "programme",
+      "perception",
+      "pensions",
+      "alimentaires",
+      "jeunesse",
+      "droits",
+      "alimentaire"
+    ]
+  },
+  {
+    "id": "QC-6769",
+    "nameFr": "Association Horizon soleil",
+    "nameEn": "Association Horizon soleil",
+    "categoryIds": [
+      "HOUSING",
+      "STUDENT",
+      "EMPLOYMENT",
+      "HEALTH"
+    ],
+    "region": "11 - GASPÉSIE–ÎLES-DE-LA-MADELEINE",
+    "phone": "418-598-9507",
+    "website": null,
+    "address": "35, avenue De Gaspé Ouest, Saint-Jean-Port-Joli, QC G0R 3G0",
+    "descFr": "Samedi selon activités Intégration des personnes ayant un handicap * écoute, entraide, référence et accompagnement * atelier de travail en usine avec la participation des entreprises locales * formation en intégration sociale avec la collaboration de la Commission scolaire de la Côte-du-Sud * apprentissage : cuisine, initiation à la musique, la peinture et l'art dramatique * loisirs : quilles, cinéma, magasinage, voyages, spectacles * activités sociales : Noël, Halloween, Saint-Valentin, cabane à sucre, visites dans les centres d'hébergement et autres",
+    "descEn": "",
+    "tags": [
+      "horizon",
+      "soleil",
+      "logement",
+      "education",
+      "emploi",
+      "sante",
+      "gaspesie–iles-de-la-madeleine",
+      "quebec"
+    ]
+  },
+  {
+    "id": "QC-8875",
+    "nameFr": "Maison de la famille de la MRC de L'Islet, Dépano-meubles",
+    "nameEn": "Maison de la famille de la MRC de L'Islet, Dépano-meubles",
+    "categoryIds": [
+      "YOUTH",
+      "HEALTH"
+    ],
+    "region": "11 - GASPÉSIE–ÎLES-DE-LA-MADELEINE",
+    "phone": "418-598-2012",
+    "website": "http://maisonfamillemrclislet.com/activites-et-services-suite/depano-meubles",
+    "address": "80, avenue de Gaspé Est, Saint-Jean-Port-Joli, QC G0R 3G0",
+    "descFr": "Vente à bas prix de meubles, électroménagers, jouets, livres et articles de maison usagés * vente de meubles, électroménagers, jouets, livres, articles ménagers, etc. * aide matérielle auprès des familles vivant une situation particulière (référence du CISSS ou d'un autre organisme à vocation familiale * selon critères de l'organisme) * occasions de bénévolat",
+    "descEn": "",
+    "tags": [
+      "famille",
+      "mrc",
+      "l'islet",
+      "depano-meubles",
+      "jeunesse",
+      "sante",
+      "gaspesie–iles-de-la-madeleine",
+      "quebec"
+    ]
+  },
+  {
+    "id": "QC-8943",
+    "nameFr": "Maison des jeunes de L'Islet-Nord",
+    "nameEn": "Maison des jeunes de L'Islet-Nord",
+    "categoryIds": [
+      "SENIORS",
+      "YOUTH",
+      "EMPLOYMENT",
+      "HEALTH"
+    ],
+    "region": "11 - GASPÉSIE–ÎLES-DE-LA-MADELEINE",
+    "phone": "418-598-3942",
+    "website": "http://www.mdj-lislet-nord.com",
+    "address": "10-B, avenue De Gaspé Est, Saint-Jean-Port-Joli, QC G0R 3G0",
+    "descFr": "Promotion de saines habitudes de vie et prévention psychosociale * lieu où les jeunes, au contact d'adultes significatifs, pourront devenir des citoyens impliqués et responsables * écoute et soutien * implication communautaire * activités de loisir * travail de rue, www.facebook.com/gabe.mdjdelislet, courriel tr.mdjdelislet@gmail.com * activités hebdomadaires spéciales * Collectiv’été : camp d'été d'implication citoyenne pour les jeunes de 12 à 15 ans jumelant bénévolat, activités de loisirs et ateliers éducatifs Point de service L'Islet (voir dossier individuel)",
+    "descEn": "",
+    "tags": [
+      "jeunes",
+      "l'islet-nord",
+      "aines",
+      "jeunesse",
+      "emploi",
+      "sante",
+      "gaspesie–iles-de-la-madeleine",
+      "quebec"
+    ]
+  },
+  {
+    "id": "QC-10148",
+    "nameFr": "Soupe au bouton",
+    "nameEn": "Soupe au bouton",
+    "categoryIds": [
+      "FOOD",
+      "STUDENT"
+    ],
+    "region": "11 - GASPÉSIE–ÎLES-DE-LA-MADELEINE",
+    "phone": "418-358-6001",
+    "website": "http://soupeaubouton.ca",
+    "address": "27, avenue De Gaspé Ouest, Saint-Jean-Port-Joli, QC G0R 3G0",
+    "descFr": "Développement et soutien des initiatives en sécurité alimentaire et matérielle afin de favoriser l'autonomie des personnes et le développement social * accompagnement pour la mise en place de jardins communautaires et collectifs * formations * cueillette de denrées auprès des épiceries et producteurs de la région * dépannage alimentaire * soupes populaires * repas communautaires * paniers de Noël * comptoir vestimentaire Dépannage alimentaire pour la MRC de L'Islet : comptoir alimentaire offrant des aliments frais et non périssables aux personnes en situation de pauvreté Points de cueillette * 27, Avenue De Gaspé Ouest, Saint-Jean-Port-Joli, porte 23 à l'arrière du bâtiment * 962, Rue des...",
+    "descEn": "",
+    "tags": [
+      "soupe",
+      "bouton",
+      "alimentaire",
+      "education",
+      "gaspesie–iles-de-la-madeleine",
+      "quebec"
+    ]
+  }
+]

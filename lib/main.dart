@@ -1425,6 +1425,42 @@ class _CivicLedgerScreenState extends State<CivicLedgerScreen> {
 
   void _quickHideEmergency() => _launchUri(_hideRedirectUrl);
 
+  static const List<String> kRegionJsonFiles = [
+    'region_provincial.json',
+    'region_01.json',
+    'region_02.json',
+    'region_03.json',
+    'region_04.json',
+    'region_05.json',
+    'region_06.json',
+    'region_07.json',
+    'region_08.json',
+    'region_09.json',
+    'region_10.json',
+    'region_11.json',
+    'region_12.json',
+    'region_13.json',
+    'region_14.json',
+    'region_15.json',
+    'region_16.json',
+  ];
+
+  Future<List<SocialResource>> _loadAllRegionAssets() async {
+    final List<SocialResource> allLoaded = [];
+    for (final fileName in kRegionJsonFiles) {
+      try {
+        final jsonStr = await rootBundle.loadString('assets/regions/$fileName');
+        if (jsonStr.isNotEmpty) {
+          final parsed = await Isolate.run(() => parseSocialResourcesJson(jsonStr));
+          allLoaded.addAll(parsed);
+        }
+      } catch (e) {
+        debugPrint('Region asset load notice ($fileName): $e');
+      }
+    }
+    return allLoaded;
+  }
+
   Future<void> _loadCachedAndRemoteData() async {
     final prefs = await SharedPreferences.getInstance();
 
@@ -1455,18 +1491,23 @@ class _CivicLedgerScreenState extends State<CivicLedgerScreen> {
       }
     });
 
-    List<SocialResource> loadedResources = [];
+    List<SocialResource> loadedResources = await _loadAllRegionAssets();
+    if (loadedResources.isNotEmpty) {
+      debugPrint('Loaded ${loadedResources.length} resources from split regional assets');
+    }
 
-    for (final assetPath in ['assets/resources.json', 'resources.json']) {
-      try {
-        final assetJson = await rootBundle.loadString(assetPath);
-        if (assetJson.isNotEmpty) {
-          loadedResources = await Isolate.run(() => parseSocialResourcesJson(assetJson));
-          debugPrint('Loaded ${loadedResources.length} resources from asset ($assetPath)');
-          if (loadedResources.isNotEmpty) break;
+    if (loadedResources.isEmpty) {
+      for (final assetPath in ['assets/resources.json', 'resources.json']) {
+        try {
+          final assetJson = await rootBundle.loadString(assetPath);
+          if (assetJson.isNotEmpty) {
+            loadedResources = await Isolate.run(() => parseSocialResourcesJson(assetJson));
+            debugPrint('Loaded ${loadedResources.length} resources from asset ($assetPath)');
+            if (loadedResources.isNotEmpty) break;
+          }
+        } catch (e) {
+          debugPrint('Asset load error ($assetPath): $e');
         }
-      } catch (e) {
-        debugPrint('Asset load error ($assetPath): $e');
       }
     }
 

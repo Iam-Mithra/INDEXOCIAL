@@ -1,0 +1,3487 @@
+[
+  {
+    "id": "QC-50",
+    "nameFr": "CENTRE DE BÉNÉVOLAT ET MOISSON LAVAL (AIDE ALIMENTAIRE)",
+    "nameEn": "LAVAL VOLUNTEER CENTER & FOOD BANK",
+    "categoryIds": [
+      "FOOD",
+      "SENIORS"
+    ],
+    "region": "13 - LAVAL",
+    "phone": "450-681-6164",
+    "website": "https://benevolatlaval.qc.ca",
+    "address": "1870, rue Michelin, Laval, QC",
+    "descFr": "Réseau principal de sécurité alimentaire à Laval : distribution de paniers de provisions, dépannage alimentaire d’urgence et popote roulante.",
+    "descEn": "Primary food security hub in Laval offering food basket distribution, emergency food relief, and meals-on-wheels.",
+    "tags": [
+      "banque alimentaire",
+      "laval",
+      "panier",
+      "depannage",
+      "nourriture",
+      "moisson"
+    ]
+  },
+  {
+    "id": "QC-233",
+    "nameFr": "REFUGE D’URGENCE DE LAVAL (ITINÉRANCE)",
+    "nameEn": "LAVAL EMERGENCY HOMELESS SHELTER",
+    "categoryIds": [
+      "HOUSING",
+      "FOOD"
+    ],
+    "region": "13 - LAVAL",
+    "phone": "450-978-2121",
+    "website": null,
+    "address": "Laval, QC",
+    "descFr": "Hébergement d’urgence 24/7, repas chauds, halte-accueil et accompagnement psychosocial pour les personnes en situation d’itinérance à Laval.",
+    "descEn": "24/7 emergency shelter, hot meals, drop-in center, and psychosocial support for unhoused individuals in Laval.",
+    "tags": [
+      "refuge",
+      "itinerance",
+      "laval",
+      "shelter",
+      "sans-abri",
+      "halte-chaleur"
+    ]
+  },
+  {
+    "id": "QC-454",
+    "nameFr": "Aire ouverte Quartier - Laval-des-rapides",
+    "nameEn": "Aire ouverte Quartier - Laval-des-rapides",
+    "categoryIds": [
+      "YOUTH",
+      "HOUSING",
+      "HEALTH",
+      "VIOLENCE"
+    ],
+    "region": "13 - LAVAL",
+    "phone": null,
+    "website": "https://lavalensante.com/aireouverte",
+    "address": "Service en ligne / Partout au Québec",
+    "descFr": "Services confidentiels variés, avec ou sans rendez-vous, pour les 12 à 25 ans. Suivi psychosocial individuel. Clinique de santé sexuelle: contraception, tests de grossesse, dépistage des ITSS, questions sur le genre et l'orientation sexuelle. Renseignements sur l'aide financière et renseignements juridiques. Conseils sur différents sujets: études, travail, logement, dépendances, difficultés... (Clientèle : personnes de 12 à 25 ans)",
+    "descEn": "",
+    "tags": [
+      "aire",
+      "ouverte",
+      "quartier",
+      "laval-des-rapides",
+      "jeunesse",
+      "logement",
+      "sante",
+      "violence"
+    ]
+  },
+  {
+    "id": "QC-455",
+    "nameFr": "Aire ouverte Roi-du-Nord - Sainte-Rose",
+    "nameEn": "Aire ouverte Roi-du-Nord - Sainte-Rose",
+    "categoryIds": [
+      "YOUTH",
+      "HOUSING",
+      "HEALTH",
+      "VIOLENCE"
+    ],
+    "region": "13 - LAVAL",
+    "phone": null,
+    "website": "https://lavalensante.com/aireouverte",
+    "address": "Service en ligne / Partout au Québec",
+    "descFr": "Services confidentiels variés, avec ou sans rendez-vous, pour les 12 à 25 ans. Suivi psychosocial individuel. Clinique de santé sexuelle: contraception, tests de grossesse, dépistage des ITSS, questions sur le genre et l'orientation sexuelle. Renseignements sur l'aide financière et renseignements juridiques. Conseils sur différents sujets: études, travail, logement, dépendances, difficultés... (Clientèle : personnes de 12 à 25 ans)",
+    "descEn": "",
+    "tags": [
+      "aire",
+      "ouverte",
+      "roi-du-nord",
+      "sainte-rose",
+      "jeunesse",
+      "logement",
+      "sante",
+      "violence"
+    ]
+  },
+  {
+    "id": "QC-505",
+    "nameFr": "Amicale de Saint-Vincent-de-Paul (L')",
+    "nameEn": "Amicale de Saint-Vincent-de-Paul (L')",
+    "categoryIds": [
+      "SENIORS",
+      "FOOD"
+    ],
+    "region": "13 - LAVAL",
+    "phone": null,
+    "website": null,
+    "address": "Service en ligne / Partout au Québec",
+    "descFr": "Activités récréatives: bingo, danse, cartes. Soupers thématiques. Sorties. (Clientèle : personnes de 50 ans et plus, seules ou en couple)",
+    "descEn": "",
+    "tags": [
+      "amicale",
+      "saint-vincent-de-paul",
+      "aines",
+      "alimentaire",
+      "laval",
+      "quebec"
+    ]
+  },
+  {
+    "id": "QC-587",
+    "nameFr": "Arrimage (L') - bureau de Laval",
+    "nameEn": "Arrimage (L') - bureau de Laval",
+    "categoryIds": [
+      "EMPLOYMENT",
+      "STUDENT",
+      "HEALTH"
+    ],
+    "region": "13 - LAVAL",
+    "phone": null,
+    "website": "https://www.larrimage.ca",
+    "address": "Service en ligne / Partout au Québec",
+    "descFr": "Intégration et réintégration professionnelle. Accueil, évaluation et information. Rédaction de CV et de lettres de présentation. Soutien à la recherche d'emploi et à la préparation aux entrevues. Visites d'entreprises. Suivi et maintien en emploi. (Clientèle : personnes vivant avec un diagnostic de trouble de santé mentale)",
+    "descEn": "",
+    "tags": [
+      "arrimage",
+      "laval",
+      "emploi",
+      "education",
+      "sante",
+      "quebec"
+    ]
+  },
+  {
+    "id": "QC-741",
+    "nameFr": "Association des personnes vivant avec une surdité de Laval",
+    "nameEn": "Association des personnes vivant avec une surdité de Laval",
+    "categoryIds": [
+      "HEALTH",
+      "LEGAL"
+    ],
+    "region": "13 - LAVAL",
+    "phone": null,
+    "website": null,
+    "address": "Service en ligne / Partout au Québec",
+    "descFr": "Sensibilisation aux conséquences de la surdité. Communication: explication de textes en LSQ, rédaction de documents officiels, réalisation de vidéos en LSQ. Intervention communautaire: soutien et référence vers les ressources appropriées. Activités: conférences, sorties, visites culturelles et récréatives. (Clientèle : personnes vivant avec une surdité)",
+    "descEn": "",
+    "tags": [
+      "personnes",
+      "vivant",
+      "surdite",
+      "laval",
+      "sante",
+      "droits",
+      "quebec"
+    ]
+  },
+  {
+    "id": "QC-744",
+    "nameFr": "Association des popotes roulantes de Laval",
+    "nameEn": "Association des popotes roulantes de Laval",
+    "categoryIds": [
+      "SENIORS",
+      "FOOD",
+      "STUDENT"
+    ],
+    "region": "13 - LAVAL",
+    "phone": null,
+    "website": "https://popoteroulantelaval.org",
+    "address": "Service en ligne / Partout au Québec",
+    "descFr": "Liaison, représentation et communication entre les services de livraison de repas à domicile pour personnes âgées, en perte d'autonomie, ainsi que les proches aidant·e·s. Guichet de liaison pour la réception des nouvelles demandes de services de popotes. Service d'information auprès de la population sur les services de popotes roulantes. (Clientèle : personnes aînées, personnes en pertes d'autonomie permanente ou temporaire, popotes roulantes)",
+    "descEn": "",
+    "tags": [
+      "popotes",
+      "roulantes",
+      "laval",
+      "aines",
+      "alimentaire",
+      "education",
+      "quebec"
+    ]
+  },
+  {
+    "id": "QC-766",
+    "nameFr": "Association du Diabète Laval",
+    "nameEn": "Association du Diabète Laval",
+    "categoryIds": [
+      "HEALTH",
+      "SENIORS",
+      "YOUTH",
+      "STUDENT"
+    ],
+    "region": "13 - LAVAL",
+    "phone": null,
+    "website": "https://diabetelaval.qc.ca",
+    "address": "Service en ligne / Partout au Québec",
+    "descFr": "Prévention, sensibilisation et information sur le diabète et ses effets. Soutien aux personnes diabétiques et à leur famille. Maintien des services adaptés. Rencontres avec des diététistes. Atelier de cuisine avec nutritionniste. Atelier sur les saines habitudes de vie. Formation de mise en forme douce et de yoga. Conférences. (Clientèle : personnes pré-diabétiques et diabétiques, grand public)",
+    "descEn": "",
+    "tags": [
+      "diabete",
+      "laval",
+      "sante",
+      "aines",
+      "jeunesse",
+      "education",
+      "quebec"
+    ]
+  },
+  {
+    "id": "QC-792",
+    "nameFr": "Association Iris - Programme de soutien à la vie en logement - Laval",
+    "nameEn": "Association Iris - Programme de soutien à la vie en logement - Laval",
+    "categoryIds": [
+      "HEALTH",
+      "HOUSING",
+      "STUDENT"
+    ],
+    "region": "13 - LAVAL",
+    "phone": null,
+    "website": "https://assoiris.ca",
+    "address": "Service en ligne / Partout au Québec",
+    "descFr": "Programme de soutien à la vie en logement (PSVL). Centre de jour et local communautaire. Activités favorisant l'autonomie. Écoute et encadrement. Suivi individuel. Visites à domicile. Sorties en groupe. Séances d'information. Activités thématiques en groupe restreint. Activités d'apprentissage, d'information, de création, de socialisation, de rétablissement, etc. (Clientèle : adultes vivant avec des problèmes de santé mentale sévères ou persistants, avec ou sans recommandation médicale)",
+    "descEn": "",
+    "tags": [
+      "iris",
+      "programme",
+      "soutien",
+      "vie",
+      "logement",
+      "sante",
+      "education",
+      "laval"
+    ]
+  },
+  {
+    "id": "QC-795",
+    "nameFr": "Association lavalloise de parents et amis pour le bien-être mental",
+    "nameEn": "Association lavalloise de parents et amis pour le bien-être mental",
+    "categoryIds": [
+      "LEGAL",
+      "HEALTH",
+      "YOUTH",
+      "STUDENT"
+    ],
+    "region": "13 - LAVAL",
+    "phone": null,
+    "website": "https://www.alpabem.qc.ca",
+    "address": "Service en ligne / Partout au Québec",
+    "descFr": "Soutien aux familles et ami·e·s des personnes vivant avec une maladie mentale. Accueil téléphonique. Information, référence et accompagnement. Information sur la P-38. Consultation individuelle. Groupe de soutien. Ateliers psychoéducatifs et formations. Conférences en webdiffusion. Services jeunesse: rencontres individuelles et ateliers de groupe pour les 6 ans et plus. Représentation sociale... (Clientèle : parents, conjoint·e·s, ami·e·s, enfants de 6 à 17 ans faisant partie de l'entourage de personnes vivant avec une maladie mentale)",
+    "descEn": "",
+    "tags": [
+      "lavalloise",
+      "parents",
+      "amis",
+      "bien-etre",
+      "mental",
+      "droits",
+      "sante",
+      "jeunesse"
+    ]
+  },
+  {
+    "id": "QC-814",
+    "nameFr": "Association Pour Aînés Résidant à Laval - Saint-François",
+    "nameEn": "Association Pour Aînés Résidant à Laval - Saint-François",
+    "categoryIds": [
+      "SENIORS",
+      "FOOD",
+      "STUDENT",
+      "HEALTH"
+    ],
+    "region": "13 - LAVAL",
+    "phone": null,
+    "website": "https://www.aparl.org",
+    "address": "Service en ligne / Partout au Québec",
+    "descFr": "Services aux personnes aînées. Écoute et référence. Ateliers récréatifs, sportifs et artistiques. Initiative de travail de milieu auprès des aînés en situation de vulnérabilité (ITMAV). Cours d'informatique. Dîners mensuels, dîners interculturels et cuisines collectives. Formation aux bénévoles. Conférences gratuites. Activités intergénérationnelles et café-rencontre Entre-Nous. Point de service Bonhomme à lunettes.... (Clientèle : personnes de 50 ans et plus)",
+    "descEn": "",
+    "tags": [
+      "aines",
+      "residant",
+      "laval",
+      "saint-francois",
+      "alimentaire",
+      "education",
+      "sante",
+      "quebec"
+    ]
+  },
+  {
+    "id": "QC-834",
+    "nameFr": "Association pulmonaire du Québec - Groupe d'entraide maladies pulmonaires - Laval/Rive-Nord",
+    "nameEn": "Association pulmonaire du Québec - Groupe d'entraide maladies pulmonaires - Laval/Rive-Nord",
+    "categoryIds": [
+      "SENIORS",
+      "HEALTH",
+      "YOUTH"
+    ],
+    "region": "13 - LAVAL",
+    "phone": null,
+    "website": "https://poumonquebec.ca",
+    "address": "Service en ligne / Partout au Québec",
+    "descFr": "Groupes d'entraide virtuels offerts aux personnes atteintes de maladies respiratoires, aux membres de la famille et aux proches aidant·e·s. Conférence et période de questions animées par des professionnel·le·s. Rencontres de partage. (Clientèle : personnes atteintes de maladies respiratoires, membres de la famille et proches aidant·e·s)",
+    "descEn": "",
+    "tags": [
+      "pulmonaire",
+      "d'entraide",
+      "maladies",
+      "pulmonaires",
+      "laval",
+      "aines",
+      "sante",
+      "jeunesse"
+    ]
+  },
+  {
+    "id": "QC-838",
+    "nameFr": "Association Québec-France - Laval",
+    "nameEn": "Association Québec-France - Laval",
+    "categoryIds": [
+      "LEGAL"
+    ],
+    "region": "13 - LAVAL",
+    "phone": null,
+    "website": "https://www.quebec-france-laval.org",
+    "address": "Service en ligne / Partout au Québec",
+    "descFr": "Développement d'une relation franco-québécoise directe et privilégiée. Soupers conférences sur la francophonie. Activités culturelles mettant en valeur la culture québécoise et française. Spectacles. (Clientèle : personnes francophiles et défenseur·euse·s de la langue française)",
+    "descEn": "",
+    "tags": [
+      "quebec-france",
+      "laval",
+      "droits",
+      "quebec"
+    ]
+  },
+  {
+    "id": "QC-844",
+    "nameFr": "Association québécoise de défense des droits des personnes retraitées et préretraitées - Laval",
+    "nameEn": "Association québécoise de défense des droits des personnes retraitées et préretraitées - Laval",
+    "categoryIds": [
+      "SENIORS",
+      "LEGAL",
+      "LGBTQ",
+      "HOUSING"
+    ],
+    "region": "13 - LAVAL",
+    "phone": null,
+    "website": "https://aqdrlaval.org",
+    "address": "Service en ligne / Partout au Québec",
+    "descFr": "Défense des droits principalement en ce qui concerne le revenu, le logement, les services et soins à domicile, l'égalité des sexes, le transport et la santé. Conférences thématiques. (Clientèle : personnes retraitées et préretraitées de 50 ans et plus)",
+    "descEn": "",
+    "tags": [
+      "quebecoise",
+      "defense",
+      "droits",
+      "personnes",
+      "retraitees",
+      "aines",
+      "lgbtq",
+      "logement"
+    ]
+  },
+  {
+    "id": "QC-876",
+    "nameFr": "Association québécoise des traumatisés crâniens - Région de Laval",
+    "nameEn": "Association québécoise des traumatisés crâniens - Région de Laval",
+    "categoryIds": [
+      "SENIORS",
+      "HEALTH",
+      "YOUTH",
+      "STUDENT"
+    ],
+    "region": "13 - LAVAL",
+    "phone": null,
+    "website": "https://www.aqtc.ca",
+    "address": "Service en ligne / Partout au Québec",
+    "descFr": "Intégration sociale. Activités de loisirs. Intervention psychosociale: rencontres individuelles ou familiales, ateliers. Groupes de soutien. Soutien aux proches: répit, rencontres, ateliers. Sensibilisation. Information, conférences. (Clientèle : personnes ayant un traumatisme craniocérébral (TCC), familles, public, professionnel·le·s)",
+    "descEn": "",
+    "tags": [
+      "quebecoise",
+      "traumatises",
+      "craniens",
+      "laval",
+      "aines",
+      "sante",
+      "jeunesse",
+      "education"
+    ]
+  },
+  {
+    "id": "QC-920",
+    "nameFr": "Atelier: Participants en Apprentissage et Développement des Habiletés de Laval",
+    "nameEn": "Atelier: Participants en Apprentissage et Développement des Habiletés de Laval",
+    "categoryIds": [
+      "EMPLOYMENT",
+      "HEALTH"
+    ],
+    "region": "13 - LAVAL",
+    "phone": null,
+    "website": "https://www.apadhl.com",
+    "address": "Service en ligne / Partout au Québec",
+    "descFr": "Ateliers de travail supervisés: emballage, assemblage et étiquetage. (Clientèle : personnes vivant avec une déficience intellectuelle, une déficience physique, un trouble du spectre de l'autisme ou un problème de santé mentale)",
+    "descEn": "",
+    "tags": [
+      "atelier",
+      "participants",
+      "apprentissage",
+      "developpement",
+      "habiletes",
+      "emploi",
+      "sante",
+      "laval"
+    ]
+  },
+  {
+    "id": "QC-934",
+    "nameFr": "Au Jardin de la famille de Fabreville Inc.",
+    "nameEn": "Au Jardin de la famille de Fabreville Inc.",
+    "categoryIds": [
+      "STUDENT",
+      "EMPLOYMENT",
+      "FOOD",
+      "HEALTH"
+    ],
+    "region": "13 - LAVAL",
+    "phone": null,
+    "website": "https://jardindelafamille.org",
+    "address": "Service en ligne / Partout au Québec",
+    "descFr": "Alphabétisation: lecture, écriture, calcul, communication. Francisation. Friperie. Intégration socioprofessionnelle sous forme de plateaux de travail, formation, accompagnement et encadrement. Service de distribution de biens de première nécessitée. (Clientèle : personnes vivant avec une limitation intellectuelle, physique ou psychologique, familles à faible revenu, personnes immigrantes)",
+    "descEn": "",
+    "tags": [
+      "jardin",
+      "famille",
+      "fabreville",
+      "inc",
+      "education",
+      "emploi",
+      "alimentaire",
+      "sante"
+    ]
+  },
+  {
+    "id": "QC-978",
+    "nameFr": "AVC-Aphasie Laval",
+    "nameEn": "AVC-Aphasie Laval",
+    "categoryIds": [
+      "SENIORS",
+      "STUDENT",
+      "HEALTH",
+      "VIOLENCE"
+    ],
+    "region": "13 - LAVAL",
+    "phone": null,
+    "website": "https://www.avcaphasielaval.ca",
+    "address": "Service en ligne / Partout au Québec",
+    "descFr": "Ateliers: stimulation du langage, menuiserie, créativité, informatique, GYM-AVC, cardio, théâtre, stimulation cognitive. Groupes d'entraide: groupe mensuel ouvert pour personnes proches aidantes, groupe pour personnes ayant vécu un AVC et leurs proches. Soutien psychosocial pour personnes aphasiques et personnes proches aidantes. Soutien et information, souper mensuel et conférences pour personnes proches... (Clientèle : personnes ayant vécu un AVC, toutes séquelles confondues, personnes aphasiques, leurs proches, le grand public)",
+    "descEn": "",
+    "tags": [
+      "avc-aphasie",
+      "laval",
+      "aines",
+      "education",
+      "sante",
+      "violence",
+      "quebec"
+    ]
+  },
+  {
+    "id": "QC-996",
+    "nameFr": "Banque alimentaire - Église Assemblée Chrétienne de Vimont-Auteuil",
+    "nameEn": "Banque alimentaire - Église Assemblée Chrétienne de Vimont-Auteuil",
+    "categoryIds": [
+      "FOOD",
+      "CRISIS",
+      "SENIORS"
+    ],
+    "region": "13 - LAVAL",
+    "phone": null,
+    "website": null,
+    "address": "Service en ligne / Partout au Québec",
+    "descFr": "Banque alimentaire accréditée par Moisson Laval, distribution aux 2 semaines. Paniers de Noël. Aide alimentaire d'urgence. (Clientèle : personnes résidentes du quartier Vimont Auteuil)",
+    "descEn": "",
+    "tags": [
+      "banque",
+      "alimentaire",
+      "eglise",
+      "assemblee",
+      "chretienne",
+      "crise",
+      "aines",
+      "laval"
+    ]
+  },
+  {
+    "id": "QC-1008",
+    "nameFr": "Barreau de Laval",
+    "nameEn": "Barreau de Laval",
+    "categoryIds": [
+      "LEGAL",
+      "STUDENT"
+    ],
+    "region": "13 - LAVAL",
+    "phone": null,
+    "website": "https://barreaudelaval.qc.ca",
+    "address": "Service en ligne / Partout au Québec",
+    "descFr": "Association professionnelle. Information et sensibilisation aux droits. Référence vers des avocat·e·s.",
+    "descEn": "",
+    "tags": [
+      "barreau",
+      "laval",
+      "droits",
+      "education",
+      "quebec"
+    ]
+  },
+  {
+    "id": "QC-1160",
+    "nameFr": "Bureau d'aide juridique - Bureau multisectoriel - Laval",
+    "nameEn": "Bureau d'aide juridique - Bureau multisectoriel - Laval",
+    "categoryIds": [
+      "SENIORS",
+      "EMPLOYMENT",
+      "YOUTH",
+      "LEGAL"
+    ],
+    "region": "13 - LAVAL",
+    "phone": null,
+    "website": "https://aidejuridique.quebec/bureau-montreal-laval",
+    "address": "Service en ligne / Partout au Québec",
+    "descFr": "Bureau d'aide juridique en droit familial, droit criminel et pénal, droit de la jeunesse, droit civil, administratif (aide sociale, SAAQ, CSST), droit du logement, faillite, carcéral. Consultation téléphonique avec un·e avocat·e, accessible 24 heures, 7 jours, lors d'une arrestation ou en cas de détention. (Clientèle : personne ou organisation sans but lucratif résidant au Québec ou contrainte de rester au Québec, financièrement admissible et dont le service juridique demandé est couvert par la Loi)",
+    "descEn": "",
+    "tags": [
+      "d'aide",
+      "juridique",
+      "multisectoriel",
+      "laval",
+      "aines",
+      "emploi",
+      "jeunesse",
+      "droits"
+    ]
+  },
+  {
+    "id": "QC-1190",
+    "nameFr": "Bureau de passeport Canada Laval",
+    "nameEn": "Bureau de passeport Canada Laval",
+    "categoryIds": [
+      "LEGAL"
+    ],
+    "region": "13 - LAVAL",
+    "phone": null,
+    "website": "https://www.canada.ca/fr/immigration-refugies-citoyennete/services/passeports-canadiens.html",
+    "address": "Service en ligne / Partout au Québec",
+    "descFr": "Délivrance de passeports canadiens et autres documents de voyage.",
+    "descEn": "",
+    "tags": [
+      "passeport",
+      "laval",
+      "droits",
+      "quebec"
+    ]
+  },
+  {
+    "id": "QC-1222",
+    "nameFr": "CAFGRAF (Groupe d'entraide en santé mentale de Laval)",
+    "nameEn": "CAFGRAF (Groupe d'entraide en santé mentale de Laval)",
+    "categoryIds": [
+      "HEALTH",
+      "VIOLENCE"
+    ],
+    "region": "13 - LAVAL",
+    "phone": null,
+    "website": "https://www.lecafgraf.org",
+    "address": "Service en ligne / Partout au Québec",
+    "descFr": "Soutien et entraide visant à briser l'isolement. Soutien psychosocial et référence. Accompagnements familiaux: rencontres de suivi avec la personne concernée et ses proches. Activités récréatives, sociales, culturelles et sportives. Ateliers thématiques et d'art. Accès gratuit à des ordinateurs et Wi-Fi. (Clientèle : personnes de 16 ans et plus ayant vécu ou vivant des problèmes de santé mentale)",
+    "descEn": "",
+    "tags": [
+      "cafgraf",
+      "d'entraide",
+      "sante",
+      "mentale",
+      "laval",
+      "violence",
+      "quebec"
+    ]
+  },
+  {
+    "id": "QC-1298",
+    "nameFr": "Carrefour d'Intercultures de Laval",
+    "nameEn": "Carrefour d'Intercultures de Laval",
+    "categoryIds": [
+      "STUDENT",
+      "EMPLOYMENT",
+      "YOUTH",
+      "LEGAL"
+    ],
+    "region": "13 - LAVAL",
+    "phone": null,
+    "website": "https://www.carrefourintercultures.com",
+    "address": "Service en ligne / Partout au Québec",
+    "descFr": "Accueil des personnes nouvelleement arrivées. Information et orientation. Accompagnement, soutien, aide à l'installation et à l'intégration. Aide avec les formulaires. Soutien psychosocial individuel et de groupe. Cours de français à temps partiel. Formation pour accéder au marché du travail. Assermentation. Activités familiales. Espace parents: ateliers de compétences parentales dans le... (Clientèle : personnes immigrantes, personnes nouvelleement arrivées)",
+    "descEn": "",
+    "tags": [
+      "carrefour",
+      "d'intercultures",
+      "laval",
+      "education",
+      "emploi",
+      "jeunesse",
+      "droits",
+      "quebec"
+    ]
+  },
+  {
+    "id": "QC-1310",
+    "nameFr": "Carrefour Jeunesse de Sainte-Rose",
+    "nameEn": "Carrefour Jeunesse de Sainte-Rose",
+    "categoryIds": [
+      "STUDENT",
+      "YOUTH",
+      "FOOD",
+      "HEALTH"
+    ],
+    "region": "13 - LAVAL",
+    "phone": null,
+    "website": null,
+    "address": "Service en ligne / Partout au Québec",
+    "descFr": "Lieu de rencontre pour adolescent·e·s de 12 à 17 ans. Information, écoute, accompagnement et références. Activités sociales et récréatives. Studio d'enregistrement. Aide psychosociale. Aide aux devoirs. Ateliers divers et sensibilisation: consommation de drogue, sexualité, relation familiale, études, etc. Distribution de condoms. Distribution de produits menstruels.",
+    "descEn": "",
+    "tags": [
+      "carrefour",
+      "jeunesse",
+      "sainte-rose",
+      "education",
+      "alimentaire",
+      "sante",
+      "laval",
+      "quebec"
+    ]
+  },
+  {
+    "id": "QC-1333",
+    "nameFr": "Carrefour jeunesse-emploi de Laval",
+    "nameEn": "Carrefour jeunesse-emploi de Laval",
+    "categoryIds": [
+      "EMPLOYMENT",
+      "YOUTH",
+      "STUDENT"
+    ],
+    "region": "13 - LAVAL",
+    "phone": null,
+    "website": "https://www.cjelaval.qc.ca",
+    "address": "Service en ligne / Partout au Québec",
+    "descFr": "Accueil et référence. Soutien à l'emploi. Centre de documentation. Sensibilisation à l'entrepreneuriat. Orientation. Persévérance scolaire. Mes finances, mes choix: programme d'aide avec le budget. Accompagnement et projets: Départ@9, Créneau Carrefour, Alternative suspension, PASI, VISA destination emploi et Jeunes volontaires. LAB/Mobile: sensibilisation, mobilisation, développement et stimulation des jeunes dans la création... (Clientèle : jeunes adultes de 15 à 35 ans, PASI: 14 ans et plus)",
+    "descEn": "",
+    "tags": [
+      "carrefour",
+      "jeunesse-emploi",
+      "laval",
+      "emploi",
+      "jeunesse",
+      "education",
+      "quebec"
+    ]
+  },
+  {
+    "id": "QC-1621",
+    "nameFr": "Centre d'aide aux victimes d'actes criminels de Laval",
+    "nameEn": "Centre d'aide aux victimes d'actes criminels de Laval",
+    "categoryIds": [
+      "LEGAL",
+      "HEALTH",
+      "VIOLENCE",
+      "STUDENT"
+    ],
+    "region": "13 - LAVAL",
+    "phone": null,
+    "website": "https://cavac.qc.ca",
+    "address": "Service en ligne / Partout au Québec",
+    "descFr": "Intervention psychosociale et post-traumatique. Information sur le processus judiciaire. Suivi judiciaire et information. Accompagnement à la cour au besoin. Information sur les droits et recours des victimes d'actes criminels. Assistance technique. (Clientèle : victimes d'actes criminels, leurs proches, témoins d'un acte criminel)",
+    "descEn": "",
+    "tags": [
+      "d'aide",
+      "victimes",
+      "d'actes",
+      "criminels",
+      "laval",
+      "droits",
+      "sante",
+      "violence"
+    ]
+  },
+  {
+    "id": "QC-1691",
+    "nameFr": "Centre de bénévolat et Moisson Laval",
+    "nameEn": "Centre de bénévolat et Moisson Laval",
+    "categoryIds": [
+      "SENIORS",
+      "FOOD",
+      "STUDENT",
+      "LGBTQ"
+    ],
+    "region": "13 - LAVAL",
+    "phone": null,
+    "website": "https://benevolatlaval.qc.ca",
+    "address": "Service en ligne / Partout au Québec",
+    "descFr": "Centre de bénévolat Recrutement, formation et orientation des bénévoles vers les organismes lavallois: jebenevole.ca Maintien à domicile: SécuriCAB (service d'appels automatisés visant la sécurité des personnes aînées), transports médicaux, soutien scolaire, visites amicales, assistance pour des tâches légères et travaux légers, appels de convivialité, etc. Comptoir alimentaire alternatif: aide alimentaire... (Clientèle : personnes citoyennes, familles et personnes à faible revenu, organismes d'aide pour personnes à faible revenu, personnes nouvelles arrivantes, personnes réfugiées, collecte alimentaire: entreprises)",
+    "descEn": "",
+    "tags": [
+      "benevolat",
+      "moisson",
+      "laval",
+      "aines",
+      "alimentaire",
+      "education",
+      "lgbtq",
+      "quebec"
+    ]
+  },
+  {
+    "id": "QC-1692",
+    "nameFr": "Centre de bénévolat et moisson Laval - Accompagnement-transport",
+    "nameEn": "Centre de bénévolat et moisson Laval - Accompagnement-transport",
+    "categoryIds": [
+      "SENIORS",
+      "LGBTQ",
+      "FOOD",
+      "HEALTH"
+    ],
+    "region": "13 - LAVAL",
+    "phone": null,
+    "website": "https://benevolatlaval.qc.ca",
+    "address": "Service en ligne / Partout au Québec",
+    "descFr": "Transport et accompagnement aux rendez-vous médicaux par des bénévoles. (Clientèle : personnes à faible revenu, sans transport et sans soutien, ayant des traitements intensifs et suivis à moyen ou long terme)",
+    "descEn": "",
+    "tags": [
+      "benevolat",
+      "moisson",
+      "laval",
+      "accompagnement-transport",
+      "aines",
+      "lgbtq",
+      "alimentaire",
+      "sante"
+    ]
+  },
+  {
+    "id": "QC-1693",
+    "nameFr": "Centre de bénévolat et Moisson Laval - Clinique d'impôts",
+    "nameEn": "Centre de bénévolat et Moisson Laval - Clinique d'impôts",
+    "categoryIds": [
+      "EMPLOYMENT",
+      "LEGAL",
+      "FOOD"
+    ],
+    "region": "13 - LAVAL",
+    "phone": null,
+    "website": "https://benevolatlaval.qc.ca",
+    "address": "Service en ligne / Partout au Québec",
+    "descFr": "Clinique d'impôts à l'année, sur rendez-vous. (Clientèle : personnes seules, travailleur·euse·s autonomes et personnes nouvelles arrivantes ayant un revenu annuel de moins de 35 000$, couples ayant un revenu annuel de moins de 45 000$ et 2500$ supplémentaire par personne à charge)",
+    "descEn": "",
+    "tags": [
+      "benevolat",
+      "moisson",
+      "laval",
+      "clinique",
+      "d'impots",
+      "emploi",
+      "droits",
+      "alimentaire"
+    ]
+  },
+  {
+    "id": "QC-1694",
+    "nameFr": "Centre de bénévolat et moisson Laval - Programme de travaux compensatoires",
+    "nameEn": "Centre de bénévolat et moisson Laval - Programme de travaux compensatoires",
+    "categoryIds": [
+      "LEGAL",
+      "FOOD"
+    ],
+    "region": "13 - LAVAL",
+    "phone": null,
+    "website": "https://benevolatlaval.qc.ca",
+    "address": "Service en ligne / Partout au Québec",
+    "descFr": "Mesure alternative à l'incarcération pour les citoyen·ne·s ayant commis une infraction à la loi, à un règlement provincial ou municipal et désirant rembourser leurs amendes par le biais de travaux compensatoires. (Clientèle : personnes référées par la cour municipale ou provinciale)",
+    "descEn": "",
+    "tags": [
+      "benevolat",
+      "moisson",
+      "laval",
+      "programme",
+      "travaux",
+      "droits",
+      "alimentaire",
+      "quebec"
+    ]
+  },
+  {
+    "id": "QC-1753",
+    "nameFr": "Centre de main-d'oeuvre OPEX'82 - Laval-Laurentides-Lanaudière",
+    "nameEn": "Centre de main-d'oeuvre OPEX'82 - Laval-Laurentides-Lanaudière",
+    "categoryIds": [
+      "EMPLOYMENT",
+      "HOUSING",
+      "LEGAL",
+      "STUDENT"
+    ],
+    "region": "13 - LAVAL",
+    "phone": null,
+    "website": "https://www.viatravail.ca",
+    "address": "Service en ligne / Partout au Québec",
+    "descFr": "Service spécialisé de main-d'oeuvre visant la réinsertion au marché du travail de personnes judiciarisées. Information sur le marché du travail. Ateliers de formation. Exploration et connaissance de soi. Formation préparatoire à la recherche d'emploi. Contact aux entreprises. (Clientèle : adultes ayant un casier judiciaire)",
+    "descEn": "",
+    "tags": [
+      "main-d'oeuvre",
+      "opex'82",
+      "laval-laurentides-lanaudiere",
+      "emploi",
+      "logement",
+      "droits",
+      "education",
+      "laval"
+    ]
+  },
+  {
+    "id": "QC-1777",
+    "nameFr": "Centre de protection de l'enfance et de la jeunesse avenue Laval",
+    "nameEn": "Centre de protection de l'enfance et de la jeunesse avenue Laval",
+    "categoryIds": [
+      "YOUTH",
+      "HEALTH",
+      "CRISIS",
+      "EMPLOYMENT"
+    ],
+    "region": "13 - LAVAL",
+    "phone": null,
+    "website": "https://www.lavalensante.com",
+    "address": "Service en ligne / Partout au Québec",
+    "descFr": "Intervention sociale à toutes les étapes du processus de protection de la jeunesse. Intervention en situation de crise familiale, soutien éducatif aux familles. Soutien à la réinsertion sociale pour jeunes placé·e·s en ressource de réadaptation. Programme qualification des jeunes: développement de l'autonomie au moment de la réinsertion sociale. (Clientèle : enfants et adolescent·e·s en difficulté, jeunes contrevenant·e·s, parents, tuteur·trice·s, personnes intervenantes, programme qualification des jeunes: jeunes de 16 à 19 ans)",
+    "descEn": "",
+    "tags": [
+      "protection",
+      "l'enfance",
+      "jeunesse",
+      "avenue",
+      "laval",
+      "sante",
+      "crise",
+      "emploi"
+    ]
+  },
+  {
+    "id": "QC-1779",
+    "nameFr": "Centre de protection de l'enfance et de la jeunesse de Laval",
+    "nameEn": "Centre de protection de l'enfance et de la jeunesse de Laval",
+    "categoryIds": [
+      "YOUTH",
+      "LEGAL",
+      "CRISIS",
+      "VIOLENCE"
+    ],
+    "region": "13 - LAVAL",
+    "phone": null,
+    "website": "https://www.lavalensante.com",
+    "address": "Service en ligne / Partout au Québec",
+    "descFr": "Administration des centres jeunesse. Réception et évaluation des signalements d'actes de négligence, de violence ou d'abus en vertu de la Loi sur la protection de la jeunesse. Adaptation, réadaptation et intégration sociale en internat ou en foyer de groupe. Intervention de milieu, soutien éducatif aux familles et intervention de crise.... (Clientèle : jeunes en difficulté de 0 à 18 ans, jeunes contrevenant·e·s, parents, tuteur·trice·s, personnes intervenantes)",
+    "descEn": "",
+    "tags": [
+      "protection",
+      "l'enfance",
+      "jeunesse",
+      "laval",
+      "droits",
+      "crise",
+      "violence",
+      "quebec"
+    ]
+  },
+  {
+    "id": "QC-1865",
+    "nameFr": "Centre de réadaptation pour les jeunes en difficultés d'adaptation de Laval",
+    "nameEn": "Centre de réadaptation pour les jeunes en difficultés d'adaptation de Laval",
+    "categoryIds": [
+      "YOUTH"
+    ],
+    "region": "13 - LAVAL",
+    "phone": null,
+    "website": "https://lavalensante.com",
+    "address": "Service en ligne / Partout au Québec",
+    "descFr": "Centre de réadaptation. (Clientèle : jeunes en difficulté)",
+    "descEn": "",
+    "tags": [
+      "readaptation",
+      "jeunes",
+      "difficultes",
+      "d'adaptation",
+      "laval",
+      "jeunesse",
+      "quebec"
+    ]
+  },
+  {
+    "id": "QC-1900",
+    "nameFr": "Centre de services ambulatoires de Laval",
+    "nameEn": "Centre de services ambulatoires de Laval",
+    "categoryIds": [
+      "HEALTH",
+      "SENIORS"
+    ],
+    "region": "13 - LAVAL",
+    "phone": null,
+    "website": "https://lavalensante.com",
+    "address": "Service en ligne / Partout au Québec",
+    "descFr": "Cardiologie. Hématologie. Clinique de développement. Centre de prélèvements. Centre du diabète. Centre de gériatrie. Pédiatrie-obstétrique. Pneumologie. Néphrologie. Santé des femmes.",
+    "descEn": "",
+    "tags": [
+      "ambulatoires",
+      "laval",
+      "sante",
+      "aines",
+      "quebec"
+    ]
+  },
+  {
+    "id": "QC-1923",
+    "nameFr": "Centre de services scolaire de Laval",
+    "nameEn": "Centre de services scolaire de Laval",
+    "categoryIds": [
+      "STUDENT",
+      "LEGAL",
+      "EMPLOYMENT"
+    ],
+    "region": "13 - LAVAL",
+    "phone": null,
+    "website": "https://csslaval.gouv.qc.ca",
+    "address": "Service en ligne / Partout au Québec",
+    "descFr": "Centre de services scolaire francophone regroupant écoles primaires, secondaires, spécialisées. Formation professionnelle. Éducation des adultes. Test d'équivalence de niveau secondaire (TENS): évaluation des connaissances des adultes n'ayant pas terminé leurs études secondaires en vue d'obtenir une attestation d'équivalence de niveau de scolarité (AENS) facilitant l'accession à certains emplois et formations...",
+    "descEn": "",
+    "tags": [
+      "scolaire",
+      "laval",
+      "education",
+      "droits",
+      "emploi",
+      "quebec"
+    ]
+  },
+  {
+    "id": "QC-1947",
+    "nameFr": "Centre d'écoute de Laval",
+    "nameEn": "Centre d'écoute de Laval",
+    "categoryIds": [
+      "SENIORS",
+      "HEALTH",
+      "VIOLENCE",
+      "CRISIS"
+    ],
+    "region": "13 - LAVAL",
+    "phone": null,
+    "website": "https://www.centredecoute.com",
+    "address": "Service en ligne / Partout au Québec",
+    "descFr": "Écoute téléphonique généraliste anonyme et confidentielle pour toute personne en difficulté ou ressentant le besoin de se confier. Information sur divers services à l'intention des personnes aînées: aide financière, perte d'autonomie, habitation, décès, soutien à domicile, impôts, etc. Référence.",
+    "descEn": "",
+    "tags": [
+      "d'ecoute",
+      "laval",
+      "aines",
+      "sante",
+      "violence",
+      "crise",
+      "quebec"
+    ]
+  },
+  {
+    "id": "QC-2003",
+    "nameFr": "Centre des femmes de Laval",
+    "nameEn": "Centre des femmes de Laval",
+    "categoryIds": [
+      "YOUTH",
+      "FOOD",
+      "LEGAL",
+      "STUDENT"
+    ],
+    "region": "13 - LAVAL",
+    "phone": null,
+    "website": "https://www.cflaval.org",
+    "address": "Service en ligne / Partout au Québec",
+    "descFr": "Lieu de rencontre, d'écoute et de référence. Friperie Vert l'écolo-partage: vêtements gratuits pour toute la famille. Halte-garderie. Activités éducatives et de loisir, formations, danse, comités, actions collectives. Groupes d'entraide confidentiels et ouverts, groupe de partage, groupe de discussion sur les réalités des femmes immigrantes, soirées de discussion thématiques. ?* Défense...",
+    "descEn": "",
+    "tags": [
+      "femmes",
+      "laval",
+      "jeunesse",
+      "alimentaire",
+      "droits",
+      "education",
+      "quebec"
+    ]
+  },
+  {
+    "id": "QC-2017",
+    "nameFr": "Centre des femmes dynamiques de Laval",
+    "nameEn": "Centre des femmes dynamiques de Laval",
+    "categoryIds": [
+      "SENIORS",
+      "FOOD",
+      "STUDENT",
+      "HEALTH"
+    ],
+    "region": "13 - LAVAL",
+    "phone": null,
+    "website": null,
+    "address": "Service en ligne / Partout au Québec",
+    "descFr": "Lieu de rencontre, de référence et de soutien. Activités communautaires et éducatives. Conférences. Écoute et information. Activités physiques. Ateliers de prévention en santé globale. Dîners communautaires. Sorties. (Clientèle : femmes de 50 ans et plus)",
+    "descEn": "",
+    "tags": [
+      "femmes",
+      "dynamiques",
+      "laval",
+      "aines",
+      "alimentaire",
+      "education",
+      "sante",
+      "quebec"
+    ]
+  },
+  {
+    "id": "QC-2096",
+    "nameFr": "Centre d'implication libre de Laval en réadaptation sociale",
+    "nameEn": "Centre d'implication libre de Laval en réadaptation sociale",
+    "categoryIds": [
+      "STUDENT",
+      "EMPLOYMENT",
+      "HEALTH",
+      "VIOLENCE"
+    ],
+    "region": "13 - LAVAL",
+    "phone": null,
+    "website": "https://cill.qc.ca",
+    "address": "Service en ligne / Partout au Québec",
+    "descFr": "Centres de jour. Pré-employabilité et unités de travail: cuisine, bureau, entretien ménager. Formations: français-alphabétisation, conversation de langue anglaise, informatique, comité d'organisation à la vie communautaire, musicothérapie, arts et artisanat. Activités sociales et sportives. Mesure d'insertion sociale. Suivi dans la communauté: aide au logement, intégration sociale, accompagnement, écoute et soutien moral.... (Clientèle : adultes de 18 ans et plus vivant ou ayant vécu avec des problèmes de santé mentale)",
+    "descEn": "",
+    "tags": [
+      "d'implication",
+      "libre",
+      "laval",
+      "readaptation",
+      "sociale",
+      "education",
+      "emploi",
+      "sante"
+    ]
+  },
+  {
+    "id": "QC-2097",
+    "nameFr": "Centre d'implication libre de Laval en réadaptation sociale - Point de service Sainte-Rose",
+    "nameEn": "Centre d'implication libre de Laval en réadaptation sociale - Point de service Sainte-Rose",
+    "categoryIds": [
+      "EMPLOYMENT",
+      "HEALTH",
+      "STUDENT"
+    ],
+    "region": "13 - LAVAL",
+    "phone": null,
+    "website": "https://cill.qc.ca",
+    "address": "Service en ligne / Partout au Québec",
+    "descFr": "Centre de jour: formations et ateliers, activités socioculturelles. Intégration sociale, accompagnement, écoute et soutien moral. Intégration en milieu de travail: stage et accompagnement. (Clientèle : adultes de 18 ans et plus, vivant ou ayant vécu des problèmes de santé mentale)",
+    "descEn": "",
+    "tags": [
+      "d'implication",
+      "libre",
+      "laval",
+      "readaptation",
+      "sociale",
+      "emploi",
+      "sante",
+      "education"
+    ]
+  },
+  {
+    "id": "QC-2171",
+    "nameFr": "Centre intégré de santé et de services sociaux de Laval",
+    "nameEn": "Centre intégré de santé et de services sociaux de Laval",
+    "categoryIds": [
+      "EMPLOYMENT",
+      "HEALTH",
+      "HOUSING",
+      "LEGAL"
+    ],
+    "region": "13 - LAVAL",
+    "phone": null,
+    "website": "https://www.lavalensante.com",
+    "address": "Service en ligne / Partout au Québec",
+    "descFr": "Planification, coordination et organisation de l'offre de services sociaux et de santé. Prise en charge de l'ensemble de la population du territoire, notamment des clientèles plus vulnérables. Gestion de l'accès simplifié aux services. Administration de partenariats avec les ressources intermédiaires en hébergement. Traitement des plaintes en matière d'insatisfaction et de...",
+    "descEn": "",
+    "tags": [
+      "integre",
+      "sante",
+      "sociaux",
+      "laval",
+      "emploi",
+      "logement",
+      "droits",
+      "quebec"
+    ]
+  },
+  {
+    "id": "QC-2172",
+    "nameFr": "Centre intégré de santé et de services sociaux de Laval - Commissaire aux plaintes et à la qualité des services",
+    "nameEn": "Centre intégré de santé et de services sociaux de Laval - Commissaire aux plaintes et à la qualité des services",
+    "categoryIds": [
+      "LEGAL",
+      "HEALTH"
+    ],
+    "region": "13 - LAVAL",
+    "phone": null,
+    "website": "https://www.lavalensante.com/informations-pratiques/plaintes-et-qualite-des-services",
+    "address": "Service en ligne / Partout au Québec",
+    "descFr": "Responsable du respect des droits des personnes usagères. Réception et analyse les plaintes. Émission de recommandations à l'établissement et au conseil d'administration concernant l'amélioration de la qualité et de la sécurité des services offerts.",
+    "descEn": "",
+    "tags": [
+      "integre",
+      "sante",
+      "sociaux",
+      "laval",
+      "commissaire",
+      "droits",
+      "quebec"
+    ]
+  },
+  {
+    "id": "QC-2173",
+    "nameFr": "Centre intégré de santé et de services sociaux de Laval - PIPEP",
+    "nameEn": "Centre intégré de santé et de services sociaux de Laval - PIPEP",
+    "categoryIds": [
+      "HEALTH"
+    ],
+    "region": "13 - LAVAL",
+    "phone": null,
+    "website": "https://www.lavalensante.com",
+    "address": "Service en ligne / Partout au Québec",
+    "descFr": "Clinique spécialisée pour les personnes de 18 à 35 ans vivant un premier épisode psychotique non traité. * Accueil et évaluation. Traitement et réadaptation. (Clientèle : personnes de 18 à 35 ans ayant vécu un premier épisode psychotique, incluant tous types de psychoses confondues, à l'exception des psychoses secondaires dues à un trouble physique)",
+    "descEn": "",
+    "tags": [
+      "integre",
+      "sante",
+      "sociaux",
+      "laval",
+      "pipep",
+      "quebec"
+    ]
+  },
+  {
+    "id": "QC-2174",
+    "nameFr": "Centre intégré de santé et de services sociaux de Laval - Services en déficience intellectuelle, trouble du spectre de l'autisme et déficience physique",
+    "nameEn": "Centre intégré de santé et de services sociaux de Laval - Services en déficience intellectuelle, trouble du spectre de l'autisme et déficience physique",
+    "categoryIds": [
+      "HEALTH",
+      "LGBTQ"
+    ],
+    "region": "13 - LAVAL",
+    "phone": null,
+    "website": "https://www.lavalensante.com/employes-et-medecins/services-en-di-tsa-et-dp",
+    "address": "Service en ligne / Partout au Québec",
+    "descFr": "Services et programmes pédiatriques: développement moteur, du langage et de l'autonomie, soutien et accompagnement, évaluation diagnostique, transition vers la vie adulte, aide à la mobilité. Services pour personnes adultes. (Clientèle : personnes vivant avec une déficience physique ou intellectuelle, personnes avec un trouble du spectre de l'autisme)",
+    "descEn": "",
+    "tags": [
+      "integre",
+      "sante",
+      "sociaux",
+      "laval",
+      "deficience",
+      "lgbtq",
+      "quebec"
+    ]
+  },
+  {
+    "id": "QC-2179",
+    "nameFr": "Centre intégré de santé et des services sociaux de Laval - Vaccination contre la grippe",
+    "nameEn": "Centre intégré de santé et des services sociaux de Laval - Vaccination contre la grippe",
+    "categoryIds": [
+      "HEALTH"
+    ],
+    "region": "13 - LAVAL",
+    "phone": null,
+    "website": "https://www.lavalensante.com/vaccingrippelaval",
+    "address": "Service en ligne / Partout au Québec",
+    "descFr": "Campagne de vaccination contre la grippe saisonnière. Système de prise de rendez-vous par Internet: portal3.clicsante.ca",
+    "descEn": "",
+    "tags": [
+      "integre",
+      "sante",
+      "sociaux",
+      "laval",
+      "vaccination",
+      "quebec"
+    ]
+  },
+  {
+    "id": "QC-2379",
+    "nameFr": "CHSLD Sainte-Dorothée",
+    "nameEn": "CHSLD Sainte-Dorothée",
+    "categoryIds": [
+      "SENIORS",
+      "HOUSING",
+      "HEALTH"
+    ],
+    "region": "13 - LAVAL",
+    "phone": null,
+    "website": "https://www.lavalensante.com/coordonnees/trouver-un-point-de-service",
+    "address": "Service en ligne / Partout au Québec",
+    "descFr": "Centre d'hébergement public pour personnes aînées et personnes en perte d'autonomie. Hébergement et soins de longue durée. (Clientèle : personnes aînées, personnes en perte d'autonomie)",
+    "descEn": "",
+    "tags": [
+      "chsld",
+      "sainte-dorothee",
+      "aines",
+      "logement",
+      "sante",
+      "laval",
+      "quebec"
+    ]
+  },
+  {
+    "id": "QC-2380",
+    "nameFr": "CHSLD Sainte-Rose",
+    "nameEn": "CHSLD Sainte-Rose",
+    "categoryIds": [
+      "SENIORS",
+      "HOUSING",
+      "HEALTH"
+    ],
+    "region": "13 - LAVAL",
+    "phone": null,
+    "website": "https://www.lavalensante.com/coordonnees/trouver-un-point-de-service",
+    "address": "Service en ligne / Partout au Québec",
+    "descFr": "Centre d'hébergement public pour personnes aînées et personnes en perte d'autonomie. Hébergement et soins de longue durée. Centre de jour offrant des services thérapeutiques afin de maintenir l'autonomie de personnes vivant à domicile. (Clientèle : personnes aînées, personnes en perte d'autonomie)",
+    "descEn": "",
+    "tags": [
+      "chsld",
+      "sainte-rose",
+      "aines",
+      "logement",
+      "sante",
+      "laval",
+      "quebec"
+    ]
+  },
+  {
+    "id": "QC-2433",
+    "nameFr": "CLSC - Boulevard Chomedey",
+    "nameEn": "CLSC - Boulevard Chomedey",
+    "categoryIds": [
+      "HEALTH"
+    ],
+    "region": "13 - LAVAL",
+    "phone": null,
+    "website": "https://www.lavalensante.com",
+    "address": "Service en ligne / Partout au Québec",
+    "descFr": "Soins à domicile. Vaccination pour les 0 à 17 ans.",
+    "descEn": "",
+    "tags": [
+      "clsc",
+      "boulevard",
+      "chomedey",
+      "sante",
+      "laval",
+      "quebec"
+    ]
+  },
+  {
+    "id": "QC-2472",
+    "nameFr": "CLSC de Lavaltrie",
+    "nameEn": "CLSC de Lavaltrie",
+    "categoryIds": [
+      "YOUTH",
+      "HEALTH",
+      "ADDICTION"
+    ],
+    "region": "13 - LAVAL",
+    "phone": null,
+    "website": "https://sante.gouv.qc.ca/repertoire-ressources/ressource/?nofiche=1810",
+    "address": "Service en ligne / Partout au Québec",
+    "descFr": "Services de première ligne en matière de santé et de services sociaux. Cessation tabagisme. Distribution de matériel d'injection neuf aux personnes qui consomment des drogues (service gratuit). Récupération des seringues et des aiguilles usagées. SIDEP - Service intégré de dépistage et de prévention des ITSS Services complets listés ici: Répertoire...",
+    "descEn": "",
+    "tags": [
+      "clsc",
+      "lavaltrie",
+      "jeunesse",
+      "sante",
+      "dependance",
+      "laval",
+      "quebec"
+    ]
+  },
+  {
+    "id": "QC-2508",
+    "nameFr": "CLSC de Sainte-Rose",
+    "nameEn": "CLSC de Sainte-Rose",
+    "categoryIds": [
+      "HEALTH"
+    ],
+    "region": "13 - LAVAL",
+    "phone": null,
+    "website": "https://sante.gouv.qc.ca/repertoire-ressources/ressource/?nofiche=1193&ch_type%5B6%5D=1201&bt_rechType=&theme=clsc&ch_choixReg=&ch_rayon=0&ch_code=H7L4L2",
+    "address": "Service en ligne / Partout au Québec",
+    "descFr": "Services de première ligne en matière de santé et de services sociaux. Authentification de la carte d'assurance maladie. Consultation d'une infirmière. Médecine familiale. Prélèvements. Radiologie. Vaccination contre la grippe.",
+    "descEn": "",
+    "tags": [
+      "clsc",
+      "sainte-rose",
+      "sante",
+      "laval",
+      "quebec"
+    ]
+  },
+  {
+    "id": "QC-2542",
+    "nameFr": "CLSC du Marigot - Centre désigné de Laval pour les victimes d'agressions sexuelles",
+    "nameEn": "CLSC du Marigot - Centre désigné de Laval pour les victimes d'agressions sexuelles",
+    "categoryIds": [
+      "HEALTH",
+      "VIOLENCE"
+    ],
+    "region": "13 - LAVAL",
+    "phone": null,
+    "website": "https://www.lavalensante.com/soins-et-services/liste-des-soins-et-services/sante-sexuelle/agression-sexuelle",
+    "address": "Service en ligne / Partout au Québec",
+    "descFr": "Centre désigné en matière d'agression sexuelle. Services psychosociaux dédiés. Pour des soins de santé et les examens appropriés, visitez l'hôpital de la Cité-de-la-Santé de Laval. (Clientèle : victimes d'agression sexuelle de 12 ans et plus)",
+    "descEn": "",
+    "tags": [
+      "clsc",
+      "marigot",
+      "designe",
+      "laval",
+      "victimes",
+      "sante",
+      "violence",
+      "quebec"
+    ]
+  },
+  {
+    "id": "QC-2582",
+    "nameFr": "Club de gymnastique Laval Excellence",
+    "nameEn": "Club de gymnastique Laval Excellence",
+    "categoryIds": [
+      "YOUTH"
+    ],
+    "region": "13 - LAVAL",
+    "phone": null,
+    "website": "https://www.lavalexcellence.ca",
+    "address": "Service en ligne / Partout au Québec",
+    "descFr": "Club de gymnastique et de cheerleading récréatif et compétitif. Programme parent-enfant 1.2.3 Gym ! pour les 2 ans et plus. Programme Bébé-gym pour les enfants de 3 ans. Programme Bout d'chou pour les filles de 4 à 5 ans. Groupes récréatifs pour les filles de 6 à 8 ans et... (Clientèle : enfants de 2 ans et plus, adolescent·e·s)",
+    "descEn": "",
+    "tags": [
+      "club",
+      "gymnastique",
+      "laval",
+      "excellence",
+      "jeunesse",
+      "quebec"
+    ]
+  },
+  {
+    "id": "QC-2584",
+    "nameFr": "Club de l'âge d'or Bon Pasteur de Laval",
+    "nameEn": "Club de l'âge d'or Bon Pasteur de Laval",
+    "categoryIds": [
+      "SENIORS",
+      "FOOD"
+    ],
+    "region": "13 - LAVAL",
+    "phone": null,
+    "website": null,
+    "address": "Service en ligne / Partout au Québec",
+    "descFr": "Activités sociales et récréatives pour personnes aînées. Bingo. Pétanque: parc Paul-Marcel-Maheu. Billard, table de snooker. Repas communautaires. Sorties: méchoui, temps des sucres, dîner des fêtes au restaurant, autres fêtes.",
+    "descEn": "",
+    "tags": [
+      "club",
+      "l'age",
+      "d'or",
+      "bon",
+      "pasteur",
+      "aines",
+      "alimentaire",
+      "laval"
+    ]
+  },
+  {
+    "id": "QC-2605",
+    "nameFr": "Club de l'âge d'or Saint-Martin de Laval",
+    "nameEn": "Club de l'âge d'or Saint-Martin de Laval",
+    "categoryIds": [
+      "SENIORS",
+      "FOOD"
+    ],
+    "region": "13 - LAVAL",
+    "phone": null,
+    "website": null,
+    "address": "Service en ligne / Partout au Québec",
+    "descFr": "Activités sociales et récréatives diverses: pétanque, voyages, sorties, jeux, bingo. Repas communautaires. Exercices léger. (Clientèle : personnes 50 ans et plus)",
+    "descEn": "",
+    "tags": [
+      "club",
+      "l'age",
+      "d'or",
+      "saint-martin",
+      "laval",
+      "aines",
+      "alimentaire",
+      "quebec"
+    ]
+  },
+  {
+    "id": "QC-2693",
+    "nameFr": "Comité d'animation du troisième âge de Laval - Initiative de travail de milieu auprès des aînés en situation de vulnérabilité",
+    "nameEn": "Comité d'animation du troisième âge de Laval - Initiative de travail de milieu auprès des aînés en situation de vulnérabilité",
+    "categoryIds": [
+      "SENIORS",
+      "EMPLOYMENT"
+    ],
+    "region": "13 - LAVAL",
+    "phone": null,
+    "website": "https://www.lecatal.ca",
+    "address": "Service en ligne / Partout au Québec",
+    "descFr": "Intervention de milieu auprès des personnes aînées vulnérables. (Clientèle : personnes âgées de 50 ans et plus)",
+    "descEn": "",
+    "tags": [
+      "comite",
+      "d'animation",
+      "troisieme",
+      "age",
+      "laval",
+      "aines",
+      "emploi",
+      "quebec"
+    ]
+  },
+  {
+    "id": "QC-2739",
+    "nameFr": "Comité des usagers du Centre jeunesse de Laval et du Centre de réadaptation en dépendance de Laval",
+    "nameEn": "Comité des usagers du Centre jeunesse de Laval et du Centre de réadaptation en dépendance de Laval",
+    "categoryIds": [
+      "LEGAL",
+      "ADDICTION",
+      "YOUTH"
+    ],
+    "region": "13 - LAVAL",
+    "phone": null,
+    "website": "https://www.lavalensante.com/comites-des-usagers-et-de-residents/comite-des-usagers-du-centre-jeunesse-de-laval-et-du-centre-de-readaptation-en-dependance-laval/",
+    "address": "Service en ligne / Partout au Québec",
+    "descFr": "Comité des personnes usagères. Renseignements sur les droits et les obligations. Défense des droits et intérêts. Accompagnement dans les démarches pour porter plainte. (Clientèle : personnes usagères des centres jeunesse et des centres de réadaptation en dépendance)",
+    "descEn": "",
+    "tags": [
+      "comite",
+      "usagers",
+      "jeunesse",
+      "laval",
+      "readaptation",
+      "droits",
+      "dependance",
+      "quebec"
+    ]
+  },
+  {
+    "id": "QC-2741",
+    "nameFr": "Comité des usagers du CSSS de Laval",
+    "nameEn": "Comité des usagers du CSSS de Laval",
+    "categoryIds": [
+      "LEGAL"
+    ],
+    "region": "13 - LAVAL",
+    "phone": null,
+    "website": "https://www.cucssslaval.ca",
+    "address": "Service en ligne / Partout au Québec",
+    "descFr": "Comité des personnes usagères. Renseignements sur les droits et les obligations. Défense des droits et intérêts. Accompagnement dans les démarches pour porter plainte. (Clientèle : personnes usagères du CSSS de Laval)",
+    "descEn": "",
+    "tags": [
+      "comite",
+      "usagers",
+      "csss",
+      "laval",
+      "droits",
+      "quebec"
+    ]
+  },
+  {
+    "id": "QC-2791",
+    "nameFr": "Commission des normes, de l'équité, de la santé et de la sécurité du travail - Laval",
+    "nameEn": "Commission des normes, de l'équité, de la santé et de la sécurité du travail - Laval",
+    "categoryIds": [
+      "EMPLOYMENT",
+      "LEGAL",
+      "HEALTH"
+    ],
+    "region": "13 - LAVAL",
+    "phone": null,
+    "website": "https://www.cnesst.gouv.qc.ca",
+    "address": "Service en ligne / Partout au Québec",
+    "descFr": "Santé et sécurité au travail Soutien aux travailleur·euse·s et aux employeur·euse·s dans leurs démarches pour éliminer à la source les dangers présents dans leur milieu de travail. Inspection des lieux de travail. Promotion de la santé et de la sécurité du travail. Indemnisation des travailleur·euse·s ayant subi une lésion professionnelle.... (Clientèle : employeur·euse·s, travailleur·euse·s)",
+    "descEn": "",
+    "tags": [
+      "commission",
+      "normes",
+      "l'equite",
+      "sante",
+      "securite",
+      "emploi",
+      "droits",
+      "laval"
+    ]
+  },
+  {
+    "id": "QC-2818",
+    "nameFr": "Compassion Laval",
+    "nameEn": "Compassion Laval",
+    "categoryIds": [
+      "FOOD",
+      "YOUTH"
+    ],
+    "region": "13 - LAVAL",
+    "phone": null,
+    "website": null,
+    "address": "Service en ligne / Partout au Québec",
+    "descFr": "Aide aux personnes et aux familles dans le besoin. Banque alimentaire. Friperie: vêtements neufs et d'occasion pour adultes et enfants à prix modique. Point de collecte des dons: nourriture non-périssable ou à longue durée, vêtements, articles d'hygiène personnelle, articles de cuisines, articles pour bébés, etc. (Clientèle : personnes et familles à faible revenu)",
+    "descEn": "",
+    "tags": [
+      "compassion",
+      "laval",
+      "alimentaire",
+      "jeunesse",
+      "quebec"
+    ]
+  },
+  {
+    "id": "QC-2832",
+    "nameFr": "Comptoir Sainte-Rose-de-Lima",
+    "nameEn": "Comptoir Sainte-Rose-de-Lima",
+    "categoryIds": [
+      "FOOD"
+    ],
+    "region": "13 - LAVAL",
+    "phone": null,
+    "website": "https://www.paroissesjc.org",
+    "address": "Service en ligne / Partout au Québec",
+    "descFr": "Récupération et vente d'objets usagés: vêtements, jouets, petits articles de maison, livres. Aide alimentaire. Paniers de Noël. (Clientèle : personnes dans le besoin)",
+    "descEn": "",
+    "tags": [
+      "comptoir",
+      "sainte-rose-de-lima",
+      "alimentaire",
+      "laval",
+      "quebec"
+    ]
+  },
+  {
+    "id": "QC-2908",
+    "nameFr": "Coopérative de soutien à domicile de Laval",
+    "nameEn": "Coopérative de soutien à domicile de Laval",
+    "categoryIds": [
+      "SENIORS",
+      "HEALTH",
+      "LEGAL",
+      "HOUSING"
+    ],
+    "region": "13 - LAVAL",
+    "phone": null,
+    "website": "https://www.cooplaval.com",
+    "address": "Service en ligne / Partout au Québec",
+    "descFr": "Maintien à domicile et gériatrie sociale. Service d'aide à la vie domestique Entretien ménager léger: lessive, changement de literie, préparation de repas (sans diète), courses, etc. Entretien ménager lourd (deux fois par année): murs, plafonds, fenêtres, etc. Service de répit et de soutien personnalisé Répit pour personnes proches aidantes. Assistance... (Clientèle : personnes en perte d'autonomie temporaire ou permanente (déficience physique, intellectuelle ou spectre de l'autisme))",
+    "descEn": "",
+    "tags": [
+      "cooperative",
+      "soutien",
+      "domicile",
+      "laval",
+      "aines",
+      "sante",
+      "droits",
+      "logement"
+    ]
+  },
+  {
+    "id": "QC-2933",
+    "nameFr": "Corporation de développement communautaire de Laval",
+    "nameEn": "Corporation de développement communautaire de Laval",
+    "categoryIds": [
+      "HEALTH"
+    ],
+    "region": "13 - LAVAL",
+    "phone": null,
+    "website": "https://www.cdclaval.qc.ca",
+    "address": "Service en ligne / Partout au Québec",
+    "descFr": "Regroupement dont la mission est d'assurer la participation active du mouvement populaire et communautaire au développement socioéconomique de son milieu. (Clientèle : organismes communautaires)",
+    "descEn": "",
+    "tags": [
+      "corporation",
+      "developpement",
+      "communautaire",
+      "laval",
+      "sante",
+      "quebec"
+    ]
+  },
+  {
+    "id": "QC-2956",
+    "nameFr": "Corporation Intégration à la Vie Active des Personnes Handicapées de Laval",
+    "nameEn": "Corporation Intégration à la Vie Active des Personnes Handicapées de Laval",
+    "categoryIds": [
+      "FOOD",
+      "EMPLOYMENT",
+      "HEALTH",
+      "YOUTH"
+    ],
+    "region": "13 - LAVAL",
+    "phone": null,
+    "website": "https://civaphl.org",
+    "address": "Service en ligne / Partout au Québec",
+    "descFr": "Suivi et soutien individuel pour favoriser l'intégration sociale et professionnelle. Information et références. Programme d'intégration socioprofessionnelle et programme d'emploi d'été. Activités de groupe et activités de jour. Club propulsion: camp de jour adapté pour les personnes de 14 à 21 ans vivant avec un handicap physique. Camp de jour pour... (Clientèle : personnes de 14 à 35 ans vivant avec des limitations physiques, sensorielles ou intellectuelles)",
+    "descEn": "",
+    "tags": [
+      "corporation",
+      "integration",
+      "vie",
+      "active",
+      "personnes",
+      "alimentaire",
+      "emploi",
+      "sante"
+    ]
+  },
+  {
+    "id": "QC-2978",
+    "nameFr": "Cour du Québec - Chambre Civile - Laval",
+    "nameEn": "Cour du Québec - Chambre Civile - Laval",
+    "categoryIds": [
+      "LEGAL",
+      "HEALTH",
+      "SENIORS",
+      "STUDENT"
+    ],
+    "region": "13 - LAVAL",
+    "phone": null,
+    "website": "https://www.justice.gouv.qc.ca/nous-joindre/trouver-un-palais-de-justice/palais-de-justice-de-laval",
+    "address": "Service en ligne / Partout au Québec",
+    "descFr": "Cour de justice de l'appareil judiciaire du Québec. Audition de causes où la somme en litige est inférieure à 100 000$. Audition de certaines demandes portant sur les affaires municipales et scolaires. Audition des demandes d'évaluation psychiatrique: administration des jugements en matière de garde provisoire et autorisée en vue d'une...",
+    "descEn": "",
+    "tags": [
+      "cour",
+      "chambre",
+      "civile",
+      "laval",
+      "droits",
+      "sante",
+      "aines",
+      "education"
+    ]
+  },
+  {
+    "id": "QC-2987",
+    "nameFr": "Cour du Québec - Chambre criminelle et pénale - Laval",
+    "nameEn": "Cour du Québec - Chambre criminelle et pénale - Laval",
+    "categoryIds": [
+      "LEGAL"
+    ],
+    "region": "13 - LAVAL",
+    "phone": null,
+    "website": "https://www.justice.gouv.qc.ca/nous-joindre/trouver-un-palais-de-justice/palais-de-justice-de-laval",
+    "address": "Service en ligne / Partout au Québec",
+    "descFr": "Cour de justice de l'appareil judiciaire du Québec. Entend les poursuites entreprises en vertu du Code criminel, du Code de procédure pénale ou de toute autre loi pénale.",
+    "descEn": "",
+    "tags": [
+      "cour",
+      "chambre",
+      "criminelle",
+      "penale",
+      "laval",
+      "droits",
+      "quebec"
+    ]
+  },
+  {
+    "id": "QC-2995",
+    "nameFr": "Cour du Québec - Chambre de la jeunesse - Laval",
+    "nameEn": "Cour du Québec - Chambre de la jeunesse - Laval",
+    "categoryIds": [
+      "YOUTH",
+      "LEGAL"
+    ],
+    "region": "13 - LAVAL",
+    "phone": null,
+    "website": "https://www.justice.gouv.qc.ca/nous-joindre/trouver-un-palais-de-justice/palais-de-justice-de-laval",
+    "address": "Service en ligne / Partout au Québec",
+    "descFr": "Cour de justice de l'appareil judiciaire du Québec. Entend toutes les causes impliquant une personne mineure. Entend les causes d'adoption.",
+    "descEn": "",
+    "tags": [
+      "cour",
+      "chambre",
+      "jeunesse",
+      "laval",
+      "droits",
+      "quebec"
+    ]
+  },
+  {
+    "id": "QC-3004",
+    "nameFr": "Cour du Québec - Division des petites créances - Laval",
+    "nameEn": "Cour du Québec - Division des petites créances - Laval",
+    "categoryIds": [
+      "LEGAL"
+    ],
+    "region": "13 - LAVAL",
+    "phone": null,
+    "website": "https://www.justice.gouv.qc.ca/nous-joindre/trouver-un-palais-de-justice/palais-de-justice-de-laval",
+    "address": "Service en ligne / Partout au Québec",
+    "descFr": "Tribunal qui entend les causes dont la somme d'argent en litige est de 15 000$ ou moins et où les gens se représentent eux-mêmes, sans avocat. Service de médiation gratuit aux parties souhaitant régler leur litige par une entente avant l'audition de leur cause par le ou la juge. (Clientèle : personne physique ou morale et société ayant employé au plus 10 personnes au cours des 12 mois précédant la date de la réclamation)",
+    "descEn": "",
+    "tags": [
+      "cour",
+      "division",
+      "petites",
+      "creances",
+      "laval",
+      "droits",
+      "quebec"
+    ]
+  },
+  {
+    "id": "QC-3015",
+    "nameFr": "Cour supérieure - Laval",
+    "nameEn": "Cour supérieure - Laval",
+    "categoryIds": [
+      "LEGAL"
+    ],
+    "region": "13 - LAVAL",
+    "phone": null,
+    "website": "https://www.justice.gouv.qc.ca/nous-joindre/trouver-un-palais-de-justice/palais-de-justice-de-laval",
+    "address": "Service en ligne / Partout au Québec",
+    "descFr": "Cour de justice de l'appareil judiciaire du Québec. Entend les causes dont la somme en litige est de 75 000$ et plus et les litiges administratif, familial et de faillite. Entend les procès devant jury en matière pénale et les appels en matière de poursuites sommaires.",
+    "descEn": "",
+    "tags": [
+      "cour",
+      "superieure",
+      "laval",
+      "droits",
+      "quebec"
+    ]
+  },
+  {
+    "id": "QC-3117",
+    "nameFr": "DIRA-Laval",
+    "nameEn": "DIRA-Laval",
+    "categoryIds": [
+      "SENIORS",
+      "EMPLOYMENT",
+      "LEGAL",
+      "VIOLENCE"
+    ],
+    "region": "13 - LAVAL",
+    "phone": null,
+    "website": "https://dira-laval.ca",
+    "address": "Service en ligne / Partout au Québec",
+    "descFr": "Accueil et écoute pour victimes d'abus, de violence, de maltraitance, d'intimidation et de négligence. Dépistage et dénonciation. Initiative de travail de milieu auprès des aîné·e·s en situation de vulnérabilité (ITMAV). Information sur les droits des victimes: conférences, présentations et référence. Accompagnement dans les démarches. Aide avec la gestion des successions.... (Clientèle : personnes de 50 ans et plus)",
+    "descEn": "",
+    "tags": [
+      "dira-laval",
+      "aines",
+      "emploi",
+      "droits",
+      "violence",
+      "laval",
+      "quebec"
+    ]
+  },
+  {
+    "id": "QC-3124",
+    "nameFr": "Direction de la santé publique de Laval",
+    "nameEn": "Direction de la santé publique de Laval",
+    "categoryIds": [
+      "HEALTH",
+      "STUDENT"
+    ],
+    "region": "13 - LAVAL",
+    "phone": null,
+    "website": "https://www.lavalensante.com/employes-et-medecins/direction-de-sante-publique",
+    "address": "Service en ligne / Partout au Québec",
+    "descFr": "Information, prévention, promotion et protection de l'état de santé général des personnes. Vigie et surveillance de ce qui peut améliorer ou constituer une menace à l'état de santé actuel. Promotion d'orientations et de solutions. Services-conseils au réseau de la santé.",
+    "descEn": "",
+    "tags": [
+      "direction",
+      "sante",
+      "publique",
+      "laval",
+      "education",
+      "quebec"
+    ]
+  },
+  {
+    "id": "QC-3128",
+    "nameFr": "Direction des services professionnels correctionnels - Laval-Lanaudière",
+    "nameEn": "Direction des services professionnels correctionnels - Laval-Lanaudière",
+    "categoryIds": [
+      "LEGAL"
+    ],
+    "region": "13 - LAVAL",
+    "phone": null,
+    "website": "https://www.quebec.ca/securite-situations-urgence/services-correctionnels",
+    "address": "Service en ligne / Partout au Québec",
+    "descFr": "Instance responsable des activités relatives à l'évaluation et au suivi des personnes contrevenantes. Évaluation des personnes contrevenantes, Élaboration des plans d'intervention correctionnels. Administration des sentences dans la communauté. (Clientèle : personnes contrevenantes condamnées à des peines inférieures à 2 ans, personnes prévenues)",
+    "descEn": "",
+    "tags": [
+      "direction",
+      "professionnels",
+      "correctionnels",
+      "laval-lanaudiere",
+      "droits",
+      "laval",
+      "quebec"
+    ]
+  },
+  {
+    "id": "QC-3144",
+    "nameFr": "Division urgence sociale du Service de police de Laval",
+    "nameEn": "Division urgence sociale du Service de police de Laval",
+    "categoryIds": [
+      "SENIORS",
+      "FOOD",
+      "HOUSING",
+      "HEALTH"
+    ],
+    "region": "13 - LAVAL",
+    "phone": null,
+    "website": "https://www.laval.ca/police",
+    "address": "Service en ligne / Partout au Québec",
+    "descFr": "Intervention psychosociale d'urgence et de première ligne. Sinistre: soutien psychosocial, hébergement temporaire et distribution de biens de première nécessité. Décès traumatique (accident, suicide, homicide): intervention conjointe avec le corps policier, soutien psychosocial, accompagnement et référence. Problématique de santé mentale: intervention à domicile, évaluation de la dangerosité, soutien, accompagnement de la... (Clientèle : citoyens de 18 ans et plus vivant une situation de crise)",
+    "descEn": "",
+    "tags": [
+      "division",
+      "urgence",
+      "sociale",
+      "police",
+      "laval",
+      "aines",
+      "alimentaire",
+      "logement"
+    ]
+  },
+  {
+    "id": "QC-3237",
+    "nameFr": "En-Droit de Laval (L')",
+    "nameEn": "En-Droit de Laval (L')",
+    "categoryIds": [
+      "LEGAL",
+      "HEALTH",
+      "STUDENT"
+    ],
+    "region": "13 - LAVAL",
+    "phone": null,
+    "website": "https://www.endroitlaval.com",
+    "address": "Service en ligne / Partout au Québec",
+    "descFr": "Promotion et défense des droits individuels et collectifs des personnes usagères de services en santé mentale. Centre de documentation. Formation, aide et accompagnement. Conférences. Promotion-vigilance. Action systémique. (Clientèle : adultes vivant ou ayant vécu avec des problèmes de santé mentale)",
+    "descEn": "",
+    "tags": [
+      "en-droit",
+      "laval",
+      "droits",
+      "sante",
+      "education",
+      "quebec"
+    ]
+  },
+  {
+    "id": "QC-3250",
+    "nameFr": "Entraide (Pont-Viau et Laval des Rapides) Inc. (L')",
+    "nameEn": "Entraide (Pont-Viau et Laval des Rapides) Inc. (L')",
+    "categoryIds": [
+      "SENIORS",
+      "FOOD",
+      "STUDENT",
+      "YOUTH"
+    ],
+    "region": "13 - LAVAL",
+    "phone": null,
+    "website": "https://www.entraidelaval.org",
+    "address": "Service en ligne / Partout au Québec",
+    "descFr": "Enfants de 0 à 5 ans: halte-garderie, ateliers de stimulation, préparation à la maternelle, ateliers de parents et ateliers parents-enfants, parc intérieur. Jeunes de 6 à 12 ans: activités parascolaires, aide aux devoirs, camps de jour, ateliers culinaires, initiations sportives, journées pédagogiques, etc. Espace citoyen: évènements sociaux, économie sociale, location... (Clientèle : enfants, adultes, familles, personnes aînées, personnes en situation de handicap)",
+    "descEn": "",
+    "tags": [
+      "entraide",
+      "pont-viau",
+      "laval",
+      "rapides",
+      "inc",
+      "aines",
+      "alimentaire",
+      "education"
+    ]
+  },
+  {
+    "id": "QC-3311",
+    "nameFr": "Équipe Service quartier Saint-Vincent-de-Paul",
+    "nameEn": "Équipe Service quartier Saint-Vincent-de-Paul",
+    "categoryIds": [
+      "FOOD",
+      "STUDENT"
+    ],
+    "region": "13 - LAVAL",
+    "phone": null,
+    "website": "https://www.equipeservicesvp.com",
+    "address": "Service en ligne / Partout au Québec",
+    "descFr": "Comptoir alimentaire. Friperie. Récupération d'articles de maison, articles de cuisine, vêtements et livres. Distribution de fournitures scolaires pour les personnes bénéficiant déjà d'un autre service offert par l'organisme. Paniers de Noël pour les bénéficiaires déjà inscrit·e·s. (Clientèle : personnes à faible revenu)",
+    "descEn": "",
+    "tags": [
+      "equipe",
+      "quartier",
+      "saint-vincent-de-paul",
+      "alimentaire",
+      "education",
+      "laval",
+      "quebec"
+    ]
+  },
+  {
+    "id": "QC-3341",
+    "nameFr": "Étape (L') - Point de service de Laval",
+    "nameEn": "Étape (L') - Point de service de Laval",
+    "categoryIds": [
+      "EMPLOYMENT",
+      "HEALTH",
+      "LEGAL"
+    ],
+    "region": "13 - LAVAL",
+    "phone": null,
+    "website": "https://letape.org/laval",
+    "address": "Service en ligne / Partout au Québec",
+    "descFr": "Services d'intégration et de maintien en emploi pour les personnes en situation de handicap. (Clientèle : personnes vivant avec une déficience physique, auditive ou intellectuelle, personnes autistes, avec un statut de citoyen canadien, résident permanent, réfugié accepté, permis postdiplôme)",
+    "descEn": "",
+    "tags": [
+      "etape",
+      "laval",
+      "emploi",
+      "sante",
+      "droits",
+      "quebec"
+    ]
+  },
+  {
+    "id": "QC-3620",
+    "nameFr": "Groupe Alpha Laval (Le)",
+    "nameEn": "Groupe Alpha Laval (Le)",
+    "categoryIds": [
+      "STUDENT",
+      "EMPLOYMENT"
+    ],
+    "region": "13 - LAVAL",
+    "phone": null,
+    "website": "https://www.groupealphalaval.com",
+    "address": "Service en ligne / Partout au Québec",
+    "descFr": "Ateliers d'alphabétisation: lecture, écriture et calcul. Accueil et référence. Activités d'éducation populaire. Activités de sensibilisation à la problématique de l'analphabétisme. Démarche en développement de l'employabilité et aide à la recherche d'emploi. (Clientèle : personnes peu alphabétisées s'exprimant en français)",
+    "descEn": "",
+    "tags": [
+      "alpha",
+      "laval",
+      "education",
+      "emploi",
+      "quebec"
+    ]
+  },
+  {
+    "id": "QC-3671",
+    "nameFr": "Guichet d'accès à la première ligne - Laval",
+    "nameEn": "Guichet d'accès à la première ligne - Laval",
+    "categoryIds": [
+      "HEALTH",
+      "YOUTH"
+    ],
+    "region": "13 - LAVAL",
+    "phone": null,
+    "website": "https://www.quebec.ca/sante/trouver-une-ressource/guichet-acces-premiere-ligne",
+    "address": "Service en ligne / Partout au Québec",
+    "descFr": "Guichet d'accès permettant l'orientation vers un service professionnel ou médical. Évaluation du besoin de santé. Orientation vers les services pertinents. Prise de rendez-vous si requis. (Clientèle : personnes sans médecin de famille)",
+    "descEn": "",
+    "tags": [
+      "guichet",
+      "d'acces",
+      "premiere",
+      "ligne",
+      "laval",
+      "sante",
+      "jeunesse",
+      "quebec"
+    ]
+  },
+  {
+    "id": "QC-3705",
+    "nameFr": "Habitations du Réseau de l'Académie (Les) - Phase 5 - Laval",
+    "nameEn": "Habitations du Réseau de l'Académie (Les) - Phase 5 - Laval",
+    "categoryIds": [
+      "HOUSING"
+    ],
+    "region": "13 - LAVAL",
+    "phone": null,
+    "website": "https://www.resac.org",
+    "address": "Service en ligne / Partout au Québec",
+    "descFr": "Logement social communautaire permanent. Chambres meublées incluant câble et buanderie, réparties dans 9 logements. (Clientèle : personnes autonomes de 18 à 60 à faible revenu en situation d'itinérance ou à risque de le devenir)",
+    "descEn": "",
+    "tags": [
+      "habitations",
+      "reseau",
+      "l'academie",
+      "phase",
+      "laval",
+      "logement",
+      "quebec"
+    ]
+  },
+  {
+    "id": "QC-3848",
+    "nameFr": "Îlot (L') - Centre de crise et de prévention du suicide de Laval",
+    "nameEn": "Îlot (L') - Centre de crise et de prévention du suicide de Laval",
+    "categoryIds": [
+      "HEALTH",
+      "CRISIS",
+      "FOOD",
+      "HOUSING"
+    ],
+    "region": "13 - LAVAL",
+    "phone": null,
+    "website": "https://lilotcrise.ca",
+    "address": "Service en ligne / Partout au Québec",
+    "descFr": "Intervention téléphonique en prévention du suicide. Intervention individuelle de crise dans le milieu. Hébergement de crise court terme (moins de 10 jours) avec repas. Suivi pour personnes à potentiel suicidaire élevé. Référence. (Clientèle : ligne téléphonique en prévention du suicide: grand public, autres services: personnes de 18 ans et plus)",
+    "descEn": "",
+    "tags": [
+      "ilot",
+      "crise",
+      "prevention",
+      "suicide",
+      "laval",
+      "sante",
+      "alimentaire",
+      "logement"
+    ]
+  },
+  {
+    "id": "QC-3866",
+    "nameFr": "Info Justice Laval-Laurentides-Lanaudière",
+    "nameEn": "Info Justice Laval-Laurentides-Lanaudière",
+    "categoryIds": [
+      "LEGAL",
+      "STUDENT"
+    ],
+    "region": "13 - LAVAL",
+    "phone": null,
+    "website": "https://info-justice.ca/centres/laval/",
+    "address": "Service en ligne / Partout au Québec",
+    "descFr": "?? * Services de soutien juridique : explication de la loi, information sur les types de recours, les modes alternatifs de résolution de conflits, les actes de procédure et le déroulement des instances, orientation dans le système de la justice. Outils d'information juridique, séances d'information sur des sujets de nature... (Clientèle : personnes à la recherche d'informations juridiques)",
+    "descEn": "",
+    "tags": [
+      "info",
+      "justice",
+      "laval-laurentides-lanaudiere",
+      "droits",
+      "education",
+      "laval",
+      "quebec"
+    ]
+  },
+  {
+    "id": "QC-3883",
+    "nameFr": "Info-Social 8-1-1 - Laval",
+    "nameEn": "Info-Social 8-1-1 - Laval",
+    "categoryIds": [
+      "HEALTH",
+      "VIOLENCE",
+      "STUDENT"
+    ],
+    "region": "13 - LAVAL",
+    "phone": null,
+    "website": "https://www.quebec.ca/sante/trouver-une-ressource/info-social-811",
+    "address": "Service en ligne / Partout au Québec",
+    "descFr": "Consultation psychosociale gratuite et confidentielle par téléphone. Information et référence vers les ressources d'aide.",
+    "descEn": "",
+    "tags": [
+      "info-social",
+      "8-1-1",
+      "laval",
+      "sante",
+      "violence",
+      "education",
+      "quebec"
+    ]
+  },
+  {
+    "id": "QC-3907",
+    "nameFr": "Institut des troubles d'apprentissage - Section Laval",
+    "nameEn": "Institut des troubles d'apprentissage - Section Laval",
+    "categoryIds": [
+      "HEALTH",
+      "YOUTH",
+      "STUDENT"
+    ],
+    "region": "13 - LAVAL",
+    "phone": null,
+    "website": "https://www.italaval.com",
+    "address": "Service en ligne / Partout au Québec",
+    "descFr": "Information et écoute active. Cafés-causeries pour les parents. Cafés-rencontres thématiques pour adultes. Conférences. Y'APP: groupe d'entraide pour les parents d'enfants avec des difficultés scolaires ou un TDA/H. Kiosques d'information. Dépistage précoce et accompagnement dans les services de garde. Centre de documentation. Ateliers de sensibilisation et d'information. Activités familiales. (Clientèle : enfants et adultes ayant des difficultés d'apprentissage ou d'attention, incluant les TDA/TDAH, leurs parents)",
+    "descEn": "",
+    "tags": [
+      "institut",
+      "troubles",
+      "d'apprentissage",
+      "laval",
+      "sante",
+      "jeunesse",
+      "education",
+      "quebec"
+    ]
+  },
+  {
+    "id": "QC-4024",
+    "nameFr": "Laval - Cour municipale",
+    "nameEn": "Laval - Cour municipale",
+    "categoryIds": [
+      "LEGAL"
+    ],
+    "region": "13 - LAVAL",
+    "phone": null,
+    "website": "https://www.laval.ca/Pages/Fr/A-propos/cour-municipale.aspx",
+    "address": "Service en ligne / Partout au Québec",
+    "descFr": "Cour de justice de première instance où sont entendus les litiges en matière de règlements municipaux ou d'infractions au Code de la sécurité routière. Paiement ou contestation de contraventions. Recouvrement de sommes dues.",
+    "descEn": "",
+    "tags": [
+      "laval",
+      "cour",
+      "municipale",
+      "droits",
+      "quebec"
+    ]
+  },
+  {
+    "id": "QC-4026",
+    "nameFr": "Laval - Soutien des personnes âgées de 65 ans et plus",
+    "nameEn": "Laval - Soutien des personnes âgées de 65 ans et plus",
+    "categoryIds": [
+      "EMPLOYMENT",
+      "HOUSING",
+      "SENIORS",
+      "HEALTH"
+    ],
+    "region": "13 - LAVAL",
+    "phone": null,
+    "website": "https://www.laval.ca/aides-subventions/programmes-subventions/personnes-agees-65-ans-et-plus",
+    "address": "Service en ligne / Partout au Québec",
+    "descFr": "Aide financière pour favoriser le soutien des personnes de 65 ans et plus. 150$ par logement, unité d'habitation, chambre conforme ou logement intergénérationnel occupé par au moins une personne de 65 ans ou plus. 300 $ par logement, unité d'habitation, chambre conforme ou logement intergénérationnel pour les bénéficiaire du supplément... (Clientèle : locataire, propriétaire ou personne occupant un logement de 65 ans et plus (à partir du 1er mai de l'année de la demande) habitant Laval, locataire de 65 ans et plus en logement intergénérationnel avec ou sans personnes proches aidantes, résident·e·s de 65 ans et plus dans un établissement reconnu par le ministère de la Santé et des Services...",
+    "descEn": "",
+    "tags": [
+      "laval",
+      "soutien",
+      "personnes",
+      "agees",
+      "ans",
+      "emploi",
+      "logement",
+      "aines"
+    ]
+  },
+  {
+    "id": "QC-4027",
+    "nameFr": "Laval - Ville",
+    "nameEn": "Laval - Ville",
+    "categoryIds": [
+      "YOUTH",
+      "FOOD",
+      "HOUSING",
+      "LEGAL"
+    ],
+    "region": "13 - LAVAL",
+    "phone": null,
+    "website": "https://www.laval.ca/Pages/Fr/accueil.aspx",
+    "address": "Service en ligne / Partout au Québec",
+    "descFr": "Gestion des services municipaux Informations pratiques: animaux domestiques, changement d'adresse, installations septiques, etc. Calendrier des collectes des matières résiduelles: www.laval.ca/environnement/collectes * Commissaire à l'assermentation. Ombudsman: www.ombudsmanlaval.com/formuler-une-plainte/avant-de-porter-plainte Paiement des taxes municipales. Permis de construction, plaintes et requêtes. Service de sécurité incendie. Lieux climatisés. * Service d'alertes téléphoniques d'urgence. Loisirs Activités sociales...",
+    "descEn": "",
+    "tags": [
+      "laval",
+      "ville",
+      "jeunesse",
+      "alimentaire",
+      "logement",
+      "droits",
+      "quebec"
+    ]
+  },
+  {
+    "id": "QC-4168",
+    "nameFr": "Maison de la Famille de Laval-Ouest",
+    "nameEn": "Maison de la Famille de Laval-Ouest",
+    "categoryIds": [
+      "FOOD",
+      "STUDENT",
+      "YOUTH",
+      "HEALTH"
+    ],
+    "region": "13 - LAVAL",
+    "phone": null,
+    "website": "https://www.mfl-o.org",
+    "address": "Service en ligne / Partout au Québec",
+    "descFr": "Alimentation Jardin communautaire. Cuisines collectives, ateliers de cuisine. Aide alimentaire. Paniers de Noël pour les membres seulement. Famille Informations, référence et milieu de vie. Halte-garderie. Soutien scolaire pour les 6 à 12 ans. Ateliers d'estime de soi pour les 6 à 12 ans. Petits Cuistots pour les 6 à 12... (Clientèle : familles avec enfants de 0 à 12 ans)",
+    "descEn": "",
+    "tags": [
+      "famille",
+      "laval-ouest",
+      "alimentaire",
+      "education",
+      "jeunesse",
+      "sante",
+      "laval",
+      "quebec"
+    ]
+  },
+  {
+    "id": "QC-4205",
+    "nameFr": "Maison de quartier de Fabreville",
+    "nameEn": "Maison de quartier de Fabreville",
+    "categoryIds": [
+      "FOOD",
+      "STUDENT",
+      "YOUTH",
+      "VIOLENCE"
+    ],
+    "region": "13 - LAVAL",
+    "phone": null,
+    "website": null,
+    "address": "Service en ligne / Partout au Québec",
+    "descFr": "Milieu de vie pour les parents, les enfants et les jeunes. Dépannage alimentaire. Ateliers divers pour les parents. Y'a personne de parfait (YAPP): atelier de compétences parentales. Bébé tendre bougeotte: atelier de stimulation pour enfant de 0 à 12 mois. Ateliers pour parents et enfants de 2 à 5 ans.... (Clientèle : enfants, adolescent·e·s, adultes, familles)",
+    "descEn": "",
+    "tags": [
+      "quartier",
+      "fabreville",
+      "alimentaire",
+      "education",
+      "jeunesse",
+      "violence",
+      "laval",
+      "quebec"
+    ]
+  },
+  {
+    "id": "QC-4210",
+    "nameFr": "Maison de Quartier Vimont",
+    "nameEn": "Maison de Quartier Vimont",
+    "categoryIds": [
+      "STUDENT",
+      "YOUTH",
+      "HEALTH"
+    ],
+    "region": "13 - LAVAL",
+    "phone": null,
+    "website": "https://www.maisonquartiervimont.com",
+    "address": "Service en ligne / Partout au Québec",
+    "descFr": "Milieu de vie, lieu d'accueil et d'écoute. 0 à 5 ans: halte-garderie, ateliers de stimulation variés, activités d'initiation à la lecture et l'écriture. 6 à 12 ans: camp de jour, aide aux devoirs et activités parascolaires. 12 à 17 ans: local pour adolescent·e·s, ateliers de prévention et de promotion de... (Clientèle : familles, adolescent·e·s)",
+    "descEn": "",
+    "tags": [
+      "quartier",
+      "vimont",
+      "education",
+      "jeunesse",
+      "sante",
+      "laval",
+      "quebec"
+    ]
+  },
+  {
+    "id": "QC-4221",
+    "nameFr": "Maison des aînés de Chomedey",
+    "nameEn": "Maison des aînés de Chomedey",
+    "categoryIds": [
+      "SENIORS",
+      "HOUSING",
+      "HEALTH"
+    ],
+    "region": "13 - LAVAL",
+    "phone": null,
+    "website": "https://www.lavalensante.com/coordonnees/trouver-un-point-de-service",
+    "address": "Service en ligne / Partout au Québec",
+    "descFr": "Centre d'hébergement public pour personnes aînées et personnes en perte d'autonomie. Hébergement et soins de longue durée. (Clientèle : personnes aînées, personnes en perte d'autonomie)",
+    "descEn": "",
+    "tags": [
+      "aines",
+      "chomedey",
+      "logement",
+      "sante",
+      "laval",
+      "quebec"
+    ]
+  },
+  {
+    "id": "QC-4229",
+    "nameFr": "Maison des enfants le Dauphin de Laval",
+    "nameEn": "Maison des enfants le Dauphin de Laval",
+    "categoryIds": [
+      "YOUTH",
+      "STUDENT"
+    ],
+    "region": "13 - LAVAL",
+    "phone": null,
+    "website": "https://maisondesenfants.qc.ca/",
+    "address": "Service en ligne / Partout au Québec",
+    "descFr": "Ateliers parents-enfants suivis d'un café-causerie. Activités permettant une séparation douce et harmonieuse entre le parent et l'enfant. Ateliers de stimulation. Mini-camp de jour. Atelier de préparation à la rentrée scolaire. Activités pour les 6-12 ans. Confidences à un dauphin: correspondance confidentielle par courrier dans les écoles. (Clientèle : activités: enfants de 0 à 12 ans, leurs parents)",
+    "descEn": "",
+    "tags": [
+      "enfants",
+      "dauphin",
+      "laval",
+      "jeunesse",
+      "education",
+      "quebec"
+    ]
+  },
+  {
+    "id": "QC-4233",
+    "nameFr": "Maison des Familles de Saint-Vincent-de-Paul",
+    "nameEn": "Maison des Familles de Saint-Vincent-de-Paul",
+    "categoryIds": [
+      "FOOD",
+      "YOUTH",
+      "STUDENT"
+    ],
+    "region": "13 - LAVAL",
+    "phone": null,
+    "website": "https://rqsvp.com",
+    "address": "Service en ligne / Partout au Québec",
+    "descFr": "Alimentation Cuisines collectives. Banque alimentaire pour familles à faible revenu. Frigo communautaire. Jardins communautaires. Jeunesse Ateliers culinaires pour enfants. Sorties éducatives, contes et chansons, activités de stimulation pour enfants. Parc intérieur. Camp de jour estival. Préparation à la rentrée préscolaire. Activités hebdomadaires pour les 6 à 12 ans. Famille Ateliers...",
+    "descEn": "",
+    "tags": [
+      "familles",
+      "saint-vincent-de-paul",
+      "alimentaire",
+      "jeunesse",
+      "education",
+      "laval",
+      "quebec"
+    ]
+  },
+  {
+    "id": "QC-4251",
+    "nameFr": "Maison des jeunes de Laval-Ouest",
+    "nameEn": "Maison des jeunes de Laval-Ouest",
+    "categoryIds": [
+      "YOUTH"
+    ],
+    "region": "13 - LAVAL",
+    "phone": null,
+    "website": null,
+    "address": "Service en ligne / Partout au Québec",
+    "descFr": "Écoute, aide et référence. Intervention individuelle et de groupe. Activités socioculturelles et récréatives. Service de soutien allimentaire aux familles. (Clientèle : jeunes de 12 à 17 ans)",
+    "descEn": "",
+    "tags": [
+      "jeunes",
+      "laval-ouest",
+      "jeunesse",
+      "laval",
+      "quebec"
+    ]
+  },
+  {
+    "id": "QC-4253",
+    "nameFr": "Maison des Jeunes de l'Est de Laval",
+    "nameEn": "Maison des Jeunes de l'Est de Laval",
+    "categoryIds": [
+      "YOUTH",
+      "STUDENT",
+      "HEALTH"
+    ],
+    "region": "13 - LAVAL",
+    "phone": null,
+    "website": "https://www.mdjel.com",
+    "address": "Service en ligne / Partout au Québec",
+    "descFr": "Lieu d'appartenance et de rassemblement. Activités culturelles, sportives et éducatives. Accès à un ordinateur, connexion Wi-Fi gratuite, mini gymnase, billard, soccer sur table, jeux de société, jeux vidéo, cuisine, etc. Aide et consultation. Activités de valorisation. Prévention et éducation. (Clientèle : jeunes de 12 à 17 ans)",
+    "descEn": "",
+    "tags": [
+      "jeunes",
+      "l'est",
+      "laval",
+      "jeunesse",
+      "education",
+      "sante",
+      "quebec"
+    ]
+  },
+  {
+    "id": "QC-4483",
+    "nameFr": "MicroEntreprendre Laval",
+    "nameEn": "MicroEntreprendre Laval",
+    "categoryIds": [
+      "EMPLOYMENT",
+      "STUDENT"
+    ],
+    "region": "13 - LAVAL",
+    "phone": null,
+    "website": "https://www.socle.org",
+    "address": "Service en ligne / Partout au Québec",
+    "descFr": "Accompagnement et financement personnalisé par le crédit communautaire pour entreprise en prédémarrage, en démarrage ou en consolidation. Prêts à des taux avantageux aux entrepreneur·e·s, accès au microcrédit entrepreneurial. Animation de conférences et formations à l'entrepreneuriat. Accompagnement et suivi personnalisé. (Clientèle : entrepreneur·e·s résident·e·s de Laval ou ayant une entreprise à Laval avec citoyenneté ou résidence permanente canadienne)",
+    "descEn": "",
+    "tags": [
+      "microentreprendre",
+      "laval",
+      "emploi",
+      "education",
+      "quebec"
+    ]
+  },
+  {
+    "id": "QC-4486",
+    "nameFr": "Mieux-Naître à Laval",
+    "nameEn": "Mieux-Naître à Laval",
+    "categoryIds": [
+      "STUDENT",
+      "YOUTH",
+      "FOOD",
+      "HEALTH"
+    ],
+    "region": "13 - LAVAL",
+    "phone": null,
+    "website": "https://mieuxnaitre.org",
+    "address": "Service en ligne / Partout au Québec",
+    "descFr": "Centre de ressources périnatales (CRP). Soutien aux parents et aux personnes enceintes, avant, pendant et après l'accouchement. Écoute et références. Rencontres prénatales (cours prénataux). Yoga prénatal et postnatal. Relevailles: répit à domicile. Activités physiques prénatales et postnatales. Soins au nouveau-né, ateliers de portage et cours de massage de bébé. Consultation... (Clientèle : futurs et nouveaux parents)",
+    "descEn": "",
+    "tags": [
+      "mieux-naitre",
+      "laval",
+      "education",
+      "jeunesse",
+      "alimentaire",
+      "sante",
+      "quebec"
+    ]
+  },
+  {
+    "id": "QC-4651",
+    "nameFr": "Mouvement Personne d'Abord de Laval",
+    "nameEn": "Mouvement Personne d'Abord de Laval",
+    "categoryIds": [
+      "HEALTH",
+      "LEGAL"
+    ],
+    "region": "13 - LAVAL",
+    "phone": null,
+    "website": null,
+    "address": "Service en ligne / Partout au Québec",
+    "descFr": "Promotion et défense des droits. Entraide. Accueil et références. Accompagnement. Café-rencontre. Chorale. (Clientèle : personnes vivant avec une déficience intellectuelle)",
+    "descEn": "",
+    "tags": [
+      "mouvement",
+      "personne",
+      "d'abord",
+      "laval",
+      "sante",
+      "droits",
+      "quebec"
+    ]
+  },
+  {
+    "id": "QC-4705",
+    "nameFr": "Nourri-Source - Laval",
+    "nameEn": "Nourri-Source - Laval",
+    "categoryIds": [
+      "YOUTH",
+      "SENIORS",
+      "STUDENT"
+    ],
+    "region": "13 - LAVAL",
+    "phone": null,
+    "website": "https://nourri-source.org/nourri-source-laval",
+    "address": "Service en ligne / Partout au Québec",
+    "descFr": "Jumelage téléphonique entre mères allaitantes et un réseau de marraines d'allaitement bénévoles, formées et expérimentées. Haltes-allaitement 4 à 5 fois par semaine. Formation de 9 heures pour devenir une marraine d'allaitement. Location de tire-lait. Mesure et essayage de manchons de tire-lait. Activités, apparitions publiques et formations continues pour promouvoir l'allaitement... (Clientèle : mères, pères et familles de bébés allaités)",
+    "descEn": "",
+    "tags": [
+      "nourri-source",
+      "laval",
+      "jeunesse",
+      "aines",
+      "education",
+      "quebec"
+    ]
+  },
+  {
+    "id": "QC-4743",
+    "nameFr": "Office municipal d'habitation de Laval",
+    "nameEn": "Office municipal d'habitation de Laval",
+    "categoryIds": [
+      "SENIORS",
+      "LEGAL",
+      "HOUSING"
+    ],
+    "region": "13 - LAVAL",
+    "phone": null,
+    "website": "https://www.omhlaval.ca/index.php/fr",
+    "address": "Service en ligne / Partout au Québec",
+    "descFr": "Gérer et administrer les logements et les programmes d'habitation. Habitations à loyer modique (HLM). Programme de supplément au loyer (PSL). Logement abordable Québec (LAQ). Service de référence. Programme AccèsLogis Québec. Service d'aide à la recherche de logement (SARL). (Clientèle : logements: personnes à faible revenu ou à revenu modeste ayant le statut de citoyen·ne canadien·ne ou de résident·e permanent·e et ayant résidé sur le territoire de la Communauté métropolitaine de Montréal pendant 12 mois au cours des 24 mois précédant leur demande)",
+    "descEn": "",
+    "tags": [
+      "office",
+      "municipal",
+      "d'habitation",
+      "laval",
+      "aines",
+      "droits",
+      "logement",
+      "quebec"
+    ]
+  },
+  {
+    "id": "QC-4744",
+    "nameFr": "Office municipal d'habitation de Laval - Accès logement Laval",
+    "nameEn": "Office municipal d'habitation de Laval - Accès logement Laval",
+    "categoryIds": [
+      "SENIORS",
+      "HOUSING",
+      "STUDENT"
+    ],
+    "region": "13 - LAVAL",
+    "phone": null,
+    "website": "https://www.acceslogementlaval.ca",
+    "address": "Service en ligne / Partout au Québec",
+    "descFr": "Service visant l'accès simplifié aux logements subventionnés à Laval. Information et carte sur le site Internet pour connaître toutes les options de logement offertes sur le territoire. Pour soumettre une demande: ici (Clientèle : personnes de 18 ans et plus ou mineur·e·s émancipé·e·s qui sont citoyen·ne·s canadien·ne·s ou résident·e·s permanent·e·s, qui ont habité dans le Grand Montréal pendant 12 mois au cours des 24 mois qui précèdent la demande et qui ont des revenus égaux ou inférieurs au PRBI)",
+    "descEn": "",
+    "tags": [
+      "office",
+      "municipal",
+      "d'habitation",
+      "laval",
+      "acces",
+      "aines",
+      "logement",
+      "education"
+    ]
+  },
+  {
+    "id": "QC-4745",
+    "nameFr": "Office municipal d'habitation de Laval - Service d'aide à la recherche de logement",
+    "nameEn": "Office municipal d'habitation de Laval - Service d'aide à la recherche de logement",
+    "categoryIds": [
+      "HOUSING",
+      "HEALTH"
+    ],
+    "region": "13 - LAVAL",
+    "phone": null,
+    "website": "https://www.omhlaval.ca/index.php/fr",
+    "address": "Service en ligne / Partout au Québec",
+    "descFr": "Accompagnement personnalisé. Partage d'outils de recherche de logement et de solutions temporaires. Soutien dans la recherche d'un logement convenable correspondant aux besoins et aux revenus du ménage. Référence à d'autres ressources ou services appropriés. (Clientèle : ménages à risque d'éviction, évincés ou sans logis, ménages sans ressources qui éprouvent de la difficulté à se loger)",
+    "descEn": "",
+    "tags": [
+      "office",
+      "municipal",
+      "d'habitation",
+      "laval",
+      "d'aide",
+      "logement",
+      "sante",
+      "quebec"
+    ]
+  },
+  {
+    "id": "QC-4864",
+    "nameFr": "Outremangeurs Anonymes - L'amical de Laval",
+    "nameEn": "Outremangeurs Anonymes - L'amical de Laval",
+    "categoryIds": [
+      "HEALTH",
+      "FOOD"
+    ],
+    "region": "13 - LAVAL",
+    "phone": null,
+    "website": "https://outremangeurs.org",
+    "address": "Service en ligne / Partout au Québec",
+    "descFr": "Entraide et soutien pour personnes vivant avec un trouble alimentaire. * Groupes d'entraide basés sur les 12 étapes. (Clientèle : adultes vivant avec un trouble alimentaire (anorexie, boulimie, hyperphagie, etc.))",
+    "descEn": "",
+    "tags": [
+      "outremangeurs",
+      "anonymes",
+      "l'amical",
+      "laval",
+      "sante",
+      "alimentaire",
+      "quebec"
+    ]
+  },
+  {
+    "id": "QC-4882",
+    "nameFr": "Palais de justice de Laval",
+    "nameEn": "Palais de justice de Laval",
+    "categoryIds": [
+      "LEGAL",
+      "FOOD"
+    ],
+    "region": "13 - LAVAL",
+    "phone": null,
+    "website": "https://www.justice.gouv.qc.ca/nous-joindre/trouver-un-palais-de-justice/palais-de-justice-de-laval",
+    "address": "Service en ligne / Partout au Québec",
+    "descFr": "Administration des services judiciaires de Laval. Soutien aux différentes cours de justice constituant l'appareil judiciaire du Québec ainsi qu'à certains tribunaux spécialisés. Services judiciaires: curatelle, tutelle ou testament, mariage ou union civile, archives des divorces, médiation familiale, pension alimentaire.",
+    "descEn": "",
+    "tags": [
+      "palais",
+      "justice",
+      "laval",
+      "droits",
+      "alimentaire",
+      "quebec"
+    ]
+  },
+  {
+    "id": "QC-4900",
+    "nameFr": "Parentèle de Laval (La)",
+    "nameEn": "Parentèle de Laval (La)",
+    "categoryIds": [
+      "FOOD",
+      "YOUTH",
+      "HEALTH",
+      "SENIORS"
+    ],
+    "region": "13 - LAVAL",
+    "phone": null,
+    "website": "https://laparenteledelaval.com",
+    "address": "Service en ligne / Partout au Québec",
+    "descFr": "Milieu de vie, espaces de socialisation et de rencontre pour les parents. Causeries. Ateliers parents/enfants. Ateliers de compétences parentales. Activités de stimulation pour les tout-petits. Répit et service de jumelage. Halte-garderie lors de certaines activités. Activités pour les 6-12 ans. Soutien alimentaire et initiatives visant la sécurité alimentaire. Cuisines collectives.... (Clientèle : familles)",
+    "descEn": "",
+    "tags": [
+      "parentele",
+      "laval",
+      "alimentaire",
+      "jeunesse",
+      "sante",
+      "aines",
+      "quebec"
+    ]
+  },
+  {
+    "id": "QC-4995",
+    "nameFr": "Petits Frères (Les) - Laval",
+    "nameEn": "Petits Frères (Les) - Laval",
+    "categoryIds": [
+      "SENIORS",
+      "HEALTH",
+      "YOUTH"
+    ],
+    "region": "13 - LAVAL",
+    "phone": null,
+    "website": "https://petitsfreres.ca",
+    "address": "Service en ligne / Partout au Québec",
+    "descFr": "Organisme visant à contrer l'isolement des personnes aînées jusqu'à la fin de leur vie.* Accompagnement et jumelage avec des bénévoles. Visites dans le milieu de vie de la personne: à domicile, à l'hôpital ou au CHSLD, à leur résidence, etc. Séjours de vacances au Domaine Juliette-Huot d'Oka. Accompagnement en fin... (Clientèle : personnes de 75 ans et plus sans famille présente ou contact social significatif)",
+    "descEn": "",
+    "tags": [
+      "petits",
+      "freres",
+      "laval",
+      "aines",
+      "sante",
+      "jeunesse",
+      "quebec"
+    ]
+  },
+  {
+    "id": "QC-5130",
+    "nameFr": "Programme transport-hébergement de Laval",
+    "nameEn": "Programme transport-hébergement de Laval",
+    "categoryIds": [
+      "EMPLOYMENT",
+      "LGBTQ",
+      "HOUSING",
+      "HEALTH"
+    ],
+    "region": "13 - LAVAL",
+    "phone": null,
+    "website": "https://www.lavalensante.com/soins-et-services/liste-des-soins-et-services/deficience-intellectuelle-di-trouble-du-spectre-de-lautisme-tsa-deficience-physique-dp/programmes-daide-aux-personnes-handicapees-et-a-leur-famille/programme-transport-hebergement",
+    "address": "Service en ligne / Partout au Québec",
+    "descFr": "Aide financière pour les déplacements vers l'établissement le plus rapproché du réseau du ministère de la Santé et des Services sociaux. (Clientèle : personnes présentant une déficience intellectuelle, psychique, organique ou physique)",
+    "descEn": "",
+    "tags": [
+      "programme",
+      "transport-hebergement",
+      "laval",
+      "emploi",
+      "lgbtq",
+      "logement",
+      "sante",
+      "quebec"
+    ]
+  },
+  {
+    "id": "QC-5164",
+    "nameFr": "Pro-Vision Laval",
+    "nameEn": "Pro-Vision Laval",
+    "categoryIds": [
+      "FOOD",
+      "HOUSING"
+    ],
+    "region": "13 - LAVAL",
+    "phone": null,
+    "website": "https://provisionlaval.ca/fr",
+    "address": "Service en ligne / Partout au Québec",
+    "descFr": "Distribution hebdomadaire de produits de boulangerie et de paniers alimentaires. Friperie: vente d'articles usagés. Activités communautaires. (Clientèle : personnes dans le besoin ou en situation d'itinérance)",
+    "descEn": "",
+    "tags": [
+      "pro-vision",
+      "laval",
+      "alimentaire",
+      "logement",
+      "quebec"
+    ]
+  },
+  {
+    "id": "QC-5203",
+    "nameFr": "Refuge de Laval (Le)",
+    "nameEn": "Refuge de Laval (Le)",
+    "categoryIds": [
+      "HOUSING",
+      "CRISIS",
+      "YOUTH",
+      "HEALTH"
+    ],
+    "region": "13 - LAVAL",
+    "phone": null,
+    "website": null,
+    "address": "Service en ligne / Partout au Québec",
+    "descFr": "Refuge d'urgence. Hébergement, lavage, douches. Souper, déjeuner et collation. Intervention psychosociale sur place. Infirmière practiciennes spécialisées (IPS) sur place. (Clientèle : personnes en situation d'itinérance sans enfants)",
+    "descEn": "",
+    "tags": [
+      "refuge",
+      "laval",
+      "logement",
+      "crise",
+      "jeunesse",
+      "sante",
+      "quebec"
+    ]
+  },
+  {
+    "id": "QC-5204",
+    "nameFr": "Refuge de Laval (Le) - Milieu de vie de jour",
+    "nameEn": "Refuge de Laval (Le) - Milieu de vie de jour",
+    "categoryIds": [
+      "FOOD",
+      "HOUSING"
+    ],
+    "region": "13 - LAVAL",
+    "phone": null,
+    "website": null,
+    "address": "Service en ligne / Partout au Québec",
+    "descFr": "Lieu d'accueil. Aide dans les démarches. Références. Accès à des ordinateurs et des téléphones. Prêt d'adresse. Répit. Collations. (Clientèle : personnes en situation d'itinérance ou à risque de le devenir, personnes vivant l'exclusion sociale, la marginalité et qui sont peu rejoints par les services sociaux réguliers)",
+    "descEn": "",
+    "tags": [
+      "refuge",
+      "laval",
+      "milieu",
+      "vie",
+      "jour",
+      "alimentaire",
+      "logement",
+      "quebec"
+    ]
+  },
+  {
+    "id": "QC-5275",
+    "nameFr": "Regroupement lavallois pour la réussite éducative",
+    "nameEn": "Regroupement lavallois pour la réussite éducative",
+    "categoryIds": [
+      "STUDENT",
+      "LGBTQ",
+      "YOUTH",
+      "EMPLOYMENT"
+    ],
+    "region": "13 - LAVAL",
+    "phone": null,
+    "website": "https://rlpre.org",
+    "address": "Service en ligne / Partout au Québec",
+    "descFr": "Instance régionale de concertation (IRC) promouvant la persévérance scolaire et la réussite éducative. Carrefour de ressources: ressources pour parents, matériel de sensibilisation et d'animation, etc. Projets en persévérance scolaire: Journées de la persévérance scolaire (JPS), valorisation de la lecture, conciliation études-travail, transition vers la maternelle, etc. (Clientèle : groupes et acteurs porteurs d'initiatives en faveur de la persévérance scolaire et éducative, sensibilisation: grand public)",
+    "descEn": "",
+    "tags": [
+      "regroupement",
+      "lavallois",
+      "reussite",
+      "educative",
+      "education",
+      "lgbtq",
+      "jeunesse",
+      "emploi"
+    ]
+  },
+  {
+    "id": "QC-5299",
+    "nameFr": "Relais Communautaire de Laval",
+    "nameEn": "Relais Communautaire de Laval",
+    "categoryIds": [
+      "SENIORS",
+      "FOOD",
+      "STUDENT",
+      "EMPLOYMENT"
+    ],
+    "region": "13 - LAVAL",
+    "phone": null,
+    "website": "https://relais-communautaire.org",
+    "address": "Service en ligne / Partout au Québec",
+    "descFr": "Aide alimentaire Repas communautaires: dîners. Distribution alimentaire. Dépannage d'urgence. Distribution de soupes et de sandwichs aux personnes vulnérables. Aide matérielle Carrefour des Aubaines: vente de vêtements et d'articles de maisons usagés. Point de service du Bonhomme à lunettes. Communautaire Accueil, information, et références vers les ressources et services du milieu.... (Clientèle : personnes à faible revenu)",
+    "descEn": "",
+    "tags": [
+      "relais",
+      "communautaire",
+      "laval",
+      "aines",
+      "alimentaire",
+      "education",
+      "emploi",
+      "quebec"
+    ]
+  },
+  {
+    "id": "QC-5300",
+    "nameFr": "Relais Communautaire de Laval - Récupération d'articles usagés",
+    "nameEn": "Relais Communautaire de Laval - Récupération d'articles usagés",
+    "categoryIds": [
+      "FOOD",
+      "HEALTH"
+    ],
+    "region": "13 - LAVAL",
+    "phone": null,
+    "website": "https://relais-communautaire.org/page/carrefour-des-aubaines/dons-et-ramassage-darticles",
+    "address": "Service en ligne / Partout au Québec",
+    "descFr": "Récupération d'articles usagés sur place: nourriture, vêtements, électroménagers, articles de maison, jouets et équipement de loisirs. Collecte de dons à domicile: électroménagers.",
+    "descEn": "",
+    "tags": [
+      "relais",
+      "communautaire",
+      "laval",
+      "recuperation",
+      "d'articles",
+      "alimentaire",
+      "sante",
+      "quebec"
+    ]
+  },
+  {
+    "id": "QC-5375",
+    "nameFr": "Réseau des Bibliothèques de Laval",
+    "nameEn": "Réseau des Bibliothèques de Laval",
+    "categoryIds": [
+      "SENIORS",
+      "STUDENT",
+      "YOUTH"
+    ],
+    "region": "13 - LAVAL",
+    "phone": null,
+    "website": "https://biblio.laval.ca/accueil",
+    "address": "Service en ligne / Partout au Québec",
+    "descFr": "Réseau régional de bibliothèques municipales publiques. Répertoire des bibliothèques des laurentides: www.biblio.laval.ca/horaires-et-coordonnees Répertoire des activités des bibliothèques: www.biblio.laval.ca/programmation-et-animations Prêts et réservations de livres imprimés, livres numériques, collections spéciales, films et séries télé, jeux vidéo et de société, musique. Grainothèque de la bibliothèque Sylvain-Garneau. Prêt entre bibliothèque (PEB). Prêt à domicile... (Clientèle : grand public)",
+    "descEn": "",
+    "tags": [
+      "reseau",
+      "bibliotheques",
+      "laval",
+      "aines",
+      "education",
+      "jeunesse",
+      "quebec"
+    ]
+  },
+  {
+    "id": "QC-5381",
+    "nameFr": "Réseau des organismes en itinérance de Laval",
+    "nameEn": "Réseau des organismes en itinérance de Laval",
+    "categoryIds": [
+      "EMPLOYMENT",
+      "HOUSING",
+      "LEGAL",
+      "STUDENT"
+    ],
+    "region": "13 - LAVAL",
+    "phone": null,
+    "website": "https://roiil.squarespace.com",
+    "address": "Service en ligne / Partout au Québec",
+    "descFr": "Lieu d'échange et de concertation des partenaires afin d'offrir des alternatives, des services et des activités aux personnes vivant l'instabilité résidentielle, l'itinérance et la pauvreté. Promotion de la justice sociale. Information et sensibilisation de la population à la problématique de l'itinérance. Redistribution de dons aux organismes membres. Projet Bail: prêt... (Clientèle : organismes communautaires concernés par les questions d'itinérance, Projet Bail: personnes ayant une dette de loyer ponctuelle, sans décision d'éviction du Tribunal administratif du logement, démontrant la capacité de suivre un plan de remboursement adapté, acceptant un suivi financier avec l'ACEF et...",
+    "descEn": "",
+    "tags": [
+      "reseau",
+      "organismes",
+      "itinerance",
+      "laval",
+      "emploi",
+      "logement",
+      "droits",
+      "education"
+    ]
+  },
+  {
+    "id": "QC-5415",
+    "nameFr": "Résidence funéraire Laval",
+    "nameEn": "Résidence funéraire Laval",
+    "categoryIds": [
+      "HEALTH"
+    ],
+    "region": "13 - LAVAL",
+    "phone": null,
+    "website": "https://www.cfgrandmontreal.com",
+    "address": "Service en ligne / Partout au Québec",
+    "descFr": "Coopérative funéraire.",
+    "descEn": "",
+    "tags": [
+      "residence",
+      "funeraire",
+      "laval",
+      "sante",
+      "quebec"
+    ]
+  },
+  {
+    "id": "QC-5468",
+    "nameFr": "Revenu Québec - Laval",
+    "nameEn": "Revenu Québec - Laval",
+    "categoryIds": [
+      "EMPLOYMENT",
+      "LEGAL",
+      "FOOD",
+      "HOUSING"
+    ],
+    "region": "13 - LAVAL",
+    "phone": null,
+    "website": "https://www.revenuquebec.ca",
+    "address": "Service en ligne / Partout au Québec",
+    "descFr": "Administration du régime fiscal québécois par la perception des impôts et des taxes. Administration de programmes et services relatifs au revenu: crédits d'impôt, allocation-logement, prime au travail, pensions alimentaires, administration provisoire des biens non réclamés, registraire des entreprises.",
+    "descEn": "",
+    "tags": [
+      "revenu",
+      "laval",
+      "emploi",
+      "droits",
+      "alimentaire",
+      "logement",
+      "quebec"
+    ]
+  },
+  {
+    "id": "QC-5641",
+    "nameFr": "Service bénévole d'entraide de Vimont-Auteuil",
+    "nameEn": "Service bénévole d'entraide de Vimont-Auteuil",
+    "categoryIds": [
+      "SENIORS",
+      "FOOD",
+      "HEALTH"
+    ],
+    "region": "13 - LAVAL",
+    "phone": null,
+    "website": "https://www.sbeva.com",
+    "address": "Service en ligne / Partout au Québec",
+    "descFr": "Popote roulante. Dîners d'amitié. Plats congelés. Friperie: vente et récupération sur place de vêtements, petits appareils électroniques et électroménagers, ustensiles de cuisine, livres, équipement de sport et jouets. Accompagnement à l'épicerie. Appels de sécurité et d'amitié. Visites amicales. (Clientèle : personnes en perte d'autonomie permanente ou temporaire, popote roulante et plats congelés: personnes en perte d'autonomie permanente ou temporaire et personnes pair·e·s aidant·e·s, dîners d'amitié: personnes aînées et personnes en légère perte d'autonomie)",
+    "descEn": "",
+    "tags": [
+      "benevole",
+      "d'entraide",
+      "vimont-auteuil",
+      "aines",
+      "alimentaire",
+      "sante",
+      "laval",
+      "quebec"
+    ]
+  },
+  {
+    "id": "QC-5642",
+    "nameFr": "Service bénévole d'entraide de Vimont-Auteuil - Accompagnement-transport",
+    "nameEn": "Service bénévole d'entraide de Vimont-Auteuil - Accompagnement-transport",
+    "categoryIds": [
+      "SENIORS",
+      "LGBTQ",
+      "HEALTH"
+    ],
+    "region": "13 - LAVAL",
+    "phone": null,
+    "website": "https://www.sbeva.com",
+    "address": "Service en ligne / Partout au Québec",
+    "descFr": "Accompagnement-transport médical par des bénévoles. (Clientèle : personnes en perte d'autonomie temporaire ou permanente)",
+    "descEn": "",
+    "tags": [
+      "benevole",
+      "d'entraide",
+      "vimont-auteuil",
+      "accompagnement-transport",
+      "aines",
+      "lgbtq",
+      "sante",
+      "laval"
+    ]
+  },
+  {
+    "id": "QC-5740",
+    "nameFr": "Service de police de Laval - Survivantes (Les)",
+    "nameEn": "Service de police de Laval - Survivantes (Les)",
+    "categoryIds": [
+      "VIOLENCE"
+    ],
+    "region": "13 - LAVAL",
+    "phone": null,
+    "website": null,
+    "address": "Service en ligne / Partout au Québec",
+    "descFr": "Sensibilisation et prévention de la prostitution et de l'exploitation sexuelle. Intervention auprès des personnes vulnérables. Soutien aux institutions et aux intervenant·e·s. (Clientèle : personnes vulnérables, leurs proches)",
+    "descEn": "",
+    "tags": [
+      "police",
+      "laval",
+      "survivantes",
+      "violence",
+      "quebec"
+    ]
+  },
+  {
+    "id": "QC-5805",
+    "nameFr": "Services correctionnels du Québec - Établissement de détention de Laval (Leclerc)",
+    "nameEn": "Services correctionnels du Québec - Établissement de détention de Laval (Leclerc)",
+    "categoryIds": [
+      "LEGAL",
+      "LGBTQ",
+      "HOUSING",
+      "HEALTH"
+    ],
+    "region": "13 - LAVAL",
+    "phone": null,
+    "website": "https://www.quebec.ca/securite-situations-urgence/services-correctionnels",
+    "address": "Service en ligne / Partout au Québec",
+    "descFr": "Instance responsable des activités relatives à la détention des personnes contrevenantes. Évaluations et suivi des personnes contrevenantes. Gestion des programmes de garde, d'hébergement, d'encadrement et d'accompagnement. Transport, escortes et encadrement pour les comparutions à la cour et transferts vers d'autres établissements carcéraux et hospitaliers. (Clientèle : personnes contrevenantes condamnées à des peines inférieures à 2 ans, personnes prévenues)",
+    "descEn": "",
+    "tags": [
+      "correctionnels",
+      "etablissement",
+      "detention",
+      "laval",
+      "leclerc",
+      "droits",
+      "lgbtq",
+      "logement"
+    ]
+  },
+  {
+    "id": "QC-5914",
+    "nameFr": "Société canadienne de la sclérose en plaques - Division du québec - Section Laval",
+    "nameEn": "Société canadienne de la sclérose en plaques - Division du québec - Section Laval",
+    "categoryIds": [
+      "FOOD",
+      "HEALTH",
+      "STUDENT",
+      "LEGAL"
+    ],
+    "region": "13 - LAVAL",
+    "phone": null,
+    "website": "https://spcanadalaval.ca",
+    "address": "Service en ligne / Partout au Québec",
+    "descFr": "Écoute active téléphonique. Information et références. Centre de documentation. Camp de vacances pour personnes vivant avec la sclérose en plaques. Défense des droits. Activités adaptées: exercice physique, aquaforme, ateliers d'arts, yoga, Qi-Gong. Activités sociales: dîner-rencontre, SP-In Laval (5 à 7 mensuel), café-rencontre, sorties thématiques. Soutien aux personnes vivant avec la... (Clientèle : personnes atteintes de sclérose en plaques, proches aidant·e·s, conjoint·e·s)",
+    "descEn": "",
+    "tags": [
+      "societe",
+      "canadienne",
+      "sclerose",
+      "plaques",
+      "division",
+      "alimentaire",
+      "sante",
+      "education"
+    ]
+  },
+  {
+    "id": "QC-5935",
+    "nameFr": "Société de l'Autisme et des TED - Laval",
+    "nameEn": "Société de l'Autisme et des TED - Laval",
+    "categoryIds": [
+      "YOUTH",
+      "HEALTH",
+      "STUDENT",
+      "LEGAL"
+    ],
+    "region": "13 - LAVAL",
+    "phone": null,
+    "website": "https://www.autismelaval.org",
+    "address": "Service en ligne / Partout au Québec",
+    "descFr": "Information et conférences. Écoute et soutien téléphonique. Rencontres pour parents. Formation pour intervenant·e·s et spécialistes. Centre de documentation. Défense des droits. (Clientèle : personnes autistes ou vivant avec un trouble envahissant du développement, avec ou sans déficience intellectuelle, leur famille)",
+    "descEn": "",
+    "tags": [
+      "societe",
+      "l'autisme",
+      "ted",
+      "laval",
+      "jeunesse",
+      "sante",
+      "education",
+      "droits"
+    ]
+  },
+  {
+    "id": "QC-5964",
+    "nameFr": "Société de Saint-Vincent de Paul - François-de-Laval",
+    "nameEn": "Société de Saint-Vincent de Paul - François-de-Laval",
+    "categoryIds": [
+      "FOOD"
+    ],
+    "region": "13 - LAVAL",
+    "phone": null,
+    "website": null,
+    "address": "Service en ligne / Partout au Québec",
+    "descFr": "Distribution de bons d'achat et de sacs de nourriture. Paniers de Noël. (Clientèle : adultes à faible revenu)",
+    "descEn": "",
+    "tags": [
+      "societe",
+      "saint-vincent",
+      "paul",
+      "francois-de-laval",
+      "alimentaire",
+      "laval",
+      "quebec"
+    ]
+  },
+  {
+    "id": "QC-5993",
+    "nameFr": "Société de Saint-Vincent-de-Paul - Centre d'aide Saint-Jean-Baptiste",
+    "nameEn": "Société de Saint-Vincent-de-Paul - Centre d'aide Saint-Jean-Baptiste",
+    "categoryIds": [
+      "FOOD"
+    ],
+    "region": "13 - LAVAL",
+    "phone": null,
+    "website": null,
+    "address": "Service en ligne / Partout au Québec",
+    "descFr": "Repas communautaire mensuel suivi d'une distribution de paniers de nourriture. Distribution de paniers de Noël. Dons et récupération de denrées périssables et non périssables sur place. (Clientèle : personnes à faible revenu)",
+    "descEn": "",
+    "tags": [
+      "societe",
+      "saint-vincent-de-paul",
+      "d'aide",
+      "saint-jean-baptiste",
+      "alimentaire",
+      "laval",
+      "quebec"
+    ]
+  },
+  {
+    "id": "QC-5995",
+    "nameFr": "Société de Saint-Vincent-de-Paul - Conférence isolée de Saint-Cyprien-de-Napierville",
+    "nameEn": "Société de Saint-Vincent-de-Paul - Conférence isolée de Saint-Cyprien-de-Napierville",
+    "categoryIds": [
+      "FOOD",
+      "STUDENT"
+    ],
+    "region": "13 - LAVAL",
+    "phone": null,
+    "website": null,
+    "address": "Service en ligne / Partout au Québec",
+    "descFr": "Banque alimentaire. Aide au paiement des frais de médicaments. Distribution de fournitures scolaires. Paniers de Noël. (Clientèle : personnes à faible revenu)",
+    "descEn": "",
+    "tags": [
+      "societe",
+      "saint-vincent-de-paul",
+      "conference",
+      "isolee",
+      "saint-cyprien-de-napierville",
+      "alimentaire",
+      "education",
+      "laval"
+    ]
+  },
+  {
+    "id": "QC-5996",
+    "nameFr": "Société de Saint-Vincent-de-Paul - Conférence l'Épiphanie",
+    "nameEn": "Société de Saint-Vincent-de-Paul - Conférence l'Épiphanie",
+    "categoryIds": [
+      "FOOD"
+    ],
+    "region": "13 - LAVAL",
+    "phone": null,
+    "website": "https://ssvp-mtl.org",
+    "address": "Service en ligne / Partout au Québec",
+    "descFr": "Comptoir vestimentaire. (Clientèle : personnes à faible revenu)",
+    "descEn": "",
+    "tags": [
+      "societe",
+      "saint-vincent-de-paul",
+      "conference",
+      "l'epiphanie",
+      "alimentaire",
+      "laval",
+      "quebec"
+    ]
+  },
+  {
+    "id": "QC-5998",
+    "nameFr": "Société de Saint-Vincent-de-Paul - Conférence Saint-Vincent-de-Paul (Laval)",
+    "nameEn": "Société de Saint-Vincent-de-Paul - Conférence Saint-Vincent-de-Paul (Laval)",
+    "categoryIds": [
+      "FOOD"
+    ],
+    "region": "13 - LAVAL",
+    "phone": null,
+    "website": null,
+    "address": "Service en ligne / Partout au Québec",
+    "descFr": "Bons d'achat de nourriture. Vestiaire: don et vente de vêtements et d'articles de maison usagés. Paniers de Noël. (Clientèle : personnes à faible revenu)",
+    "descEn": "",
+    "tags": [
+      "societe",
+      "saint-vincent-de-paul",
+      "conference",
+      "laval",
+      "alimentaire",
+      "quebec"
+    ]
+  },
+  {
+    "id": "QC-5999",
+    "nameFr": "Société de Saint-Vincent-de-Paul - Conseil particulier Sault-au-Récollet - Conférence Sainte-Colette",
+    "nameEn": "Société de Saint-Vincent-de-Paul - Conseil particulier Sault-au-Récollet - Conférence Sainte-Colette",
+    "categoryIds": [
+      "FOOD",
+      "STUDENT"
+    ],
+    "region": "13 - LAVAL",
+    "phone": null,
+    "website": null,
+    "address": "Service en ligne / Partout au Québec",
+    "descFr": "Bons d'achat de nourriture. Bons d'achat pour paniers de Noël. Bons d'achat pour fournitures scolaires. Vestiaire: récupération et vente de vêtements usagés. (Clientèle : personnes à faible revenu)",
+    "descEn": "",
+    "tags": [
+      "societe",
+      "saint-vincent-de-paul",
+      "conseil",
+      "particulier",
+      "sault-au-recollet",
+      "alimentaire",
+      "education",
+      "laval"
+    ]
+  },
+  {
+    "id": "QC-6000",
+    "nameFr": "Société de Saint-Vincent-de-Paul - Saint-Barthélémy",
+    "nameEn": "Société de Saint-Vincent-de-Paul - Saint-Barthélémy",
+    "categoryIds": [
+      "FOOD"
+    ],
+    "region": "13 - LAVAL",
+    "phone": null,
+    "website": null,
+    "address": "Service en ligne / Partout au Québec",
+    "descFr": "Distribution de bons d'achat alimentaires. Paniers de Noël. (Clientèle : personnes à faible revenu)",
+    "descEn": "",
+    "tags": [
+      "societe",
+      "saint-vincent-de-paul",
+      "saint-barthelemy",
+      "alimentaire",
+      "laval",
+      "quebec"
+    ]
+  },
+  {
+    "id": "QC-6002",
+    "nameFr": "Société de Saint-Vincent-de-Paul - Sainte-Rose-de-Lima",
+    "nameEn": "Société de Saint-Vincent-de-Paul - Sainte-Rose-de-Lima",
+    "categoryIds": [
+      "FOOD",
+      "CRISIS"
+    ],
+    "region": "13 - LAVAL",
+    "phone": null,
+    "website": null,
+    "address": "Service en ligne / Partout au Québec",
+    "descFr": "Distribution de bons d'achat et de sacs de nourriture. Aide alimentaire d'urgence. Soupière Sainte-Rose: repas communautaires. Paniers de Noël. (Clientèle : personnes à faible revenu)",
+    "descEn": "",
+    "tags": [
+      "societe",
+      "saint-vincent-de-paul",
+      "sainte-rose-de-lima",
+      "alimentaire",
+      "crise",
+      "laval",
+      "quebec"
+    ]
+  },
+  {
+    "id": "QC-6003",
+    "nameFr": "Société de Saint-Vincent-de-Paul - Saint-Isaac-Jogues",
+    "nameEn": "Société de Saint-Vincent-de-Paul - Saint-Isaac-Jogues",
+    "categoryIds": [
+      "FOOD"
+    ],
+    "region": "13 - LAVAL",
+    "phone": null,
+    "website": null,
+    "address": "Service en ligne / Partout au Québec",
+    "descFr": "Distribution de bons d'achat de nourriture. Paniers de Noël. (Clientèle : personne à faible revenu de moins de 65 ans)",
+    "descEn": "",
+    "tags": [
+      "societe",
+      "saint-vincent-de-paul",
+      "saint-isaac-jogues",
+      "alimentaire",
+      "laval",
+      "quebec"
+    ]
+  },
+  {
+    "id": "QC-6004",
+    "nameFr": "Société de Saint-Vincent-de-Paul - Saint-Théophile",
+    "nameEn": "Société de Saint-Vincent-de-Paul - Saint-Théophile",
+    "categoryIds": [
+      "FOOD"
+    ],
+    "region": "13 - LAVAL",
+    "phone": null,
+    "website": null,
+    "address": "Service en ligne / Partout au Québec",
+    "descFr": "Distribution de sacs de nourriture. Paniers de Noël. (Clientèle : personnes à faible revenu)",
+    "descEn": "",
+    "tags": [
+      "societe",
+      "saint-vincent-de-paul",
+      "saint-theophile",
+      "alimentaire",
+      "laval",
+      "quebec"
+    ]
+  },
+  {
+    "id": "QC-6009",
+    "nameFr": "Société de transport de Laval",
+    "nameEn": "Société de transport de Laval",
+    "categoryIds": [
+      "EMPLOYMENT",
+      "LGBTQ",
+      "HEALTH"
+    ],
+    "region": "13 - LAVAL",
+    "phone": null,
+    "website": "https://stlaval.ca",
+    "address": "Service en ligne / Partout au Québec",
+    "descFr": "Service de transport collectif de Laval.",
+    "descEn": "",
+    "tags": [
+      "societe",
+      "transport",
+      "laval",
+      "emploi",
+      "lgbtq",
+      "sante",
+      "quebec"
+    ]
+  },
+  {
+    "id": "QC-6010",
+    "nameFr": "Société de transport de Laval - Service du transport adapté",
+    "nameEn": "Société de transport de Laval - Service du transport adapté",
+    "categoryIds": [
+      "HEALTH",
+      "LGBTQ"
+    ],
+    "region": "13 - LAVAL",
+    "phone": null,
+    "website": "https://stlaval.ca/infos-ta",
+    "address": "Service en ligne / Partout au Québec",
+    "descFr": "Service de transport adapté de Laval: bus et taxis. Application mobile STL Compagnon: aide pour l'utilisation du réseau de transport régulier pour les personnes vivant avec une défience intellectuelle légère ou un trouble du spectre de l'autisme. (Clientèle : personnes handicapées et personnes avec des limitations sur le plan de la mobilité, 12 ans et plus)",
+    "descEn": "",
+    "tags": [
+      "societe",
+      "transport",
+      "laval",
+      "adapte",
+      "sante",
+      "lgbtq",
+      "quebec"
+    ]
+  },
+  {
+    "id": "QC-6084",
+    "nameFr": "Sports Laval",
+    "nameEn": "Sports Laval",
+    "categoryIds": [
+      "HEALTH",
+      "SENIORS",
+      "STUDENT"
+    ],
+    "region": "13 - LAVAL",
+    "phone": null,
+    "website": "https://sportslaval.qc.ca",
+    "address": "Service en ligne / Partout au Québec",
+    "descFr": "Promotion de la vie active afin de contribuer au mieux-être. Partenariat et mobilisation. Programme Kino-Québec. Soutien aux athlètes. Évènements sportifs. Camps sportifs. (Clientèle : athlètes de niveau relève ou élite, entraîneur·es, partenaires sportifs, enseignant·e·s en éducation physique, toute autre personne intéressée par le sport)",
+    "descEn": "",
+    "tags": [
+      "sports",
+      "laval",
+      "sante",
+      "aines",
+      "education",
+      "quebec"
+    ]
+  },
+  {
+    "id": "QC-6239",
+    "nameFr": "Tribunal administratif du logement - Laval",
+    "nameEn": "Tribunal administratif du logement - Laval",
+    "categoryIds": [
+      "LEGAL",
+      "HOUSING",
+      "STUDENT"
+    ],
+    "region": "13 - LAVAL",
+    "phone": null,
+    "website": "https://www.tal.gouv.qc.ca",
+    "address": "Service en ligne / Partout au Québec",
+    "descFr": "Tribunal spécialisé en matière de bail résidentiel. Information sur les droits et obligations découlant du bail. Conciliation des relations entre propriétaires et locataires. Protection des droits des locataires. Aide pour remplir les formulaires de demande au tribunal. Demande en ligne: cliquer ici Outil en ligne pour le calcul de la... (Clientèle : locataires, propriétaires)",
+    "descEn": "",
+    "tags": [
+      "tribunal",
+      "administratif",
+      "logement",
+      "laval",
+      "droits",
+      "education",
+      "quebec"
+    ]
+  },
+  {
+    "id": "QC-6294",
+    "nameFr": "Université du troisième âge - Laval",
+    "nameEn": "Université du troisième âge - Laval",
+    "categoryIds": [
+      "SENIORS",
+      "STUDENT"
+    ],
+    "region": "13 - LAVAL",
+    "phone": null,
+    "website": "https://uta.ulaval.ca",
+    "address": "Service en ligne / Partout au Québec",
+    "descFr": "Programmation pédagogique répartie en 30 antennes universitaires pour personnes de 50 ans et plus. Activités éducatives de type auditeur·trice libre sans travaux ni examens, non créditées. Différentes formules pédagogiques: cours, séminaires, causeries, ateliers, etc. Associations étudiantes favorisant l'intégration à la vie culturelle et sociale. Activités en personne. Activités en ligne:... (Clientèle : personnes de 50 ans et plus, aucun diplôme préalable n'est exigé)",
+    "descEn": "",
+    "tags": [
+      "universite",
+      "troisieme",
+      "age",
+      "laval",
+      "aines",
+      "education",
+      "quebec"
+    ]
+  },
+  {
+    "id": "QC-9711",
+    "nameFr": "Sainte-Rose-de-Watford. Hôtel de ville",
+    "nameEn": "Sainte-Rose-de-Watford. Hôtel de ville",
+    "categoryIds": [
+      "LGBTQ",
+      "HOUSING",
+      "STUDENT",
+      "LEGAL"
+    ],
+    "region": "13 - LAVAL",
+    "phone": "418-267-5811",
+    "website": "http://www.sainterosedewatford.qc.ca",
+    "address": "695, rue Carrier, Sainte-Rose-de-Watford, QC G0R 4G0",
+    "descFr": "Assume des responsabilités en aménagement et urbanisme, habitation, voirie, développement communautaire et culturel, loisirs, transports en commun en milieu urbain, assainissement des eaux usées et autres La nature, l'étendue et l'exercice de ces responsabilités varient selon les valeurs, besoins et moyens caractérisant Sainte-Rose-de-Watford La municipalité de Sainte-Rose-de-Watford fait partie de la MRC des Etchemins et se situe dans les circonscriptions électorales de Bellechasse (provinciale) et de Bellechasse-Les Etchemins-Lévis (fédérale) Bibliothèque Rose des vents, 693, rue Carrier, courriel biblioste-rose@sogetel.net Répertoire des organismes locaux...",
+    "descEn": "",
+    "tags": [
+      "sainte-rose-de-watford",
+      "hotel",
+      "ville",
+      "lgbtq",
+      "logement",
+      "education",
+      "droits",
+      "laval"
+    ]
+  }
+]
