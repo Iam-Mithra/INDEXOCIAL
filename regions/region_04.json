@@ -93,7 +93,103 @@
     ]
   },
   {
-    "id": "QC-1428",
+    "id": "QC-849",
+    "nameFr": "Association des comités de résidents officielle du Québec",
+    "nameEn": "Association des comités de résidents officielle du Québec",
+    "categoryIds": [
+      "SENIORS",
+      "LEGAL"
+    ],
+    "region": "04 - MAURICIE ET CENTRE-DU-QUÉBEC",
+    "phone": "514-993-3478",
+    "website": "https://acroq.ca",
+    "address": "Drummondville, QC",
+    "descFr": "Défendre et promouvoir les intérêts de l'ensemble des comités des milieux de vie (CMV) en résidences privées pour personnes aîné·e·s, des résident·e·s et de leurs proches aidant·e·s. (Clientèle : comités des milieux de vie (CMV) dans des résidences privées pour aîné·e·s, résident·e·s dans les résidences privées pour personnes aîné·e·s, leurs proches aidant·e·s)",
+    "descEn": "",
+    "tags": [
+      "comites",
+      "residents",
+      "officielle",
+      "aines",
+      "droits",
+      "drummondville",
+      "mauricie et centre-du-quebec",
+      "quebec"
+    ]
+  },
+  {
+    "id": "QC-1043",
+    "nameFr": "Association pour l'assurance collective des organismes communautaires du Québec",
+    "nameEn": "Association pour l'assurance collective des organismes communautaires du Québec",
+    "categoryIds": [
+      "EMPLOYMENT"
+    ],
+    "region": "04 - MAURICIE ET CENTRE-DU-QUÉBEC",
+    "phone": "514-316-7702",
+    "website": "https://aacocq.com",
+    "address": "135, rue Radisson, bureau 1, Trois-Rivières, QC G9A 2C5",
+    "descFr": "Promotion d'un régime d'assurance collective pour les organismes communautaires du Québec. (Clientèle : organismes communautaires, entreprises d'économie sociale)",
+    "descEn": "",
+    "tags": [
+      "assurance",
+      "collective",
+      "organismes",
+      "communautaires",
+      "emploi",
+      "trois-rivieres",
+      "mauricie et centre-du-quebec",
+      "quebec"
+    ]
+  },
+  {
+    "id": "QC-1133",
+    "nameFr": "Association québécoise pour le loisir des personnes handicapées",
+    "nameEn": "Association québécoise pour le loisir des personnes handicapées",
+    "categoryIds": [
+      "HEALTH"
+    ],
+    "region": "04 - MAURICIE ET CENTRE-DU-QUÉBEC",
+    "phone": "819-693-3339",
+    "website": "https://aqlph.qc.ca",
+    "address": "25, rue des Forges, bureau 320, TROIS-RIVIÈRES, QC G9A 6A7",
+    "descFr": "Concertation visant l'intégration des personnes vivant avec un handicap. Promotion et développement du loisir incluant le sport, l'activité physique, le plein air et la culture. (Clientèle : organismes pour personnes vivant avec un handicap)",
+    "descEn": "",
+    "tags": [
+      "quebecoise",
+      "loisir",
+      "personnes",
+      "handicapees",
+      "sante",
+      "trois-rivieres",
+      "mauricie et centre-du-quebec",
+      "quebec"
+    ]
+  },
+  {
+    "id": "QC-1750",
+    "nameFr": "Carte accompagnement loisir",
+    "nameEn": "Carte accompagnement loisir",
+    "categoryIds": [
+      "HEALTH"
+    ],
+    "region": "04 - MAURICIE ET CENTRE-DU-QUÉBEC",
+    "phone": "1-833-693-2253",
+    "website": "https://www.carteloisir.ca",
+    "address": "25, rue des Forges, bureau 320, TROIS-RIVIÈRES, QC G9A 6A7",
+    "descFr": "Gratuité d'entrée pour la personne accompagnatrice lors de sorties touristiques ou de loisir. (Clientèle : personne accompagnatrice des personnes de 5 ans et plus vivant avec une déficience ou un problème de santé mentale lors de sorties)",
+    "descEn": "",
+    "tags": [
+      "carte",
+      "accompagnement",
+      "loisir",
+      "sante",
+      "trois-rivieres",
+      "mauricie et centre-du-quebec",
+      "quebec"
+    ]
+  },
+  {
+    "id": "QC-1821",
     "nameFr": "Centraide Centre-du-Québec",
     "nameEn": "Centraide Centre-du-Québec",
     "categoryIds": [
@@ -102,7 +198,7 @@
     "region": "04 - MAURICIE ET CENTRE-DU-QUÉBEC",
     "phone": null,
     "website": "https://centraide-rcoq.ca/cdq",
-    "address": "Service en ligne / Partout au Québec",
+    "address": "Partout au Québec",
     "descFr": "Soutien aux organismes communautaires locaux grâce à une campagne de financement et aux dons recueillis.",
     "descEn": "",
     "tags": [
@@ -114,7 +210,7 @@
     ]
   },
   {
-    "id": "QC-1436",
+    "id": "QC-1829",
     "nameFr": "Centraide Mauricie",
     "nameEn": "Centraide Mauricie",
     "categoryIds": [
@@ -123,7 +219,7 @@
     "region": "04 - MAURICIE ET CENTRE-DU-QUÉBEC",
     "phone": null,
     "website": "https://centraide-rcoq.ca/mauricie",
-    "address": "Service en ligne / Partout au Québec",
+    "address": "Partout au Québec",
     "descFr": "Soutien aux organismes communautaires locaux grâce à une campagne de financement et aux dons recueillis.",
     "descEn": "",
     "tags": [
@@ -135,58 +231,61 @@
     ]
   },
   {
-    "id": "QC-2372",
-    "nameFr": "CHSLD Nicolet",
-    "nameEn": "CHSLD Nicolet",
+    "id": "QC-2486",
+    "nameFr": "Centre de réadaptation du Haut-Saint-Maurice",
+    "nameEn": "Centre de réadaptation du Haut-Saint-Maurice",
     "categoryIds": [
-      "SENIORS",
+      "HEALTH",
+      "ADDICTION",
       "HOUSING",
-      "HEALTH"
+      "YOUTH"
     ],
     "region": "04 - MAURICIE ET CENTRE-DU-QUÉBEC",
-    "phone": null,
-    "website": "https://ciusss-estmtl.gouv.qc.ca/etablissement/chsld-nicolet",
-    "address": "Service en ligne / Partout au Québec",
-    "descFr": "Centre d'hébergement public pour personnes aînées et personnes en perte d'autonomie. Hébergement et soins de longue durée. (Clientèle : personnes aînées, personnes en perte d'autonomie)",
+    "phone": "819-523-6113",
+    "website": "https://ciusssmcq.ca/carte/fiche/222/centre-multiservices-de-sante-et-de-services-sociaux-du-haut-saint-maurice-hopit/",
+    "address": "885, boulevard Ducharme, La Tuque, QC G9X 3C1",
+    "descFr": "Services de deuxième ligne en dépendance. Réadaptation interne et externe. Réadaptation externe. Réadaptation interne pour adultes au point de service Loranger (Pointe-du-Lac). Réadaptation interne pour jeunes en collaboration au Grand Chemin. Désintoxication et soutien au sevrage en externe et en hébergement. Rencontres individuelles et de groupe. Services aux membres de... (Clientèle : personnes de 12 ans et plus ayant une dépendance à l'alcool, aux drogues ou aux jeux de hasard, problème d'utilisation d'internet, leurs proches (6 ans et plus))",
     "descEn": "",
     "tags": [
-      "chsld",
-      "nicolet",
-      "aines",
-      "logement",
+      "readaptation",
+      "haut-saint-maurice",
       "sante",
-      "mauricie et centre-du-quebec",
-      "quebec"
+      "dependance",
+      "logement",
+      "jeunesse",
+      "la tuque",
+      "mauricie et centre-du-quebec"
     ]
   },
   {
-    "id": "QC-6206",
-    "nameFr": "TRA Montérégie et Centre-du-Québec",
-    "nameEn": "TRA Montérégie et Centre-du-Québec",
+    "id": "QC-2543",
+    "nameFr": "Centre de réadaptation en dépendance de Victoriaville",
+    "nameEn": "Centre de réadaptation en dépendance de Victoriaville",
     "categoryIds": [
-      "YOUTH",
-      "VIOLENCE",
-      "SENIORS"
+      "HEALTH",
+      "ADDICTION",
+      "HOUSING",
+      "YOUTH"
     ],
     "region": "04 - MAURICIE ET CENTRE-DU-QUÉBEC",
-    "phone": null,
-    "website": "https://www.tramonteregie.com",
-    "address": "Service en ligne / Partout au Québec",
-    "descFr": "Regroupement professionnel de thérapeutes accrédité·e·s en relation d'aide, par l'AMDC, membres de la CITRAC. Relation d'aide pour adultes. Accompagnement pour personnes endeuillées. Relation d'aide pour enfants et adolescent·e·s. Relation d'aide pour couples et dyades. Coaching parental. (Clientèle : adultes, personnes aînées, personnes professionnelles, couples, enfants, adolescent·e·s)",
+    "phone": "819-752-5668",
+    "website": "https://ciusssmcq.ca/carte/fiche/151/centre-de-readaptation-en-dependance-de-victoriaville",
+    "address": "353, boulevard Bois-Francs Nord, Victoriaville, QC G6P 7B7",
+    "descFr": "Services de deuxième ligne en dépendance. Réadaptation interne et externe. Réadaptation externe. Réadaptation interne pour adultes au point de service Loranger (Pointe-du-Lac). Réadaptation interne pour jeunes en collaboration au Grand Chemin. Désintoxication et soutien au sevrage en externe et en hébergement. Rencontres individuelles et de groupe. Services aux membres de... (Clientèle : personnes de 12 ans et plus ayant une dépendance à l'alcool, aux drogues ou aux jeux de hasard, problème d'utilisation d'internet, leurs proches (6 ans et plus))",
     "descEn": "",
     "tags": [
-      "tra",
-      "monteregie",
-      "centre-du-quebec",
+      "readaptation",
+      "dependance",
+      "victoriaville",
+      "sante",
+      "logement",
       "jeunesse",
-      "violence",
-      "aines",
       "mauricie et centre-du-quebec",
       "quebec"
     ]
   },
   {
-    "id": "QC-6949",
+    "id": "QC-3203",
     "nameFr": "Chambre des communes, Ottawa, ON K1A 0A6",
     "nameEn": "Chambre des communes, Ottawa, ON K1A 0A6",
     "categoryIds": [
@@ -203,135 +302,446 @@
       "communes",
       "ottawa",
       "k1a",
-      "0a6",
       "sante",
       "mauricie et centre-du-quebec",
       "quebec"
     ]
   },
   {
-    "id": "QC-7401",
-    "nameFr": "Centre d'interprétation de la nature du lac Boivin",
-    "nameEn": "Centre d'interprétation de la nature du lac Boivin",
+    "id": "QC-3275",
+    "nameFr": "CHSLD Nicolet",
+    "nameEn": "CHSLD Nicolet",
     "categoryIds": [
-      "HEALTH"
+      "SENIORS",
+      "HOUSING"
     ],
     "region": "04 - MAURICIE ET CENTRE-DU-QUÉBEC",
-    "phone": "450-375-3861",
-    "website": "http://www.cinlb.org",
-    "address": "700, rue Drummond, Granby, QC J2H 0K6",
-    "descFr": "Préservation du territoire du CINLB * sensibilisation du public sur la biodiversité * sentiers de randonnées * pistes de ski de fond * piste multifonctionnelle * passerelles et tours d'observation * aires de pique-niques * location de salles * visites guidées (sur réservation) * classes-nature * camps de jour * conférences * ateliers et cours (champignons, photographie, etc.)",
+    "phone": null,
+    "website": "https://ciusss-estmtl.gouv.qc.ca/etablissement/chsld-nicolet",
+    "address": "Partout au Québec",
+    "descFr": "Centre d'hébergement public pour personnes aînées et personnes en perte d'autonomie. Hébergement et soins de longue durée. (Clientèle : personnes aînées, personnes en perte d'autonomie)",
     "descEn": "",
     "tags": [
-      "d'interpretation",
-      "nature",
-      "lac",
-      "boivin",
-      "sante",
+      "chsld",
+      "nicolet",
+      "aines",
+      "logement",
       "mauricie et centre-du-quebec",
       "quebec"
     ]
   },
   {
-    "id": "QC-8146",
-    "nameFr": "Corporation de développement de la communauté d'expression anglaise de Mégantic",
-    "nameEn": "Corporation de développement de la communauté d'expression anglaise de Mégantic",
+    "id": "QC-3464",
+    "nameFr": "CLSC et Centre de réadaptation en dépendance de Sainte-Geneviève-de-Batiscan",
+    "nameEn": "CLSC et Centre de réadaptation en dépendance de Sainte-Geneviève-de-Batiscan",
     "categoryIds": [
-      "LGBTQ",
-      "SENIORS",
+      "HEALTH",
+      "ADDICTION",
+      "HOUSING",
+      "YOUTH"
+    ],
+    "region": "04 - MAURICIE ET CENTRE-DU-QUÉBEC",
+    "phone": "418-362-2727",
+    "website": "https://ciusssmcq.ca/carte/fiche/290/clsc-et-centre-de-readaptation-en-dependance-de-sainte-genevieve-de-batiscan/",
+    "address": "90, chemin Rivière-à-Veillet, Sainte-Geneviève-De-Batiscan, QC G0X 2R0",
+    "descFr": "Services de deuxième ligne en dépendance. Réadaptation interne et externe. Réadaptation externe. Réadaptation interne pour adultes au point de service Loranger (Pointe-du-Lac). Réadaptation interne pour jeunes en collaboration au Grand Chemin. Désintoxication et soutien au sevrage en externe et en hébergement. Rencontres individuelles et de groupe. Services aux membres de... (Clientèle : personnes de 12 ans et plus ayant une dépendance à l'alcool, aux drogues ou aux jeux de hasard, problème d'utilisation d'internet, leurs proches (6 ans et plus))",
+    "descEn": "",
+    "tags": [
+      "clsc",
+      "readaptation",
+      "dependance",
+      "sainte-genevieve-de-batiscan",
+      "sante",
+      "logement",
+      "jeunesse",
+      "mauricie et centre-du-quebec"
+    ]
+  },
+  {
+    "id": "QC-5193",
+    "nameFr": "Hépatites Ressources",
+    "nameEn": "Hépatites Ressources",
+    "categoryIds": [
+      "HEALTH",
       "YOUTH",
       "STUDENT"
     ],
     "region": "04 - MAURICIE ET CENTRE-DU-QUÉBEC",
-    "phone": "418-332-3851",
-    "website": "http://www.mcdc.info",
-    "address": "906, rue Mooney, Thetford Mines, QC G6G 6H2",
-    "descFr": "Promotion du bien-être de la population anglophone par le développement et l'offre de services complémentaires à ceux du secteur public dans les domaines de la santé et des services sociaux et communautaires en anglais pour tous les groupes d'âge * Parents et petits d'âge préscolaire : jeux dans un environnement anglophone, comptines et chansons, bricolages * Activités culturelles et dîners communautaires * transport et accompagnement à des fins médicales * services d'interprétation. * bibliothèque communautaire avec livres et DVD * publication mensuelle Down Home News * publication trimestrielle Partners in Health * club de conversation * activités artistiques et artisanales pour les...",
+    "phone": "819-372-1588",
+    "website": "https://www.hepatitesressources.com",
+    "address": "930, rue de la Terrière, Trois-Rivières, QC G8Z 4E5",
+    "descFr": "Service de soutien téléphonique. Information sur les hépatites et les effets secondaires des traitements. Groupes de discussion. Rencontres individuelles au bureau ou à domicile pour les personnes ne pouvant pas se déplacer. Service d'accompagnement personnalisé pour tous ceux qui désirent effectuer un traitement pour les hépatites et leurs proches. Infirmier... (Clientèle : personnes ayant contracté le virus de l'Hépatite C, leurs proches, prévention: écoles secondaires, maisons de jeunes, centres de thérapie pour jeunes et adultes, centres de transition, organismes communautaires, grand public)",
     "descEn": "",
     "tags": [
-      "corporation",
-      "developpement",
-      "communaute",
-      "d'expression",
-      "anglaise",
-      "lgbtq",
-      "aines",
-      "jeunesse"
-    ]
-  },
-  {
-    "id": "QC-9461",
-    "nameFr": "Québec. Ministère de l'Emploi et de la Solidarité sociale, Services Québec - Bureau régional de Thetford Mines",
-    "nameEn": "Québec. Ministère de l'Emploi et de la Solidarité sociale, Services Québec - Bureau régional de Thetford Mines",
-    "categoryIds": [
-      "EMPLOYMENT"
-    ],
-    "region": "04 - MAURICIE ET CENTRE-DU-QUÉBEC",
-    "phone": "418-334-2500",
-    "website": "https://www.quebec.ca/services-quebec",
-    "address": "693, rue Saint-Alphonse Nord, Thetford Mines, QC G6G 3X3",
-    "descFr": "Guichet multiservice des services gouvernementaux provinciaux offerts aux individus et aux entreprises offrant un accès simplifié aux services publics * renseignements généraux sur les programmes et services gouvernementaux * accompagnement dans les démarches administratives effectuées auprès des ministères et des organismes * aide à la navigation pour l’utilisation des plateformes numériques gouvernementales * services de solidarité sociale * services d’aide à l’emploi * services aux entreprises D’autres services sont également offerts selon les bureaux Consultez le localisateur de bureaux de Services Québec https://www.localisateur.servicesquebec.gouv.qc.ca/ pour obtenir les coordonnées...",
-    "descEn": "",
-    "tags": [
-      "ministere",
-      "l'emploi",
-      "solidarite",
-      "sociale",
-      "regional",
-      "emploi",
+      "hepatites",
+      "ressources",
+      "sante",
+      "jeunesse",
+      "education",
+      "trois-rivieres",
       "mauricie et centre-du-quebec",
       "quebec"
     ]
   },
   {
-    "id": "QC-9886",
+    "id": "QC-5194",
+    "nameFr": "Hépatites Ressources - Drummondville",
+    "nameEn": "Hépatites Ressources - Drummondville",
+    "categoryIds": [
+      "HEALTH",
+      "YOUTH",
+      "STUDENT"
+    ],
+    "region": "04 - MAURICIE ET CENTRE-DU-QUÉBEC",
+    "phone": "819-475-8898",
+    "website": "https://www.hepatitesressources.com",
+    "address": "132, rue Loring, DRUMMONDVILLE, QC J2C 4K1",
+    "descFr": "Service de soutien téléphonique. Information sur les hépatites et les effets secondaires des traitements. Groupes de discussion. Rencontres individuelles au bureau ou à domicile pour les personnes ne pouvant pas se déplacer. Service d'accompagnement personnalisé pour tous ceux qui désirent effectuer un traitement pour les hépatites et leurs proches. Infirmier... (Clientèle : personnes ayant contractés le virus de l'Hépatite C, leurs proches, prévention: écoles secondaires, maisons de jeunes, centres de thérapie pour jeunes et adultes, centres de transition, organismes communautaires, grand public)",
+    "descEn": "",
+    "tags": [
+      "hepatites",
+      "ressources",
+      "drummondville",
+      "sante",
+      "jeunesse",
+      "education",
+      "mauricie et centre-du-quebec",
+      "quebec"
+    ]
+  },
+  {
+    "id": "QC-6807",
+    "nameFr": "Parents-Secours du Québec",
+    "nameEn": "Parents-Secours du Québec",
+    "categoryIds": [
+      "SENIORS",
+      "YOUTH",
+      "VIOLENCE",
+      "HOUSING"
+    ],
+    "region": "04 - MAURICIE ET CENTRE-DU-QUÉBEC",
+    "phone": "1-800-588-8173",
+    "website": "https://www.parentssecours.ca",
+    "address": "17, rue Fusey, bureau 203, TROIS-RIVIÈRES, QC G8T 2T3",
+    "descFr": "Réseau de foyers-refuges sécuritaires reconnaissables grâce à une affiche-fenêtre rouge et blanche, placée en évidence dans la fenêtre à l'avant du foyer-refuge. Promotion de la prévention. Formulaire d'inscription foyer-refuge: cliquez ici (Clientèle : enfants ou aîné·e·s en détresse, perdu·e·s, malades, blessé·e·s, agressé·e·s ou poursuivi·e·s)",
+    "descEn": "",
+    "tags": [
+      "parents-secours",
+      "aines",
+      "jeunesse",
+      "violence",
+      "logement",
+      "trois-rivieres",
+      "mauricie et centre-du-quebec",
+      "quebec"
+    ]
+  },
+  {
+    "id": "QC-7112",
+    "nameFr": "Programme PAIR",
+    "nameEn": "Programme PAIR",
+    "categoryIds": [
+      "SENIORS",
+      "YOUTH",
+      "HEALTH"
+    ],
+    "region": "04 - MAURICIE ET CENTRE-DU-QUÉBEC",
+    "phone": "1-877-997-7247",
+    "website": "https://programmepair.ca",
+    "address": "247, rue Notre-Dame Est, bureau 110, VICTORIAVILLE, QC G6P 4A2",
+    "descFr": "Service d'appels de prévention avec possibilité d'alerte en cas de non-confirmation pour les personnes âgées et pour les personnes vivant avec des problèmes de santé. Rappels de prise de médicaments et appels quotidiens pour vérifier l'état de la personne. Rappels de rendez-vous, d'invitations à des évènements et d'anniversaires. (Clientèle : personnes ainées vivant seules ou en couples, familles inquiètes pour leurs parents, personnes vivant avec des problèmes de santé)",
+    "descEn": "",
+    "tags": [
+      "programme",
+      "pair",
+      "aines",
+      "jeunesse",
+      "sante",
+      "victoriaville",
+      "mauricie et centre-du-quebec",
+      "quebec"
+    ]
+  },
+  {
+    "id": "QC-7558",
+    "nameFr": "Réseau BIBLIO du Centre-du-Québec, de Lanaudière et de la Mauricie",
+    "nameEn": "Réseau BIBLIO du Centre-du-Québec, de Lanaudière et de la Mauricie",
+    "categoryIds": [
+      "STUDENT",
+      "YOUTH",
+      "HEALTH"
+    ],
+    "region": "04 - MAURICIE ET CENTRE-DU-QUÉBEC",
+    "phone": "819-375-9623",
+    "website": "https://reseaubibliocqlm.qc.ca",
+    "address": "3125, rue Girard, TROIS-RIVIÈRES, QC G8Z 2M4",
+    "descFr": "Réseau régional de bibliothèques municipales publiques. Répertoire des bibliothèques: www.biblietcie.ca/choisir-ma-biblio Répertoire des activités des bibliothèques: www.biblietcie.ca/activite Prêt de livres et de ressources numériques. Prêt entre bibliothèque (PEB). Soutien dans le fonctionnement des bibliothèques. Biblio-Parents: plateforme de sélection d'ouvrages de qualité sur le thème de la grossesse. Biblio-santé. (Clientèle : grand public, bibliothèque membres)",
+    "descEn": "",
+    "tags": [
+      "reseau",
+      "biblio",
+      "centre-du-quebec",
+      "lanaudiere",
+      "education",
+      "jeunesse",
+      "sante",
+      "trois-rivieres"
+    ]
+  },
+  {
+    "id": "QC-7927",
     "nameFr": "Semaine de lecture (de relâche) Estrie et Centre-du-Québec, Informations générales",
     "nameEn": "Semaine de lecture (de relâche) Estrie et Centre-du-Québec, Informations générales",
     "categoryIds": [
       "INDIGENOUS",
-      "SENIORS",
       "STUDENT"
     ],
     "region": "04 - MAURICIE ET CENTRE-DU-QUÉBEC",
     "phone": null,
     "website": null,
     "address": "Centre-du-Québec - Région 17 ; Estrie - Région 05",
-    "descFr": "Semaines de lecture dans les établissements d'enseignement 27 février-3 mars 2023 * Centre de services scolaire des Hauts-Cantons * Centre de services scolaire de la Région-de-Sherbrooke * Centre de services scolaire des Sommets * Centre de services scolaire des Bois-Francs * Centre de services scolaire des Chênes * Centre de services scolaire de la Riveraine * Centre de services scolaire du Val-des-Cerfs * Cégep de Sherbrooke * Cégep de Victoriaville * Cégep de l'Abitibi-Témiscamingue - Centre d'études collégiales des Premières Nations * Université Bishop's * Université Sherbrooke * École du meuble et de l’ébénisterie 6-10 mars 2023 * Cégep Beauce - Appalaches - Centre d'études collégiales...",
+    "descFr": "Semaines de lecture dans les établissements d'enseignement 27 février-3 mars 2023 • Centre de services scolaire des Hauts-Cantons • Centre de services scolaire de la Région-de-Sherbrooke • Centre de services scolaire des Sommets • Centre de services scolaire des Bois-Francs • Centre de services scolaire des Chênes • Centre de services scolaire de la Riveraine • Centre de services scolaire du Val-des-Cerfs • Cégep de Sherbrooke • Cégep de Victoriaville • Cégep de l'Abitibi-Témiscamingue - Centre d'études collégiales des Premières Nations • Université Bishop's • Université Sherbrooke • École du meuble et de l’ébénisterie 6-10 mars 2023 • Cégep Beauce - Appalaches - Centre d'études collégiales...",
     "descEn": "",
     "tags": [
       "semaine",
       "lecture",
       "relache",
       "estrie",
-      "centre-du-quebec",
       "autochtone",
-      "aines",
-      "education"
+      "education",
+      "mauricie et centre-du-quebec",
+      "quebec"
     ]
   },
   {
-    "id": "QC-9887",
+    "id": "QC-7928",
     "nameFr": "Semaine de lecture (de relâche) Mauricie, Abitibi-Témiscamingue et Nord-du-Québec, Informations générales",
     "nameEn": "Semaine de lecture (de relâche) Mauricie, Abitibi-Témiscamingue et Nord-du-Québec, Informations générales",
     "categoryIds": [
-      "SENIORS",
       "STUDENT"
     ],
     "region": "04 - MAURICIE ET CENTRE-DU-QUÉBEC",
     "phone": null,
     "website": null,
     "address": "Abitibi-Témiscamingue - Région 08 ; Mauricie - Région 04 ; Nord-du-Québec - Région 10",
-    "descFr": "Semaines de lecture dans les établissements d'enseignement 9 octobre-13 octobre 2023 * Cégep de l'Abitibi-Témiscamingue * Cégep de Saint-Félicien - Centre d'études collégiales à Chibougamau * Cégep de Shawinigan 23 octobre-27 octobre 2023 * Université du Québec à Trois-Rivières (UQTR) 30 octobre-5 novembre 2023 * Université du Québec en Abitibi-Témiscamingue 13 novembre-17 novembre 2023 * Centre de services scolaire Harricana 26 février-1 mars 2024 * Centre de services scolaire de l’Or-et-des-Bois 4 mars-8 mars 2024 * Centre de services scolaire de la Baie-James * Centre de services scolaire du Lac-Abitibi * Centre de services scolaire du Lac-Témiscamingue * Centre de services scolaire de...",
+    "descFr": "Semaines de lecture dans les établissements d'enseignement 9 octobre-13 octobre 2023 • Cégep de l'Abitibi-Témiscamingue • Cégep de Saint-Félicien - Centre d'études collégiales à Chibougamau • Cégep de Shawinigan 23 octobre-27 octobre 2023 • Université du Québec à Trois-Rivières (UQTR) 30 octobre-5 novembre 2023 • Université du Québec en Abitibi-Témiscamingue 13 novembre-17 novembre 2023 • Centre de services scolaire Harricana 26 février-1 mars 2024 • Centre de services scolaire de l’Or-et-des-Bois 4 mars-8 mars 2024 • Centre de services scolaire de la Baie-James • Centre de services scolaire du Lac-Abitibi • Centre de services scolaire du Lac-Témiscamingue • Centre de services scolaire de...",
     "descEn": "",
     "tags": [
       "semaine",
       "lecture",
       "relache",
       "mauricie",
-      "abitibi-temiscamingue",
-      "aines",
       "education",
+      "mauricie et centre-du-quebec",
+      "quebec"
+    ]
+  },
+  {
+    "id": "QC-8209",
+    "nameFr": "Services de première ligne en dépendance - Mauricie-et-du-Centre-du-Québec",
+    "nameEn": "Services de première ligne en dépendance - Mauricie-et-du-Centre-du-Québec",
+    "categoryIds": [
+      "HEALTH",
+      "ADDICTION"
+    ],
+    "region": "04 - MAURICIE ET CENTRE-DU-QUÉBEC",
+    "phone": "1-866-568-3877",
+    "website": "https://www.ciusssmcq.ca/soins-et-services/soins-et-services-offerts/situation-critique-et-urgence/drogue-alcool-et-jeu-pathologique/",
+    "address": "Mauricie, QC",
+    "descFr": "Services de première ligne en dépendance. Détection et intervention précoce. Information et éducation sur la dépendance. Prévention de la dépendance. Programme Mes choix Alcool, Cannabis, Toutes substances, Jeu. Groupe de thérapie en milieu de détention. Formation des partenaires pour les outils DÉBA. (Clientèle : personnes se questionnant sur les habitudes de consommation d'alcool, de drogues, de jeux de hasard et d'argent ou d'utilisation d'Internet)",
+    "descEn": "",
+    "tags": [
+      "premiere",
+      "dependance",
+      "mauricie-et-du-centre-du-quebec",
+      "sante",
+      "mauricie",
+      "mauricie et centre-du-quebec",
+      "quebec"
+    ]
+  },
+  {
+    "id": "QC-8225",
+    "nameFr": "Services de réadaptation en dépendance Bécancour",
+    "nameEn": "Services de réadaptation en dépendance Bécancour",
+    "categoryIds": [
+      "HEALTH",
+      "ADDICTION",
+      "HOUSING",
+      "YOUTH"
+    ],
+    "region": "04 - MAURICIE ET CENTRE-DU-QUÉBEC",
+    "phone": "819-298-2144",
+    "website": "https://ciusssmcq.ca/carte/fiche/171/centre-multiservices-de-sante-et-de-services-sociaux-de-becancour/",
+    "address": "3689, boulevard Bécancour, bureau 2, Bécancour, QC G9H 3W7",
+    "descFr": "Services de deuxième ligne en dépendance. Réadaptation interne et externe. Réadaptation externe. Réadaptation interne pour adultes au point de service Loranger (Pointe-du-Lac). Réadaptation interne pour jeunes en collaboration au Grand Chemin. Désintoxication et soutien au sevrage en externe et en hébergement. Rencontres individuelles et de groupe. Services aux membres de... (Clientèle : personnes de 12 ans et plus ayant une dépendance à l'alcool, aux drogues ou aux jeux de hasard, problème d'utilisation d'internet, leurs proches (6 ans et plus))",
+    "descEn": "",
+    "tags": [
+      "readaptation",
+      "dependance",
+      "becancour",
+      "sante",
+      "logement",
+      "jeunesse",
+      "mauricie et centre-du-quebec",
+      "quebec"
+    ]
+  },
+  {
+    "id": "QC-8226",
+    "nameFr": "Services de réadaptation en dépendance Christ-Roi",
+    "nameEn": "Services de réadaptation en dépendance Christ-Roi",
+    "categoryIds": [
+      "HEALTH",
+      "ADDICTION",
+      "HOUSING",
+      "YOUTH"
+    ],
+    "region": "04 - MAURICIE ET CENTRE-DU-QUÉBEC",
+    "phone": "819-293-2071",
+    "website": "https://ciusssmcq.ca/carte/fiche/176/centre-multiservices-de-sante-et-de-services-sociaux-christ-roi/",
+    "address": "675, rue Saint-Jean-Baptiste, Nicolet, QC J3T 1S4",
+    "descFr": "Services de deuxième ligne en dépendance. Réadaptation interne et externe. Réadaptation externe. Réadaptation interne pour adultes au point de service Loranger (Pointe-du-Lac). Réadaptation interne pour jeunes en collaboration au Grand Chemin. Désintoxication et soutien au sevrage en externe et en hébergement. Rencontres individuelles et de groupe. Services aux membres de... (Clientèle : personnes de 12 ans et plus ayant une dépendance à l'alcool, aux drogues ou aux jeux de hasard, problème d'utilisation d'internet, leurs proches (6 ans et plus))",
+    "descEn": "",
+    "tags": [
+      "readaptation",
+      "dependance",
+      "christ-roi",
+      "sante",
+      "logement",
+      "jeunesse",
+      "nicolet",
       "mauricie et centre-du-quebec"
+    ]
+  },
+  {
+    "id": "QC-8227",
+    "nameFr": "Services de réadaptation en dépendance Comtois",
+    "nameEn": "Services de réadaptation en dépendance Comtois",
+    "categoryIds": [
+      "HEALTH",
+      "ADDICTION",
+      "HOUSING",
+      "YOUTH"
+    ],
+    "region": "04 - MAURICIE ET CENTRE-DU-QUÉBEC",
+    "phone": "819-228-2731",
+    "website": "https://ciusssmcq.ca/carte/fiche/123/centre-multiservices-de-sante-et-de-services-sociaux-comtois/",
+    "address": "41, boulevard Comtois, 1er étage, Louiseville, QC J5V 2H8",
+    "descFr": "Services de deuxième ligne en dépendance. Réadaptation interne et externe. Réadaptation externe. Réadaptation interne pour adultes au point de service Loranger (Pointe-du-Lac). Réadaptation interne pour jeunes en collaboration au Grand Chemin. Désintoxication et soutien au sevrage en externe et en hébergement. Rencontres individuelles et de groupe. Services aux membres de... (Clientèle : personnes de 12 ans et plus ayant une dépendance à l'alcool, aux drogues ou aux jeux de hasard, problème d'utilisation d'internet, leurs proches (6 ans et plus))",
+    "descEn": "",
+    "tags": [
+      "readaptation",
+      "dependance",
+      "comtois",
+      "sante",
+      "logement",
+      "jeunesse",
+      "louiseville",
+      "mauricie et centre-du-quebec"
+    ]
+  },
+  {
+    "id": "QC-8229",
+    "nameFr": "Services de réadaptation en dépendance Saint-Jean",
+    "nameEn": "Services de réadaptation en dépendance Saint-Jean",
+    "categoryIds": [
+      "HEALTH",
+      "ADDICTION",
+      "HOUSING",
+      "YOUTH"
+    ],
+    "region": "04 - MAURICIE ET CENTRE-DU-QUÉBEC",
+    "phone": "819-475-0242",
+    "website": "https://ciusssmcq.ca/carte/fiche/183/centre-multiservices-de-sante-et-de-services-sociaux-saint-jean/",
+    "address": "350, rue Saint-Jean, bureau 170, Drummondville, QC J2B 5L4",
+    "descFr": "Services de deuxième ligne en dépendance. Réadaptation interne et externe. Réadaptation externe. Réadaptation interne pour adultes au point de service Loranger (Pointe-du-Lac). Réadaptation interne pour jeunes en collaboration au Grand Chemin. Désintoxication et soutien au sevrage en externe et en hébergement. Rencontres individuelles et de groupe. Services aux membres de... (Clientèle : personnes de 12 ans et plus ayant une dépendance à l'alcool, aux drogues ou aux jeux de hasard, problème d'utilisation d'internet, leurs proches (6 ans et plus))",
+    "descEn": "",
+    "tags": [
+      "readaptation",
+      "dependance",
+      "saint-jean",
+      "sante",
+      "logement",
+      "jeunesse",
+      "drummondville",
+      "mauricie et centre-du-quebec"
+    ]
+  },
+  {
+    "id": "QC-8230",
+    "nameFr": "Services de réadaptation en dépendance Shawinigan",
+    "nameEn": "Services de réadaptation en dépendance Shawinigan",
+    "categoryIds": [
+      "HEALTH",
+      "ADDICTION",
+      "HOUSING",
+      "YOUTH"
+    ],
+    "region": "04 - MAURICIE ET CENTRE-DU-QUÉBEC",
+    "phone": "819-536-0004",
+    "website": "https://ciusssmcq.ca/carte/fiche/211/centre-multiservices-de-sante-et-de-services-sociaux-de-shawinigan/",
+    "address": "750, promenade du Saint-Maurice, Shawinigan, QC G9N 1L6",
+    "descFr": "Services de deuxième ligne en dépendance. Réadaptation interne et externe. Réadaptation externe. Réadaptation interne pour adultes au point de service Loranger (Pointe-du-Lac). Réadaptation interne pour jeunes en collaboration au Grand Chemin. Désintoxication et soutien au sevrage en externe et en hébergement. Rencontres individuelles et de groupe. Services aux membres de... (Clientèle : personnes de 12 ans et plus ayant une dépendance à l'alcool, aux drogues ou aux jeux de hasard, problème d'utilisation d'internet, leurs proches (6 ans et plus))",
+    "descEn": "",
+    "tags": [
+      "readaptation",
+      "dependance",
+      "shawinigan",
+      "sante",
+      "logement",
+      "jeunesse",
+      "mauricie et centre-du-quebec",
+      "quebec"
+    ]
+  },
+  {
+    "id": "QC-8745",
+    "nameFr": "TRA Montérégie et Centre-du-Québec",
+    "nameEn": "TRA Montérégie et Centre-du-Québec",
+    "categoryIds": [
+      "YOUTH",
+      "VIOLENCE"
+    ],
+    "region": "04 - MAURICIE ET CENTRE-DU-QUÉBEC",
+    "phone": null,
+    "website": "https://www.tramonteregie.com",
+    "address": "Partout au Québec",
+    "descFr": "Regroupement professionnel de thérapeutes accrédité·e·s en relation d'aide, par l'AMDC, membres de la CITRAC. Relation d'aide pour adultes. Accompagnement pour personnes endeuillées. Relation d'aide pour enfants et adolescent·e·s. Relation d'aide pour couples et dyades. Coaching parental. (Clientèle : adultes, personnes aînées, personnes professionnelles, couples, enfants, adolescent·e·s)",
+    "descEn": "",
+    "tags": [
+      "tra",
+      "monteregie",
+      "centre-du-quebec",
+      "jeunesse",
+      "violence",
+      "mauricie et centre-du-quebec",
+      "quebec"
+    ]
+  },
+  {
+    "id": "QC-8788",
+    "nameFr": "Traversier (Le) - Milieu de vie en santé mentale",
+    "nameEn": "Traversier (Le) - Milieu de vie en santé mentale",
+    "categoryIds": [
+      "HEALTH",
+      "VIOLENCE"
+    ],
+    "region": "04 - MAURICIE ET CENTRE-DU-QUÉBEC",
+    "phone": "819-371-2420",
+    "website": "https://letraversier.org",
+    "address": "2096, avenue des Filles-de-Jésus, Trois-Rivières, QC G8Z 2X2",
+    "descFr": "Milieu de vie visant à briser l'isolement des personnes vivant avec des problèmes de santé mentale. Groupes de discussion. Activités thérapeutiques. Activités de réadaptation sociale. Ateliers sur le rétablissement. Formations et conférences. Sorties de groupe. Centre informatique avec accès Internet. Activités artistiques,sportives, ludiques et culturelles. Prévention et de promotion de... (Clientèle : personnes vivant avec des problèmes de santé mentale, grand public)",
+    "descEn": "",
+    "tags": [
+      "traversier",
+      "milieu",
+      "vie",
+      "sante",
+      "violence",
+      "trois-rivieres",
+      "mauricie et centre-du-quebec",
+      "quebec"
     ]
   }
 ]

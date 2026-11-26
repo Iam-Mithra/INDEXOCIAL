@@ -25,7 +25,7 @@
     ]
   },
   {
-    "id": "QC-1509",
+    "id": "QC-1933",
     "nameFr": "Centre communautaire Radisson",
     "nameEn": "Centre communautaire Radisson",
     "categoryIds": [
@@ -36,7 +36,7 @@
     "region": "10 - NORD-DU-QUÉBEC",
     "phone": null,
     "website": "https://centreradisson.com",
-    "address": "Service en ligne / Partout au Québec",
+    "address": "Partout au Québec",
     "descFr": "Développement de la participation citoyenne des personnes vivant avec une ou plusieurs déficiences physiques. Activités éducatives, socioculturelles et de loisir. Soutien aux personnes dans la découverte et le développement de leurs capacités. Volet jeunesse 18 à 35 ans: réseautage des jeunes vivant avec une limitation physique. Cours variés. Ateliers d'informatique. (Clientèle : adultes et jeunes adultes vivant avec un handicap physique)",
     "descEn": "",
     "tags": [
@@ -50,34 +50,34 @@
     ]
   },
   {
-    "id": "QC-1654",
+    "id": "QC-2127",
     "nameFr": "Centre d'amitié Eenou de Chibougamau",
     "nameEn": "Centre d'amitié Eenou de Chibougamau",
     "categoryIds": [
       "INDIGENOUS",
       "STUDENT",
       "LEGAL",
-      "FOOD"
+      "YOUTH"
     ],
     "region": "10 - NORD-DU-QUÉBEC",
     "phone": null,
     "website": "https://cefc.ca",
-    "address": "Service en ligne / Partout au Québec",
+    "address": "Partout au Québec",
     "descFr": "Centre multiservice autochtone urbain. Écoute et aiguillage. Cercle des femmes Eenou de Chibougamau: rencontres, ateliers de développement et artisanat. Soirées actives en famille. Bibliothèque: centre de documentation, aide aux devoirs et espace de travail. Location de la salle de conférence (accueille jusqu'à 12 personnes). La cuisine: service de repas sur... (Clientèle : personnes autochtones)",
     "descEn": "",
     "tags": [
-      "d'amitie",
+      "amitie",
       "eenou",
       "chibougamau",
       "autochtone",
       "education",
       "droits",
-      "alimentaire",
+      "jeunesse",
       "nord-du-quebec"
     ]
   },
   {
-    "id": "QC-1809",
+    "id": "QC-2506",
     "nameFr": "Centre de réadaptation en déficience physique Raymond-Dewar Radisson",
     "nameEn": "Centre de réadaptation en déficience physique Raymond-Dewar Radisson",
     "categoryIds": [
@@ -86,7 +86,7 @@
     "region": "10 - NORD-DU-QUÉBEC",
     "phone": null,
     "website": "https://ciusss-centresudmtl.gouv.qc.ca/etablissement/centre-de-readaptation-en-deficience-physique-raymond-dewar-radisson",
-    "address": "Service en ligne / Partout au Québec",
+    "address": "Partout au Québec",
     "descFr": "Centre de réadaptation spécialisé en surdité, surdicécité et en communication. Accueil et évaluation. Services de première ligne pour clientèle sourde gestuelle. Clinique de basse vision. Distribution d'aides de suppléance à l'audition payées par la RAMQ (qui ne sont pas des prothèses auditives). Prêt d'aides visuelles. Programme Sourds: aide et soutien... (Clientèle : personnes sourdes, malentendantes ou sourdes-aveugles de tous âges, personnes atteintes de déficience visuelle)",
     "descEn": "",
     "tags": [
@@ -94,26 +94,48 @@
       "deficience",
       "physique",
       "raymond-dewar",
-      "radisson",
       "sante",
       "nord-du-quebec",
       "quebec"
     ]
   },
   {
-    "id": "QC-1894",
+    "id": "QC-2597",
+    "nameFr": "Centre de santé de Chibougamau",
+    "nameEn": "Centre de santé de Chibougamau",
+    "categoryIds": [
+      "HEALTH",
+      "ADDICTION",
+      "YOUTH"
+    ],
+    "region": "10 - NORD-DU-QUÉBEC",
+    "phone": "418-748-6435",
+    "website": "https://crsssbaiejames.gouv.qc.ca/1387/Centre_de_sante_de_Chibougamau.crsssbaiejames",
+    "address": "51, 3e rue, Chibougamau, QC G8P 1N1",
+    "descFr": "Centre de soins généraux et spécialisés. Services généraux et activités cliniques. Santé publique. Déficience physique, déficiance intellectuelle et TED. Dépendances: désintoxication, réadaptation externe et réinsertion sociale. Perte d'autonomie liée au vieillissement. Jeunes en difficulté. Santé mentale. Santé physique.",
+    "descEn": "",
+    "tags": [
+      "sante",
+      "chibougamau",
+      "dependance",
+      "jeunesse",
+      "nord-du-quebec",
+      "quebec"
+    ]
+  },
+  {
+    "id": "QC-2602",
     "nameFr": "Centre de santé de Radisson",
     "nameEn": "Centre de santé de Radisson",
     "categoryIds": [
       "HEALTH",
       "ADDICTION",
-      "YOUTH",
-      "EMPLOYMENT"
+      "YOUTH"
     ],
     "region": "10 - NORD-DU-QUÉBEC",
     "phone": null,
     "website": "https://crsssbaiejames.gouv.qc.ca/1391/Centre_de_sante_de_Radisson.crsssbaiejames",
-    "address": "Service en ligne / Partout au Québec",
+    "address": "Partout au Québec",
     "descFr": "Centre de soins généraux et spécialisés. Services généraux et activités cliniques. Santé publique. Déficience physique, déficiance intellectuelle et TED. Dépendances: réadaptation externe et réinsertion sociale. Perte d'autonomie liée au vieillissement. Jeunes en difficulté. Santé mentale. Santé physique.",
     "descEn": "",
     "tags": [
@@ -121,25 +143,48 @@
       "radisson",
       "dependance",
       "jeunesse",
-      "emploi",
       "nord-du-quebec",
       "quebec"
     ]
   },
   {
-    "id": "QC-1898",
+    "id": "QC-2604",
+    "nameFr": "Centre de santé Isle-Dieu",
+    "nameEn": "Centre de santé Isle-Dieu",
+    "categoryIds": [
+      "HEALTH",
+      "ADDICTION",
+      "YOUTH"
+    ],
+    "region": "10 - NORD-DU-QUÉBEC",
+    "phone": "819-739-2515",
+    "website": "https://crsssbaiejames.gouv.qc.ca/1389/Centre_de_sante_Isle-Dieu.crsssbaiejames",
+    "address": "130, boulevard Matagami, Matagami, QC J0Y 2A0",
+    "descFr": "Centre de soins généraux et spécialisés. Services généraux et activités cliniques. Santé publique. Déficience physique, déficience intellectuelle et TED. Dépendances: désintoxication, réadaptation externe et réinsertion sociale. Perte d'autonomie liée au vieillissement. Jeunes en difficulté. Santé mentale. Santé physique.",
+    "descEn": "",
+    "tags": [
+      "sante",
+      "isle-dieu",
+      "dependance",
+      "jeunesse",
+      "matagami",
+      "nord-du-quebec",
+      "quebec"
+    ]
+  },
+  {
+    "id": "QC-2606",
     "nameFr": "Centre de santé René-Ricard (Chapais)",
     "nameEn": "Centre de santé René-Ricard (Chapais)",
     "categoryIds": [
       "HEALTH",
       "ADDICTION",
-      "YOUTH",
-      "EMPLOYMENT"
+      "YOUTH"
     ],
     "region": "10 - NORD-DU-QUÉBEC",
     "phone": null,
     "website": "https://crsssbaiejames.gouv.qc.ca/1388/Centre_de_sante_Rene-Ricard.crsssbaiejames#",
-    "address": "Service en ligne / Partout au Québec",
+    "address": "Partout au Québec",
     "descFr": "Centre de soins généraux et spécialisés. Services généraux et activités cliniques. Santé publique. Déficience physique, déficience intellectuelle et TED. Dépendances: désintoxication, réadaptation externe et réinsertion sociale. Perte d'autonomie liée au vieillissement. Jeunes en difficulté. Santé mentale. Santé physique.",
     "descEn": "",
     "tags": [
@@ -148,7 +193,30 @@
       "chapais",
       "dependance",
       "jeunesse",
-      "emploi",
+      "nord-du-quebec",
+      "quebec"
+    ]
+  },
+  {
+    "id": "QC-7244",
+    "nameFr": "Québec. Ministère de la Santé et des Services sociaux, Info-santé",
+    "nameEn": "Québec. Ministère de la Santé et des Services sociaux, Info-santé",
+    "categoryIds": [
+      "YOUTH",
+      "HEALTH"
+    ],
+    "region": "10 - NORD-DU-QUÉBEC",
+    "phone": "811",
+    "website": "http://www.quebec.ca/sante/trouver-une-ressource/info-sante-811",
+    "address": "Québec (Province) - à l'exception des Terres-Cries-de-la-Baie-James et du Nunavik",
+    "descFr": "Service de consultation téléphonique pour rejoindre un professionnel de la santé en cas de problème non urgent • évaluation des besoins • réponse par une infirmière à certaines questions courantes sur la santé • orientation vers les ressources du système de santé et de services sociaux • référence aux services de télésurveillance • réponse aux demandes de nature psychosociale • guichet d'accès à la première ligne (GAP), réservée aux personnes sans médecin de famille En cas de problème urgent, il importe de se rendre à l'urgence lorsque possible, ou de composer le 9-1-1 pour obtenir de l'aide (policiers, ambulanciers, pompiers)",
+    "descEn": "",
+    "tags": [
+      "ministere",
+      "sante",
+      "sociaux",
+      "info-sante",
+      "jeunesse",
       "nord-du-quebec",
       "quebec"
     ]
