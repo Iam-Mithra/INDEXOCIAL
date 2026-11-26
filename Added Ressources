@@ -1,0 +1,52 @@
+[
+  {
+    "id": "QC-01",
+    "nameFr": "",
+    "nameEn": "",
+    "categoryIds": [
+      "FOOD",
+      "HOUSING",
+      "SENIORS"
+    ],
+    "region": "PROVINCIAL (TOUT LE QUÉBEC)",
+    "phone": "211",
+    "website": "https://www.211qc.ca",
+    "address": "Partout au Québec",
+    "descFr": "Service d’information et de référence vers les banques alimentaires, l’aide au logement, les popotes roulantes, le soutien financier et les organismes locaux.",
+    "descEn": "Information and referral service connecting citizens to food banks, housing aid, meals-on-wheels, financial support, and local community organizations.",
+    "tags": [
+      "211",
+      "banque alimentaire",
+      "logement",
+      "pauvrete",
+      "aide",
+      "repertoire",
+      "communautaire",
+      "quebec"
+    ]
+  },
+  {
+    "id": "QC-02",
+    "nameFr": "À CŒUR D’HOMME — AIDE AUX HOMMES (VIOLENCE CONJUGALE)",
+    "nameEn": "À CŒUR D’HOMME — MEN’S DOMESTIC VIOLENCE INTERVENTION",
+    "categoryIds": [
+      "VIOLENCE",
+      "HEALTH"
+    ],
+    "region": "PROVINCIAL (TOUT LE QUÉBEC)",
+    "phone": "1-877-660-7799",
+    "website": "https://www.acoeurdhomme.com",
+    "address": "Partout au Québec",
+    "descFr": "Ligne de référence confidentielle orientant les hommes ayant des comportements violents ou impulsifs en contexte conjugal ou familial vers un suivi spécialisé.",
+    "descEn": "Confidential referral line connecting men experiencing anger or violent behaviors in intimate or family relationships with specialized support.",
+    "tags": [
+      "hommes",
+      "violence",
+      "colere",
+      "conjugale",
+      "aide",
+      "anger management",
+      "quebec"
+    ]
+  }
+]
