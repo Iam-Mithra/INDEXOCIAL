@@ -300,10 +300,24 @@ class EcccWeatherAlert {
 }
 
 List<SocialResource> parseSocialResourcesJson(String jsonStr) {
-  final List<dynamic> decoded = jsonDecode(jsonStr);
-  return decoded
-      .map((item) => SocialResource.fromJson(item as Map<String, dynamic>))
-      .toList();
+  try {
+    if (jsonStr.trim().isEmpty) return [];
+    final dynamic decoded = jsonDecode(jsonStr);
+    if (decoded is! List) return [];
+    final List<SocialResource> list = [];
+    for (final item in decoded) {
+      if (item is Map) {
+        try {
+          final map = Map<String, dynamic>.from(item);
+          list.add(SocialResource.fromJson(map));
+        } catch (_) {}
+      }
+    }
+    return list;
+  } catch (e) {
+    debugPrint('PARSE ERROR: $e');
+    return [];
+  }
 }
 
 class SocialResource {
@@ -387,17 +401,30 @@ class SocialResource {
   };
 
   factory SocialResource.fromJson(Map<String, dynamic> json) {
-    final nameFr = json['nameFr'] ?? '';
-    final nameEn = json['nameEn'] ?? '';
-    final phone = json['phone'] ?? '';
-    final address = json['address'] ?? 'Québec, QC';
-    final region = json['region'] ?? 'PROVINCIAL (TOUT LE QUÉBEC)';
-    final descFr = json['descFr'] ?? '';
-    final descEn = json['descEn'] ?? '';
-    final tags = List<String>.from(json['tags'] ?? []);
-    final categoryIds = json['categoryIds'] != null
-        ? List<String>.from(json['categoryIds'])
-        : (json['categoryId'] != null ? [json['categoryId'].toString()] : ['ALL']);
+    final nameFr = (json['nameFr'] ?? '').toString();
+    final nameEn = (json['nameEn'] ?? '').toString();
+    final phone = (json['phone'] ?? '').toString();
+    final address = (json['address'] ?? 'Québec, QC').toString();
+    final region = (json['region'] ?? 'PROVINCIAL (TOUT LE QUÉBEC)').toString();
+    final descFr = (json['descFr'] ?? '').toString();
+    final descEn = (json['descEn'] ?? '').toString();
+    final website = (json['website'] ?? '').toString();
+    final id = (json['id'] ?? '').toString();
+
+    List<String> tags = [];
+    if (json['tags'] is List) {
+      tags = (json['tags'] as List).map((e) => e.toString()).toList();
+    }
+
+    List<String> categoryIds = [];
+    if (json['categoryIds'] is List) {
+      categoryIds = (json['categoryIds'] as List).map((e) => e.toString()).toList();
+    } else if (json['categoryId'] != null) {
+      categoryIds = [json['categoryId'].toString()];
+    }
+    if (categoryIds.isEmpty) {
+      categoryIds = ['ALL'];
+    }
 
     final searchIndex = [
       nameFr,
@@ -411,18 +438,18 @@ class SocialResource {
     ].join(' ').toLowerCase();
 
     return SocialResource(
-      id: json['id'] ?? '',
+      id: id,
       nameFr: nameFr,
       nameEn: nameEn,
       categoryIds: categoryIds,
       region: region,
       phone: phone,
-      website: json['website'] ?? '',
+      website: website,
       address: address,
       descFr: descFr,
       descEn: descEn,
       tags: tags,
-      isCustom: json['isCustom'] ?? false,
+      isCustom: json['isCustom'] == true,
       searchIndex: searchIndex,
     );
   }
@@ -1430,23 +1457,36 @@ class _CivicLedgerScreenState extends State<CivicLedgerScreen> {
 
     List<SocialResource> initialResources = [];
 
-    if (cachedJsonStr != null) {
+    if (cachedJsonStr != null && cachedJsonStr.trim().isNotEmpty) {
       try {
         initialResources = await Isolate.run(() => parseSocialResourcesJson(cachedJsonStr));
-      } catch (_) {}
+        debugPrint('Loaded ${initialResources.length} resources from SharedPreferences cache');
+      } catch (e) {
+        debugPrint('Cache load error: $e');
+      }
     }
 
     if (initialResources.isEmpty) {
-      try {
-        final assetJson = await rootBundle.loadString('resources.json');
-        initialResources = await Isolate.run(() => parseSocialResourcesJson(assetJson));
-      } catch (_) {}
+      for (final assetPath in ['assets/resources.json', 'resources.json']) {
+        try {
+          final assetJson = await rootBundle.loadString(assetPath);
+          if (assetJson.isNotEmpty) {
+            initialResources = await Isolate.run(() => parseSocialResourcesJson(assetJson));
+            debugPrint('Loaded ${initialResources.length} resources from asset ($assetPath)');
+            if (initialResources.isNotEmpty) break;
+          }
+        } catch (e) {
+          debugPrint('Asset load error ($assetPath): $e');
+        }
+      }
     }
 
-    if (customJsonStr != null) {
+    if (customJsonStr != null && customJsonStr.isNotEmpty) {
       try {
         final List<dynamic> decodedCustom = jsonDecode(customJsonStr);
-        final customResources = decodedCustom.map((item) => SocialResource.fromJson(item)).toList();
+        final customResources = decodedCustom
+            .map((item) => SocialResource.fromJson(Map<String, dynamic>.from(item)))
+            .toList();
         initialResources.insertAll(0, customResources);
       } catch (_) {}
     }
@@ -1455,23 +1495,27 @@ class _CivicLedgerScreenState extends State<CivicLedgerScreen> {
       setState(() {
         _resources = initialResources;
       });
+      debugPrint('Set state with ${_resources.length} resources');
     }
 
     try {
       final cacheBuster = DateTime.now().millisecondsSinceEpoch;
       final response = await http.get(
         Uri.parse('$_resourcesJsonUrl?t=$cacheBuster'),
-      ).timeout(const Duration(seconds: 4));
+      ).timeout(const Duration(seconds: 15));
       if (response.statusCode == 200) {
         final decodedBody = utf8.decode(response.bodyBytes);
         final netResources = await Isolate.run(() => parseSocialResourcesJson(decodedBody));
-        await prefs.setString('indexocial_cached_resources', decodedBody);
+        if (netResources.isNotEmpty) {
+          await prefs.setString('indexocial_cached_resources', decodedBody);
 
-        final customOnly = _resources.where((r) => r.isCustom).toList();
-        if (mounted) {
-          setState(() {
-            _resources = [...customOnly, ...netResources];
-          });
+          final customOnly = _resources.where((r) => r.isCustom).toList();
+          if (mounted) {
+            setState(() {
+              _resources = [...customOnly, ...netResources];
+            });
+            debugPrint('Updated state with remote ${netResources.length} resources');
+          }
         }
       }
     } catch (e) {
@@ -2009,10 +2053,16 @@ class _CivicLedgerScreenState extends State<CivicLedgerScreen> {
           return false;
         }
         if (_wizardRegions.isNotEmpty &&
-            !_wizardRegions.contains(kQuebecRegions.first) &&
-            !_wizardRegions.contains(item.region) &&
-            item.region != kQuebecRegions.first) {
-          return false;
+            !_wizardRegions.contains(kQuebecRegions.first)) {
+          final matchesRegion = _wizardRegions.any((userReg) {
+            if (userReg == kQuebecRegions.first || item.region == kQuebecRegions.first) return true;
+            if (item.region == userReg) return true;
+            final userCode = userReg.split(' ').first;
+            final itemCode = item.region.split(' ').first;
+            if (userCode.length == 2 && itemCode.length == 2 && userCode == itemCode) return true;
+            return false;
+          });
+          if (!matchesRegion) return false;
         }
       }
       if (q.isNotEmpty) {
