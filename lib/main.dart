@@ -1455,29 +1455,30 @@ class _CivicLedgerScreenState extends State<CivicLedgerScreen> {
       }
     });
 
-    List<SocialResource> initialResources = [];
+    List<SocialResource> loadedResources = [];
 
-    if (cachedJsonStr != null && cachedJsonStr.trim().isNotEmpty) {
+    for (final assetPath in ['assets/resources.json', 'resources.json']) {
       try {
-        initialResources = await Isolate.run(() => parseSocialResourcesJson(cachedJsonStr));
-        debugPrint('Loaded ${initialResources.length} resources from SharedPreferences cache');
+        final assetJson = await rootBundle.loadString(assetPath);
+        if (assetJson.isNotEmpty) {
+          loadedResources = await Isolate.run(() => parseSocialResourcesJson(assetJson));
+          debugPrint('Loaded ${loadedResources.length} resources from asset ($assetPath)');
+          if (loadedResources.isNotEmpty) break;
+        }
       } catch (e) {
-        debugPrint('Cache load error: $e');
+        debugPrint('Asset load error ($assetPath): $e');
       }
     }
 
-    if (initialResources.isEmpty) {
-      for (final assetPath in ['assets/resources.json', 'resources.json']) {
-        try {
-          final assetJson = await rootBundle.loadString(assetPath);
-          if (assetJson.isNotEmpty) {
-            initialResources = await Isolate.run(() => parseSocialResourcesJson(assetJson));
-            debugPrint('Loaded ${initialResources.length} resources from asset ($assetPath)');
-            if (initialResources.isNotEmpty) break;
-          }
-        } catch (e) {
-          debugPrint('Asset load error ($assetPath): $e');
+    if (cachedJsonStr != null && cachedJsonStr.trim().isNotEmpty) {
+      try {
+        final cached = await Isolate.run(() => parseSocialResourcesJson(cachedJsonStr));
+        debugPrint('Loaded ${cached.length} resources from SharedPreferences cache');
+        if (cached.length >= loadedResources.length && cached.isNotEmpty) {
+          loadedResources = cached;
         }
+      } catch (e) {
+        debugPrint('Cache load error: $e');
       }
     }
 
@@ -1487,13 +1488,13 @@ class _CivicLedgerScreenState extends State<CivicLedgerScreen> {
         final customResources = decodedCustom
             .map((item) => SocialResource.fromJson(Map<String, dynamic>.from(item)))
             .toList();
-        initialResources.insertAll(0, customResources);
+        loadedResources.insertAll(0, customResources);
       } catch (_) {}
     }
 
-    if (mounted && initialResources.isNotEmpty) {
+    if (mounted && loadedResources.isNotEmpty) {
       setState(() {
-        _resources = initialResources;
+        _resources = loadedResources;
       });
       debugPrint('Set state with ${_resources.length} resources');
     }
@@ -1504,7 +1505,7 @@ class _CivicLedgerScreenState extends State<CivicLedgerScreen> {
         Uri.parse('$_resourcesJsonUrl?t=$cacheBuster'),
       ).timeout(const Duration(seconds: 15));
       if (response.statusCode == 200) {
-        final decodedBody = utf8.decode(response.bodyBytes);
+        final decodedBody = const Utf8Decoder(allowMalformed: true).convert(response.bodyBytes);
         final netResources = await Isolate.run(() => parseSocialResourcesJson(decodedBody));
         if (netResources.isNotEmpty) {
           await prefs.setString('indexocial_cached_resources', decodedBody);
@@ -2049,7 +2050,7 @@ class _CivicLedgerScreenState extends State<CivicLedgerScreen> {
         if (_selectedCategory != 'ALL' && !item.categoryIds.contains(_selectedCategory)) {
           return false;
         }
-        if (_wizardCatIds.isNotEmpty && !_wizardCatIds.every((cId) => item.categoryIds.contains(cId))) {
+        if (_wizardCatIds.isNotEmpty && !_wizardCatIds.any((cId) => item.categoryIds.contains(cId))) {
           return false;
         }
         if (_wizardRegions.isNotEmpty &&
