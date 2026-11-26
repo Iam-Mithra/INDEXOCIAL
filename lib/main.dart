@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
+import 'dart:isolate';
 import 'dart:math';
 
 import 'package:audioplayers/audioplayers.dart';
@@ -298,6 +299,13 @@ class EcccWeatherAlert {
   }
 }
 
+List<SocialResource> parseSocialResourcesJson(String jsonStr) {
+  final List<dynamic> decoded = jsonDecode(jsonStr);
+  return decoded
+      .map((item) => SocialResource.fromJson(item as Map<String, dynamic>))
+      .toList();
+}
+
 class SocialResource {
   final String id;
   final String nameFr;
@@ -311,8 +319,9 @@ class SocialResource {
   final String descEn;
   final List<String> tags;
   final bool isCustom;
+  final String searchIndex;
 
-  const SocialResource({
+  SocialResource({
     required this.id,
     required this.nameFr,
     required this.nameEn,
@@ -325,7 +334,18 @@ class SocialResource {
     required this.descEn,
     required this.tags,
     this.isCustom = false,
-  });
+    String? searchIndex,
+  }) : searchIndex = searchIndex ??
+            [
+              nameFr,
+              nameEn,
+              phone,
+              address,
+              region,
+              descFr,
+              descEn,
+              ...tags,
+            ].join(' ').toLowerCase();
 
   String get categoryId => categoryIds.isNotEmpty ? categoryIds.first : 'ALL';
   String name(bool fr) => fr ? nameFr : nameEn;
@@ -366,22 +386,46 @@ class SocialResource {
     'isCustom': isCustom,
   };
 
-  factory SocialResource.fromJson(Map<String, dynamic> json) => SocialResource(
-    id: json['id'] ?? '',
-    nameFr: json['nameFr'] ?? '',
-    nameEn: json['nameEn'] ?? '',
-    categoryIds: json['categoryIds'] != null
+  factory SocialResource.fromJson(Map<String, dynamic> json) {
+    final nameFr = json['nameFr'] ?? '';
+    final nameEn = json['nameEn'] ?? '';
+    final phone = json['phone'] ?? '';
+    final address = json['address'] ?? 'Québec, QC';
+    final region = json['region'] ?? 'PROVINCIAL (TOUT LE QUÉBEC)';
+    final descFr = json['descFr'] ?? '';
+    final descEn = json['descEn'] ?? '';
+    final tags = List<String>.from(json['tags'] ?? []);
+    final categoryIds = json['categoryIds'] != null
         ? List<String>.from(json['categoryIds'])
-        : (json['categoryId'] != null ? [json['categoryId'].toString()] : ['ALL']),
-    region: json['region'] ?? 'PROVINCIAL (TOUT LE QUÉBEC)',
-    phone: json['phone'] ?? '',
-    website: json['website'] ?? '',
-    address: json['address'] ?? 'Québec, QC',
-    descFr: json['descFr'] ?? '',
-    descEn: json['descEn'] ?? '',
-    tags: List<String>.from(json['tags'] ?? []),
-    isCustom: json['isCustom'] ?? false,
-  );
+        : (json['categoryId'] != null ? [json['categoryId'].toString()] : ['ALL']);
+
+    final searchIndex = [
+      nameFr,
+      nameEn,
+      phone,
+      address,
+      region,
+      descFr,
+      descEn,
+      ...tags,
+    ].join(' ').toLowerCase();
+
+    return SocialResource(
+      id: json['id'] ?? '',
+      nameFr: nameFr,
+      nameEn: nameEn,
+      categoryIds: categoryIds,
+      region: region,
+      phone: phone,
+      website: json['website'] ?? '',
+      address: address,
+      descFr: descFr,
+      descEn: descEn,
+      tags: tags,
+      isCustom: json['isCustom'] ?? false,
+      searchIndex: searchIndex,
+    );
+  }
 }
 
 class PersonalNote {
@@ -641,6 +685,7 @@ class _CivicLedgerScreenState extends State<CivicLedgerScreen> {
   Color get _accentText => widget.isDark ? CivicPalette.signalYellow : const Color(0xFFB48A00);
 
   String _searchQuery = '';
+  Timer? _searchDebounce;
   String _selectedCategory = 'ALL';
 
   List<SocialResource> _resources = [];
@@ -1381,33 +1426,46 @@ class _CivicLedgerScreenState extends State<CivicLedgerScreen> {
           _notes = decodedNotes.map((item) => PersonalNote.fromJson(item)).toList();
         } catch (_) {}
       }
-
-      if (cachedJsonStr != null) {
-        try {
-          final List<dynamic> decodedCache = jsonDecode(cachedJsonStr);
-          _resources = decodedCache.map((item) => SocialResource.fromJson(item)).toList();
-        } catch (_) {}
-      }
-
-      if (customJsonStr != null) {
-        try {
-          final List<dynamic> decodedCustom = jsonDecode(customJsonStr);
-          final customResources = decodedCustom.map((item) => SocialResource.fromJson(item)).toList();
-          _resources.insertAll(0, customResources);
-        } catch (_) {}
-      }
     });
+
+    List<SocialResource> initialResources = [];
+
+    if (cachedJsonStr != null) {
+      try {
+        initialResources = await Isolate.run(() => parseSocialResourcesJson(cachedJsonStr));
+      } catch (_) {}
+    }
+
+    if (initialResources.isEmpty) {
+      try {
+        final assetJson = await rootBundle.loadString('resources.json');
+        initialResources = await Isolate.run(() => parseSocialResourcesJson(assetJson));
+      } catch (_) {}
+    }
+
+    if (customJsonStr != null) {
+      try {
+        final List<dynamic> decodedCustom = jsonDecode(customJsonStr);
+        final customResources = decodedCustom.map((item) => SocialResource.fromJson(item)).toList();
+        initialResources.insertAll(0, customResources);
+      } catch (_) {}
+    }
+
+    if (mounted && initialResources.isNotEmpty) {
+      setState(() {
+        _resources = initialResources;
+      });
+    }
 
     try {
       final cacheBuster = DateTime.now().millisecondsSinceEpoch;
       final response = await http.get(
         Uri.parse('$_resourcesJsonUrl?t=$cacheBuster'),
-      ).timeout(const Duration(seconds: 3));
+      ).timeout(const Duration(seconds: 4));
       if (response.statusCode == 200) {
         final decodedBody = utf8.decode(response.bodyBytes);
-        final List<dynamic> decodedNet = jsonDecode(decodedBody);
+        final netResources = await Isolate.run(() => parseSocialResourcesJson(decodedBody));
         await prefs.setString('indexocial_cached_resources', decodedBody);
-        final netResources = decodedNet.map((item) => SocialResource.fromJson(item)).toList();
 
         final customOnly = _resources.where((r) => r.isCustom).toList();
         if (mounted) {
@@ -1925,6 +1983,7 @@ class _CivicLedgerScreenState extends State<CivicLedgerScreen> {
   void dispose() {
     _shakeSubscription?.cancel();
     _recordTimer?.cancel();
+    _searchDebounce?.cancel();
     _audioRecorder.dispose();
     _audioPlayer.dispose();
     _searchController.dispose();
@@ -1957,17 +2016,7 @@ class _CivicLedgerScreenState extends State<CivicLedgerScreen> {
         }
       }
       if (q.isNotEmpty) {
-        final haystack = [
-          item.nameFr,
-          item.nameEn,
-          item.phone,
-          item.address,
-          item.descFr,
-          item.descEn,
-          item.region,
-          ...item.tags,
-        ].join(' ').toLowerCase();
-        if (!haystack.contains(q)) return false;
+        if (!item.searchIndex.contains(q)) return false;
       }
       return true;
     }).toList();
@@ -3372,30 +3421,46 @@ class _CivicLedgerScreenState extends State<CivicLedgerScreen> {
                 onRefresh: () async {
                   await _loadCachedAndRemoteData();
                 },
-                child: SingleChildScrollView(
+                child: CustomScrollView(
                   physics: const AlwaysScrollableScrollPhysics(),
-                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      _buildHeroWelcomeBanner(),
-                      const SizedBox(height: 16),
-                      _buildQuickEmergencyGrid(),
-                      if (_activeTab == NavTab.directory) ...[
-                        const SizedBox(height: 14),
-                        _buildWeatherAlertsSection(),
-                      ],
-                      const SizedBox(height: 18),
-                      if (_activeTab == NavTab.directory || _activeTab == NavTab.saved) ...[
-                        _buildSearchBar(),
-                        const SizedBox(height: 14),
-                        _buildHorizontalCategorySelector(),
-                        const SizedBox(height: 16),
-                      ],
-                      _buildActiveTabContent(isDesktop),
-                      const SizedBox(height: 80),
-                    ],
-                  ),
+                  slivers: [
+                    SliverPadding(
+                      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                      sliver: SliverToBoxAdapter(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                          children: [
+                            _buildHeroWelcomeBanner(),
+                            const SizedBox(height: 16),
+                            _buildQuickEmergencyGrid(),
+                            if (_activeTab == NavTab.directory) ...[
+                              const SizedBox(height: 14),
+                              _buildWeatherAlertsSection(),
+                            ],
+                            const SizedBox(height: 18),
+                            if (_activeTab == NavTab.directory || _activeTab == NavTab.saved) ...[
+                              _buildSearchBar(),
+                              const SizedBox(height: 14),
+                              _buildHorizontalCategorySelector(),
+                              const SizedBox(height: 16),
+                            ],
+                          ],
+                        ),
+                      ),
+                    ),
+                    if (_activeTab == NavTab.directory || _activeTab == NavTab.saved)
+                      ..._buildDirectorySlivers(isDesktop)
+                    else
+                      SliverPadding(
+                        padding: const EdgeInsets.symmetric(horizontal: 16),
+                        sliver: SliverToBoxAdapter(
+                          child: _buildActiveTabContent(isDesktop),
+                        ),
+                      ),
+                    const SliverToBoxAdapter(
+                      child: SizedBox(height: 80),
+                    ),
+                  ],
                 ),
               ),
             ),
@@ -3788,7 +3853,14 @@ class _CivicLedgerScreenState extends State<CivicLedgerScreen> {
           Expanded(
             child: TextField(
               controller: _searchController,
-              onChanged: (v) => setState(() => _searchQuery = v),
+              onChanged: (v) {
+                _searchDebounce?.cancel();
+                _searchDebounce = Timer(const Duration(milliseconds: 250), () {
+                  if (mounted) {
+                    setState(() => _searchQuery = v);
+                  }
+                });
+              },
               style: TextStyle(fontSize: 13, fontWeight: FontWeight.w600, color: _textPrimary, fontFamily: 'Roboto'),
               decoration: InputDecoration(
                 hintText: _isFr ? 'Rechercher refuge, 811, organisme...' : 'Search shelter, 811, service...',
@@ -3941,7 +4013,7 @@ class _CivicLedgerScreenState extends State<CivicLedgerScreen> {
         return _buildMoreView();
       case NavTab.directory:
       case NavTab.saved:
-        return _buildDirectoryListView(isDesktop);
+        return const SizedBox.shrink();
     }
   }
 
@@ -4050,98 +4122,105 @@ class _CivicLedgerScreenState extends State<CivicLedgerScreen> {
     );
   }
 
-  Widget _buildDirectoryListView(bool isDesktop) {
+  List<Widget> _buildDirectorySlivers(bool isDesktop) {
     final items = _filteredResources;
     final hasActiveFilter = _searchQuery.trim().isNotEmpty || (_activeTab == NavTab.directory && (_selectedCategory != 'ALL' || _wizardCatIds.isNotEmpty || _wizardRegions.isNotEmpty));
 
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        if (_activeTab == NavTab.directory) ...[
-          _buildHomeFilterSection(),
-          const SizedBox(height: 16),
-        ],
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(
-              _activeTab == NavTab.saved
-                  ? (_isFr ? 'CONTACTS SAUVEGARDÉS (${items.length})' : 'SAVED CONTACTS (${items.length})')
-                  : (_isFr ? 'RÉPERTOIRE (${items.length})' : 'DIRECTORY (${items.length})'),
-              style: TextStyle(fontSize: 14, fontWeight: FontWeight.w900, color: _textPrimary, letterSpacing: 0.5, fontFamily: 'sans-serif-condensed'),
+    return [
+      if (_activeTab == NavTab.directory)
+        SliverToBoxAdapter(
+          child: Padding(
+            padding: const EdgeInsets.only(bottom: 16),
+            child: _buildHomeFilterSection(),
+          ),
+        ),
+      SliverToBoxAdapter(
+        child: Padding(
+          padding: const EdgeInsets.only(bottom: 12),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                _activeTab == NavTab.saved
+                    ? (_isFr ? 'CONTACTS SAUVEGARDÉS (${items.length})' : 'SAVED CONTACTS (${items.length})')
+                    : (_isFr ? 'RÉPERTOIRE (${items.length})' : 'DIRECTORY (${items.length})'),
+                style: TextStyle(fontSize: 14, fontWeight: FontWeight.w900, color: _textPrimary, letterSpacing: 0.5, fontFamily: 'sans-serif-condensed'),
+              ),
+              Row(
+                children: [
+                  _buildDisplayToggle(DisplayMode.ledger, Icons.view_list_rounded),
+                  const SizedBox(width: 4),
+                  _buildDisplayToggle(DisplayMode.grid, Icons.grid_view_rounded),
+                ],
+              ),
+            ],
+          ),
+        ),
+      ),
+      if (items.isEmpty)
+        SliverToBoxAdapter(
+          child: Container(
+            width: double.infinity,
+            padding: const EdgeInsets.all(28),
+            decoration: BoxDecoration(
+              color: _cardBg,
+              borderRadius: BorderRadius.circular(20),
+              border: Border.all(color: _cardBorder, width: _cardBorderWidth),
             ),
-            Row(
+            child: Column(
               children: [
-                _buildDisplayToggle(DisplayMode.ledger, Icons.view_list_rounded),
-                const SizedBox(width: 4),
-                _buildDisplayToggle(DisplayMode.grid, Icons.grid_view_rounded),
+                Icon(
+                  _activeTab == NavTab.saved && !hasActiveFilter
+                      ? Icons.bookmark_border_rounded
+                      : Icons.search_off_rounded,
+                  size: 40,
+                  color: _textMuted,
+                ),
+                const SizedBox(height: 10),
+                Text(
+                  _activeTab == NavTab.saved && !hasActiveFilter
+                      ? (_isFr ? 'Vos favoris seront visibles ici.' : 'Your favorites will be visible here.')
+                      : (_isFr ? 'Aucune ressource trouvée.' : 'No resource found.'),
+                  textAlign: TextAlign.center,
+                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.w800, color: _textPrimary, fontFamily: 'Roboto'),
+                ),
+                if (hasActiveFilter) ...[
+                  const SizedBox(height: 12),
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: CivicPalette.signalYellow,
+                      foregroundColor: CivicPalette.darkBg,
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+                    ),
+                    onPressed: _resetFilters,
+                    child: Text(_isFr ? 'Réinitialiser les filtres' : 'Reset filters', style: const TextStyle(fontWeight: FontWeight.w900)),
+                  ),
+                ],
               ],
             ),
-          ],
+          ),
+        )
+      else if (_displayMode == DisplayMode.ledger)
+        SliverList.builder(
+          itemCount: items.length,
+          itemBuilder: (context, idx) => RepaintBoundary(
+            child: _buildResourceCard(items[idx]),
+          ),
+        )
+      else
+        SliverGrid.builder(
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: isDesktop ? 2 : 1,
+            mainAxisExtent: 220,
+            crossAxisSpacing: 10,
+            mainAxisSpacing: 10,
+          ),
+          itemCount: items.length,
+          itemBuilder: (context, idx) => RepaintBoundary(
+            child: _buildGridCard(items[idx]),
+          ),
         ),
-        const SizedBox(height: 12),
-        items.isEmpty
-            ? Container(
-                width: double.infinity,
-                padding: const EdgeInsets.all(28),
-                decoration: BoxDecoration(
-                  color: _cardBg,
-                  borderRadius: BorderRadius.circular(20),
-                  border: Border.all(color: _cardBorder, width: _cardBorderWidth),
-                ),
-                child: Column(
-                  children: [
-                    Icon(
-                      _activeTab == NavTab.saved && !hasActiveFilter
-                          ? Icons.bookmark_border_rounded
-                          : Icons.search_off_rounded,
-                      size: 40,
-                      color: _textMuted,
-                    ),
-                    const SizedBox(height: 10),
-                    Text(
-                      _activeTab == NavTab.saved && !hasActiveFilter
-                          ? (_isFr ? 'Vos favoris seront visibles ici.' : 'Your favorites will be visible here.')
-                          : (_isFr ? 'Aucune ressource trouvée.' : 'No resource found.'),
-                      textAlign: TextAlign.center,
-                      style: TextStyle(fontSize: 14, fontWeight: FontWeight.w800, color: _textPrimary, fontFamily: 'Roboto'),
-                    ),
-                    if (hasActiveFilter) ...[
-                      const SizedBox(height: 12),
-                      ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: CivicPalette.signalYellow,
-                          foregroundColor: CivicPalette.darkBg,
-                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-                        ),
-                        onPressed: _resetFilters,
-                        child: Text(_isFr ? 'Réinitialiser les filtres' : 'Reset filters', style: const TextStyle(fontWeight: FontWeight.w900)),
-                      ),
-                    ],
-                  ],
-                ),
-              )
-            : (_displayMode == DisplayMode.ledger
-                ? ListView.builder(
-                    shrinkWrap: true,
-                    physics: const NeverScrollableScrollPhysics(),
-                    itemCount: items.length,
-                    itemBuilder: (context, idx) => RepaintBoundary(child: _buildResourceCard(items[idx])),
-                  )
-                : GridView.builder(
-                    shrinkWrap: true,
-                    physics: const NeverScrollableScrollPhysics(),
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: isDesktop ? 2 : 1,
-                      mainAxisExtent: 220,
-                      crossAxisSpacing: 10,
-                      mainAxisSpacing: 10,
-                    ),
-                    itemCount: items.length,
-                    itemBuilder: (context, idx) => RepaintBoundary(child: _buildGridCard(items[idx])),
-                  )),
-      ],
-    );
+    ];
   }
 
   Widget _buildDisplayToggle(DisplayMode mode, IconData icon) {
