@@ -651,7 +651,7 @@ class CivicLedgerScreen extends StatefulWidget {
 class _CivicLedgerScreenState extends State<CivicLedgerScreen> {
   static const String _hideRedirectUrl = 'https://www.google.ca';
   static const String _resourcesJsonUrl =
-      'https://raw.githubusercontent.com/Iam-Mithra/INDEXOCIAL/refs/heads/main/resources.json';
+      'https://raw.githubusercontent.com/Iam-Mithra/INDEXOCIAL/refs/heads/main/assets/resources.json';
   static const String _privacyPolicyRawUrl =
       'https://raw.githubusercontent.com/Iam-Mithra/INDEXOCIAL/refs/heads/main/Privacy_policy.md';
   static const String _privacyPolicyWebUrl =
