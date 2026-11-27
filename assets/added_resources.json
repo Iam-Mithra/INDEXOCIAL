@@ -1,21 +1,27 @@
 [
   {
-    "id": "ADD-01",
-    "nameFr": "EXEMPLE DE NOUVELLE RESSOURCE",
-    "nameEn": "SAMPLE NEW RESOURCE",
+    "id": "ADD-EBYON",
+    "nameFr": "EBYON — AIDE, LOGEMENT ET SOUTIEN COMMUNAUTAIRE",
+    "nameEn": "EBYON — SUPPORT, HOUSING & COMMUNITY SERVICES",
     "categoryIds": [
-      "HEALTH"
+      "HOUSING",
+      "HEALTH",
+      "EMPLOYMENT"
     ],
     "region": "PROVINCIAL (TOUT LE QUÉBEC)",
-    "phone": "811",
-    "website": "https://www.quebec.ca",
-    "address": "Québec, QC",
-    "descFr": "Ajoutez vos nouvelles ressources sociales dans ce fichier.",
-    "descEn": "Add your new social resources into this file.",
+    "phone": "",
+    "website": "https://ebyon.ca",
+    "address": "Partout au Québec",
+    "descFr": "Organisme offrant de l'accompagnement, des ressources en logement, de la réinsertion sociale et du soutien communautaire pour les personnes en situation de vulnérabilité.",
+    "descEn": "Organization offering support, housing resources, social reintegration, and community aid for vulnerable individuals.",
     "tags": [
-      "nouvelle",
-      "ressource",
-      "exemple"
+      "ebyon",
+      "logement",
+      "housing",
+      "aide",
+      "soutien",
+      "reinsertion",
+      "quebec"
     ]
   }
 ]
