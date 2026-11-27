@@ -1603,100 +1603,105 @@ class _CivicLedgerScreenState extends State<CivicLedgerScreen> {
     showModalBottomSheet(
       context: context,
       backgroundColor: _cardBg,
+      isScrollControlled: true,
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
       ),
       builder: (context) {
-        return Padding(
-          padding: const EdgeInsets.all(20),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
+        return SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.only(left: 20, right: 20, top: 20, bottom: 28),
+            child: SingleChildScrollView(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Icon(Icons.ios_share_rounded, color: CivicPalette.signalYellow, size: 22),
-                  const SizedBox(width: 8),
+                  Row(
+                    children: [
+                      Icon(Icons.ios_share_rounded, color: CivicPalette.signalYellow, size: 22),
+                      const SizedBox(width: 8),
+                      Text(
+                        _isFr ? 'Exporter / Partager' : 'Export / Share',
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w900,
+                          color: _textPrimary,
+                          fontFamily: 'sans-serif-condensed',
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 6),
                   Text(
-                    _isFr ? 'Exporter / Partager' : 'Export / Share',
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w900,
-                      color: _textPrimary,
-                      fontFamily: 'sans-serif-condensed',
+                    '${groupTitle.toUpperCase()} (${itemsToExport.length} contacts)',
+                    style: TextStyle(fontSize: 12.5, fontWeight: FontWeight.w800, color: _accentText),
+                  ),
+                  const SizedBox(height: 16),
+                  ListTile(
+                    leading: Container(
+                      padding: const EdgeInsets.all(8),
+                      decoration: BoxDecoration(
+                        color: CivicPalette.vermilion.withValues(alpha: 0.15),
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      child: const Icon(Icons.picture_as_pdf_rounded, color: CivicPalette.vermilion, size: 22),
                     ),
+                    title: Text(
+                      _isFr ? 'DOCUMENT PDF (Imprimable / Fiche)' : 'PDF DOCUMENT (Printable / Sheet)',
+                      style: TextStyle(fontSize: 13.5, fontWeight: FontWeight.w900, color: _textPrimary, fontFamily: 'sans-serif-condensed'),
+                    ),
+                    subtitle: Text(
+                      _isFr ? 'Générer un PDF propre avec tous les détails' : 'Generate clean PDF with full contact details',
+                      style: TextStyle(fontSize: 11.5, color: _textMuted),
+                    ),
+                    onTap: () {
+                      Navigator.pop(context);
+                      _exportFavoriteGroupPdf(title: groupTitle, resources: itemsToExport);
+                    },
+                  ),
+                  const SizedBox(height: 8),
+                  ListTile(
+                    leading: Container(
+                      padding: const EdgeInsets.all(8),
+                      decoration: BoxDecoration(
+                        color: CivicPalette.signalYellow.withValues(alpha: 0.2),
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      child: Icon(Icons.description_rounded, color: _accentText, size: 22),
+                    ),
+                    title: Text(
+                      _isFr ? 'TEXTE BRUT (SMS / WhatsApp / Courriel)' : 'PLAIN TEXT (SMS / WhatsApp / Email)',
+                      style: TextStyle(fontSize: 13.5, fontWeight: FontWeight.w900, color: _textPrimary, fontFamily: 'sans-serif-condensed'),
+                    ),
+                    subtitle: Text(
+                      _isFr ? 'Partager la liste sous forme de message texte' : 'Share contact list as formatted text message',
+                      style: TextStyle(fontSize: 11.5, color: _textMuted),
+                    ),
+                    onTap: () {
+                      Navigator.pop(context);
+                      final buffer = StringBuffer();
+                      buffer.writeln('📋 INDEXOCIAL QC - ${groupTitle.toUpperCase()}');
+                      buffer.writeln('Nombre de contacts : ${itemsToExport.length}');
+                      buffer.writeln('----------------------------------------');
+
+                      for (int i = 0; i < itemsToExport.length; i++) {
+                        final r = itemsToExport[i];
+                        buffer.writeln('${i + 1}. ${r.name(_isFr)}');
+                        if (r.phone.isNotEmpty) buffer.writeln('   📞 Tél : ${r.phone}');
+                        if (r.website.isNotEmpty) buffer.writeln('   🌐 Web : ${r.website}');
+                        if (r.region.isNotEmpty) buffer.writeln('   📍 Région : ${r.region}');
+                        buffer.writeln('');
+                      }
+
+                      buffer.writeln('----------------------------------------');
+                      buffer.writeln('Partagé via INDEXOCIAL QC - Répertoire civique du Québec');
+
+                      Share.share(buffer.toString(), subject: 'INDEXOCIAL QC - $groupTitle');
+                    },
                   ),
                 ],
               ),
-              const SizedBox(height: 6),
-              Text(
-                '${groupTitle.toUpperCase()} (${itemsToExport.length} contacts)',
-                style: TextStyle(fontSize: 12.5, fontWeight: FontWeight.w800, color: _accentText),
-              ),
-              const SizedBox(height: 16),
-              ListTile(
-                leading: Container(
-                  padding: const EdgeInsets.all(8),
-                  decoration: BoxDecoration(
-                    color: CivicPalette.vermilion.withValues(alpha: 0.15),
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  child: const Icon(Icons.picture_as_pdf_rounded, color: CivicPalette.vermilion, size: 22),
-                ),
-                title: Text(
-                  _isFr ? 'DOCUMENT PDF (Imprimable / Fiche)' : 'PDF DOCUMENT (Printable / Sheet)',
-                  style: TextStyle(fontSize: 13.5, fontWeight: FontWeight.w900, color: _textPrimary, fontFamily: 'sans-serif-condensed'),
-                ),
-                subtitle: Text(
-                  _isFr ? 'Générer un PDF propre avec tous les détails' : 'Generate clean PDF with full contact details',
-                  style: TextStyle(fontSize: 11.5, color: _textMuted),
-                ),
-                onTap: () {
-                  Navigator.pop(context);
-                  _exportFavoriteGroupPdf(title: groupTitle, resources: itemsToExport);
-                },
-              ),
-              const SizedBox(height: 8),
-              ListTile(
-                leading: Container(
-                  padding: const EdgeInsets.all(8),
-                  decoration: BoxDecoration(
-                    color: CivicPalette.signalYellow.withValues(alpha: 0.2),
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  child: Icon(Icons.description_rounded, color: _accentText, size: 22),
-                ),
-                title: Text(
-                  _isFr ? 'TEXTE BRUT (SMS / WhatsApp / Courriel)' : 'PLAIN TEXT (SMS / WhatsApp / Email)',
-                  style: TextStyle(fontSize: 13.5, fontWeight: FontWeight.w900, color: _textPrimary, fontFamily: 'sans-serif-condensed'),
-                ),
-                subtitle: Text(
-                  _isFr ? 'Partager la liste sous forme de message texte' : 'Share contact list as formatted text message',
-                  style: TextStyle(fontSize: 11.5, color: _textMuted),
-                ),
-                onTap: () {
-                  Navigator.pop(context);
-                  final buffer = StringBuffer();
-                  buffer.writeln('📋 INDEXOCIAL QC - ${groupTitle.toUpperCase()}');
-                  buffer.writeln('Nombre de contacts : ${itemsToExport.length}');
-                  buffer.writeln('----------------------------------------');
-
-                  for (int i = 0; i < itemsToExport.length; i++) {
-                    final r = itemsToExport[i];
-                    buffer.writeln('${i + 1}. ${r.name(_isFr)}');
-                    if (r.phone.isNotEmpty) buffer.writeln('   📞 Tél : ${r.phone}');
-                    if (r.website.isNotEmpty) buffer.writeln('   🌐 Web : ${r.website}');
-                    if (r.region.isNotEmpty) buffer.writeln('   📍 Région : ${r.region}');
-                    buffer.writeln('');
-                  }
-
-                  buffer.writeln('----------------------------------------');
-                  buffer.writeln('Partagé via INDEXOCIAL QC - Répertoire civique du Québec');
-
-                  Share.share(buffer.toString(), subject: 'INDEXOCIAL QC - $groupTitle');
-                },
-              ),
-            ],
+            ),
           ),
         );
       },
@@ -2722,6 +2727,45 @@ class _CivicLedgerScreenState extends State<CivicLedgerScreen> {
     super.dispose();
   }
 
+int _getCharCategoryPriority(int codeUnit, String char) {
+  if ((codeUnit >= 65 && codeUnit <= 90) ||
+      (codeUnit >= 97 && codeUnit <= 122) ||
+      (codeUnit >= 192 && codeUnit <= 255) ||
+      char == 'œ' || char == 'Œ' || char == 'æ' || char == 'Æ') {
+    return 0; // Letters FIRST
+  }
+  if (codeUnit >= 48 && codeUnit <= 57) {
+    return 1; // Numbers SECOND
+  }
+  return 2; // Symbols THIRD
+}
+
+int _compareCustomAlphabetical(String strA, String strB) {
+  final normA = strA.trim().toLowerCase();
+  final normB = strB.trim().toLowerCase();
+
+  if (normA.isEmpty && normB.isEmpty) return 0;
+  if (normA.isEmpty) return 1;
+  if (normB.isEmpty) return -1;
+
+  final minLen = min(normA.length, normB.length);
+  for (int i = 0; i < minLen; i++) {
+    final charA = normA[i];
+    final charB = normB[i];
+    if (charA != charB) {
+      final prioA = _getCharCategoryPriority(normA.codeUnitAt(i), charA);
+      final prioB = _getCharCategoryPriority(normB.codeUnitAt(i), charB);
+
+      if (prioA != prioB) {
+        return prioA.compareTo(prioB);
+      }
+      return charA.compareTo(charB);
+    }
+  }
+
+  return normA.length.compareTo(normB.length);
+}
+
   List<SocialResource> get _filteredResources {
     final q = _searchQuery.toLowerCase().trim();
     final list = _resources.where((item) {
@@ -2765,7 +2809,7 @@ class _CivicLedgerScreenState extends State<CivicLedgerScreen> {
       final bFav = _savedIds.contains(b.id) ? 0 : 1;
       if (aFav != bFav) return aFav.compareTo(bFav);
 
-      return a.name(_isFr).toLowerCase().compareTo(b.name(_isFr).toLowerCase());
+      return _compareCustomAlphabetical(a.name(_isFr), b.name(_isFr));
     });
 
     return list;

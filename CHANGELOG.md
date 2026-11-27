@@ -4,43 +4,31 @@ All notable changes to the Indexocial QC Flutter/Android application are documen
 
 ---
 
-## [2.2.0+6] - 2026-11-26
-
-### 📁 Favorite Folders & Export System
-* **Custom Favorite Groups / Folders**: Create and organize saved contacts into custom named folders (e.g. *Urgence Logement*, *Banque Alimentaire*, *Proches Aînés*).
-* **Assign Resources to Folders**: Easily classify any resource into one or multiple custom folders via the new folder action button.
-* **Group Export & Sharing (`Share.share`)**: Export an entire folder or all saved contacts as a formatted text summary directly via SMS, Email, or Messaging apps.
-* **ECCC Weather Alert Refresh**: Added a permanent refresh button on severe weather alert headers so users can refresh live weather alerts anytime.
-
----
-
 ## [2.1.0+5] - 2026-11-26
 
-### 📍 New Features & UI Enhancements
-* **GPS Sector Filter Button ("MON SECTEUR GPS")**: Added a one-tap GPS button next to search filters that converts device coordinates directly into Québec's administrative regions (e.g. `04 - MAURICIE ET CENTRE-DU-QUÉBEC`, `06 - MONTRÉAL`) and instantly filters local resources.
-* **Strict Alphabetical Resource Sorting**: Unified directory sorting so all community resources (including new and secondary additions) display in alphabetical order (`A-Z`) for a clean, consistent list.
-* **Compact Expandable Weather Alert Cards**: Redesigned severe weather alert banners into compact cards with a toggleable arrow button to expand full event details without cluttering the screen.
-* **Comprehensive Bilingue Documentation (`DOCS_INDEXOCIAL_EXPLANATION_FR_EN.txt`)**: Created a complete architecture, code, and project directory reference document in French and English.
+### 🚀 Major Update Highlights (2.0.1 → 2.1.0)
 
----
+#### 📍 GPS Sector Detection & Location Filtering
+* **"MON SECTEUR (GPS)" Button**: Instant 1-tap GPS button next to search filters that resolves device coordinates into Québec's 17 administrative regions (`04 - MAURICIE ET CENTRE-DU-QUÉBEC`, `06 - MONTRÉAL`, etc.) and filters local resources automatically.
 
-## [2.0.1+4] - 2026-11-26
+#### 🔤 Alphabetical Ordering Rules (Letters → Numbers → Symbols)
+* **Custom Category-Priority Alphabetical Sorting**: Directory and favorites list sorting now follows strict category priority: Letters (`A-Z`, including accented French characters) first, Digits (`0-9`) second, and Symbols/Special Characters third.
 
-### 🚀 What's New & Performance Overhaul
-* **9,003 Social & Emergency Resources Dataset**: Upgraded main database to 9,003 verified, cleaned community, housing, food, and health resources across Québec.
-* **17 Modular Regional Databases**: Split resources into 17 per-region JSON files (`assets/regions/region_*.json`) for fast, region-specific loading and reduced memory usage.
-* **Off-Thread Isolate Parsing (`Isolate.run`)**: Offloaded JSON decoding and object mapping to background Dart Isolates to maintain a lag-free 60 FPS UI.
-* **Pre-Computed Search Indexing**: Added pre-calculated `searchIndex` strings to every resource model, accelerating substring queries by 100x and eliminating on-the-fly string allocations.
-* **Debounced Search Bar**: Added 250ms input debouncing to prevent search execution on every keystroke.
-* **Lazy Sliver Rendering (`CustomScrollView` + `SliverList.builder`)**: Migrated directory scrolling to lazy Sliver builders, preventing the app from building thousands of off-screen card widgets into memory simultaneously.
-* **Secondary Custom Resource Asset (`assets/added_resources.json`)**: Introduced a dedicated secondary asset file for introducing new resources (such as [EBYON](https://ebyon.ca)) that stay prepended to the top of the directory.
+#### 📁 Favorite Folders & PDF / Text Export System
+* **Custom Favorite Groups / Folders**: Create, name, and manage custom saved contact folders (e.g., *Urgence Logement*, *Banque Alimentaire*, *Proches Aînés*).
+* **Assign Resources to Folders**: Easily classify any saved resource into one or multiple custom folders via the folder action button on cards.
+* **Formatted PDF & Text Export**: Export an entire folder or all saved contacts as a clean, printable PDF document or text message via `Printing.sharePdf` and `Share.share`.
+* **Export Sheet Layout Fix**: Wrapped export menu in `SafeArea` and scrollable containers to ensure menu items are never obstructed by system navigation bars.
 
-### 🐛 Bug Fixes & Resiliency
-* **Type Safety & Defensive Decoding**: Fixed strict type casting exceptions during JSON parsing with resilient map conversion (`Map<String, dynamic>.from(item)`).
-* **Flexible Region Code Matching**: Implemented code-prefix region matching (e.g. `'04'`, `'06'`, `'16'`) so regional filters reliably match dataset name variations.
-* **Multi-Category Filter Logic**: Updated category filter matching from `.every(...)` to `.any(...)` to ensure entries belonging to any selected filter category are displayed properly.
-* **Asset Path Fallbacks**: Configured fallback asset loaders for `assets/resources.json` and `assets/regions/`.
-* **Network & Decoding Fail-Safe**: Extended remote HTTP timeout to 15s with `Utf8Decoder(allowMalformed: true)` to protect against network drops or malformed characters.
+#### ⚡ Severe Weather Alerts & Compact Card UI
+* **2-Line Compact Weather Alert Cards**: Redesigned severe weather alert banners into compact 2-line cards (Header + Full Title) with expandable event details.
+* **Permanent Weather Refresh Button**: Added a dedicated refresh button to the ECCC weather alert section to update live alerts anytime.
+
+#### 💾 Database & Performance Overhaul
+* **9,004 Community Resources Across 17 Regional Databases**: Split the dataset into 17 per-region JSON files (`assets/regions/region_*.json`) for fast, region-specific loading and reduced memory footprint.
+* **Off-Thread Isolate Parsing**: Offloaded JSON decoding to background Dart Isolates to maintain a lag-free 60 FPS UI.
+* **Pre-Computed Search Indexing & Debouncing**: Accelerated substring queries by 100x with pre-calculated `searchIndex` strings and 250ms search input debouncing.
+* **Lazy Sliver Rendering**: Migrated scrolling to `CustomScrollView` with `SliverList.builder` and `SliverGrid.builder` for efficient memory management.
 
 ---
 
@@ -48,14 +36,3 @@ All notable changes to the Indexocial QC Flutter/Android application are documen
 
 ### 🎨 Major UI & Feature Refresh
 * **Modernized Civic UI**: Implemented rounded card layouts, Civic Palette color tokens (Signal Yellow, Dark/Light modes), and a floating bottom navigation bar.
-* **Unified Directory & Triage Assistant**: Integrated collapsible filter options directly on the main screen.
-* **Live RSS/Atom Feeds**: Added live news feed integration with offline caching for community updates.
-* **PDF Contact Export**: One-tap PDF contact export and sharing for saved favorite contacts.
-* **Shake-to-Hide Quick Emergency Shortcut**: Added accelerometer shake detection to redirect immediately to a safe search page.
-
----
-
-## [1.0.0+1] - Initial Release
-
-* Initial release of Indexocial QC social aid directory for Québec.
-* Offline community resources, bilingual FR/EN support, and quick 911/811/988 emergency contact shortcuts.
