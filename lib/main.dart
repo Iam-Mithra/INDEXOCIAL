@@ -4865,7 +4865,7 @@ int _compareCustomAlphabetical(String strA, String strB) {
     final cells = [
       ('911', _isFr ? 'URGENCE' : 'EMERGENCY', 'tel:911', CivicPalette.vermilion),
       ('811', 'INFO-SOCIAL', 'tel:811', _accentText),
-      ('988', 'SUICIDE', 'tel:18662773553', widget.isDark ? CivicPalette.yellowLight : const Color(0xFFD9A700)),
+      ('988', 'SUICIDE', 'tel:18662773553', _accentText),
       ('211', _isFr ? 'REFUGES & AID' : 'COMMUNITY AID', 'tel:211', _textPrimary),
     ];
 
@@ -4965,7 +4965,7 @@ int _compareCustomAlphabetical(String strA, String strB) {
             Container(
               margin: const EdgeInsets.only(right: 6),
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-              decoration: BoxDecoration(color: CivicPalette.signalYellow, borderRadius: BorderRadius.circular(22)),
+              decoration: BoxDecoration(color: _accentText, borderRadius: BorderRadius.circular(22)),
               child: Text(
                 _isFr ? 'FILTRER' : 'FILTER',
                 style: const TextStyle(color: CivicPalette.darkBg, fontWeight: FontWeight.w900, fontSize: 11.5, fontFamily: 'sans-serif-condensed'),
@@ -4994,10 +4994,10 @@ int _compareCustomAlphabetical(String strA, String strB) {
                 duration: const Duration(milliseconds: 200),
                 padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
                 decoration: BoxDecoration(
-                  color: selected ? CivicPalette.signalYellow : _cardBg,
+                  color: selected ? _accentText : _cardBg,
                   borderRadius: BorderRadius.circular(20),
                   border: Border.all(
-                    color: selected ? CivicPalette.signalYellow : _cardBorder,
+                    color: selected ? _accentText : _cardBorder,
                     width: _cardBorderWidth,
                   ),
                 ),
@@ -5060,7 +5060,7 @@ int _compareCustomAlphabetical(String strA, String strB) {
                 duration: const Duration(milliseconds: 200),
                 padding: EdgeInsets.symmetric(horizontal: active ? 14 : 10, vertical: 8),
                 decoration: BoxDecoration(
-                  color: active ? CivicPalette.signalYellow : Colors.transparent,
+                  color: active ? _accentText : Colors.transparent,
                   borderRadius: BorderRadius.circular(24),
                 ),
                 child: Row(
@@ -5109,7 +5109,7 @@ int _compareCustomAlphabetical(String strA, String strB) {
         color: _cardBg,
         borderRadius: BorderRadius.circular(22),
         border: Border.all(
-          color: activeCount > 0 ? CivicPalette.signalYellow : _cardBorder,
+          color: activeCount > 0 ? _accentText : _cardBorder,
           width: activeCount > 0 ? 2.0 : _cardBorderWidth,
         ),
         boxShadow: [
@@ -5124,13 +5124,13 @@ int _compareCustomAlphabetical(String strA, String strB) {
               Expanded(
                 child: ElevatedButton.icon(
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: _showFilterOptions ? CivicPalette.signalYellow : _bg,
+                    backgroundColor: _showFilterOptions ? _accentText : _bg,
                     foregroundColor: _showFilterOptions ? CivicPalette.darkBg : _textPrimary,
                     padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(18),
                       side: BorderSide(
-                        color: _showFilterOptions ? CivicPalette.signalYellow : _cardBorder,
+                        color: _showFilterOptions ? _accentText : _cardBorder,
                         width: _cardBorderWidth,
                       ),
                     ),
@@ -5139,7 +5139,7 @@ int _compareCustomAlphabetical(String strA, String strB) {
                   icon: Icon(
                     _showFilterOptions ? Icons.filter_alt_off_rounded : Icons.filter_alt_rounded,
                     size: 18,
-                    color: _showFilterOptions ? CivicPalette.darkBg : CivicPalette.signalYellow,
+                    color: _showFilterOptions ? CivicPalette.darkBg : _accentText,
                   ),
                   label: Text(
                     activeCount > 0
@@ -5157,7 +5157,7 @@ int _compareCustomAlphabetical(String strA, String strB) {
               ElevatedButton.icon(
                 style: ElevatedButton.styleFrom(
                   backgroundColor: _wizardRegions.isNotEmpty && !_wizardRegions.contains(kQuebecRegions.first)
-                      ? CivicPalette.signalYellow
+                      ? _accentText
                       : _bg,
                   foregroundColor: _wizardRegions.isNotEmpty && !_wizardRegions.contains(kQuebecRegions.first)
                       ? CivicPalette.darkBg
@@ -5167,7 +5167,7 @@ int _compareCustomAlphabetical(String strA, String strB) {
                     borderRadius: BorderRadius.circular(18),
                     side: BorderSide(
                       color: _wizardRegions.isNotEmpty && !_wizardRegions.contains(kQuebecRegions.first)
-                          ? CivicPalette.signalYellow
+                          ? _accentText
                           : _cardBorder,
                       width: _cardBorderWidth,
                     ),
@@ -5175,17 +5175,17 @@ int _compareCustomAlphabetical(String strA, String strB) {
                 ),
                 onPressed: _detectUserRegionForWizard,
                 icon: _isLocatingWizardRegion
-                    ? const SizedBox(
+                    ? SizedBox(
                         width: 16,
                         height: 16,
-                        child: CircularProgressIndicator(strokeWidth: 2, color: CivicPalette.signalYellow),
+                        child: CircularProgressIndicator(strokeWidth: 2, color: _accentText),
                       )
                     : Icon(
                         Icons.my_location_rounded,
                         size: 18,
                         color: _wizardRegions.isNotEmpty && !_wizardRegions.contains(kQuebecRegions.first)
                             ? CivicPalette.darkBg
-                            : CivicPalette.signalYellow,
+                            : _accentText,
                       ),
                 label: Text(
                   _isFr ? 'MON SECTEUR (GPS)' : 'MY SECTOR (GPS)',
@@ -5369,7 +5369,6 @@ int _compareCustomAlphabetical(String strA, String strB) {
 
   Widget _buildResourceCard(SocialResource item) {
     final isSaved = _savedIds.contains(item.id);
-    final badgeTextColor = widget.isDark ? CivicPalette.signalYellow : const Color(0xFF856400);
 
     return Container(
       margin: const EdgeInsets.only(bottom: 12),
@@ -5399,13 +5398,13 @@ int _compareCustomAlphabetical(String strA, String strB) {
                       return Container(
                         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
                         decoration: BoxDecoration(
-                          color: widget.isDark ? CivicPalette.yellowSubtle : CivicPalette.signalYellow.withValues(alpha: 0.25),
+                          color: _accentText.withValues(alpha: 0.15),
                           borderRadius: BorderRadius.circular(12),
-                          border: Border.all(color: CivicPalette.signalYellow.withValues(alpha: 0.5)),
+                          border: Border.all(color: _accentText.withValues(alpha: 0.5)),
                         ),
                         child: Text(
                           catObj.label(_isFr),
-                          style: TextStyle(fontSize: 10.5, fontWeight: FontWeight.w900, color: badgeTextColor, fontFamily: 'Roboto'),
+                          style: TextStyle(fontSize: 10.5, fontWeight: FontWeight.w900, color: _accentText, fontFamily: 'Roboto'),
                         ),
                       );
                     }),
@@ -5489,7 +5488,7 @@ int _compareCustomAlphabetical(String strA, String strB) {
               width: double.infinity,
               child: ElevatedButton.icon(
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: hasValidPhone ? CivicPalette.signalYellow : _cardBorder,
+                  backgroundColor: hasValidPhone ? _accentText : _cardBorder,
                   foregroundColor: hasValidPhone ? CivicPalette.darkBg : _textMuted,
                   padding: const EdgeInsets.symmetric(vertical: 12),
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
@@ -5602,7 +5601,7 @@ int _compareCustomAlphabetical(String strA, String strB) {
           ),
           ElevatedButton.icon(
             style: ElevatedButton.styleFrom(
-              backgroundColor: hasValidPhone ? CivicPalette.signalYellow : _cardBorder,
+              backgroundColor: hasValidPhone ? _accentText : _cardBorder,
               foregroundColor: hasValidPhone ? CivicPalette.darkBg : _textMuted,
               minimumSize: const Size(double.infinity, 38),
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),
