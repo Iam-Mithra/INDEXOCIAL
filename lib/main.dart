@@ -1252,139 +1252,19 @@ class _CivicLedgerScreenState extends State<CivicLedgerScreen> {
 
         final String endFormatted = _formatAlertEndDatetime(alert.eventEndDatetime);
 
-        return Container(
-          margin: const EdgeInsets.only(bottom: 10),
-          padding: const EdgeInsets.all(16),
-          decoration: BoxDecoration(
-            color: _cardBg,
-            borderRadius: BorderRadius.circular(22),
-            border: Border.all(color: levelColor, width: _highContrast ? 2.6 : 1.8),
-            boxShadow: [
-              BoxShadow(
-                color: levelColor.withValues(alpha: 0.14),
-                blurRadius: 12,
-                offset: const Offset(0, 4),
-              ),
-            ],
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                children: [
-                  Container(
-                    padding: const EdgeInsets.all(6),
-                    decoration: BoxDecoration(
-                      color: levelColor.withValues(alpha: 0.2),
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    child: Icon(Icons.warning_amber_rounded, color: levelColor, size: 20),
-                  ),
-                  const SizedBox(width: 8),
-                  Expanded(
-                    child: Wrap(
-                      spacing: 6,
-                      runSpacing: 4,
-                      children: [
-                        Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
-                          decoration: BoxDecoration(
-                            color: levelColor,
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          child: Text(
-                            alert.riskColourFr.isNotEmpty
-                                ? 'RISQUE ${alert.riskColourFr.toUpperCase()}'
-                                : alert.alertType.toUpperCase(),
-                            style: TextStyle(
-                              fontSize: 10,
-                              fontWeight: FontWeight.w900,
-                              color: alert.riskColourFr == 'jaune' || alert.riskColourFr.isEmpty
-                                  ? CivicPalette.darkBg
-                                  : Colors.white,
-                              fontFamily: 'sans-serif-condensed',
-                            ),
-                          ),
-                        ),
-                        if (alert.impactFr.isNotEmpty)
-                          Container(
-                            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
-                            decoration: BoxDecoration(
-                              color: _bg,
-                              borderRadius: BorderRadius.circular(10),
-                              border: Border.all(color: _cardBorder, width: _cardBorderWidth),
-                            ),
-                            child: Text(
-                              'IMPACT : ${alert.impactFr.toUpperCase()}',
-                              style: TextStyle(
-                                fontSize: 10,
-                                fontWeight: FontWeight.w800,
-                                color: _textPrimary,
-                                fontFamily: 'Roboto',
-                              ),
-                            ),
-                          ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 10),
-              Text(
-                alert.alertNameFr.toUpperCase(),
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w900,
-                  color: _textPrimary,
-                  fontFamily: 'sans-serif-condensed',
-                ),
-              ),
-              if (alert.featureNameFr.isNotEmpty) ...[
-                const SizedBox(height: 4),
-                Row(
-                  children: [
-                    Icon(Icons.place_rounded, size: 15, color: levelColor),
-                    const SizedBox(width: 4),
-                    Expanded(
-                      child: Text(
-                        alert.featureNameFr,
-                        style: TextStyle(
-                          fontSize: 12.5,
-                          fontWeight: FontWeight.w800,
-                          color: _accentText,
-                          fontFamily: 'Roboto',
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-              if (endFormatted.isNotEmpty) ...[
-                const SizedBox(height: 4),
-                Text(
-                  _isFr ? 'Fin prévue : $endFormatted' : 'Expected end: $endFormatted',
-                  style: TextStyle(
-                    fontSize: 11.5,
-                    fontWeight: FontWeight.w700,
-                    color: _textMuted,
-                    fontFamily: 'Roboto',
-                  ),
-                ),
-              ],
-              if (alert.alertTextFr.isNotEmpty) ...[
-                const SizedBox(height: 8),
-                Text(
-                  alert.alertTextFr,
-                  style: TextStyle(
-                    fontSize: 13,
-                    color: _textPrimary,
-                    height: 1.4,
-                    fontFamily: 'Roboto',
-                  ),
-                ),
-              ],
-            ],
-          ),
+        return _ExpandableWeatherAlertCard(
+          alert: alert,
+          levelColor: levelColor,
+          endFormatted: endFormatted,
+          isFr: _isFr,
+          bg: _bg,
+          cardBg: _cardBg,
+          cardBorder: _cardBorder,
+          cardBorderWidth: _cardBorderWidth,
+          textPrimary: _textPrimary,
+          textMuted: _textMuted,
+          accentText: _accentText,
+          highContrast: _highContrast,
         );
       }).toList(),
     );
@@ -5693,6 +5573,214 @@ class _CivicLedgerScreenState extends State<CivicLedgerScreen> {
           ),
           const SizedBox(height: 14),
           ...children,
+        ],
+      ),
+    );
+  }
+}
+
+class _ExpandableWeatherAlertCard extends StatefulWidget {
+  final EcccWeatherAlert alert;
+  final Color levelColor;
+  final String endFormatted;
+  final bool isFr;
+  final Color bg;
+  final Color cardBg;
+  final Color cardBorder;
+  final double cardBorderWidth;
+  final Color textPrimary;
+  final Color textMuted;
+  final Color accentText;
+  final bool highContrast;
+
+  const _ExpandableWeatherAlertCard({
+    required this.alert,
+    required this.levelColor,
+    required this.endFormatted,
+    required this.isFr,
+    required this.bg,
+    required this.cardBg,
+    required this.cardBorder,
+    required this.cardBorderWidth,
+    required this.textPrimary,
+    required this.textMuted,
+    required this.accentText,
+    required this.highContrast,
+  });
+
+  @override
+  State<_ExpandableWeatherAlertCard> createState() => _ExpandableWeatherAlertCardState();
+}
+
+class _ExpandableWeatherAlertCardState extends State<_ExpandableWeatherAlertCard> {
+  bool _isExpanded = false;
+
+  @override
+  Widget build(BuildContext context) {
+    final alert = widget.alert;
+    final levelColor = widget.levelColor;
+
+    return Container(
+      margin: const EdgeInsets.only(bottom: 10),
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: widget.cardBg,
+        borderRadius: BorderRadius.circular(22),
+        border: Border.all(color: levelColor, width: widget.highContrast ? 2.6 : 1.8),
+        boxShadow: [
+          BoxShadow(
+            color: levelColor.withValues(alpha: 0.14),
+            blurRadius: 12,
+            offset: const Offset(0, 4),
+          ),
+        ],
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                padding: const EdgeInsets.all(6),
+                decoration: BoxDecoration(
+                  color: levelColor.withValues(alpha: 0.2),
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Icon(Icons.warning_amber_rounded, color: levelColor, size: 20),
+              ),
+              const SizedBox(width: 8),
+              Expanded(
+                child: Wrap(
+                  spacing: 6,
+                  runSpacing: 4,
+                  children: [
+                    Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+                      decoration: BoxDecoration(
+                        color: levelColor,
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: Text(
+                        alert.riskColourFr.isNotEmpty
+                            ? 'RISQUE ${alert.riskColourFr.toUpperCase()}'
+                            : alert.alertType.toUpperCase(),
+                        style: TextStyle(
+                          fontSize: 10,
+                          fontWeight: FontWeight.w900,
+                          color: alert.riskColourFr == 'jaune' || alert.riskColourFr.isEmpty
+                              ? CivicPalette.darkBg
+                              : Colors.white,
+                          fontFamily: 'sans-serif-condensed',
+                        ),
+                      ),
+                    ),
+                    if (alert.impactFr.isNotEmpty)
+                      Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+                        decoration: BoxDecoration(
+                          color: widget.bg,
+                          borderRadius: BorderRadius.circular(10),
+                          border: Border.all(color: widget.cardBorder, width: widget.cardBorderWidth),
+                        ),
+                        child: Text(
+                          'IMPACT : ${alert.impactFr.toUpperCase()}',
+                          style: TextStyle(
+                            fontSize: 10,
+                            fontWeight: FontWeight.w800,
+                            color: widget.textPrimary,
+                            fontFamily: 'Roboto',
+                          ),
+                        ),
+                      ),
+                  ],
+                ),
+              ),
+              if (alert.alertTextFr.isNotEmpty)
+                InkWell(
+                  borderRadius: BorderRadius.circular(12),
+                  onTap: () {
+                    setState(() {
+                      _isExpanded = !_isExpanded;
+                    });
+                  },
+                  child: Container(
+                    padding: const EdgeInsets.all(4),
+                    decoration: BoxDecoration(
+                      color: levelColor.withValues(alpha: 0.15),
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Icon(
+                      _isExpanded ? Icons.keyboard_arrow_up_rounded : Icons.keyboard_arrow_down_rounded,
+                      color: levelColor,
+                      size: 24,
+                    ),
+                  ),
+                ),
+            ],
+          ),
+          const SizedBox(height: 10),
+          Text(
+            alert.alertNameFr.toUpperCase(),
+            style: TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.w900,
+              color: widget.textPrimary,
+              fontFamily: 'sans-serif-condensed',
+            ),
+          ),
+          if (alert.featureNameFr.isNotEmpty) ...[
+            const SizedBox(height: 4),
+            Row(
+              children: [
+                Icon(Icons.place_rounded, size: 15, color: levelColor),
+                const SizedBox(width: 4),
+                Expanded(
+                  child: Text(
+                    alert.featureNameFr,
+                    style: TextStyle(
+                      fontSize: 12.5,
+                      fontWeight: FontWeight.w800,
+                      color: widget.accentText,
+                      fontFamily: 'Roboto',
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ],
+          if (widget.endFormatted.isNotEmpty) ...[
+            const SizedBox(height: 4),
+            Text(
+              widget.isFr ? 'Fin prévue : ${widget.endFormatted}' : 'Expected end: ${widget.endFormatted}',
+              style: TextStyle(
+                fontSize: 11.5,
+                fontWeight: FontWeight.w700,
+                color: widget.textMuted,
+                fontFamily: 'Roboto',
+              ),
+            ),
+          ],
+          if (_isExpanded && alert.alertTextFr.isNotEmpty) ...[
+            const SizedBox(height: 12),
+            Container(
+              padding: const EdgeInsets.all(12),
+              decoration: BoxDecoration(
+                color: widget.bg.withValues(alpha: 0.6),
+                borderRadius: BorderRadius.circular(14),
+                border: Border.all(color: widget.cardBorder.withValues(alpha: 0.5), width: 1),
+              ),
+              child: Text(
+                alert.alertTextFr,
+                style: TextStyle(
+                  fontSize: 13,
+                  color: widget.textPrimary,
+                  height: 1.4,
+                  fontFamily: 'Roboto',
+                ),
+              ),
+            ),
+          ],
         ],
       ),
     );
