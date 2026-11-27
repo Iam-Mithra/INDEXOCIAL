@@ -1,193 +1,706 @@
 ================================================================================
-  INDEXOCIAL QC (v2.0.1+4) - COMPLETE CODE & ARCHITECTURE DOCUMENTATION
-  DOCUMENTATION COMPLÈTE DU CODE ET DE L'ARCHITECTURE
-  LANGUAGES / LANGUES : ENGLISH (EN) & FRANÇAIS (FR)
+  INDEXOCIAL QC (v2.1.0+5) - MANUEL D'ARCHITECTURE ET DÉCORTIQUE COMPLET DU CODE
+  COMPLETE CODE DISSECTION, ARCHITECTURE & SCRIPT DOCUMENTATION
 ================================================================================
 
-================================================================================
-[FR] SECTION 1 : VUE D'ENSEMBLE DU PROJET
-================================================================================
-Application : INDEXOCIAL QC
-Package Android : com.iammithra.indexocial
-Version : 2.0.1+4
-Plateforme : Flutter (Dart) / Android
-Objectif : Répertoire civique et social hors-ligne pour le Québec contenant
-9 004 ressources communautaires réparties sur 17 régions administratives.
+
+################################################################################
+#                                                                              #
+#                 PARTIE I : DOCUMENTATION COMPLÈTE EN FRANÇAIS                #
+#                                                                              #
+################################################################################
 
 ================================================================================
-[EN] SECTION 1: PROJECT OVERVIEW
+1. VUE D'ENSEMBLE ET ARCHITECTURE DU PROJET
 ================================================================================
-Application: INDEXOCIAL QC
-Android Package: com.iammithra.indexocial
-Version: 2.0.1+4
-Platform: Flutter (Dart) / Android
-Goal: Offline-first civic and social directory for Quebec containing
-9,004 community resources distributed across 17 administrative regions.
+Nom de l'application : INDEXOCIAL QC
+Package Android       : com.iammithra.indexocial
+Version               : 2.1.0+5 (versionName: 2.1.0, versionCode: 5)
+Plateforme            : Flutter (Dart 3) / Android SDK 36
 
+Objectif :
+Répertoire civique, d'aide sociale et de ressources d'urgence hors-ligne pour
+le Québec contenant 9 004 organismes et services communautaires vérifiés,
+structurés à travers les 17 régions administratives du Québec.
 
-================================================================================
-[FR] SECTION 2 : ARCHITECTURE DES DONNÉES ET OPTIMISATIONS PERFORMANCES
-================================================================================
-1. Découpage Régional des Données (Regional Dataset Splitting) :
-   - Les 9 004 ressources sont réparties dans 17 fichiers JSON autonomes sous
-     'assets/regions/' (region_01.json à region_16.json + region_provincial.json).
-   - Permet un chargement progressif et rapide de l'application.
-
-2. Gestion des Ressources Secondaires (assets/added_resources.json) :
-   - Fichier complémentaire hébergeant les ajouts spécifiques (ex: QC-9012 Ebyôn).
-   - Fusionné au démarrage sans dupliquer les entrées existantes.
-
-3. Décodage Hors-Thréad avec Isolats Dart (Off-Thread Isolate Decoding) :
-   - Utilisation de 'computeParseSocialResources()' s'appuyant sur 'Isolate.run()'.
-   - Déplace le décodage JSON de 9 004 objets hors du thread principal (UI)
-     pour éviter tout gel ou saccade de l'interface graphique.
-
-4. Pré-calcul de l'Index de Recherche (Search Index Pre-computation) :
-   - Propriété 'searchIndex' calculée sur le modèle 'SocialResource'.
-   - Concatène et normalise (minuscules/accents) le nom, la description,
-     le téléphone, le site web et la région.
-   - Permet des recherches instantanées même sur 9 004 éléments.
-
-5. Anti-rebond de Recherche (Search Query Debouncing) :
-   - Un délai de 250 ms est appliqué lors de la saisie dans la barre de recherche.
-
-6. Rendu Paresseux (Lazy Rendering avec Slivers) :
-   - Utilisation de 'CustomScrollView' combiné avec 'SliverList.builder' et
-     'SliverGrid.builder'. Seules les cartes visibles à l'écran sont construites.
-
-================================================================================
-[EN] SECTION 2: DATA ARCHITECTURE AND PERFORMANCE OPTIMIZATIONS
-================================================================================
-1. Regional Dataset Splitting:
-   - The 9,004 resources are split across 17 standalone JSON files under
-     'assets/regions/' (region_01.json to region_16.json + region_provincial.json).
-   - Enables fast, progressive data loading at startup.
-
-2. Secondary Custom Resource Handling (assets/added_resources.json):
-   - Secondary asset file hosting added items (e.g. QC-9012 Ebyôn).
-   - Merged dynamically at startup without duplicating existing entries.
-
-3. Off-Thread Isolate Decoding:
-   - Uses 'computeParseSocialResources()' backed by Dart 'Isolate.run()'.
-   - Moves JSON decoding of 9,004 objects off the main UI thread to prevent
-     any UI stutter or lag.
-
-4. Search Index Pre-computation:
-   - 'searchIndex' property computed on each 'SocialResource' model.
-   - Concatenates and normalizes (lowercase/accents) names, descriptions,
-     phones, websites, and regions.
-   - Delivers instantaneous search results across 9,004 items.
-
-5. Search Query Debouncing:
-   - 250ms debouncer applied during typing in the search bar.
-
-6. Lazy Rendering with Slivers:
-   - Built with 'CustomScrollView' using 'SliverList.builder' and 'SliverGrid.builder'.
-     Only visible cards are instantiated in memory.
+Principes Fondamentaux d'Architecture :
+- Offline-First : L'intégralité des 9 004 ressources est stockée localement sur
+  l'appareil via des fichiers JSON d'assets divisés par région.
+- Performances 60 FPS : Décodage JSON délégué hors du thread principal de l'UI
+  grâce aux Isolats Dart (Isolate.run).
+- Indexation Pré-calculée : Recherche instantanée sans réallocation mémoire.
+- Accessibilité et Sécurité : Thèmes à haut contraste, facteur d'échelle de
+  texte, sortie d'urgence rapide par secousse (Shake detector) et bouton d'action.
 
 
 ================================================================================
-[FR] SECTION 3 : COMPOSANTS ET CODE SOURCE DÉTAILLÉS (lib/main.dart)
+2. DÉCORTIQUE DÉTAILLÉ DU CODE SOURCE (lib/main.dart)
 ================================================================================
-1. 'CivicApp' & 'CivicPalette' :
-   - Thème Material 3 sur mesure (Civic Design System).
-   - Couleurs : Jaune Signal (#FFD700), Vermillon (#E63946), Fond Sombre (#121212).
-   - Gestion de l'accessibilité : Contraste élevé, ajustement d'échelle du texte.
 
-2. Modèle 'SocialResource' :
-   - Représente un organisme ou service social.
-   - Champs : id, nameFr, nameEn, categoryIds, region, phone, website, isCustom, searchIndex.
+--------------------------------------------------------------------------------
+2.1. DESIGN SYSTEM & ENGINE DE THÈMES DYNAMIQUES (EASTER EGG)
+--------------------------------------------------------------------------------
+L'application intègre un moteur de thèmes dynamiques. L'utilisateur peut déverrouiller
+un menu secret (Easter Egg) en tapant 10 fois sur le logo principal.
 
-3. Alertes Météo ECCC ('EcccWeatherAlert' & '_ExpandableWeatherAlertCard') :
-   - Intégration en temps réel des alertes météo d'Environnement et Changement Climatique Canada.
-   - Carte compacte repliable avec flèche d'extension/réduction toggleable.
+Extrait de code — Définition des Palettes (`CivicThemePalette`) :
 
-4. Géolocalisation GPS du Secteur ('_detectAndFilterMySector') :
-   - Bouton 'MON SECTEUR (GPS)' situé à côté des filtres de recherche.
-   - Utilise le plugin 'Geolocator' pour convertir les coordonnées GPS en région
-     administrative du Québec (ex: '04 - MAURICIE ET CENTRE-DU-QUÉBEC', '06 - MONTRÉAL').
-   - Filtre automatiquement la liste des ressources disponibles dans le secteur de l'utilisateur.
+```dart
+class CivicThemePalette {
+  final String id;
+  final String nameFr;
+  final String nameEn;
+  final Color primaryAccent;
+  final Color darkBg;
+  final Color darkCard;
+  final Color darkCardBorder;
+  final Color lightBg;
+  final Color lightCard;
+  final Color lightCardBorder;
+  final IconData icon;
 
-5. Écran Principal 'CivicLedgerScreen' :
-   - Onglet Répertoire (9 004 ressources triées alphabétiquement).
-   - Onglet Favoris / Contacts Sauvegardés.
-   - Onglet Actualités (Flux RSS de sources officielles québécoises).
-   - Onglet Réglages & Accessibilité.
-   - Dissimulation d'urgence rapide (Gestes de secousse / Shake detector & bouton d'urgence).
+  const CivicThemePalette({
+    required this.id,
+    required this.nameFr,
+    required this.nameEn,
+    required this.primaryAccent,
+    required this.darkBg,
+    required this.darkCard,
+    required this.darkCardBorder,
+    required this.lightBg,
+    required this.lightCard,
+    required this.lightCardBorder,
+    required this.icon,
+  });
+}
+
+const List<CivicThemePalette> kColorPalettes = [
+  CivicThemePalette(
+    id: 'ORIGINAL',
+    nameFr: 'Civique Original (Jaune Signal)',
+    nameEn: 'Original Civic (Signal Yellow)',
+    primaryAccent: Color(0xFFFFE600),
+    darkBg: Color(0xFF121418),
+    darkCard: Color(0xFF1A1D24),
+    darkCardBorder: Color(0xFF282C36),
+    lightBg: Color(0xFFF0F2F6),
+    lightCard: Color(0xFFFFFFFF),
+    lightCardBorder: Color(0xFFD1D5DB),
+    icon: Icons.brightness_auto_rounded,
+  ),
+  CivicThemePalette(
+    id: 'QUEBEC',
+    nameFr: 'Québec Fleurdelisé (Bleu & Blanc)',
+    nameEn: 'Quebec Flag (Blue & White)',
+    primaryAccent: Color(0xFF2B6CB0), // Bleu Fleurdelisé Québec
+    darkBg: Color(0xFF0F172A),
+    darkCard: Color(0xFF1E293B),
+    darkCardBorder: Color(0xFF334155),
+    lightBg: Color(0xFFEFF6FF),
+    lightCard: Color(0xFFFFFFFF),
+    lightCardBorder: Color(0xFFBFDBFE),
+    icon: Icons.flag_rounded,
+  ),
+  // Autres thèmes : MONTRÉAL NÉON, AURORE BORÉALE, FORÊT LAURENTIENNE, CYBERPUNK QUÉBEC
+];
+```
+
+Fonctionnement du Compteur de Taps Logo (`_onLogoTapped`) :
+```dart
+  void _onLogoTapped() {
+    _logoTapTimer?.cancel();
+    setState(() => _logoTapCount++);
+
+    if (_logoTapCount >= 10) {
+      _logoTapCount = 0;
+      HapticFeedback.heavyImpact();
+      _openSecretPaletteSheet();
+    } else {
+      _logoTapTimer = Timer(const Duration(seconds: 3), () {
+        if (mounted) setState(() => _logoTapCount = 0);
+      });
+    }
+  }
+```
+
+
+--------------------------------------------------------------------------------
+2.2. DÉCODAGE HORS-THREAD AVEC ISOLATS DART (ISOLATE.RUN)
+--------------------------------------------------------------------------------
+Pour éviter tout gel de l'interface lors de la lecture des 9 004 ressources JSON,
+le décodage est exécuté sur une fonction top-level pure sans capture d'état.
+
+Extrait de code — Fonction Isolat Top-Level (`computeParseSocialResources`) :
+
+```dart
+List<SocialResource> parseSocialResourcesJson(String jsonStr) {
+  try {
+    if (jsonStr.trim().isEmpty) return [];
+    final dynamic decoded = jsonDecode(jsonStr);
+    if (decoded is! List) return [];
+    final List<SocialResource> list = [];
+    for (final item in decoded) {
+      if (item is Map) {
+        try {
+          final map = Map<String, dynamic>.from(item);
+          list.add(SocialResource.fromJson(map));
+        } catch (_) {}
+      }
+    }
+    return list;
+  } catch (e) {
+    debugPrint('PARSE ERROR: $e');
+    return [];
+  }
+}
+
+Future<List<SocialResource>> computeParseSocialResources(String jsonStr) {
+  return Isolate.run(() => parseSocialResourcesJson(jsonStr));
+}
+```
+
+
+--------------------------------------------------------------------------------
+2.3. ALGORITHME DE TRI ALPHABÉTIQUE PERSONNALISÉ (LETTRES -> CHIFFRES -> SYMBOLES)
+--------------------------------------------------------------------------------
+Le tri du répertoire et des favoris respecte la priorité spécifique demandée :
+1. Lettres (`A-Z` et caractères accentués français `à`, `é`, `è`, `ê`, `ô`, `ç`, etc.) = Priorité 0.
+2. Chiffres (`0-9`) = Priorité 1.
+3. Symboles et caractères spéciaux (`#`, `@`, `-`, `(`, etc.) = Priorité 2.
+
+Extrait de code — Comparateur Personnalisé (`_compareCustomAlphabetical`) :
+
+```dart
+int _getCharCategoryPriority(int codeUnit, String char) {
+  // Lettres (A-Z, a-z, Accents français, œ, æ) : Priorité 0
+  if ((codeUnit >= 65 && codeUnit <= 90) ||
+      (codeUnit >= 97 && codeUnit <= 122) ||
+      (codeUnit >= 192 && codeUnit <= 255) ||
+      char == 'œ' || char == 'Œ' || char == 'æ' || char == 'Æ') {
+    return 0; // LETTRES EN PREMIER
+  }
+  // Chiffres (0-9) : Priorité 1
+  if (codeUnit >= 48 && codeUnit <= 57) {
+    return 1; // CHIFFRES EN SECOND
+  }
+  // Symboles & Caractères spéciaux : Priorité 2
+  return 2; // SYMBOLES EN DERNIER
+}
+
+int _compareCustomAlphabetical(String strA, String strB) {
+  final normA = strA.trim().toLowerCase();
+  final normB = strB.trim().toLowerCase();
+
+  if (normA.isEmpty && normB.isEmpty) return 0;
+  if (normA.isEmpty) return 1;
+  if (normB.isEmpty) return -1;
+
+  final minLen = min(normA.length, normB.length);
+  for (int i = 0; i < minLen; i++) {
+    final charA = normA[i];
+    final charB = normB[i];
+    if (charA != charB) {
+      final prioA = _getCharCategoryPriority(normA.codeUnitAt(i), charA);
+      final prioB = _getCharCategoryPriority(normB.codeUnitAt(i), charB);
+
+      if (prioA != prioB) {
+        return prioA.compareTo(prioB);
+      }
+      return charA.compareTo(charB);
+    }
+  }
+
+  return normA.length.compareTo(normB.length);
+}
+```
+
+
+--------------------------------------------------------------------------------
+2.4. GÉOLOCALISATION GPS ET DÉTECTION DU SECTEUR QUÉBEC
+--------------------------------------------------------------------------------
+Le bouton `MON SECTEUR (GPS)` utilise les coordonnées GPS brutes (Latitude / Longitude)
+pour faire correspondre la position de l'utilisateur à l'une des 17 régions
+administratives du Québec.
+
+Extrait de code — Résolution des Régions Administratives (`_resolveQuebecRegionFromCoordinates`) :
+
+```dart
+String _resolveQuebecRegionFromCoordinates(double lat, double lon) {
+  if (lat >= 49.0 && lon <= -70.0) return '10 - NORD-DU-QUÉBEC';
+  if (lat >= 48.5 && lon > -70.0) return '09 - CÔTE-NORD';
+  if ((lat >= 47.0 && lat <= 48.0 && lon >= -62.5 && lon <= -61.0) ||
+      (lat >= 47.8 && lat <= 49.3 && lon >= -67.2 && lon <= -64.0)) {
+    return '11 - GASPÉSIE–ÎLES-DE-LA-MADELEINE';
+  }
+  if (lat >= 47.3 && lat < 48.9 && lon >= -70.0 && lon < -67.2) return '01 - BAS-SAINT-LAURENT';
+  if (lat >= 48.0 && lat < 50.5 && lon >= -73.5 && lon <= -70.0) return '02 - SAGUENAY–LAC-SAINT-JEAN';
+  if (lat >= 46.2 && lat < 49.0 && lon <= -76.5) return '08 - ABITIBI-TÉMISCAMINGUE';
+  if (lat >= 45.3 && lat < 47.8 && lon >= -77.5 && lon <= -74.7) return '07 - OUTAOUAIS';
+  if (lat >= 45.40 && lat <= 45.71 && lon >= -73.99 && lon <= -73.47) return '06 - MONTRÉAL';
+  if (lat > 45.51 && lat <= 45.71 && lon >= -73.89 && lon <= -73.51) return '13 - LAVAL';
+  if (lat >= 45.65 && lat < 47.5 && lon >= -75.8 && lon <= -73.85) return '15 - LAURENTIDES';
+  if (lat >= 45.68 && lat < 47.8 && lon > -74.2 && lon <= -73.15) return '14 - LANAUDIÈRE';
+  if (lat >= 46.2 && lat < 48.5 && lon > -73.5 && lon <= -72.0) return '04 - MAURICIE';
+  if (lat >= 46.65 && lat < 48.2 && lon > -72.4 && lon <= -69.7) return '03 - CAPITALE-NATIONALE';
+  if (lat >= 45.8 && lat < 47.35 && lon >= -71.6 && lon <= -69.6) return '12 - CHAUDIÈRE-APPALACHES';
+  if (lat >= 45.8 && lat < 46.65 && lon >= -72.9 && lon < -71.5) return '17 - CENTRE-DU-QUÉBEC';
+  if (lat >= 45.0 && lat < 45.85 && lon >= -72.45 && lon <= -70.7) return '05 - ESTRIE';
+  if (lat >= 45.0 && lat < 46.05 && lon >= -74.5 && lon < -72.45) return '16 - MONTÉRÉGIE (INCL. SUROÎT)';
+
+  return kQuebecRegions.first;
+}
+```
+
+
+--------------------------------------------------------------------------------
+2.5. GÉNÉRATION ET EXPORTATION DE DOCUMENTS PDF (`pdf` & `printing`)
+--------------------------------------------------------------------------------
+Les dossiers de favoris ou listes de contacts sont exportés sous forme de documents
+PDF imprimables via la bibliothèque `pdf` et partagés avec `Printing.sharePdf`.
+
+Extrait de code — Générateur de PDF (`_exportFavoriteGroupPdf`) :
+
+```dart
+Future<void> _exportFavoriteGroupPdf({required String title, required List<SocialResource> resources}) async {
+  final pdf = pw.Document();
+
+  pdf.addPage(
+    pw.MultiPage(
+      pageFormat: PdfPageFormat.a4,
+      margin: const pw.EdgeInsets.all(32),
+      header: (context) => pw.Column(
+        crossAxisAlignment: pw.CrossAxisAlignment.start,
+        children: [
+          pw.Row(
+            mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
+            children: [
+              pw.Text('INDEXOCIAL QC', style: pw.TextStyle(fontSize: 18, fontWeight: pw.FontWeight.bold, color: PdfColors.amber900)),
+              pw.Text('Répertoire Civique du Québec', style: const pw.TextStyle(fontSize: 10, color: PdfColors.grey700)),
+            ],
+          ),
+          pw.Divider(thickness: 1.5, color: PdfColors.amber700),
+        ],
+      ),
+      build: (context) => [
+        pw.Text(title.toUpperCase(), style: pw.TextStyle(fontSize: 15, fontWeight: pw.FontWeight.bold)),
+        pw.SizedBox(height: 14),
+        ...resources.map((r) {
+          return pw.Container(
+            margin: const pw.EdgeInsets.only(bottom: 10),
+            padding: const pw.EdgeInsets.all(10),
+            decoration: pw.BoxDecoration(
+              border: pw.Border.all(color: PdfColors.grey400, width: 0.8),
+              borderRadius: const pw.BorderRadius.all(pw.Radius.circular(6)),
+            ),
+            child: pw.Column(
+              crossAxisAlignment: pw.CrossAxisAlignment.start,
+              children: [
+                pw.Text(r.name(_isFr), style: pw.TextStyle(fontSize: 12, fontWeight: pw.FontWeight.bold)),
+                if (r.phone.isNotEmpty) pw.Text('Téléphone : ${r.phone}', style: const pw.TextStyle(fontSize: 9.5)),
+                if (r.website.isNotEmpty) pw.Text('Site Web : ${r.website}', style: const pw.TextStyle(fontSize: 9.5)),
+                if (r.region.isNotEmpty) pw.Text('Région : ${r.region}', style: const pw.TextStyle(fontSize: 9.5)),
+              ],
+            ),
+          );
+        }),
+      ],
+    ),
+  );
+
+  final bytes = await pdf.save();
+  await Printing.sharePdf(bytes: bytes, filename: 'indexocial_favoris.pdf');
+}
+```
+
 
 ================================================================================
-[EN] SECTION 3: DETAILED SOURCE CODE COMPONENTS (lib/main.dart)
+3. SCRIPTS ET CONFIGURATION BUILD GRADLE (android/app/build.gradle.kts)
 ================================================================================
-1. 'CivicApp' & 'CivicPalette':
-   - Custom Material 3 Civic Design System.
-   - Palette: Signal Yellow (#FFD700), Vermilion (#E63946), Dark Background (#121212).
-   - Accessibility features: High contrast mode, text scaling factor.
+Pour automatiser le renommage du bundle de release Android (`.aab`) sans intervention
+manuelle, une tâche Gradle `doLast` est configurée sur le projet.
 
-2. 'SocialResource' Model:
-   - Represents a community organization or social service.
-   - Fields: id, nameFr, nameEn, categoryIds, region, phone, website, isCustom, searchIndex.
+Extrait de code — `android/app/build.gradle.kts` :
 
-3. ECCC Weather Alerts ('EcccWeatherAlert' & '_ExpandableWeatherAlertCard'):
-   - Real-time severe weather alert integration from Environment and Climate Change Canada.
-   - Compact collapsible alert card with toggleable expand/collapse arrow.
+```kotlin
+flutter {
+    source = "../.."
+}
 
-4. GPS Sector Location ('_detectAndFilterMySector'):
-   - 'MY SECTOR (GPS)' button placed next to search filters.
-   - Leverages 'Geolocator' plugin to convert GPS coordinates into Quebec administrative
-     regions (e.g., '04 - MAURICIE ET CENTRE-DU-QUÉBEC', '06 - MONTRÉAL').
-   - Automatically filters resources available in the user's immediate sector.
-
-5. Main Screen 'CivicLedgerScreen':
-   - Directory Tab (9,004 resources sorted alphabetically).
-   - Saved Contacts / Favorites Tab.
-   - News Feed Tab (RSS feeds from official Quebec civic sources).
-   - Settings & Accessibility Tab.
-   - Quick Emergency Hide (Shake detector gesture & emergency action button).
-
-
-================================================================================
-[FR] SECTION 4 : SIGNATURE ET CONFIGURATION DU BUILD
-================================================================================
-1. Clef de Signature Keystore :
-   - Fichier : C:/Users/malco/Keystore/indexocial-upload.jks
-   - Alias : indexocial_upload
-   - Configuration déclarée dans 'android/key.properties'.
-
-2. Script Gradle ('android/app/build.gradle.kts') :
-   - Lit 'android/key.properties' pour signer automatiquement le bundle de release.
-   - Génération de l'App Bundle Android signé : 'build/app/outputs/bundle/release/app-release.aab'.
-
-================================================================================
-[EN] SECTION 4: BUILD CONFIGURATION & RELEASE SIGNING
-================================================================================
-1. Keystore Release Key:
-   - File Path: C:/Users/malco/Keystore/indexocial-upload.jks
-   - Key Alias: indexocial_upload
-   - Configured via 'android/key.properties'.
-
-2. Gradle Build Script ('android/app/build.gradle.kts'):
-   - Automatically loads 'android/key.properties' to sign release builds.
-   - Generates signed release App Bundle at 'build/app/outputs/bundle/release/app-release.aab'.
+tasks.whenTaskAdded {
+    if (name == "bundleRelease") {
+        doLast {
+            val outputDir = file("${layout.buildDirectory.get()}/outputs/bundle/release")
+            val defaultAab = file("${outputDir}/app-release.aab")
+            val customAab = file("${outputDir}/com.iammithra.indexocial.aab")
+            val projectRootAab = rootProject.file("../com.iammithra.indexocial.aab")
+            if (defaultAab.exists()) {
+                defaultAab.copyTo(customAab, overwrite = true)
+                defaultAab.copyTo(projectRootAab, overwrite = true)
+            }
+        }
+    }
+}
+```
 
 
 ================================================================================
-[FR & EN] SECTION 5 : STRUCTURE DES FICHIERS DU PROJET / FILE DIRECTORY STRUCTURE
+4. ARBORESCENCE DÉTAILLÉE DU PROJET
 ================================================================================
 INDEXOCIAL/
 ├── android/
-│   ├── app/
-│   │   ├── build.gradle.kts        # Config build Android & signature / Android build & signing
-│   │   └── src/main/
-│   │       └── AndroidManifest.xml # Permissions, label 'Indexocial QC'
-│   └── key.properties              # Chemins et passwords keystore / Keystore paths & passwords
+│   ├── app/build.gradle.kts         # Signature release et tâche de copie .aab
+│   └── key.properties               # Clés de signature keystore (indexocial-upload.jks)
 ├── assets/
-│   ├── resources.json              # Jeu complet (9 003 ressources) / Full dataset (9,003 items)
-│   ├── added_resources.json        # Ressources ajoutées (1 item: QC-9012 Ebyôn) / Added items
-│   └── regions/                    # 17 fichiers JSON régionaux minifiés / 17 minified regional JSONs
+│   ├── resources.json               # Dataset complet (9 003 ressources)
+│   ├── added_resources.json         # Fichier d'ajouts secondaires (QC-9012 Ebyôn)
+│   └── regions/                     # 17 fichiers JSON minifiés par région
 ├── lib/
-│   └── main.dart                   # Code source principal (UI, Isolates, GPS, Filtres, Modèles)
-├── pubspec.yaml                    # Version 2.0.1+4, dépendances, assets / Version & dependencies
-├── CHANGELOG.md                    # Historique des versions / Release history
-├── release_notes_playstore.md      # Notes de mise à jour Play Store (FR/EN) / Play Store notes
-└── DOCS_INDEXOCIAL_EXPLANATION_FR_EN.txt # Ce document explicatif / This documentation file
+│   └── main.dart                    # Code source principal complet
+├── com.iammithra.indexocial.aab     # Bundle de release signé prêt pour le Play Store
+├── pubspec.yaml                     # Configuration des dépendances (v2.1.0+5)
+├── CHANGELOG.md                     # Historique des versions
+├── release_notes_playstore.md       # Notes de publication Play Store FR/EN
+└── DOCS_INDEXOCIAL_EXPLANATION_FR_EN.txt # Manuel complet de documentation
+
+
+
+
+
+################################################################################
+#                                                                              #
+#                   PART II: COMPLETE ENGLISH DOCUMENTATION                    #
+#                                                                              #
+################################################################################
+
+================================================================================
+1. PROJECT OVERVIEW AND SYSTEM ARCHITECTURE
+================================================================================
+Application Name : INDEXOCIAL QC
+Android Package  : com.iammithra.indexocial
+Version          : 2.1.0+5 (versionName: 2.1.0, versionCode: 5)
+Platform         : Flutter (Dart 3) / Android SDK 36
+
+Goal:
+An offline-first civic, social aid, and emergency resource directory for Quebec
+containing 9,004 verified community resources across 17 administrative regions.
+
+Core Architectural Principles:
+- Offline-First: All 9,004 resources are stored locally on the device using
+  split regional JSON assets.
+- 60 FPS Performance: JSON decoding is offloaded from the main UI thread using
+  Dart Isolates (Isolate.run).
+- Pre-Computed Search Indexing: Instantaneous search without runtime string allocations.
+- Accessibility & Safety: High-contrast themes, font scaling factor, shake-to-hide
+  panic redirect (Google.ca), and emergency 1-tap call buttons.
+
+
+================================================================================
+2. DETAILED SOURCE CODE DISSECTION (lib/main.dart)
+================================================================================
+
+--------------------------------------------------------------------------------
+2.1. DESIGN SYSTEM & DYNAMIC SECRET THEME ENGINE (EASTER EGG)
+--------------------------------------------------------------------------------
+The application features a secret theme selector unlocked by tapping 10 times
+on the top-left Indexocial logo.
+
+Code Snippet — Theme Palettes Definition (`CivicThemePalette`):
+
+```dart
+class CivicThemePalette {
+  final String id;
+  final String nameFr;
+  final String nameEn;
+  final Color primaryAccent;
+  final Color darkBg;
+  final Color darkCard;
+  final Color darkCardBorder;
+  final Color lightBg;
+  final Color lightCard;
+  final Color lightCardBorder;
+  final IconData icon;
+
+  const CivicThemePalette({
+    required this.id,
+    required this.nameFr,
+    required this.nameEn,
+    required this.primaryAccent,
+    required this.darkBg,
+    required this.darkCard,
+    required this.darkCardBorder,
+    required this.lightBg,
+    required this.lightCard,
+    required this.lightCardBorder,
+    required this.icon,
+  });
+}
+
+const List<CivicThemePalette> kColorPalettes = [
+  CivicThemePalette(
+    id: 'ORIGINAL',
+    nameFr: 'Civique Original (Jaune Signal)',
+    nameEn: 'Original Civic (Signal Yellow)',
+    primaryAccent: Color(0xFFFFE600),
+    darkBg: Color(0xFF121418),
+    darkCard: Color(0xFF1A1D24),
+    darkCardBorder: Color(0xFF282C36),
+    lightBg: Color(0xFFF0F2F6),
+    lightCard: Color(0xFFFFFFFF),
+    lightCardBorder: Color(0xFFD1D5DB),
+    icon: Icons.brightness_auto_rounded,
+  ),
+  CivicThemePalette(
+    id: 'QUEBEC',
+    nameFr: 'Québec Fleurdelisé (Bleu & Blanc)',
+    nameEn: 'Quebec Flag (Blue & White)',
+    primaryAccent: Color(0xFF2B6CB0), // Quebec Flag Fleurdelisé Blue
+    darkBg: Color(0xFF0F172A),
+    darkCard: Color(0xFF1E293B),
+    darkCardBorder: Color(0xFF334155),
+    lightBg: Color(0xFFEFF6FF),
+    lightCard: Color(0xFFFFFFFF),
+    lightCardBorder: Color(0xFFBFDBFE),
+    icon: Icons.flag_rounded,
+  ),
+  // Additional themes: MONTREAL NEON, NORTHERN LIGHTS, LAURENTIAN FOREST, CYBERPUNK QUEBEC
+];
+```
+
+
+--------------------------------------------------------------------------------
+2.2. OFF-THREAD ISOLATE DECODING (ISOLATE.RUN)
+--------------------------------------------------------------------------------
+To prevent UI thread freezing when loading 9,004 JSON objects, decoding is
+executed inside a top-level pure function with zero closure state captures.
+
+Code Snippet — Top-Level Isolate Function (`computeParseSocialResources`):
+
+```dart
+List<SocialResource> parseSocialResourcesJson(String jsonStr) {
+  try {
+    if (jsonStr.trim().isEmpty) return [];
+    final dynamic decoded = jsonDecode(jsonStr);
+    if (decoded is! List) return [];
+    final List<SocialResource> list = [];
+    for (final item in decoded) {
+      if (item is Map) {
+        try {
+          final map = Map<String, dynamic>.from(item);
+          list.add(SocialResource.fromJson(map));
+        } catch (_) {}
+      }
+    }
+    return list;
+  } catch (e) {
+    debugPrint('PARSE ERROR: $e');
+    return [];
+  }
+}
+
+Future<List<SocialResource>> computeParseSocialResources(String jsonStr) {
+  return Isolate.run(() => parseSocialResourcesJson(jsonStr));
+}
+```
+
+
+--------------------------------------------------------------------------------
+2.3. CUSTOM ALPHABETICAL SORTING ALGORITHM (LETTERS -> NUMBERS -> SYMBOLS)
+--------------------------------------------------------------------------------
+Directory and favorites sorting follows strict category priority:
+1. Letters (`A-Z` and accented French characters `à`, `é`, `è`, `ê`, `ô`, `ç`, etc.) = Priority 0.
+2. Digits (`0-9`) = Priority 1.
+3. Symbols and Special Characters (`#`, `@`, `-`, `(`, etc.) = Priority 2.
+
+Code Snippet — Custom Alphabetical Comparator (`_compareCustomAlphabetical`):
+
+```dart
+int _getCharCategoryPriority(int codeUnit, String char) {
+  // Letters (A-Z, a-z, Accented French Latin, œ, æ): Priority 0
+  if ((codeUnit >= 65 && codeUnit <= 90) ||
+      (codeUnit >= 97 && codeUnit <= 122) ||
+      (codeUnit >= 192 && codeUnit <= 255) ||
+      char == 'œ' || char == 'Œ' || char == 'æ' || char == 'Æ') {
+    return 0; // LETTERS FIRST
+  }
+  // Digits (0-9): Priority 1
+  if (codeUnit >= 48 && codeUnit <= 57) {
+    return 1; // NUMBERS SECOND
+  }
+  // Symbols & Special Characters: Priority 2
+  return 2; // SYMBOLS LAST
+}
+
+int _compareCustomAlphabetical(String strA, String strB) {
+  final normA = strA.trim().toLowerCase();
+  final normB = strB.trim().toLowerCase();
+
+  if (normA.isEmpty && normB.isEmpty) return 0;
+  if (normA.isEmpty) return 1;
+  if (normB.isEmpty) return -1;
+
+  final minLen = min(normA.length, normB.length);
+  for (int i = 0; i < minLen; i++) {
+    final charA = normA[i];
+    final charB = normB[i];
+    if (charA != charB) {
+      final prioA = _getCharCategoryPriority(normA.codeUnitAt(i), charA);
+      final prioB = _getCharCategoryPriority(normB.codeUnitAt(i), charB);
+
+      if (prioA != prioB) {
+        return prioA.compareTo(prioB);
+      }
+      return charA.compareTo(charB);
+    }
+  }
+
+  return normA.length.compareTo(normB.length);
+}
+```
+
+
+--------------------------------------------------------------------------------
+2.4. GPS GEOLOCATION & QUEBEC SECTOR RESOLUTION
+--------------------------------------------------------------------------------
+The `MY SECTOR (GPS)` button uses raw GPS coordinates (Latitude / Longitude)
+to match the user's position to one of Quebec's 17 administrative regions.
+
+Code Snippet — Administrative Region Resolution (`_resolveQuebecRegionFromCoordinates`):
+
+```dart
+String _resolveQuebecRegionFromCoordinates(double lat, double lon) {
+  if (lat >= 49.0 && lon <= -70.0) return '10 - NORD-DU-QUÉBEC';
+  if (lat >= 48.5 && lon > -70.0) return '09 - CÔTE-NORD';
+  if ((lat >= 47.0 && lat <= 48.0 && lon >= -62.5 && lon <= -61.0) ||
+      (lat >= 47.8 && lat <= 49.3 && lon >= -67.2 && lon <= -64.0)) {
+    return '11 - GASPÉSIE–ÎLES-DE-LA-MADELEINE';
+  }
+  if (lat >= 47.3 && lat < 48.9 && lon >= -70.0 && lon < -67.2) return '01 - BAS-SAINT-LAURENT';
+  if (lat >= 48.0 && lat < 50.5 && lon >= -73.5 && lon <= -70.0) return '02 - SAGUENAY–LAC-SAINT-JEAN';
+  if (lat >= 46.2 && lat < 49.0 && lon <= -76.5) return '08 - ABITIBI-TÉMISCAMINGUE';
+  if (lat >= 45.3 && lat < 47.8 && lon >= -77.5 && lon <= -74.7) return '07 - OUTAOUAIS';
+  if (lat >= 45.40 && lat <= 45.71 && lon >= -73.99 && lon <= -73.47) return '06 - MONTRÉAL';
+  if (lat > 45.51 && lat <= 45.71 && lon >= -73.89 && lon <= -73.51) return '13 - LAVAL';
+  if (lat >= 45.65 && lat < 47.5 && lon >= -75.8 && lon <= -73.85) return '15 - LAURENTIDES';
+  if (lat >= 45.68 && lat < 47.8 && lon > -74.2 && lon <= -73.15) return '14 - LANAUDIÈRE';
+  if (lat >= 46.2 && lat < 48.5 && lon > -73.5 && lon <= -72.0) return '04 - MAURICIE';
+  if (lat >= 46.65 && lat < 48.2 && lon > -72.4 && lon <= -69.7) return '03 - CAPITALE-NATIONALE';
+  if (lat >= 45.8 && lat < 47.35 && lon >= -71.6 && lon <= -69.6) return '12 - CHAUDIÈRE-APPALACHES';
+  if (lat >= 45.8 && lat < 46.65 && lon >= -72.9 && lon < -71.5) return '17 - CENTRE-DU-QUÉBEC';
+  if (lat >= 45.0 && lat < 45.85 && lon >= -72.45 && lon <= -70.7) return '05 - ESTRIE';
+  if (lat >= 45.0 && lat < 46.05 && lon >= -74.5 && lon < -72.45) return '16 - MONTÉRÉGIE (INCL. SUROÎT)';
+
+  return kQuebecRegions.first;
+}
+```
+
+
+--------------------------------------------------------------------------------
+2.5. PDF DOCUMENT GENERATION & EXPORT (`pdf` & `printing`)
+--------------------------------------------------------------------------------
+Favorite groups and contact lists are exported into printable PDF sheets via
+the `pdf` library and shared using `Printing.sharePdf`.
+
+Code Snippet — PDF Generator (`_exportFavoriteGroupPdf`):
+
+```dart
+Future<void> _exportFavoriteGroupPdf({required String title, required List<SocialResource> resources}) async {
+  final pdf = pw.Document();
+
+  pdf.addPage(
+    pw.MultiPage(
+      pageFormat: PdfPageFormat.a4,
+      margin: const pw.EdgeInsets.all(32),
+      header: (context) => pw.Column(
+        crossAxisAlignment: pw.CrossAxisAlignment.start,
+        children: [
+          pw.Row(
+            mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
+            children: [
+              pw.Text('INDEXOCIAL QC', style: pw.TextStyle(fontSize: 18, fontWeight: pw.FontWeight.bold, color: PdfColors.amber900)),
+              pw.Text('Quebec Civic Directory', style: const pw.TextStyle(fontSize: 10, color: PdfColors.grey700)),
+            ],
+          ),
+          pw.Divider(thickness: 1.5, color: PdfColors.amber700),
+        ],
+      ),
+      build: (context) => [
+        pw.Text(title.toUpperCase(), style: pw.TextStyle(fontSize: 15, fontWeight: pw.FontWeight.bold)),
+        pw.SizedBox(height: 14),
+        ...resources.map((r) {
+          return pw.Container(
+            margin: const pw.EdgeInsets.only(bottom: 10),
+            padding: const pw.EdgeInsets.all(10),
+            decoration: pw.BoxDecoration(
+              border: pw.Border.all(color: PdfColors.grey400, width: 0.8),
+              borderRadius: const pw.BorderRadius.all(pw.Radius.circular(6)),
+            ),
+            child: pw.Column(
+              crossAxisAlignment: pw.CrossAxisAlignment.start,
+              children: [
+                pw.Text(r.name(_isFr), style: pw.TextStyle(fontSize: 12, fontWeight: pw.FontWeight.bold)),
+                if (r.phone.isNotEmpty) pw.Text('Phone: ${r.phone}', style: const pw.TextStyle(fontSize: 9.5)),
+                if (r.website.isNotEmpty) pw.Text('Website: ${r.website}', style: const pw.TextStyle(fontSize: 9.5)),
+                if (r.region.isNotEmpty) pw.Text('Region: ${r.region}', style: const pw.TextStyle(fontSize: 9.5)),
+              ],
+            ),
+          );
+        }),
+      ],
+    ),
+  );
+
+  final bytes = await pdf.save();
+  await Printing.sharePdf(bytes: bytes, filename: 'indexocial_favorites.pdf');
+}
+```
+
+
+================================================================================
+3. GRADLE BUILD SCRIPTS & ANDROID SIGNING (android/app/build.gradle.kts)
+================================================================================
+To automate renaming the Android release App Bundle (`.aab`) during compilation,
+a custom Gradle `doLast` task is appended to `bundleRelease`.
+
+Code Snippet — `android/app/build.gradle.kts`:
+
+```kotlin
+flutter {
+    source = "../.."
+}
+
+tasks.whenTaskAdded {
+    if (name == "bundleRelease") {
+        doLast {
+            val outputDir = file("${layout.buildDirectory.get()}/outputs/bundle/release")
+            val defaultAab = file("${outputDir}/app-release.aab")
+            val customAab = file("${outputDir}/com.iammithra.indexocial.aab")
+            val projectRootAab = rootProject.file("../com.iammithra.indexocial.aab")
+            if (defaultAab.exists()) {
+                defaultAab.copyTo(customAab, overwrite = true)
+                defaultAab.copyTo(projectRootAab, overwrite = true)
+            }
+        }
+    }
+}
+```
+
+
+================================================================================
+4. DETAILED PROJECT DIRECTORY MAP
+================================================================================
+INDEXOCIAL/
+├── android/
+│   ├── app/build.gradle.kts         # Android signing and .aab copy task
+│   └── key.properties               # Keystore signing credentials (indexocial-upload.jks)
+├── assets/
+│   ├── resources.json               # Primary dataset (9,003 items)
+│   ├── added_resources.json         # Secondary custom asset file (QC-9012 Ebyôn)
+│   └── regions/                     # 17 minified per-region JSON files
+├── lib/
+│   └── main.dart                    # Primary application source code
+├── com.iammithra.indexocial.aab     # Signed App Bundle ready for Play Store
+├── pubspec.yaml                     # Project version & dependencies (v2.1.0+5)
+├── CHANGELOG.md                     # Version changelog history
+├── release_notes_playstore.md       # Play Store release notes (FR/EN)
+└── DOCS_INDEXOCIAL_EXPLANATION_FR_EN.txt # Full documentation file
 ================================================================================
