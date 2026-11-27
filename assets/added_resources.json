@@ -1,0 +1,21 @@
+[
+  {
+    "id": "ADD-01",
+    "nameFr": "EXEMPLE DE NOUVELLE RESSOURCE",
+    "nameEn": "SAMPLE NEW RESOURCE",
+    "categoryIds": [
+      "HEALTH"
+    ],
+    "region": "PROVINCIAL (TOUT LE QUÉBEC)",
+    "phone": "811",
+    "website": "https://www.quebec.ca",
+    "address": "Québec, QC",
+    "descFr": "Ajoutez vos nouvelles ressources sociales dans ce fichier.",
+    "descEn": "Add your new social resources into this file.",
+    "tags": [
+      "nouvelle",
+      "ressource",
+      "exemple"
+    ]
+  }
+]

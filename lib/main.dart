@@ -1530,6 +1530,20 @@ class _CivicLedgerScreenState extends State<CivicLedgerScreen> {
       } catch (_) {}
     }
 
+    // Load secondary added resources file (assets/added_resources.json)
+    try {
+      final addedJson = await rootBundle.loadString('assets/added_resources.json');
+      if (addedJson.trim().isNotEmpty) {
+        final addedList = await Isolate.run(() => parseSocialResourcesJson(addedJson));
+        if (addedList.isNotEmpty) {
+          loadedResources.insertAll(0, addedList);
+          debugPrint('Loaded ${addedList.length} added resources from assets/added_resources.json');
+        }
+      }
+    } catch (e) {
+      debugPrint('Notice: assets/added_resources.json not loaded: $e');
+    }
+
     if (mounted && loadedResources.isNotEmpty) {
       setState(() {
         _resources = loadedResources;
@@ -1548,10 +1562,10 @@ class _CivicLedgerScreenState extends State<CivicLedgerScreen> {
         if (netResources.isNotEmpty) {
           await prefs.setString('indexocial_cached_resources', decodedBody);
 
-          final customOnly = _resources.where((r) => r.isCustom).toList();
+          final addedAndCustom = _resources.where((r) => r.isCustom || r.id.startsWith('ADD-')).toList();
           if (mounted) {
             setState(() {
-              _resources = [...customOnly, ...netResources];
+              _resources = [...addedAndCustom, ...netResources];
             });
             debugPrint('Updated state with remote ${netResources.length} resources');
           }

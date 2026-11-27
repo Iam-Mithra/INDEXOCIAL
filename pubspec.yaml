@@ -63,4 +63,5 @@ flutter:
   uses-material-design: true
   assets:
     - assets/resources.json
+    - assets/added_resources.json
     - assets/regions/
