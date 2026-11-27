@@ -24,6 +24,9 @@ All notable changes to the Indexocial QC Flutter/Android application are documen
 * **2-Line Compact Weather Alert Cards**: Redesigned severe weather alert banners into compact 2-line cards (Header + Full Title) with expandable event details.
 * **Permanent Weather Refresh Button**: Added a dedicated refresh button to the ECCC weather alert section to update live alerts anytime.
 
+#### 🎨 Secret Theme Palettes (Easter Egg)
+* **Hidden Color Palette Selector**: Tapping 10 times on the top-left Indexocial logo unlocks a secret Easter Egg menu with 6 custom color themes, including **Québec Fleurdelisé** (official Quebec flag blue & white), **Montréal Néon**, **Aurore Boréale**, **Forêt Laurentienne**, and **Cyberpunk Québec**.
+
 #### 💾 Database & Performance Overhaul
 * **9,004 Community Resources Across 17 Regional Databases**: Split the dataset into 17 per-region JSON files (`assets/regions/region_*.json`) for fast, region-specific loading and reduced memory footprint.
 * **Off-Thread Isolate Parsing**: Offloaded JSON decoding to background Dart Isolates to maintain a lag-free 60 FPS UI.

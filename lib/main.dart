@@ -49,6 +49,115 @@ class CivicPalette {
   static const Color vermilion = Color(0xFFFF3B30);
 }
 
+class CivicThemePalette {
+  final String id;
+  final String nameFr;
+  final String nameEn;
+  final Color primaryAccent;
+  final Color darkBg;
+  final Color darkCard;
+  final Color darkCardBorder;
+  final Color lightBg;
+  final Color lightCard;
+  final Color lightCardBorder;
+  final IconData icon;
+
+  const CivicThemePalette({
+    required this.id,
+    required this.nameFr,
+    required this.nameEn,
+    required this.primaryAccent,
+    required this.darkBg,
+    required this.darkCard,
+    required this.darkCardBorder,
+    required this.lightBg,
+    required this.lightCard,
+    required this.lightCardBorder,
+    required this.icon,
+  });
+}
+
+const List<CivicThemePalette> kColorPalettes = [
+  CivicThemePalette(
+    id: 'ORIGINAL',
+    nameFr: 'Civique Original (Jaune Signal)',
+    nameEn: 'Original Civic (Signal Yellow)',
+    primaryAccent: Color(0xFFFFE600),
+    darkBg: Color(0xFF121418),
+    darkCard: Color(0xFF1A1D24),
+    darkCardBorder: Color(0xFF282C36),
+    lightBg: Color(0xFFF0F2F6),
+    lightCard: Color(0xFFFFFFFF),
+    lightCardBorder: Color(0xFFD1D5DB),
+    icon: Icons.brightness_auto_rounded,
+  ),
+  CivicThemePalette(
+    id: 'QUEBEC',
+    nameFr: 'Québec Fleurdelisé (Bleu & Blanc)',
+    nameEn: 'Quebec Flag (Blue & White)',
+    primaryAccent: Color(0xFF2B6CB0),
+    darkBg: Color(0xFF0F172A),
+    darkCard: Color(0xFF1E293B),
+    darkCardBorder: Color(0xFF334155),
+    lightBg: Color(0xFFEFF6FF),
+    lightCard: Color(0xFFFFFFFF),
+    lightCardBorder: Color(0xFFBFDBFE),
+    icon: Icons.flag_rounded,
+  ),
+  CivicThemePalette(
+    id: 'MONTREAL',
+    nameFr: 'Montréal Néon (Cyan & Magenta)',
+    nameEn: 'Montreal Neon (Cyan & Magenta)',
+    primaryAccent: Color(0xFF00E5FF),
+    darkBg: Color(0xFF13091E),
+    darkCard: Color(0xFF1F1032),
+    darkCardBorder: Color(0xFF3B1E5E),
+    lightBg: Color(0xFFF5F0FF),
+    lightCard: Color(0xFFFFFFFF),
+    lightCardBorder: Color(0xFFDDD0FC),
+    icon: Icons.location_city_rounded,
+  ),
+  CivicThemePalette(
+    id: 'AURORE',
+    nameFr: 'Aurore Boréale (Émeraude & Nordique)',
+    nameEn: 'Northern Lights (Nordic Emerald)',
+    primaryAccent: Color(0xFF00E676),
+    darkBg: Color(0xFF061A14),
+    darkCard: Color(0xFF0C2B22),
+    darkCardBorder: Color(0xFF184E3F),
+    lightBg: Color(0xFFE8F5E9),
+    lightCard: Color(0xFFFFFFFF),
+    lightCardBorder: Color(0xFFA5D6A7),
+    icon: Icons.auto_awesome_rounded,
+  ),
+  CivicThemePalette(
+    id: 'FORET',
+    nameFr: 'Forêt Laurentienne (Automne & Ambre)',
+    nameEn: 'Laurentian Forest (Autumn Amber)',
+    primaryAccent: Color(0xFFFF9100),
+    darkBg: Color(0xFF1C130B),
+    darkCard: Color(0xFF2E2013),
+    darkCardBorder: Color(0xFF4A3420),
+    lightBg: Color(0xFFFFF8E1),
+    lightCard: Color(0xFFFFFFFF),
+    lightCardBorder: Color(0xFFFFE082),
+    icon: Icons.park_rounded,
+  ),
+  CivicThemePalette(
+    id: 'CYBERPUNK',
+    nameFr: 'Cyberpunk Québec (Vert Volt)',
+    nameEn: 'Cyberpunk Quebec (Volt Green)',
+    primaryAccent: Color(0xFF39FF14),
+    darkBg: Color(0xFF0A0E0A),
+    darkCard: Color(0xFF121B12),
+    darkCardBorder: Color(0xFF223822),
+    lightBg: Color(0xFFF1F8F1),
+    lightCard: Color(0xFFFFFFFF),
+    lightCardBorder: Color(0xFFC8E6C9),
+    icon: Icons.bolt_rounded,
+  ),
+];
+
 // ============================================================================
 // CUSTOM GLOBE WIREFRAME ICON
 // ============================================================================
@@ -720,19 +829,29 @@ class _CivicLedgerScreenState extends State<CivicLedgerScreen> {
   bool _locationServiceDisabled = false;
   List<EcccWeatherAlert> _weatherAlerts = [];
 
-  // --- ÉTAT ACCESSIBILITÉ (Confirmation d'appel activée par défaut) ---
+  // --- ÉTAT ACCESSIBILITÉ & EASTER EGG PALETTE ---
   double _textScaleFactor = 1.0;
   bool _highContrast = false;
   bool _confirmEmergencyCalls = true;
+  String _selectedPaletteId = 'ORIGINAL';
+  int _logoTapCount = 0;
+  Timer? _logoTapTimer;
 
-  Color get _bg => widget.isDark ? CivicPalette.darkBg : CivicPalette.lightBg;
-  Color get _cardBg => widget.isDark ? CivicPalette.darkCard : CivicPalette.lightCard;
+  CivicThemePalette get _activePalette {
+    return kColorPalettes.firstWhere(
+      (p) => p.id == _selectedPaletteId,
+      orElse: () => kColorPalettes.first,
+    );
+  }
+
+  Color get _bg => widget.isDark ? _activePalette.darkBg : _activePalette.lightBg;
+  Color get _cardBg => widget.isDark ? _activePalette.darkCard : _activePalette.lightCard;
 
   Color get _cardBorder {
     if (_highContrast) {
       return widget.isDark ? Colors.white70 : Colors.black87;
     }
-    return widget.isDark ? CivicPalette.darkCardBorder : CivicPalette.lightCardBorder;
+    return widget.isDark ? _activePalette.darkCardBorder : _activePalette.lightCardBorder;
   }
 
   double get _cardBorderWidth => _highContrast ? 2.2 : 1.0;
@@ -746,7 +865,7 @@ class _CivicLedgerScreenState extends State<CivicLedgerScreen> {
     return widget.isDark ? CivicPalette.darkTextMuted : CivicPalette.lightTextMuted;
   }
 
-  Color get _accentText => widget.isDark ? CivicPalette.signalYellow : const Color(0xFFB48A00);
+  Color get _accentText => _activePalette.primaryAccent;
 
   String _searchQuery = '';
   Timer? _searchDebounce;
@@ -1603,105 +1722,100 @@ class _CivicLedgerScreenState extends State<CivicLedgerScreen> {
     showModalBottomSheet(
       context: context,
       backgroundColor: _cardBg,
-      isScrollControlled: true,
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
       ),
       builder: (context) {
-        return SafeArea(
-          child: Padding(
-            padding: const EdgeInsets.only(left: 20, right: 20, top: 20, bottom: 28),
-            child: SingleChildScrollView(
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.start,
+        return Padding(
+          padding: const EdgeInsets.all(20),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
                 children: [
-                  Row(
-                    children: [
-                      Icon(Icons.ios_share_rounded, color: CivicPalette.signalYellow, size: 22),
-                      const SizedBox(width: 8),
-                      Text(
-                        _isFr ? 'Exporter / Partager' : 'Export / Share',
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w900,
-                          color: _textPrimary,
-                          fontFamily: 'sans-serif-condensed',
-                        ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 6),
+                  Icon(Icons.ios_share_rounded, color: CivicPalette.signalYellow, size: 22),
+                  const SizedBox(width: 8),
                   Text(
-                    '${groupTitle.toUpperCase()} (${itemsToExport.length} contacts)',
-                    style: TextStyle(fontSize: 12.5, fontWeight: FontWeight.w800, color: _accentText),
-                  ),
-                  const SizedBox(height: 16),
-                  ListTile(
-                    leading: Container(
-                      padding: const EdgeInsets.all(8),
-                      decoration: BoxDecoration(
-                        color: CivicPalette.vermilion.withValues(alpha: 0.15),
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      child: const Icon(Icons.picture_as_pdf_rounded, color: CivicPalette.vermilion, size: 22),
+                    _isFr ? 'Exporter / Partager' : 'Export / Share',
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w900,
+                      color: _textPrimary,
+                      fontFamily: 'sans-serif-condensed',
                     ),
-                    title: Text(
-                      _isFr ? 'DOCUMENT PDF (Imprimable / Fiche)' : 'PDF DOCUMENT (Printable / Sheet)',
-                      style: TextStyle(fontSize: 13.5, fontWeight: FontWeight.w900, color: _textPrimary, fontFamily: 'sans-serif-condensed'),
-                    ),
-                    subtitle: Text(
-                      _isFr ? 'Générer un PDF propre avec tous les détails' : 'Generate clean PDF with full contact details',
-                      style: TextStyle(fontSize: 11.5, color: _textMuted),
-                    ),
-                    onTap: () {
-                      Navigator.pop(context);
-                      _exportFavoriteGroupPdf(title: groupTitle, resources: itemsToExport);
-                    },
-                  ),
-                  const SizedBox(height: 8),
-                  ListTile(
-                    leading: Container(
-                      padding: const EdgeInsets.all(8),
-                      decoration: BoxDecoration(
-                        color: CivicPalette.signalYellow.withValues(alpha: 0.2),
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      child: Icon(Icons.description_rounded, color: _accentText, size: 22),
-                    ),
-                    title: Text(
-                      _isFr ? 'TEXTE BRUT (SMS / WhatsApp / Courriel)' : 'PLAIN TEXT (SMS / WhatsApp / Email)',
-                      style: TextStyle(fontSize: 13.5, fontWeight: FontWeight.w900, color: _textPrimary, fontFamily: 'sans-serif-condensed'),
-                    ),
-                    subtitle: Text(
-                      _isFr ? 'Partager la liste sous forme de message texte' : 'Share contact list as formatted text message',
-                      style: TextStyle(fontSize: 11.5, color: _textMuted),
-                    ),
-                    onTap: () {
-                      Navigator.pop(context);
-                      final buffer = StringBuffer();
-                      buffer.writeln('📋 INDEXOCIAL QC - ${groupTitle.toUpperCase()}');
-                      buffer.writeln('Nombre de contacts : ${itemsToExport.length}');
-                      buffer.writeln('----------------------------------------');
-
-                      for (int i = 0; i < itemsToExport.length; i++) {
-                        final r = itemsToExport[i];
-                        buffer.writeln('${i + 1}. ${r.name(_isFr)}');
-                        if (r.phone.isNotEmpty) buffer.writeln('   📞 Tél : ${r.phone}');
-                        if (r.website.isNotEmpty) buffer.writeln('   🌐 Web : ${r.website}');
-                        if (r.region.isNotEmpty) buffer.writeln('   📍 Région : ${r.region}');
-                        buffer.writeln('');
-                      }
-
-                      buffer.writeln('----------------------------------------');
-                      buffer.writeln('Partagé via INDEXOCIAL QC - Répertoire civique du Québec');
-
-                      Share.share(buffer.toString(), subject: 'INDEXOCIAL QC - $groupTitle');
-                    },
                   ),
                 ],
               ),
-            ),
+              const SizedBox(height: 6),
+              Text(
+                '${groupTitle.toUpperCase()} (${itemsToExport.length} contacts)',
+                style: TextStyle(fontSize: 12.5, fontWeight: FontWeight.w800, color: _accentText),
+              ),
+              const SizedBox(height: 16),
+              ListTile(
+                leading: Container(
+                  padding: const EdgeInsets.all(8),
+                  decoration: BoxDecoration(
+                    color: CivicPalette.vermilion.withValues(alpha: 0.15),
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: const Icon(Icons.picture_as_pdf_rounded, color: CivicPalette.vermilion, size: 22),
+                ),
+                title: Text(
+                  _isFr ? 'DOCUMENT PDF (Imprimable / Fiche)' : 'PDF DOCUMENT (Printable / Sheet)',
+                  style: TextStyle(fontSize: 13.5, fontWeight: FontWeight.w900, color: _textPrimary, fontFamily: 'sans-serif-condensed'),
+                ),
+                subtitle: Text(
+                  _isFr ? 'Générer un PDF propre avec tous les détails' : 'Generate clean PDF with full contact details',
+                  style: TextStyle(fontSize: 11.5, color: _textMuted),
+                ),
+                onTap: () {
+                  Navigator.pop(context);
+                  _exportFavoriteGroupPdf(title: groupTitle, resources: itemsToExport);
+                },
+              ),
+              const SizedBox(height: 8),
+              ListTile(
+                leading: Container(
+                  padding: const EdgeInsets.all(8),
+                  decoration: BoxDecoration(
+                    color: CivicPalette.signalYellow.withValues(alpha: 0.2),
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: Icon(Icons.description_rounded, color: _accentText, size: 22),
+                ),
+                title: Text(
+                  _isFr ? 'TEXTE BRUT (SMS / WhatsApp / Courriel)' : 'PLAIN TEXT (SMS / WhatsApp / Email)',
+                  style: TextStyle(fontSize: 13.5, fontWeight: FontWeight.w900, color: _textPrimary, fontFamily: 'sans-serif-condensed'),
+                ),
+                subtitle: Text(
+                  _isFr ? 'Partager la liste sous forme de message texte' : 'Share contact list as formatted text message',
+                  style: TextStyle(fontSize: 11.5, color: _textMuted),
+                ),
+                onTap: () {
+                  Navigator.pop(context);
+                  final buffer = StringBuffer();
+                  buffer.writeln('📋 INDEXOCIAL QC - ${groupTitle.toUpperCase()}');
+                  buffer.writeln('Nombre de contacts : ${itemsToExport.length}');
+                  buffer.writeln('----------------------------------------');
+
+                  for (int i = 0; i < itemsToExport.length; i++) {
+                    final r = itemsToExport[i];
+                    buffer.writeln('${i + 1}. ${r.name(_isFr)}');
+                    if (r.phone.isNotEmpty) buffer.writeln('   📞 Tél : ${r.phone}');
+                    if (r.website.isNotEmpty) buffer.writeln('   🌐 Web : ${r.website}');
+                    if (r.region.isNotEmpty) buffer.writeln('   📍 Région : ${r.region}');
+                    buffer.writeln('');
+                  }
+
+                  buffer.writeln('----------------------------------------');
+                  buffer.writeln('Partagé via INDEXOCIAL QC - Répertoire civique du Québec');
+
+                  Share.share(buffer.toString(), subject: 'INDEXOCIAL QC - $groupTitle');
+                },
+              ),
+            ],
           ),
         );
       },
@@ -2020,6 +2134,183 @@ class _CivicLedgerScreenState extends State<CivicLedgerScreen> {
     );
   }
 
+  Future<void> _loadPalettePref() async {
+    final prefs = await SharedPreferences.getInstance();
+    final savedId = prefs.getString('indexocial_active_palette');
+    if (savedId != null && savedId.isNotEmpty) {
+      if (mounted) {
+        setState(() {
+          _selectedPaletteId = savedId;
+        });
+      }
+    }
+  }
+
+  Future<void> _savePalettePref(String paletteId) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString('indexocial_active_palette', paletteId);
+  }
+
+  void _onLogoTapped() {
+    _logoTapTimer?.cancel();
+    setState(() {
+      _logoTapCount++;
+    });
+
+    if (_logoTapCount >= 10) {
+      _logoTapCount = 0;
+      HapticFeedback.heavyImpact();
+      _openSecretPaletteSheet();
+    } else {
+      _logoTapTimer = Timer(const Duration(seconds: 3), () {
+        if (mounted) setState(() => _logoTapCount = 0);
+      });
+
+      if (_logoTapCount >= 5) {
+        final remaining = 10 - _logoTapCount;
+        ScaffoldMessenger.of(context)
+          ..clearSnackBars()
+          ..showSnackBar(
+            SnackBar(
+              duration: const Duration(milliseconds: 900),
+              backgroundColor: _accentText,
+              behavior: SnackBarBehavior.floating,
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+              content: Text(
+                _isFr
+                    ? '🎯 Encore $remaining clic${remaining > 1 ? "s" : ""} pour le menu secret !'
+                    : '🎯 $remaining more tap${remaining > 1 ? "s" : ""} for secret menu!',
+                style: const TextStyle(fontWeight: FontWeight.w900, color: CivicPalette.darkBg),
+              ),
+            ),
+          );
+      }
+    }
+  }
+
+  void _openSecretPaletteSheet() {
+    showModalBottomSheet(
+      context: context,
+      backgroundColor: _cardBg,
+      isScrollControlled: true,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(26)),
+      ),
+      builder: (context) {
+        return StatefulBuilder(
+          builder: (context, setSheetState) {
+            return SafeArea(
+              child: Padding(
+                padding: const EdgeInsets.only(left: 20, right: 20, top: 20, bottom: 28),
+                child: SingleChildScrollView(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        children: [
+                          Icon(Icons.style_rounded, color: _accentText, size: 24),
+                          const SizedBox(width: 10),
+                          Expanded(
+                            child: Text(
+                              _isFr ? '⚜️ MENU SECRET : PALETTES DE COULEURS' : '⚜️ SECRET MENU: COLOR PALETTES',
+                              style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w900,
+                                color: _textPrimary,
+                                fontFamily: 'sans-serif-condensed',
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 6),
+                      Text(
+                        _isFr
+                            ? 'Félicitations ! Vous avez déverrouillé l’Easter Egg des thèmes.'
+                            : 'Congratulations! You unlocked the secret theme Easter Egg.',
+                        style: TextStyle(fontSize: 12.5, fontWeight: FontWeight.w700, color: _accentText),
+                      ),
+                      const SizedBox(height: 18),
+                      ...kColorPalettes.map((palette) {
+                        final isSelected = _selectedPaletteId == palette.id;
+
+                        return Container(
+                          margin: const EdgeInsets.only(bottom: 10),
+                          decoration: BoxDecoration(
+                            color: _bg,
+                            borderRadius: BorderRadius.circular(18),
+                            border: Border.all(
+                              color: isSelected ? palette.primaryAccent : _cardBorder,
+                              width: isSelected ? 2.4 : _cardBorderWidth,
+                            ),
+                          ),
+                          child: ListTile(
+                            contentPadding: const EdgeInsets.symmetric(horizontal: 14, vertical: 4),
+                            leading: Container(
+                              padding: const EdgeInsets.all(8),
+                              decoration: BoxDecoration(
+                                color: palette.primaryAccent.withValues(alpha: 0.2),
+                                borderRadius: BorderRadius.circular(12),
+                              ),
+                              child: Icon(palette.icon, color: palette.primaryAccent, size: 22),
+                            ),
+                            title: Text(
+                              palette.nameFr,
+                              style: TextStyle(
+                                fontSize: 13.5,
+                                fontWeight: FontWeight.w900,
+                                color: _textPrimary,
+                                fontFamily: 'sans-serif-condensed',
+                              ),
+                            ),
+                            trailing: Container(
+                              width: 24,
+                              height: 24,
+                              decoration: BoxDecoration(
+                                color: palette.primaryAccent,
+                                shape: BoxShape.circle,
+                                border: Border.all(color: Colors.white, width: 2),
+                              ),
+                              child: isSelected
+                                  ? const Icon(Icons.check_rounded, size: 14, color: Colors.black)
+                                  : null,
+                            ),
+                            onTap: () {
+                              setState(() {
+                                _selectedPaletteId = palette.id;
+                              });
+                              setSheetState(() {});
+                              _savePalettePref(palette.id);
+
+                              ScaffoldMessenger.of(context)
+                                ..clearSnackBars()
+                                ..showSnackBar(
+                                  SnackBar(
+                                    backgroundColor: palette.primaryAccent,
+                                    behavior: SnackBarBehavior.floating,
+                                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+                                    content: Text(
+                                      _isFr ? '🎨 Palette changée : ${palette.nameFr}' : '🎨 Palette changed: ${palette.nameEn}',
+                                      style: const TextStyle(fontWeight: FontWeight.w900, color: CivicPalette.darkBg),
+                                    ),
+                                  ),
+                                );
+                            },
+                          ),
+                        );
+                      }),
+                    ],
+                  ),
+                ),
+              ),
+            );
+          },
+        );
+      },
+    );
+  }
+
   void _quickHideEmergency() => _launchUri(_hideRedirectUrl);
 
   static const List<String> kRegionJsonFiles = [
@@ -2062,6 +2353,7 @@ class _CivicLedgerScreenState extends State<CivicLedgerScreen> {
     final prefs = await SharedPreferences.getInstance();
 
     await _loadFavoriteGroups();
+    await _loadPalettePref();
 
     final accepted = prefs.getBool('indexocial_disclaimer_accepted') ?? false;
     final seenTour = prefs.getBool('indexocial_tour_seen') ?? false;
@@ -4269,37 +4561,41 @@ int _compareCustomAlphabetical(String strA, String strB) {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Expanded(
-            child: Row(
-              children: [
-                const GlobeWireframeIcon(size: 28, color: CivicPalette.signalYellow),
-                const SizedBox(width: 8),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'INDEXOCIAL // QC',
-                        style: TextStyle(
-                          fontFamily: 'sans-serif-condensed',
-                          fontSize: 18,
-                          fontWeight: FontWeight.w900,
-                          color: _accentText,
-                          letterSpacing: -0.5,
-                        ),
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                      if (showSubtitle)
+            child: GestureDetector(
+              behavior: HitTestBehavior.opaque,
+              onTap: _onLogoTapped,
+              child: Row(
+                children: [
+                  GlobeWireframeIcon(size: 28, color: _accentText),
+                  const SizedBox(width: 8),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
                         Text(
-                          _isFr ? 'Répertoire d’aide sociale Québec' : 'Quebec Social Aid Directory',
-                          style: TextStyle(fontSize: 10, color: _textMuted, fontWeight: FontWeight.w600, fontFamily: 'Roboto'),
+                          'INDEXOCIAL // QC',
+                          style: TextStyle(
+                            fontFamily: 'sans-serif-condensed',
+                            fontSize: 18,
+                            fontWeight: FontWeight.w900,
+                            color: _accentText,
+                            letterSpacing: -0.5,
+                          ),
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                         ),
-                    ],
+                        if (showSubtitle)
+                          Text(
+                            _isFr ? 'Répertoire d’aide sociale Québec' : 'Quebec Social Aid Directory',
+                            style: TextStyle(fontSize: 10, color: _textMuted, fontWeight: FontWeight.w600, fontFamily: 'Roboto'),
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                      ],
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
           const SizedBox(width: 8),
@@ -6348,7 +6644,7 @@ int _compareCustomAlphabetical(String strA, String strB) {
         const SizedBox(height: 24),
         Center(
           child: Text(
-            'INDEXOCIAL QC v2.0.0+3',
+            'INDEXOCIAL QC v2.1.0+5',
             style: TextStyle(
               fontSize: 12,
               fontWeight: FontWeight.w900,
