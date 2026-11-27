@@ -56,3 +56,18 @@ kotlin {
 flutter {
     source = "../.."
 }
+
+tasks.whenTaskAdded {
+    if (name == "bundleRelease") {
+        doLast {
+            val outputDir = file("${layout.buildDirectory.get()}/outputs/bundle/release")
+            val defaultAab = file("${outputDir}/app-release.aab")
+            val customAab = file("${outputDir}/com.iammithra.indexocial.aab")
+            val projectRootAab = rootProject.file("../com.iammithra.indexocial.aab")
+            if (defaultAab.exists()) {
+                defaultAab.copyTo(customAab, overwrite = true)
+                defaultAab.copyTo(projectRootAab, overwrite = true)
+            }
+        }
+    }
+}
