@@ -4,6 +4,16 @@ All notable changes to the Indexocial QC Flutter/Android application are documen
 
 ---
 
+## [2.1.0+5] - 2026-11-26
+
+### 📍 New Features & UI Enhancements
+* **GPS Sector Filter Button ("MON SECTEUR GPS")**: Added a one-tap GPS button next to search filters that converts device coordinates directly into Québec's administrative regions (e.g. `04 - MAURICIE ET CENTRE-DU-QUÉBEC`, `06 - MONTRÉAL`) and instantly filters local resources.
+* **Strict Alphabetical Resource Sorting**: Unified directory sorting so all community resources (including new and secondary additions) display in alphabetical order (`A-Z`) for a clean, consistent list.
+* **Compact Expandable Weather Alert Cards**: Redesigned severe weather alert banners into compact cards with a toggleable arrow button to expand full event details without cluttering the screen.
+* **Comprehensive Bilingue Documentation (`DOCS_INDEXOCIAL_EXPLANATION_FR_EN.txt`)**: Created a complete architecture, code, and project directory reference document in French and English.
+
+---
+
 ## [2.0.1+4] - 2026-11-26
 
 ### 🚀 What's New & Performance Overhaul

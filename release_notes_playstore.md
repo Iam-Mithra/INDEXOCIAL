@@ -1,16 +1,16 @@
 <fr-CA>
-Nouveautés de la version 2.0.1 :
-- Répertoire étendu à plus de 10 300 ressources sociales et d'urgence structurées en 17 bases régionales.
-- Chargement modulaire par région : ouverture instantanée de l'application et empreinte mémoire réduite.
-- Traitement en arrière-plan (Isolates Dart) pour un décodage fluide sans aucun ralentissement.
-- Recherche optimisée avec indexation préalable et filtrage réactif.
-- Rendu dynamique (60 FPS) et fiabilité hors-ligne renforcée.
+Nouveautés de la version 2.1.0 :
+- Bouton « MON SECTEUR (GPS) » pour filtrer automatiquement les ressources communautaires dans votre secteur géographique.
+- Tri alphabétique unifié pour l'ensemble des 9 004 ressources et organismes sociaux.
+- Cartes d'alertes météo d'urgence compactes et dépliables.
+- Chargement optimisé par région avec décodage hors-thread (Isolates Dart) pour une fluidité parfaite à 60 FPS.
+- Base de données mise à jour et fiabilité hors-ligne renforcée.
 </fr-CA>
 <en-CA>
-What's new in version 2.0.1:
-- Directory expanded to over 10,300 social & emergency resources structured across 17 regional databases.
-- Modular regional loading: instant app startup and reduced memory footprint.
-- Off-thread background processing (Dart Isolates) for zero UI stutter during data loading.
-- Pre-indexed search with smooth debounced query filtering.
-- High-performance 60 FPS dynamic rendering and reinforced offline reliability.
+What's new in version 2.1.0:
+- "MY SECTOR (GPS)" button to automatically filter community resources near your location.
+- Unified alphabetical sorting across all 9,004 social and community resources.
+- Compact expandable severe weather alert cards.
+- Optimized regional loading with background Isolate decoding for smooth 60 FPS scrolling.
+- Updated database and reinforced offline reliability.
 </en-CA>

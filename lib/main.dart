@@ -320,6 +320,10 @@ List<SocialResource> parseSocialResourcesJson(String jsonStr) {
   }
 }
 
+Future<List<SocialResource>> computeParseSocialResources(String jsonStr) {
+  return Isolate.run(() => parseSocialResourcesJson(jsonStr));
+}
+
 class SocialResource {
   final String id;
   final String nameFr;
@@ -1334,7 +1338,7 @@ class _CivicLedgerScreenState extends State<CivicLedgerScreen> {
       try {
         final jsonStr = await rootBundle.loadString('assets/regions/$fileName');
         if (jsonStr.isNotEmpty) {
-          final parsed = await Isolate.run(() => parseSocialResourcesJson(jsonStr));
+          final parsed = await computeParseSocialResources(jsonStr);
           allLoaded.addAll(parsed);
         }
       } catch (e) {
@@ -1383,7 +1387,7 @@ class _CivicLedgerScreenState extends State<CivicLedgerScreen> {
       try {
         final assetJson = await rootBundle.loadString('assets/resources.json');
         if (assetJson.isNotEmpty) {
-          loadedResources = await Isolate.run(() => parseSocialResourcesJson(assetJson));
+          loadedResources = await computeParseSocialResources(assetJson);
           debugPrint('Loaded ${loadedResources.length} resources from assets/resources.json');
         }
       } catch (e) {
@@ -1393,7 +1397,7 @@ class _CivicLedgerScreenState extends State<CivicLedgerScreen> {
 
     if (cachedJsonStr != null && cachedJsonStr.trim().isNotEmpty) {
       try {
-        final cached = await Isolate.run(() => parseSocialResourcesJson(cachedJsonStr));
+        final cached = await computeParseSocialResources(cachedJsonStr);
         debugPrint('Loaded ${cached.length} resources from SharedPreferences cache');
         if (cached.length >= loadedResources.length && cached.isNotEmpty) {
           loadedResources = cached;
@@ -1417,7 +1421,7 @@ class _CivicLedgerScreenState extends State<CivicLedgerScreen> {
     try {
       final addedJson = await rootBundle.loadString('assets/added_resources.json');
       if (addedJson.trim().isNotEmpty) {
-        final addedList = await Isolate.run(() => parseSocialResourcesJson(addedJson));
+        final addedList = await computeParseSocialResources(addedJson);
         if (addedList.isNotEmpty) {
           _addedAssetIds.clear();
           for (final r in addedList) {
@@ -1446,7 +1450,7 @@ class _CivicLedgerScreenState extends State<CivicLedgerScreen> {
       ).timeout(const Duration(seconds: 15));
       if (response.statusCode == 200) {
         final decodedBody = const Utf8Decoder(allowMalformed: true).convert(response.bodyBytes);
-        final netResources = await Isolate.run(() => parseSocialResourcesJson(decodedBody));
+        final netResources = await computeParseSocialResources(decodedBody);
 
         // Fetch secondary added resources from GitHub
         List<SocialResource> netAdded = [];
@@ -1456,7 +1460,7 @@ class _CivicLedgerScreenState extends State<CivicLedgerScreen> {
           ).timeout(const Duration(seconds: 10));
           if (addedResp.statusCode == 200) {
             final addedBody = const Utf8Decoder(allowMalformed: true).convert(addedResp.bodyBytes);
-            netAdded = await Isolate.run(() => parseSocialResourcesJson(addedBody));
+            netAdded = await computeParseSocialResources(addedBody);
           }
         } catch (_) {}
 
@@ -1464,7 +1468,7 @@ class _CivicLedgerScreenState extends State<CivicLedgerScreen> {
           try {
             final addedJson = await rootBundle.loadString('assets/added_resources.json');
             if (addedJson.trim().isNotEmpty) {
-              netAdded = await Isolate.run(() => parseSocialResourcesJson(addedJson));
+              netAdded = await computeParseSocialResources(addedJson);
             }
           } catch (_) {}
         }
@@ -2045,10 +2049,6 @@ class _CivicLedgerScreenState extends State<CivicLedgerScreen> {
       final aFav = _savedIds.contains(a.id) ? 0 : 1;
       final bFav = _savedIds.contains(b.id) ? 0 : 1;
       if (aFav != bFav) return aFav.compareTo(bFav);
-
-      final aCustom = (a.isCustom || _addedAssetIds.contains(a.id) || a.id.startsWith('ADD-')) ? 0 : 1;
-      final bCustom = (b.isCustom || _addedAssetIds.contains(b.id) || b.id.startsWith('ADD-')) ? 0 : 1;
-      if (aCustom != bCustom) return aCustom.compareTo(bCustom);
 
       return a.name(_isFr).toLowerCase().compareTo(b.name(_isFr).toLowerCase());
     });
@@ -4071,7 +4071,7 @@ class _CivicLedgerScreenState extends State<CivicLedgerScreen> {
                   style: ElevatedButton.styleFrom(
                     backgroundColor: _showFilterOptions ? CivicPalette.signalYellow : _bg,
                     foregroundColor: _showFilterOptions ? CivicPalette.darkBg : _textPrimary,
-                    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+                    padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(18),
                       side: BorderSide(
@@ -4088,27 +4088,70 @@ class _CivicLedgerScreenState extends State<CivicLedgerScreen> {
                   ),
                   label: Text(
                     activeCount > 0
-                        ? (_isFr ? 'Filtres actifs ($activeCount)' : 'Active Filters ($activeCount)')
-                        : (_isFr ? 'Filtrer les résultats' : 'Filter Results'),
+                        ? (_isFr ? 'Filtres ($activeCount)' : 'Filters ($activeCount)')
+                        : (_isFr ? 'Filtres' : 'Filters'),
                     style: const TextStyle(
                       fontWeight: FontWeight.w900,
-                      fontSize: 12.5,
+                      fontSize: 12,
                       fontFamily: 'sans-serif-condensed',
                     ),
                   ),
                 ),
               ),
+              const SizedBox(width: 8),
+              ElevatedButton.icon(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: _wizardRegions.isNotEmpty && !_wizardRegions.contains(kQuebecRegions.first)
+                      ? CivicPalette.signalYellow
+                      : _bg,
+                  foregroundColor: _wizardRegions.isNotEmpty && !_wizardRegions.contains(kQuebecRegions.first)
+                      ? CivicPalette.darkBg
+                      : _textPrimary,
+                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(18),
+                    side: BorderSide(
+                      color: _wizardRegions.isNotEmpty && !_wizardRegions.contains(kQuebecRegions.first)
+                          ? CivicPalette.signalYellow
+                          : _cardBorder,
+                      width: _cardBorderWidth,
+                    ),
+                  ),
+                ),
+                onPressed: _detectUserRegionForWizard,
+                icon: _isLocatingWizardRegion
+                    ? const SizedBox(
+                        width: 16,
+                        height: 16,
+                        child: CircularProgressIndicator(strokeWidth: 2, color: CivicPalette.signalYellow),
+                      )
+                    : Icon(
+                        Icons.my_location_rounded,
+                        size: 18,
+                        color: _wizardRegions.isNotEmpty && !_wizardRegions.contains(kQuebecRegions.first)
+                            ? CivicPalette.darkBg
+                            : CivicPalette.signalYellow,
+                      ),
+                label: Text(
+                  _isFr ? 'MON SECTEUR (GPS)' : 'MY SECTOR (GPS)',
+                  style: const TextStyle(
+                    fontWeight: FontWeight.w900,
+                    fontSize: 11.5,
+                    fontFamily: 'sans-serif-condensed',
+                  ),
+                ),
+              ),
               if (activeCount > 0) ...[
-                const SizedBox(width: 8),
+                const SizedBox(width: 6),
                 TextButton(
-                  style: TextButton.styleFrom(padding: EdgeInsets.zero, minimumSize: const Size(40, 30)),
+                  style: TextButton.styleFrom(padding: EdgeInsets.zero, minimumSize: const Size(36, 30)),
                   onPressed: () => setState(() {
                     _wizardCatIds.clear();
                     _wizardRegions.clear();
                   }),
                   child: Text(
                     _isFr ? 'Effacer' : 'Clear',
-                    style: TextStyle(fontSize: 11.5, fontWeight: FontWeight.w900, color: _accentText),
+                    style: TextStyle(fontSize: 11, fontWeight: FontWeight.w900, color: _accentText),
                   ),
                 ),
               ],

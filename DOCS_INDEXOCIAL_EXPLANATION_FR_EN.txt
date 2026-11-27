@@ -1,0 +1,193 @@
+================================================================================
+  INDEXOCIAL QC (v2.0.1+4) - COMPLETE CODE & ARCHITECTURE DOCUMENTATION
+  DOCUMENTATION COMPLÈTE DU CODE ET DE L'ARCHITECTURE
+  LANGUAGES / LANGUES : ENGLISH (EN) & FRANÇAIS (FR)
+================================================================================
+
+================================================================================
+[FR] SECTION 1 : VUE D'ENSEMBLE DU PROJET
+================================================================================
+Application : INDEXOCIAL QC
+Package Android : com.iammithra.indexocial
+Version : 2.0.1+4
+Plateforme : Flutter (Dart) / Android
+Objectif : Répertoire civique et social hors-ligne pour le Québec contenant
+9 004 ressources communautaires réparties sur 17 régions administratives.
+
+================================================================================
+[EN] SECTION 1: PROJECT OVERVIEW
+================================================================================
+Application: INDEXOCIAL QC
+Android Package: com.iammithra.indexocial
+Version: 2.0.1+4
+Platform: Flutter (Dart) / Android
+Goal: Offline-first civic and social directory for Quebec containing
+9,004 community resources distributed across 17 administrative regions.
+
+
+================================================================================
+[FR] SECTION 2 : ARCHITECTURE DES DONNÉES ET OPTIMISATIONS PERFORMANCES
+================================================================================
+1. Découpage Régional des Données (Regional Dataset Splitting) :
+   - Les 9 004 ressources sont réparties dans 17 fichiers JSON autonomes sous
+     'assets/regions/' (region_01.json à region_16.json + region_provincial.json).
+   - Permet un chargement progressif et rapide de l'application.
+
+2. Gestion des Ressources Secondaires (assets/added_resources.json) :
+   - Fichier complémentaire hébergeant les ajouts spécifiques (ex: QC-9012 Ebyôn).
+   - Fusionné au démarrage sans dupliquer les entrées existantes.
+
+3. Décodage Hors-Thréad avec Isolats Dart (Off-Thread Isolate Decoding) :
+   - Utilisation de 'computeParseSocialResources()' s'appuyant sur 'Isolate.run()'.
+   - Déplace le décodage JSON de 9 004 objets hors du thread principal (UI)
+     pour éviter tout gel ou saccade de l'interface graphique.
+
+4. Pré-calcul de l'Index de Recherche (Search Index Pre-computation) :
+   - Propriété 'searchIndex' calculée sur le modèle 'SocialResource'.
+   - Concatène et normalise (minuscules/accents) le nom, la description,
+     le téléphone, le site web et la région.
+   - Permet des recherches instantanées même sur 9 004 éléments.
+
+5. Anti-rebond de Recherche (Search Query Debouncing) :
+   - Un délai de 250 ms est appliqué lors de la saisie dans la barre de recherche.
+
+6. Rendu Paresseux (Lazy Rendering avec Slivers) :
+   - Utilisation de 'CustomScrollView' combiné avec 'SliverList.builder' et
+     'SliverGrid.builder'. Seules les cartes visibles à l'écran sont construites.
+
+================================================================================
+[EN] SECTION 2: DATA ARCHITECTURE AND PERFORMANCE OPTIMIZATIONS
+================================================================================
+1. Regional Dataset Splitting:
+   - The 9,004 resources are split across 17 standalone JSON files under
+     'assets/regions/' (region_01.json to region_16.json + region_provincial.json).
+   - Enables fast, progressive data loading at startup.
+
+2. Secondary Custom Resource Handling (assets/added_resources.json):
+   - Secondary asset file hosting added items (e.g. QC-9012 Ebyôn).
+   - Merged dynamically at startup without duplicating existing entries.
+
+3. Off-Thread Isolate Decoding:
+   - Uses 'computeParseSocialResources()' backed by Dart 'Isolate.run()'.
+   - Moves JSON decoding of 9,004 objects off the main UI thread to prevent
+     any UI stutter or lag.
+
+4. Search Index Pre-computation:
+   - 'searchIndex' property computed on each 'SocialResource' model.
+   - Concatenates and normalizes (lowercase/accents) names, descriptions,
+     phones, websites, and regions.
+   - Delivers instantaneous search results across 9,004 items.
+
+5. Search Query Debouncing:
+   - 250ms debouncer applied during typing in the search bar.
+
+6. Lazy Rendering with Slivers:
+   - Built with 'CustomScrollView' using 'SliverList.builder' and 'SliverGrid.builder'.
+     Only visible cards are instantiated in memory.
+
+
+================================================================================
+[FR] SECTION 3 : COMPOSANTS ET CODE SOURCE DÉTAILLÉS (lib/main.dart)
+================================================================================
+1. 'CivicApp' & 'CivicPalette' :
+   - Thème Material 3 sur mesure (Civic Design System).
+   - Couleurs : Jaune Signal (#FFD700), Vermillon (#E63946), Fond Sombre (#121212).
+   - Gestion de l'accessibilité : Contraste élevé, ajustement d'échelle du texte.
+
+2. Modèle 'SocialResource' :
+   - Représente un organisme ou service social.
+   - Champs : id, nameFr, nameEn, categoryIds, region, phone, website, isCustom, searchIndex.
+
+3. Alertes Météo ECCC ('EcccWeatherAlert' & '_ExpandableWeatherAlertCard') :
+   - Intégration en temps réel des alertes météo d'Environnement et Changement Climatique Canada.
+   - Carte compacte repliable avec flèche d'extension/réduction toggleable.
+
+4. Géolocalisation GPS du Secteur ('_detectAndFilterMySector') :
+   - Bouton 'MON SECTEUR (GPS)' situé à côté des filtres de recherche.
+   - Utilise le plugin 'Geolocator' pour convertir les coordonnées GPS en région
+     administrative du Québec (ex: '04 - MAURICIE ET CENTRE-DU-QUÉBEC', '06 - MONTRÉAL').
+   - Filtre automatiquement la liste des ressources disponibles dans le secteur de l'utilisateur.
+
+5. Écran Principal 'CivicLedgerScreen' :
+   - Onglet Répertoire (9 004 ressources triées alphabétiquement).
+   - Onglet Favoris / Contacts Sauvegardés.
+   - Onglet Actualités (Flux RSS de sources officielles québécoises).
+   - Onglet Réglages & Accessibilité.
+   - Dissimulation d'urgence rapide (Gestes de secousse / Shake detector & bouton d'urgence).
+
+================================================================================
+[EN] SECTION 3: DETAILED SOURCE CODE COMPONENTS (lib/main.dart)
+================================================================================
+1. 'CivicApp' & 'CivicPalette':
+   - Custom Material 3 Civic Design System.
+   - Palette: Signal Yellow (#FFD700), Vermilion (#E63946), Dark Background (#121212).
+   - Accessibility features: High contrast mode, text scaling factor.
+
+2. 'SocialResource' Model:
+   - Represents a community organization or social service.
+   - Fields: id, nameFr, nameEn, categoryIds, region, phone, website, isCustom, searchIndex.
+
+3. ECCC Weather Alerts ('EcccWeatherAlert' & '_ExpandableWeatherAlertCard'):
+   - Real-time severe weather alert integration from Environment and Climate Change Canada.
+   - Compact collapsible alert card with toggleable expand/collapse arrow.
+
+4. GPS Sector Location ('_detectAndFilterMySector'):
+   - 'MY SECTOR (GPS)' button placed next to search filters.
+   - Leverages 'Geolocator' plugin to convert GPS coordinates into Quebec administrative
+     regions (e.g., '04 - MAURICIE ET CENTRE-DU-QUÉBEC', '06 - MONTRÉAL').
+   - Automatically filters resources available in the user's immediate sector.
+
+5. Main Screen 'CivicLedgerScreen':
+   - Directory Tab (9,004 resources sorted alphabetically).
+   - Saved Contacts / Favorites Tab.
+   - News Feed Tab (RSS feeds from official Quebec civic sources).
+   - Settings & Accessibility Tab.
+   - Quick Emergency Hide (Shake detector gesture & emergency action button).
+
+
+================================================================================
+[FR] SECTION 4 : SIGNATURE ET CONFIGURATION DU BUILD
+================================================================================
+1. Clef de Signature Keystore :
+   - Fichier : C:/Users/malco/Keystore/indexocial-upload.jks
+   - Alias : indexocial_upload
+   - Configuration déclarée dans 'android/key.properties'.
+
+2. Script Gradle ('android/app/build.gradle.kts') :
+   - Lit 'android/key.properties' pour signer automatiquement le bundle de release.
+   - Génération de l'App Bundle Android signé : 'build/app/outputs/bundle/release/app-release.aab'.
+
+================================================================================
+[EN] SECTION 4: BUILD CONFIGURATION & RELEASE SIGNING
+================================================================================
+1. Keystore Release Key:
+   - File Path: C:/Users/malco/Keystore/indexocial-upload.jks
+   - Key Alias: indexocial_upload
+   - Configured via 'android/key.properties'.
+
+2. Gradle Build Script ('android/app/build.gradle.kts'):
+   - Automatically loads 'android/key.properties' to sign release builds.
+   - Generates signed release App Bundle at 'build/app/outputs/bundle/release/app-release.aab'.
+
+
+================================================================================
+[FR & EN] SECTION 5 : STRUCTURE DES FICHIERS DU PROJET / FILE DIRECTORY STRUCTURE
+================================================================================
+INDEXOCIAL/
+├── android/
+│   ├── app/
+│   │   ├── build.gradle.kts        # Config build Android & signature / Android build & signing
+│   │   └── src/main/
+│   │       └── AndroidManifest.xml # Permissions, label 'Indexocial QC'
+│   └── key.properties              # Chemins et passwords keystore / Keystore paths & passwords
+├── assets/
+│   ├── resources.json              # Jeu complet (9 003 ressources) / Full dataset (9,003 items)
+│   ├── added_resources.json        # Ressources ajoutées (1 item: QC-9012 Ebyôn) / Added items
+│   └── regions/                    # 17 fichiers JSON régionaux minifiés / 17 minified regional JSONs
+├── lib/
+│   └── main.dart                   # Code source principal (UI, Isolates, GPS, Filtres, Modèles)
+├── pubspec.yaml                    # Version 2.0.1+4, dépendances, assets / Version & dependencies
+├── CHANGELOG.md                    # Historique des versions / Release history
+├── release_notes_playstore.md      # Notes de mise à jour Play Store (FR/EN) / Play Store notes
+└── DOCS_INDEXOCIAL_EXPLANATION_FR_EN.txt # Ce document explicatif / This documentation file
+================================================================================

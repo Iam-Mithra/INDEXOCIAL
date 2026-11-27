@@ -743,5 +743,34 @@
       "mauricie et centre-du-quebec",
       "quebec"
     ]
+  },
+  {
+    "id": "QC-9012",
+    "nameFr": "L’ENTRAIDE DU CAP : EBYÔN",
+    "nameEn": "L’ENTRAIDE DU CAP : EBYÔN",
+    "categoryIds": [
+      "HOUSING",
+      "FOOD",
+      "HEALTH",
+      "EMPLOYMENT"
+    ],
+    "region": "04 - MAURICIE ET CENTRE-DU-QUÉBEC",
+    "phone": "819-373-7828",
+    "website": "https://ebyon.ca",
+    "address": "89, rue Saint-Irénée, Trois-Rivières, QC G8T 7C3",
+    "descFr": "Centre de jour pour personnes en situation d'itinérance. 3 repas gratuits, intervention psychosociale, évaluation des besoins, références vers les organismes partenaires. Mission d'alphabétisation et de réinsertion socioprofessionnelle.",
+    "descEn": "Day center for people experiencing homelessness. 3 free meals daily, psychosocial intervention, needs assessment, and referrals to partner organizations. Literacy and socio-professional reintegration mission.",
+    "tags": [
+      "ebyon",
+      "entraide du cap",
+      "trois-rivieres",
+      "mauricie",
+      "itinerance",
+      "repas gratuits",
+      "intervention psychosociale",
+      "alphabetisation",
+      "reinsertion",
+      "centre de jour"
+    ]
   }
 ]
