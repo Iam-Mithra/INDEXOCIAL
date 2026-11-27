@@ -652,6 +652,8 @@ class _CivicLedgerScreenState extends State<CivicLedgerScreen> {
   static const String _hideRedirectUrl = 'https://www.google.ca';
   static const String _resourcesJsonUrl =
       'https://raw.githubusercontent.com/Iam-Mithra/INDEXOCIAL/refs/heads/main/assets/resources.json';
+  static const String _addedResourcesJsonUrl =
+      'https://raw.githubusercontent.com/Iam-Mithra/INDEXOCIAL/refs/heads/main/assets/added_resources.json';
   static const String _privacyPolicyRawUrl =
       'https://raw.githubusercontent.com/Iam-Mithra/INDEXOCIAL/refs/heads/main/Privacy_policy.md';
   static const String _privacyPolicyWebUrl =
@@ -1445,29 +1447,44 @@ class _CivicLedgerScreenState extends State<CivicLedgerScreen> {
       if (response.statusCode == 200) {
         final decodedBody = const Utf8Decoder(allowMalformed: true).convert(response.bodyBytes);
         final netResources = await Isolate.run(() => parseSocialResourcesJson(decodedBody));
-        if (netResources.isNotEmpty) {
-          await prefs.setString('indexocial_cached_resources', decodedBody);
 
-          List<SocialResource> freshAdded = [];
+        // Fetch secondary added resources from GitHub
+        List<SocialResource> netAdded = [];
+        try {
+          final addedResp = await http.get(
+            Uri.parse('$_addedResourcesJsonUrl?t=$cacheBuster'),
+          ).timeout(const Duration(seconds: 10));
+          if (addedResp.statusCode == 200) {
+            final addedBody = const Utf8Decoder(allowMalformed: true).convert(addedResp.bodyBytes);
+            netAdded = await Isolate.run(() => parseSocialResourcesJson(addedBody));
+          }
+        } catch (_) {}
+
+        if (netAdded.isEmpty) {
           try {
             final addedJson = await rootBundle.loadString('assets/added_resources.json');
             if (addedJson.trim().isNotEmpty) {
-              freshAdded = await Isolate.run(() => parseSocialResourcesJson(addedJson));
-              _addedAssetIds.clear();
-              for (final r in freshAdded) {
-                _addedAssetIds.add(r.id);
-              }
+              netAdded = await Isolate.run(() => parseSocialResourcesJson(addedJson));
             }
           } catch (_) {}
+        }
+
+        _addedAssetIds.clear();
+        for (final r in netAdded) {
+          _addedAssetIds.add(r.id);
+        }
+
+        if (netResources.isNotEmpty) {
+          await prefs.setString('indexocial_cached_resources', decodedBody);
 
           final customOnly = _resources.where((r) => r.isCustom).toList();
           final netFiltered = netResources.where((r) => !_addedAssetIds.contains(r.id)).toList();
 
           if (mounted) {
             setState(() {
-              _resources = [...customOnly, ...freshAdded, ...netFiltered];
+              _resources = [...customOnly, ...netAdded, ...netFiltered];
             });
-            debugPrint('Updated state with remote ${netResources.length} resources');
+            debugPrint('Updated state with total ${_resources.length} resources (${netAdded.length} added + ${netFiltered.length} net)');
           }
         }
       }
