@@ -5264,23 +5264,17 @@ int _compareCustomAlphabetical(String strA, String strB) {
       SliverToBoxAdapter(
         child: Padding(
           padding: const EdgeInsets.only(bottom: 12),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                _activeTab == NavTab.saved
-                    ? (_isFr ? 'CONTACTS SAUVEGARDÉS (${items.length})' : 'SAVED CONTACTS (${items.length})')
-                    : (_isFr ? 'RÉPERTOIRE (${items.length})' : 'DIRECTORY (${items.length})'),
-                style: TextStyle(fontSize: 14, fontWeight: FontWeight.w900, color: _textPrimary, letterSpacing: 0.5, fontFamily: 'sans-serif-condensed'),
-              ),
-              Row(
-                children: [
-                  _buildDisplayToggle(DisplayMode.ledger, Icons.view_list_rounded),
-                  const SizedBox(width: 4),
-                  _buildDisplayToggle(DisplayMode.grid, Icons.grid_view_rounded),
-                ],
-              ),
-            ],
+          child: Text(
+            _activeTab == NavTab.saved
+                ? (_isFr ? 'CONTACTS SAUVEGARDÉS (${items.length})' : 'SAVED CONTACTS (${items.length})')
+                : (_isFr ? 'RÉPERTOIRE (${items.length})' : 'DIRECTORY (${items.length})'),
+            style: TextStyle(
+              fontSize: 14,
+              fontWeight: FontWeight.w900,
+              color: _textPrimary,
+              letterSpacing: 0.5,
+              fontFamily: 'sans-serif-condensed',
+            ),
           ),
         ),
       ),
@@ -5315,7 +5309,7 @@ int _compareCustomAlphabetical(String strA, String strB) {
                   const SizedBox(height: 12),
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: CivicPalette.signalYellow,
+                      backgroundColor: _accentText,
                       foregroundColor: CivicPalette.darkBg,
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
                     ),
@@ -5327,24 +5321,11 @@ int _compareCustomAlphabetical(String strA, String strB) {
             ),
           ),
         )
-      else if (_displayMode == DisplayMode.ledger)
+      else
         SliverList.builder(
           itemCount: items.length,
           itemBuilder: (context, idx) => RepaintBoundary(
             child: _buildResourceCard(items[idx]),
-          ),
-        )
-      else
-        SliverGrid.builder(
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: isDesktop ? 2 : 1,
-            mainAxisExtent: 220,
-            crossAxisSpacing: 10,
-            mainAxisSpacing: 10,
-          ),
-          itemCount: items.length,
-          itemBuilder: (context, idx) => RepaintBoundary(
-            child: _buildGridCard(items[idx]),
           ),
         ),
     ];
