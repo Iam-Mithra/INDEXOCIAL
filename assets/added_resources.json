@@ -1,27 +1,31 @@
 [
   {
     "id": "ADD-EBYON",
-    "nameFr": "EBYON — AIDE, LOGEMENT ET SOUTIEN COMMUNAUTAIRE",
-    "nameEn": "EBYON — SUPPORT, HOUSING & COMMUNITY SERVICES",
+    "nameFr": "L’ENTRAIDE DU CAP : EBYÔN — BANQUE ALIMENTAIRE ET SOUTIEN COMMUNAUTAIRE",
+    "nameEn": "L’ENTRAIDE DU CAP : EBYÔN — FOOD BANK & COMMUNITY SUPPORT",
     "categoryIds": [
-      "HOUSING",
+      "FOOD",
       "HEALTH",
+      "HOUSING",
       "EMPLOYMENT"
     ],
-    "region": "PROVINCIAL (TOUT LE QUÉBEC)",
-    "phone": "",
+    "region": "04 - MAURICIE ET CENTRE-DU-QUÉBEC",
+    "phone": "819-373-7828",
     "website": "https://ebyon.ca",
-    "address": "Partout au Québec",
-    "descFr": "Organisme offrant de l'accompagnement, des ressources en logement, de la réinsertion sociale et du soutien communautaire pour les personnes en situation de vulnérabilité.",
-    "descEn": "Organization offering support, housing resources, social reintegration, and community aid for vulnerable individuals.",
+    "address": "89, rue Saint-Irénée, Trois-Rivières, QC G8T 7C3",
+    "descFr": "Banque alimentaire, repas chauds quotidiens (La Tablée), dépannage d'urgence (repas et vêtements), ateliers d'alphabétisation (Alpha-Action), accompagnement communautaire et centre de jour pour personnes vulnérables.",
+    "descEn": "Food bank, daily hot meals, emergency assistance (food & clothing), literacy workshops, community support, and day center for vulnerable individuals.",
     "tags": [
       "ebyon",
-      "logement",
-      "housing",
-      "aide",
-      "soutien",
-      "reinsertion",
-      "quebec"
+      "entraide du cap",
+      "trois-rivieres",
+      "mauricie",
+      "banque alimentaire",
+      "repas",
+      "vetements",
+      "alphabetisation",
+      "centre de jour",
+      "depannage"
     ]
   }
 ]
