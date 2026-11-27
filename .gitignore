@@ -42,8 +42,9 @@ app.*.map.json
 # Widget Preview related
 .widget_preview/
 
-# Sensitive info, keys, and local properties
-# Android App Bundles & APKs
+# Sensitive info, keys, local properties, and local cheat sheet
+CHEAT_SHEET_INDEXOCIAL_QC.md
+CHEAT_SHEET_INDEXOCIAL_QC.txt
 *.aab
 *.apk
 *.jks
