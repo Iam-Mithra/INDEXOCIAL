@@ -716,6 +716,7 @@ class _CivicLedgerScreenState extends State<CivicLedgerScreen> {
   String _selectedCategory = 'ALL';
 
   List<SocialResource> _resources = [];
+  final Set<String> _addedAssetIds = {};
   final Set<String> _savedIds = {};
   List<PersonalNote> _notes = [];
 
@@ -1416,8 +1417,11 @@ class _CivicLedgerScreenState extends State<CivicLedgerScreen> {
       if (addedJson.trim().isNotEmpty) {
         final addedList = await Isolate.run(() => parseSocialResourcesJson(addedJson));
         if (addedList.isNotEmpty) {
-          final addedIds = addedList.map((e) => e.id).toSet();
-          loadedResources.removeWhere((r) => addedIds.contains(r.id));
+          _addedAssetIds.clear();
+          for (final r in addedList) {
+            _addedAssetIds.add(r.id);
+          }
+          loadedResources.removeWhere((r) => _addedAssetIds.contains(r.id));
           loadedResources.insertAll(0, addedList);
           debugPrint('Loaded ${addedList.length} added resources from assets/added_resources.json');
         }
@@ -1449,11 +1453,15 @@ class _CivicLedgerScreenState extends State<CivicLedgerScreen> {
             final addedJson = await rootBundle.loadString('assets/added_resources.json');
             if (addedJson.trim().isNotEmpty) {
               freshAdded = await Isolate.run(() => parseSocialResourcesJson(addedJson));
+              _addedAssetIds.clear();
+              for (final r in freshAdded) {
+                _addedAssetIds.add(r.id);
+              }
             }
           } catch (_) {}
 
           final customOnly = _resources.where((r) => r.isCustom).toList();
-          final netFiltered = netResources.where((r) => !freshAdded.any((a) => a.id == r.id)).toList();
+          final netFiltered = netResources.where((r) => !_addedAssetIds.contains(r.id)).toList();
 
           if (mounted) {
             setState(() {
@@ -2021,8 +2029,8 @@ class _CivicLedgerScreenState extends State<CivicLedgerScreen> {
       final bFav = _savedIds.contains(b.id) ? 0 : 1;
       if (aFav != bFav) return aFav.compareTo(bFav);
 
-      final aCustom = (a.isCustom || a.id.startsWith('ADD-')) ? 0 : 1;
-      final bCustom = (b.isCustom || b.id.startsWith('ADD-')) ? 0 : 1;
+      final aCustom = (a.isCustom || _addedAssetIds.contains(a.id) || a.id.startsWith('ADD-')) ? 0 : 1;
+      final bCustom = (b.isCustom || _addedAssetIds.contains(b.id) || b.id.startsWith('ADD-')) ? 0 : 1;
       if (aCustom != bCustom) return aCustom.compareTo(bCustom);
 
       return a.name(_isFr).toLowerCase().compareTo(b.name(_isFr).toLowerCase());
