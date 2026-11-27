@@ -1416,6 +1416,8 @@ class _CivicLedgerScreenState extends State<CivicLedgerScreen> {
       if (addedJson.trim().isNotEmpty) {
         final addedList = await Isolate.run(() => parseSocialResourcesJson(addedJson));
         if (addedList.isNotEmpty) {
+          final addedIds = addedList.map((e) => e.id).toSet();
+          loadedResources.removeWhere((r) => addedIds.contains(r.id));
           loadedResources.insertAll(0, addedList);
           debugPrint('Loaded ${addedList.length} added resources from assets/added_resources.json');
         }
@@ -1442,10 +1444,20 @@ class _CivicLedgerScreenState extends State<CivicLedgerScreen> {
         if (netResources.isNotEmpty) {
           await prefs.setString('indexocial_cached_resources', decodedBody);
 
-          final addedAndCustom = _resources.where((r) => r.isCustom || r.id.startsWith('ADD-')).toList();
+          List<SocialResource> freshAdded = [];
+          try {
+            final addedJson = await rootBundle.loadString('assets/added_resources.json');
+            if (addedJson.trim().isNotEmpty) {
+              freshAdded = await Isolate.run(() => parseSocialResourcesJson(addedJson));
+            }
+          } catch (_) {}
+
+          final customOnly = _resources.where((r) => r.isCustom).toList();
+          final netFiltered = netResources.where((r) => !freshAdded.any((a) => a.id == r.id)).toList();
+
           if (mounted) {
             setState(() {
-              _resources = [...addedAndCustom, ...netResources];
+              _resources = [...customOnly, ...freshAdded, ...netFiltered];
             });
             debugPrint('Updated state with remote ${netResources.length} resources');
           }
@@ -2008,6 +2020,11 @@ class _CivicLedgerScreenState extends State<CivicLedgerScreen> {
       final aFav = _savedIds.contains(a.id) ? 0 : 1;
       final bFav = _savedIds.contains(b.id) ? 0 : 1;
       if (aFav != bFav) return aFav.compareTo(bFav);
+
+      final aCustom = (a.isCustom || a.id.startsWith('ADD-')) ? 0 : 1;
+      final bCustom = (b.isCustom || b.id.startsWith('ADD-')) ? 0 : 1;
+      if (aCustom != bCustom) return aCustom.compareTo(bCustom);
+
       return a.name(_isFr).toLowerCase().compareTo(b.name(_isFr).toLowerCase());
     });
 
