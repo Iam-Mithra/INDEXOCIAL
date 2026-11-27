@@ -5706,17 +5706,17 @@ class _ExpandableWeatherAlertCardState extends State<_ExpandableWeatherAlertCard
     final levelColor = widget.levelColor;
 
     return Container(
-      margin: const EdgeInsets.only(bottom: 6),
-      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+      margin: const EdgeInsets.only(bottom: 8),
+      padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
         color: widget.cardBg,
-        borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: levelColor, width: widget.highContrast ? 2.2 : 1.4),
+        borderRadius: BorderRadius.circular(18),
+        border: Border.all(color: levelColor, width: widget.highContrast ? 2.4 : 1.6),
         boxShadow: [
           BoxShadow(
-            color: levelColor.withValues(alpha: 0.1),
-            blurRadius: 6,
-            offset: const Offset(0, 2),
+            color: levelColor.withValues(alpha: 0.12),
+            blurRadius: 8,
+            offset: const Offset(0, 3),
           ),
         ],
       ),
@@ -5726,82 +5726,86 @@ class _ExpandableWeatherAlertCardState extends State<_ExpandableWeatherAlertCard
           InkWell(
             borderRadius: BorderRadius.circular(12),
             onTap: () {
-              if (alert.alertTextFr.isNotEmpty || alert.featureNameFr.isNotEmpty) {
+              if (alert.alertTextFr.isNotEmpty || widget.endFormatted.isNotEmpty) {
                 setState(() => _isExpanded = !_isExpanded);
               }
             },
-            child: Row(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Icon(Icons.warning_amber_rounded, color: levelColor, size: 18),
-                const SizedBox(width: 8),
-                Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
-                  decoration: BoxDecoration(
-                    color: levelColor,
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                  child: Text(
-                    alert.riskColourFr.isNotEmpty
-                        ? alert.riskColourFr.toUpperCase()
-                        : alert.alertType.toUpperCase(),
-                    style: TextStyle(
-                      fontSize: 9.5,
-                      fontWeight: FontWeight.w900,
-                      color: alert.riskColourFr == 'jaune' || alert.riskColourFr.isEmpty
-                          ? CivicPalette.darkBg
-                          : Colors.white,
-                      fontFamily: 'sans-serif-condensed',
+                // LIGNE 1 : Icône + Badge Risque + Secteur + Flèche
+                Row(
+                  children: [
+                    Icon(Icons.warning_amber_rounded, color: levelColor, size: 18),
+                    const SizedBox(width: 6),
+                    Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 2),
+                      decoration: BoxDecoration(
+                        color: levelColor,
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      child: Text(
+                        alert.riskColourFr.isNotEmpty
+                            ? 'RISQUE ${alert.riskColourFr.toUpperCase()}'
+                            : alert.alertType.toUpperCase(),
+                        style: TextStyle(
+                          fontSize: 9.5,
+                          fontWeight: FontWeight.w900,
+                          color: alert.riskColourFr == 'jaune' || alert.riskColourFr.isEmpty
+                              ? CivicPalette.darkBg
+                              : Colors.white,
+                          fontFamily: 'sans-serif-condensed',
+                        ),
+                      ),
                     ),
-                  ),
-                ),
-                const SizedBox(width: 8),
-                Expanded(
-                  child: Text(
-                    alert.alertNameFr.toUpperCase(),
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    style: TextStyle(
-                      fontSize: 13,
-                      fontWeight: FontWeight.w900,
-                      color: widget.textPrimary,
-                      fontFamily: 'sans-serif-condensed',
+                    if (alert.featureNameFr.isNotEmpty) ...[
+                      const SizedBox(width: 8),
+                      Icon(Icons.place_rounded, size: 14, color: levelColor),
+                      const SizedBox(width: 3),
+                      Expanded(
+                        child: Text(
+                          alert.featureNameFr,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(
+                            fontSize: 12,
+                            fontWeight: FontWeight.w800,
+                            color: widget.accentText,
+                            fontFamily: 'Roboto',
+                          ),
+                        ),
+                      ),
+                    ] else
+                      const Spacer(),
+                    Icon(
+                      _isExpanded ? Icons.keyboard_arrow_up_rounded : Icons.keyboard_arrow_down_rounded,
+                      color: levelColor,
+                      size: 22,
                     ),
-                  ),
+                  ],
                 ),
-                Icon(
-                  _isExpanded ? Icons.keyboard_arrow_up_rounded : Icons.keyboard_arrow_down_rounded,
-                  color: levelColor,
-                  size: 22,
+                const SizedBox(height: 6),
+                // LIGNE 2 : Titre complet de l'alerte
+                Text(
+                  alert.alertNameFr.toUpperCase(),
+                  style: TextStyle(
+                    fontSize: 13.5,
+                    fontWeight: FontWeight.w900,
+                    color: widget.textPrimary,
+                    height: 1.25,
+                    fontFamily: 'sans-serif-condensed',
+                  ),
                 ),
               ],
             ),
           ),
           if (_isExpanded) ...[
-            const SizedBox(height: 8),
-            if (alert.featureNameFr.isNotEmpty)
-              Row(
-                children: [
-                  Icon(Icons.place_rounded, size: 14, color: levelColor),
-                  const SizedBox(width: 4),
-                  Expanded(
-                    child: Text(
-                      alert.featureNameFr,
-                      style: TextStyle(
-                        fontSize: 12,
-                        fontWeight: FontWeight.w800,
-                        color: widget.accentText,
-                        fontFamily: 'Roboto',
-                      ),
-                    ),
-                  ),
-                ],
-              ),
             if (widget.endFormatted.isNotEmpty) ...[
-              const SizedBox(height: 4),
+              const SizedBox(height: 8),
               Text(
                 widget.isFr ? 'Fin prévue : ${widget.endFormatted}' : 'Expected end: ${widget.endFormatted}',
                 style: TextStyle(
-                  fontSize: 11,
+                  fontSize: 11.5,
                   fontWeight: FontWeight.w700,
                   color: widget.textMuted,
                   fontFamily: 'Roboto',
