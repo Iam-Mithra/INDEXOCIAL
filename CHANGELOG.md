@@ -4,6 +4,16 @@ All notable changes to the Indexocial QC Flutter/Android application are documen
 
 ---
 
+## [2.2.0+6] - 2026-11-26
+
+### 📁 Favorite Folders & Export System
+* **Custom Favorite Groups / Folders**: Create and organize saved contacts into custom named folders (e.g. *Urgence Logement*, *Banque Alimentaire*, *Proches Aînés*).
+* **Assign Resources to Folders**: Easily classify any resource into one or multiple custom folders via the new folder action button.
+* **Group Export & Sharing (`Share.share`)**: Export an entire folder or all saved contacts as a formatted text summary directly via SMS, Email, or Messaging apps.
+* **ECCC Weather Alert Refresh**: Added a permanent refresh button on severe weather alert headers so users can refresh live weather alerts anytime.
+
+---
+
 ## [2.1.0+5] - 2026-11-26
 
 ### 📍 New Features & UI Enhancements

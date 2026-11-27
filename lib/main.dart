@@ -629,6 +629,34 @@ const List<String> kQuebecRegions = [
   '17 - CENTRE-DU-QUÉBEC',
 ];
 
+class FavoriteGroup {
+  final String id;
+  final String name;
+  final String iconName;
+  final List<String> resourceIds;
+
+  FavoriteGroup({
+    required this.id,
+    required this.name,
+    this.iconName = 'folder',
+    required this.resourceIds,
+  });
+
+  Map<String, dynamic> toJson() => {
+        'id': id,
+        'name': name,
+        'iconName': iconName,
+        'resourceIds': resourceIds,
+      };
+
+  factory FavoriteGroup.fromJson(Map<String, dynamic> json) => FavoriteGroup(
+        id: json['id'] as String,
+        name: json['name'] as String,
+        iconName: (json['iconName'] as String?) ?? 'folder',
+        resourceIds: List<String>.from(json['resourceIds'] as List? ?? []),
+      );
+}
+
 const List<SocialResource> kFallbackResources = [];
 
 // ============================================================================
@@ -724,6 +752,8 @@ class _CivicLedgerScreenState extends State<CivicLedgerScreen> {
   List<SocialResource> _resources = [];
   final Set<String> _addedAssetIds = {};
   final Set<String> _savedIds = {};
+  List<FavoriteGroup> _favoriteGroups = [];
+  String _selectedFavoriteGroupId = 'ALL';
   List<PersonalNote> _notes = [];
 
   final Set<String> _wizardCatIds = {};
@@ -1349,6 +1379,435 @@ class _CivicLedgerScreenState extends State<CivicLedgerScreen> {
     });
   }
 
+  Future<void> _loadFavoriteGroups() async {
+    final prefs = await SharedPreferences.getInstance();
+    final jsonStr = prefs.getString('indexocial_favorite_groups');
+    if (jsonStr != null && jsonStr.isNotEmpty) {
+      try {
+        final List<dynamic> decoded = jsonDecode(jsonStr);
+        if (mounted) {
+          setState(() {
+            _favoriteGroups = decoded
+                .map((item) => FavoriteGroup.fromJson(Map<String, dynamic>.from(item)))
+                .toList();
+          });
+        }
+      } catch (_) {}
+    }
+  }
+
+  Future<void> _saveFavoriteGroups() async {
+    final prefs = await SharedPreferences.getInstance();
+    final jsonStr = jsonEncode(_favoriteGroups.map((g) => g.toJson()).toList());
+    await prefs.setString('indexocial_favorite_groups', jsonStr);
+  }
+
+  void _createFavoriteGroup(String name) {
+    if (name.trim().isEmpty) return;
+    final newGroup = FavoriteGroup(
+      id: 'GRP-${DateTime.now().millisecondsSinceEpoch}',
+      name: name.trim(),
+      resourceIds: [],
+    );
+    setState(() {
+      _favoriteGroups.add(newGroup);
+      _selectedFavoriteGroupId = newGroup.id;
+    });
+    _saveFavoriteGroups();
+  }
+
+  void _deleteFavoriteGroup(String groupId) {
+    setState(() {
+      _favoriteGroups.removeWhere((g) => g.id == groupId);
+      if (_selectedFavoriteGroupId == groupId) {
+        _selectedFavoriteGroupId = 'ALL';
+      }
+    });
+    _saveFavoriteGroups();
+  }
+
+  void _toggleResourceInFavoriteGroup(String groupId, String resourceId) {
+    final groupIndex = _favoriteGroups.indexWhere((g) => g.id == groupId);
+    if (groupIndex == -1) return;
+
+    final group = _favoriteGroups[groupIndex];
+    final updatedIds = List<String>.from(group.resourceIds);
+    if (updatedIds.contains(resourceId)) {
+      updatedIds.remove(resourceId);
+    } else {
+      updatedIds.add(resourceId);
+    }
+
+    setState(() {
+      _favoriteGroups[groupIndex] = FavoriteGroup(
+        id: group.id,
+        name: group.name,
+        iconName: group.iconName,
+        resourceIds: updatedIds,
+      );
+    });
+    _saveFavoriteGroups();
+  }
+
+  void _exportFavoriteGroup({FavoriteGroup? group}) {
+    final List<SocialResource> itemsToExport;
+    final String groupTitle;
+
+    if (group != null) {
+      groupTitle = group.name;
+      itemsToExport = _resources.where((r) => group.resourceIds.contains(r.id)).toList();
+    } else {
+      groupTitle = _isFr ? 'Tous mes favoris' : 'All My Favorites';
+      itemsToExport = _resources.where((r) => _savedIds.contains(r.id)).toList();
+    }
+
+    if (itemsToExport.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          backgroundColor: CivicPalette.vermilion,
+          behavior: SnackBarBehavior.floating,
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+          content: Text(
+            _isFr ? 'Aucune ressource à exporter dans ce groupe.' : 'No resources to export in this group.',
+            style: const TextStyle(fontWeight: FontWeight.w800, color: Colors.white),
+          ),
+        ),
+      );
+      return;
+    }
+
+    final buffer = StringBuffer();
+    buffer.writeln('📋 INDEXOCIAL QC - ${groupTitle.toUpperCase()}');
+    buffer.writeln('Nombre de contacts : ${itemsToExport.length}');
+    buffer.writeln('----------------------------------------');
+
+    for (int i = 0; i < itemsToExport.length; i++) {
+      final r = itemsToExport[i];
+      buffer.writeln('${i + 1}. ${r.name(_isFr)}');
+      if (r.phone.isNotEmpty) buffer.writeln('   📞 Tél : ${r.phone}');
+      if (r.website.isNotEmpty) buffer.writeln('   🌐 Web : ${r.website}');
+      if (r.region.isNotEmpty) buffer.writeln('   📍 Région : ${r.region}');
+      buffer.writeln('');
+    }
+
+    buffer.writeln('----------------------------------------');
+    buffer.writeln('Partagé via INDEXOCIAL QC - Répertoire civique du Québec');
+
+    Share.share(buffer.toString(), subject: 'INDEXOCIAL QC - $groupTitle');
+  }
+
+  void _openCreateGroupDialog() {
+    final nameController = TextEditingController();
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          backgroundColor: _cardBg,
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(22)),
+          title: Row(
+            children: [
+              Icon(Icons.create_new_folder_rounded, color: CivicPalette.signalYellow, size: 22),
+              const SizedBox(width: 8),
+              Text(
+                _isFr ? 'Créer un groupe' : 'Create group',
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w900, color: _textPrimary, fontFamily: 'sans-serif-condensed'),
+              ),
+            ],
+          ),
+          content: TextField(
+            controller: nameController,
+            autofocus: true,
+            style: TextStyle(color: _textPrimary, fontWeight: FontWeight.w800),
+            decoration: InputDecoration(
+              hintText: _isFr ? 'Nom du groupe (ex: Urgence Logement)' : 'Group name (e.g. Housing Aid)',
+              hintStyle: TextStyle(color: _textMuted, fontSize: 13),
+              border: OutlineInputBorder(borderRadius: BorderRadius.circular(14)),
+            ),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(context),
+              child: Text(_isFr ? 'Annuler' : 'Cancel', style: TextStyle(color: _textMuted, fontWeight: FontWeight.w800)),
+            ),
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: CivicPalette.signalYellow,
+                foregroundColor: CivicPalette.darkBg,
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
+              ),
+              onPressed: () {
+                if (nameController.text.trim().isNotEmpty) {
+                  _createFavoriteGroup(nameController.text.trim());
+                  Navigator.pop(context);
+                }
+              },
+              child: Text(_isFr ? 'Créer' : 'Create', style: const TextStyle(fontWeight: FontWeight.w900)),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  void _openAssignGroupSheet(SocialResource resource) {
+    showModalBottomSheet(
+      context: context,
+      backgroundColor: _cardBg,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
+      ),
+      builder: (context) {
+        return StatefulBuilder(
+          builder: (context, setSheetState) {
+            return Padding(
+              padding: const EdgeInsets.all(20),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      Icon(Icons.folder_special_rounded, color: CivicPalette.signalYellow, size: 22),
+                      const SizedBox(width: 8),
+                      Expanded(
+                        child: Text(
+                          _isFr ? 'Classer dans un groupe de favoris' : 'Assign to favorite group',
+                          style: TextStyle(
+                            fontSize: 15,
+                            fontWeight: FontWeight.w900,
+                            color: _textPrimary,
+                            fontFamily: 'sans-serif-condensed',
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 6),
+                  Text(
+                    resource.name(_isFr),
+                    style: TextStyle(fontSize: 13, fontWeight: FontWeight.w800, color: _accentText),
+                  ),
+                  const SizedBox(height: 14),
+                  if (_favoriteGroups.isEmpty)
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 12),
+                      child: Text(
+                        _isFr
+                            ? 'Aucun groupe créé pour le moment. Créez votre premier groupe ci-dessous.'
+                            : 'No groups created yet. Create your first group below.',
+                        style: TextStyle(fontSize: 12.5, color: _textMuted),
+                      ),
+                    )
+                  else
+                    ..._favoriteGroups.map((grp) {
+                      final isMember = grp.resourceIds.contains(resource.id);
+                      return CheckboxListTile(
+                        activeColor: CivicPalette.signalYellow,
+                        checkColor: CivicPalette.darkBg,
+                        title: Text(
+                          grp.name,
+                          style: TextStyle(
+                            fontSize: 13.5,
+                            fontWeight: FontWeight.w800,
+                            color: _textPrimary,
+                          ),
+                        ),
+                        value: isMember,
+                        onChanged: (val) {
+                          _toggleResourceInFavoriteGroup(grp.id, resource.id);
+                          setSheetState(() {});
+                        },
+                      );
+                    }),
+                  const SizedBox(height: 12),
+                  ElevatedButton.icon(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: _bg,
+                      foregroundColor: _textPrimary,
+                      minimumSize: const Size(double.infinity, 44),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(16),
+                        side: BorderSide(color: _cardBorder, width: _cardBorderWidth),
+                      ),
+                    ),
+                    onPressed: () {
+                      Navigator.pop(context);
+                      _openCreateGroupDialog();
+                    },
+                    icon: const Icon(Icons.add_rounded, size: 18),
+                    label: Text(
+                      _isFr ? '+ Créer un nouveau groupe' : '+ Create new group',
+                      style: const TextStyle(fontWeight: FontWeight.w900),
+                    ),
+                  ),
+                ],
+              ),
+            );
+          },
+        );
+      },
+    );
+  }
+
+  void _confirmDeleteFavoriteGroup(FavoriteGroup group) {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        backgroundColor: _cardBg,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(22)),
+        title: Text(_isFr ? 'Supprimer le dossier ?' : 'Delete folder?', style: TextStyle(color: _textPrimary, fontWeight: FontWeight.w900)),
+        content: Text(
+          _isFr
+              ? 'Voulez-vous vraiment supprimer le dossier "${group.name}" ? Vos contacts favoris ne seront pas supprimés.'
+              : 'Are you sure you want to delete folder "${group.name}"? Saved contacts will not be deleted.',
+          style: TextStyle(color: _textPrimary, fontSize: 13),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: Text(_isFr ? 'Annuler' : 'Cancel', style: TextStyle(color: _textMuted, fontWeight: FontWeight.w800)),
+          ),
+          ElevatedButton(
+            style: ElevatedButton.styleFrom(backgroundColor: CivicPalette.vermilion, foregroundColor: Colors.white, shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14))),
+            onPressed: () {
+              Navigator.pop(context);
+              _deleteFavoriteGroup(group.id);
+            },
+            child: Text(_isFr ? 'Supprimer' : 'Delete', style: const TextStyle(fontWeight: FontWeight.w900)),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildSavedGroupControlSection() {
+    final currentGroup = _favoriteGroups.firstWhere(
+      (g) => g.id == _selectedFavoriteGroupId,
+      orElse: () => FavoriteGroup(id: 'ALL', name: _isFr ? 'Tous les favoris' : 'All Favorites', resourceIds: []),
+    );
+
+    return Container(
+      margin: const EdgeInsets.only(bottom: 14),
+      padding: const EdgeInsets.all(12),
+      decoration: BoxDecoration(
+        color: _cardBg,
+        borderRadius: BorderRadius.circular(20),
+        border: Border.all(color: _cardBorder, width: _cardBorderWidth),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Row(
+                children: [
+                  Icon(Icons.folder_special_rounded, color: CivicPalette.signalYellow, size: 20),
+                  const SizedBox(width: 8),
+                  Text(
+                    _isFr ? 'DOSSIERS FAVORIS' : 'FAVORITE FOLDERS',
+                    style: TextStyle(
+                      fontSize: 12.5,
+                      fontWeight: FontWeight.w900,
+                      color: _textPrimary,
+                      fontFamily: 'sans-serif-condensed',
+                    ),
+                  ),
+                ],
+              ),
+              Row(
+                children: [
+                  ElevatedButton.icon(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: CivicPalette.signalYellow,
+                      foregroundColor: CivicPalette.darkBg,
+                      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+                      minimumSize: const Size(0, 32),
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
+                    ),
+                    onPressed: () => _exportFavoriteGroup(
+                      group: _selectedFavoriteGroupId == 'ALL' ? null : currentGroup,
+                    ),
+                    icon: const Icon(Icons.share_rounded, size: 15),
+                    label: Text(
+                      _isFr ? 'EXPORTER' : 'EXPORT',
+                      style: const TextStyle(
+                        fontSize: 10.5,
+                        fontWeight: FontWeight.w900,
+                        fontFamily: 'sans-serif-condensed',
+                      ),
+                    ),
+                  ),
+                  if (_selectedFavoriteGroupId != 'ALL') ...[
+                    const SizedBox(width: 4),
+                    IconButton(
+                      padding: EdgeInsets.zero,
+                      constraints: const BoxConstraints(),
+                      icon: const Icon(Icons.delete_outline_rounded, color: CivicPalette.vermilion, size: 20),
+                      onPressed: () => _confirmDeleteFavoriteGroup(currentGroup),
+                      tooltip: _isFr ? 'Supprimer ce groupe' : 'Delete this group',
+                    ),
+                  ],
+                  const SizedBox(width: 6),
+                  IconButton(
+                    padding: EdgeInsets.zero,
+                    constraints: const BoxConstraints(),
+                    icon: Icon(Icons.create_new_folder_rounded, color: _accentText, size: 22),
+                    onPressed: _openCreateGroupDialog,
+                    tooltip: _isFr ? 'Créer un groupe' : 'Create group',
+                  ),
+                ],
+              ),
+            ],
+          ),
+          const SizedBox(height: 10),
+          SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Row(
+              children: [
+                FilterChip(
+                  selected: _selectedFavoriteGroupId == 'ALL',
+                  backgroundColor: _bg,
+                  selectedColor: CivicPalette.signalYellow,
+                  labelStyle: TextStyle(
+                    fontWeight: FontWeight.w900,
+                    fontSize: 11.5,
+                    color: _selectedFavoriteGroupId == 'ALL' ? CivicPalette.darkBg : _textPrimary,
+                  ),
+                  label: Text(_isFr ? 'TOUS (${_savedIds.length})' : 'ALL (${_savedIds.length})'),
+                  onSelected: (_) => setState(() => _selectedFavoriteGroupId = 'ALL'),
+                ),
+                ..._favoriteGroups.map((grp) {
+                  final isSelected = _selectedFavoriteGroupId == grp.id;
+                  final count = grp.resourceIds.where((id) => _savedIds.contains(id)).length;
+
+                  return Padding(
+                    padding: const EdgeInsets.only(left: 6),
+                    child: FilterChip(
+                      selected: isSelected,
+                      backgroundColor: _bg,
+                      selectedColor: CivicPalette.signalYellow,
+                      avatar: isSelected
+                          ? null
+                          : Icon(Icons.folder_rounded, size: 16, color: _accentText),
+                      labelStyle: TextStyle(
+                        fontWeight: FontWeight.w900,
+                        fontSize: 11.5,
+                        color: isSelected ? CivicPalette.darkBg : _textPrimary,
+                      ),
+                      label: Text('${grp.name.toUpperCase()} ($count)'),
+                      onSelected: (_) => setState(() => _selectedFavoriteGroupId = grp.id),
+                    ),
+                  );
+                }),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
   void _quickHideEmergency() => _launchUri(_hideRedirectUrl);
 
   static const List<String> kRegionJsonFiles = [
@@ -1389,6 +1848,8 @@ class _CivicLedgerScreenState extends State<CivicLedgerScreen> {
 
   Future<void> _loadCachedAndRemoteData() async {
     final prefs = await SharedPreferences.getInstance();
+
+    await _loadFavoriteGroups();
 
     final accepted = prefs.getBool('indexocial_disclaimer_accepted') ?? false;
     final seenTour = prefs.getBool('indexocial_tour_seen') ?? false;
@@ -2057,7 +2518,15 @@ class _CivicLedgerScreenState extends State<CivicLedgerScreen> {
   List<SocialResource> get _filteredResources {
     final q = _searchQuery.toLowerCase().trim();
     final list = _resources.where((item) {
-      if (_activeTab == NavTab.saved && !_savedIds.contains(item.id)) return false;
+      if (_activeTab == NavTab.saved) {
+        if (!_savedIds.contains(item.id)) return false;
+        if (_selectedFavoriteGroupId != 'ALL') {
+          final groupIndex = _favoriteGroups.indexWhere((g) => g.id == _selectedFavoriteGroupId);
+          if (groupIndex != -1) {
+            if (!_favoriteGroups[groupIndex].resourceIds.contains(item.id)) return false;
+          }
+        }
+      }
       if (_activeTab == NavTab.directory) {
         if (_selectedCategory != 'ALL' && !item.categoryIds.contains(_selectedCategory)) {
           return false;
@@ -4234,6 +4703,10 @@ class _CivicLedgerScreenState extends State<CivicLedgerScreen> {
     final hasActiveFilter = _searchQuery.trim().isNotEmpty || (_activeTab == NavTab.directory && (_selectedCategory != 'ALL' || _wizardCatIds.isNotEmpty || _wizardRegions.isNotEmpty));
 
     return [
+      if (_activeTab == NavTab.saved)
+        SliverToBoxAdapter(
+          child: _buildSavedGroupControlSection(),
+        ),
       if (_activeTab == NavTab.directory)
         SliverToBoxAdapter(
           child: Padding(
@@ -4413,6 +4886,12 @@ class _CivicLedgerScreenState extends State<CivicLedgerScreen> {
                       icon: const Icon(Icons.delete_outline_rounded, color: CivicPalette.vermilion, size: 22),
                       onPressed: () => _confirmDeleteCustomResource(item),
                       tooltip: _isFr ? 'Supprimer ma ressource' : 'Delete my resource',
+                    ),
+                  if (isSaved)
+                    IconButton(
+                      icon: Icon(Icons.folder_open_rounded, color: _accentText, size: 22),
+                      onPressed: () => _openAssignGroupSheet(item),
+                      tooltip: _isFr ? 'Classer dans un groupe' : 'Assign to group',
                     ),
                   IconButton(
                     icon: Icon(
