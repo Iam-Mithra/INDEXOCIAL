@@ -1244,36 +1244,75 @@ class _CivicLedgerScreenState extends State<CivicLedgerScreen> {
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: _weatherAlerts.map((alert) {
-        final Color levelColor;
-        switch (alert.riskColourFr) {
-          case 'rouge':
-            levelColor = CivicPalette.vermilion;
-            break;
-          case 'orange':
-            levelColor = const Color(0xFFFF8C00);
-            break;
-          default:
-            levelColor = CivicPalette.signalYellow;
-        }
+      children: [
+        Padding(
+          padding: const EdgeInsets.only(bottom: 6, left: 2, right: 2),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Row(
+                children: [
+                  Icon(Icons.thunderstorm_rounded, size: 16, color: CivicPalette.vermilion),
+                  const SizedBox(width: 6),
+                  Text(
+                    _isFr ? 'ALERTES MÉTÉO ECCC' : 'ECCC WEATHER ALERTS',
+                    style: TextStyle(
+                      fontSize: 12,
+                      fontWeight: FontWeight.w900,
+                      color: _textPrimary,
+                      letterSpacing: 0.5,
+                      fontFamily: 'sans-serif-condensed',
+                    ),
+                  ),
+                ],
+              ),
+              IconButton(
+                padding: EdgeInsets.zero,
+                constraints: const BoxConstraints(),
+                icon: _isLoadingWeather
+                    ? const SizedBox(
+                        width: 14,
+                        height: 14,
+                        child: CircularProgressIndicator(strokeWidth: 2, color: CivicPalette.signalYellow),
+                      )
+                    : Icon(Icons.refresh_rounded, size: 18, color: _textMuted),
+                onPressed: _fetchEcccWeatherAlerts,
+                tooltip: _isFr ? 'Actualiser les alertes météo' : 'Refresh weather alerts',
+              ),
+            ],
+          ),
+        ),
+        ..._weatherAlerts.map((alert) {
+          final Color levelColor;
+          switch (alert.riskColourFr) {
+            case 'rouge':
+              levelColor = CivicPalette.vermilion;
+              break;
+            case 'orange':
+              levelColor = const Color(0xFFFF8C00);
+              break;
+            default:
+              levelColor = CivicPalette.signalYellow;
+          }
 
-        final String endFormatted = _formatAlertEndDatetime(alert.eventEndDatetime);
+          final String endFormatted = _formatAlertEndDatetime(alert.eventEndDatetime);
 
-        return _ExpandableWeatherAlertCard(
-          alert: alert,
-          levelColor: levelColor,
-          endFormatted: endFormatted,
-          isFr: _isFr,
-          bg: _bg,
-          cardBg: _cardBg,
-          cardBorder: _cardBorder,
-          cardBorderWidth: _cardBorderWidth,
-          textPrimary: _textPrimary,
-          textMuted: _textMuted,
-          accentText: _accentText,
-          highContrast: _highContrast,
-        );
-      }).toList(),
+          return _ExpandableWeatherAlertCard(
+            alert: alert,
+            levelColor: levelColor,
+            endFormatted: endFormatted,
+            isFr: _isFr,
+            bg: _bg,
+            cardBg: _cardBg,
+            cardBorder: _cardBorder,
+            cardBorderWidth: _cardBorderWidth,
+            textPrimary: _textPrimary,
+            textMuted: _textMuted,
+            accentText: _accentText,
+            highContrast: _highContrast,
+          );
+        }),
+      ],
     );
   }
 
